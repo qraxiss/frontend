@@ -1,12 +1,7 @@
 import React from 'react'
-import Collection from './Collection'
-import Service from './CollectionService'
-import Shopping from './ShopingService'
-import TopProducts from './TopProduct'
-import Shoping from './Shopping'
-import FollowUs from './FollowUs'
 
 import { Slider, Products } from 'Components/Product'
+import Section from './Section'
 
 import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
@@ -40,6 +35,7 @@ const Home = () => {
 
     return (
         <React.Fragment>
+            <Section />
             <Slider items={data || []} />
             <Products items={data || []} />
         </React.Fragment>

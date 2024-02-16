@@ -62,19 +62,11 @@ const Layout = (props: any) => {
 
     return (
         <React.Fragment>
+            <TopBar></TopBar>
             {location.pathname && <MainModal location={location.pathname} />}
-            <TopBar />
             <Header handleMood={handleThemeMood} />
             {props.children}
             <Footer />
-            {/* <Link
-                to="//themes.themesbrand.com/toner/react/backend/dashboard"
-                target="_blank"
-                className="btn btn-warning position-fixed bottom-0 start-0 m-5 z-3 btn-hover d-none d-lg-block"
-            >
-                <i className="bi bi-database align-middle me-1"></i> Backend
-            </Link> */}
-            {/* <OnlineChat /> */}
             <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
                 <i className="ri-arrow-up-line"></i>
             </Button>
