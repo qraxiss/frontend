@@ -2,12 +2,6 @@ import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-//img
-import visa from 'assets/images/ecommerce/payment/visa.png'
-import discover from 'assets/images/ecommerce/payment/discover.png'
-import americanexpress from 'assets/images/ecommerce/payment/american-express.png'
-import paypal from 'assets/images/ecommerce/payment/paypal.png'
-
 import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
@@ -33,13 +27,72 @@ const query = gql`
                 }
             }
         }
+        about {
+            data {
+                attributes {
+                    footerAbout
+                }
+            }
+        }
+        footer {
+            data {
+                attributes {
+                    shopcek {
+                        name
+                        url
+                    }
+                    legal {
+                        name
+                        url
+                    }
+                }
+            }
+        }
+
+        social {
+            data {
+                attributes {
+                    socials {
+                        name
+                        url
+                        icon {
+                            data {
+                                attributes {
+                                    url
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 `
+
+const groupList = <T extends any>(list: T[], groupSize: number): T[][] => {
+    return list.reduce((acc, item, index) => {
+        const groupIndex = index % groupSize
+
+        if (!acc[groupIndex]) {
+            acc[groupIndex] = []
+        }
+
+        acc[groupIndex].push(item)
+
+        return acc
+    }, [] as T[][])
+}
 
 const Footer = () => {
     const { data, loading } = useQuery(query)
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
+
+    console.log(data)
+    let groupedList
+    if (!loading) {
+        groupedList = groupList(data.social.socials, 3)
+    }
 
     return (
         <React.Fragment>
@@ -50,12 +103,9 @@ const Footer = () => {
                             <div className="footer-info">
                                 <Image src={logolight} alt="" height="40" className="logo-light" />
                                 <Image src={logodark} alt="" height="40" className="logo-dark" />
-                                <p className="footer-desc mt-4 mb-2 me-3">
-                                    Toner provides best fashion experience for both men and women at best pricing. We follow New fashion approach to
-                                    give best premium feel.
-                                </p>
+                                <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.about.footerAbout : ''}</p>
 
-                                <div className="footer-social mt-4">
+                                {/* <div className="footer-social mt-4">
                                     <ul className="list-inline mb-0">
                                         <li className="list-inline-item">
                                             <Link to="#" className="text-reset">
@@ -78,7 +128,7 @@ const Footer = () => {
                                             </Link>
                                         </li>
                                     </ul>
-                                </div>
+                                </div> */}
                             </div>
                         </Col>
 
@@ -98,72 +148,53 @@ const Footer = () => {
                                         </ul>
                                     </div>
                                 </Col>
+
                                 <Col md={3}>
                                     <div className="mt-lg-0 mt-4">
-                                        <h5 className="footer-title">Information</h5>
+                                        <h5 className="footer-title">Shopcek</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            <li>
-                                                <Link to="#">Custom Service</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">FAQs</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Ordering</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Tracking</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Contacts</Link>
-                                            </li>
+                                            {(!loading ? data.footer.shopcek : []).map((item: any) => {
+                                                return (
+                                                    <li>
+                                                        <Link to={item.url}>{item.name}</Link>
+                                                    </li>
+                                                )
+                                            })}
                                         </ul>
                                     </div>
                                 </Col>
 
                                 <Col md={3}>
                                     <div className="mt-lg-0 mt-4">
-                                        <h5 className="footer-title">My Account</h5>
+                                        <h5 className="footer-title">Legal</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            <li>
-                                                <Link to="#">Sign In</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">View Cart</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">My Wishlist</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Track My Order</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Help</Link>
-                                            </li>
+                                            {(!loading ? data.footer.legal : []).map((item: any) => {
+                                                return (
+                                                    <li>
+                                                        <Link to={item.url}>{item.name}</Link>
+                                                    </li>
+                                                )
+                                            })}
                                         </ul>
                                     </div>
                                 </Col>
 
                                 <Col md={3}>
-                                    <div className="mt-lg-0 mt-4">
-                                        <h5 className="footer-title">Customer Service</h5>
-                                        <ul className="list-unstyled footer-link mt-3">
-                                            <li>
-                                                <Link to="#">Payment Methods</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Money-back!</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Returns</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Shipping</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Terms and conditions</Link>
-                                            </li>
-                                        </ul>
+                                    <div className="my-lg-0 mt-4">
+                                        <h5 className="footer-title">Follow Us</h5>
+                                        {(!loading ? groupedList! : []).map((group, index) => (
+                                            <Row key={index}>
+                                                {group.map((item: any, itemIndex) => {
+                                                    return (
+                                                        <Col key={itemIndex}>
+                                                            <Link to={item.url}>
+                                                                <Image src={config.serverUrl + item.icon.url} />
+                                                            </Link>
+                                                        </Col>
+                                                    )
+                                                })}
+                                            </Row>
+                                        ))}
                                     </div>
                                 </Col>
                             </Row>
