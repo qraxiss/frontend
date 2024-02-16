@@ -27,13 +27,6 @@ const query = gql`
                 }
             }
         }
-        about {
-            data {
-                attributes {
-                    footerAbout
-                }
-            }
-        }
         footer {
             data {
                 attributes {
@@ -45,6 +38,7 @@ const query = gql`
                         name
                         url
                     }
+                    about
                 }
             }
         }
@@ -88,7 +82,6 @@ const Footer = () => {
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
 
-    console.log(data)
     let groupedList
     if (!loading) {
         groupedList = groupList(data.social.socials, 3)
@@ -103,32 +96,7 @@ const Footer = () => {
                             <div className="footer-info">
                                 <Image src={logolight} alt="" height="40" className="logo-light" />
                                 <Image src={logodark} alt="" height="40" className="logo-dark" />
-                                <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.about.footerAbout : ''}</p>
-
-                                {/* <div className="footer-social mt-4">
-                                    <ul className="list-inline mb-0">
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="text-reset">
-                                                <i className="mdi mdi-facebook"></i>
-                                            </Link>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="text-reset">
-                                                <i className="mdi mdi-twitter"></i>
-                                            </Link>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="text-reset">
-                                                <i className="mdi mdi-google"></i>
-                                            </Link>
-                                        </li>
-                                        <li className="list-inline-item">
-                                            <Link to="#" className="text-reset">
-                                                <i className="mdi mdi-pinterest"></i>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div> */}
+                                <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p>
                             </div>
                         </Col>
 
@@ -140,7 +108,7 @@ const Footer = () => {
                                         <ul className="list-unstyled footer-link mt-3">
                                             {(!loading ? data.getParentCategories : []).map((category: any) => {
                                                 return (
-                                                    <li>
+                                                    <li key={category.slug}>
                                                         <Link to="#">{category.name}</Link>
                                                     </li>
                                                 )
@@ -155,7 +123,7 @@ const Footer = () => {
                                         <ul className="list-unstyled footer-link mt-3">
                                             {(!loading ? data.footer.shopcek : []).map((item: any) => {
                                                 return (
-                                                    <li>
+                                                    <li key={item.url}>
                                                         <Link to={item.url}>{item.name}</Link>
                                                     </li>
                                                 )
@@ -170,7 +138,7 @@ const Footer = () => {
                                         <ul className="list-unstyled footer-link mt-3">
                                             {(!loading ? data.footer.legal : []).map((item: any) => {
                                                 return (
-                                                    <li>
+                                                    <li key={item.url}>
                                                         <Link to={item.url}>{item.name}</Link>
                                                     </li>
                                                 )

@@ -21,10 +21,10 @@ const mutation = gql`
 `
 
 const Signin = () => {
-    const [signin, { data, loading, error }] = useMutation(mutation)
-    const handledSignin = handle(signin)
+    const { fn, data, loading, error } = useMutation(mutation)
+    console.log(data)
     if (!loading && !!data) {
-        localStorage.setItem('jwt', data.login.jwt)
+        localStorage.setItem('jwt', data.jwt)
         console.log(localStorage.getItem('jwt'))
     }
 
@@ -163,7 +163,7 @@ const Signin = () => {
                                                             className="w-100"
                                                             type="submit"
                                                             onClick={() => {
-                                                                handledSignin({
+                                                                fn({
                                                                     variables: {
                                                                         identifier: formik.values.identifier,
                                                                         password: formik.values.password

@@ -6,6 +6,8 @@ import Section from './Section'
 import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
 
+import { useSearchParams } from 'react-router-dom'
+
 const query = gql`
     query {
         products {

@@ -17,7 +17,7 @@ export function handle(fn: CallableFunction) {
 export function useMutation(mutation: DocumentNode, options?: MutationHookOptions) {
     let jwt = localStorage.getItem('jwt')
 
-    return useMutationApollo(mutation, {
+    let [fn, { data, error, loading }] = useMutationApollo(mutation, {
         ...options,
         context: {
             headers: {
@@ -25,6 +25,12 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
             }
         }
     })
+
+    if (!loading && !!data) {
+        data = simplifyResponse(data)
+    }
+
+    return { data: data, error: error, loading: loading, fn: handle(fn) }
 }
 
 export function useQuery(query: DocumentNode, options?: QueryHookOptions) {

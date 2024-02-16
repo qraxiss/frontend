@@ -67,7 +67,7 @@ export default function Section() {
                         <Row className="g-2">
                             {data.campaigns.slice(1, data.campaigns.length).map((campaign: any) => {
                                 return (
-                                    <Col lg={12}>
+                                    <Col key={campaign.image.url} lg={12}>
                                         <Link to={campaign.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                             <Image
                                                 src={config.serverUrl + campaign.image.url}

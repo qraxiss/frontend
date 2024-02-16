@@ -4,7 +4,29 @@ import { useFormik } from 'formik'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { contactdetails } from 'Common/data'
 
+import { gql } from '@apollo/client'
+import { useMutation } from 'lib/query-wrapper'
+
+const query = gql`
+    mutation ($name: String!, $email: String!, $subject: String!, $message: String!) {
+        createContact(data: { name: $name, email: $email, subject: $subject, message: $message }) {
+            data {
+                attributes {
+                    name
+                    email
+                    subject
+                    message
+                }
+            }
+        }
+    }
+`
+
 const ContactUs = () => {
+    let { fn, data, loading } = useMutation(query)
+
+    console.log(data)
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -21,7 +43,11 @@ const ContactUs = () => {
             subject: Yup.string().required('Please Enter Your Subject'),
             message: Yup.string().required('Please Enter Your some message')
         }),
-        onSubmit: (values) => {}
+        onSubmit: (values) => {
+            fn({
+                variables: values
+            })
+        }
     })
 
     return (
@@ -161,25 +187,6 @@ const ContactUs = () => {
                                         </Col>
                                     </Row>
                                 </Form>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-            <section>
-                <Container fluid className="px-0">
-                    <Row className="g-0">
-                        <Col lg={12}>
-                            <div className="map">
-                                <iframe
-                                    title="map"
-                                    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3024.4645962375394!2d-74.01354043428768!3d40.7077878458095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sSoHo%2094%20Broadway%20St%20New%20York%2C%20NY%201001!5e0!3m2!1sen!2sin!4v1669110084163!5m2!1sen!2sin"
-                                    className="w-100"
-                                    height="400"
-                                    style={{ border: 0 }}
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                />
                             </div>
                         </Col>
                     </Row>
