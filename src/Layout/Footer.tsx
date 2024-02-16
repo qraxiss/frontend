@@ -183,12 +183,16 @@ const Footer = () => {
                                     <div className="my-lg-0 mt-4">
                                         <h5 className="footer-title">Follow Us</h5>
                                         {(!loading ? groupedList! : []).map((group, index) => (
-                                            <Row key={index}>
+                                            <Row key={index} className="footer-socials">
                                                 {group.map((item: any, itemIndex) => {
                                                     return (
                                                         <Col key={itemIndex}>
                                                             <Link to={item.url}>
-                                                                <Image src={config.serverUrl + item.icon.url} />
+                                                                <Image
+                                                                    src={config.serverUrl + item.icon.url}
+                                                                    className="footer-social-icon"
+                                                                    width={48}
+                                                                />
                                                             </Link>
                                                         </Col>
                                                     )

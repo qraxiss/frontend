@@ -86,6 +86,14 @@
         color: var(--#{$prefix}body-color);
     }
 
+    .footer-social-icon {
+        padding-bottom: 10px;
+    }
+
+    .footer-socials {
+        padding-top: 10px;
+    }
+
     .footer-link {
         a {
             color: rgba(var(--#{$prefix}secondary-color-rgb), 0.8);
