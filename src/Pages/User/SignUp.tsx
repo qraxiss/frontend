@@ -31,9 +31,7 @@ const SignUp = () => {
                 .matches(RegExp('(.*[0-9].*)'), 'At least one number')
                 .required('This field is required')
         }),
-        onSubmit: (values) => {
-            // console.log("value", values);
-        }
+        onSubmit: (values) => {}
     })
 
     return (
@@ -216,8 +214,7 @@ const SignUp = () => {
                                 <Col lg={12}>
                                     <div className="text-center">
                                         <p className="mb-0 text-muted">
-                                            ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by
-                                            Themesbrand
+                                            ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
                                         </p>
                                     </div>
                                 </Col>

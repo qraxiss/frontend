@@ -50,10 +50,6 @@ const Header = (props: any) => {
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
 
-    console.log(logodark, logolight)
-
-    console.log(data)
-
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -175,10 +171,10 @@ const Header = (props: any) => {
                 <Container>
                     <Navbar.Brand href="/#" className="d-none d-lg-block">
                         <div className="logo-dark">
-                            <Image src={logodark} alt="" height="25" />
+                            <Image src={logodark} alt="" height="35" />
                         </div>
                         <div className="logo-light">
-                            <Image src={logolight} alt="" height="25" /> <span className="logo-txt"></span>
+                            <Image src={logolight} alt="" height="35" /> <span className="logo-txt"></span>
                         </div>
                     </Navbar.Brand>
                     <Button

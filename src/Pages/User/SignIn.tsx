@@ -23,7 +23,6 @@ const mutation = gql`
 const Signin = () => {
     const [signin, { data, loading, error }] = useMutation(mutation)
     const handledSignin = handle(signin)
-    // console.log(loading, error)
     if (!loading && !!data) {
         localStorage.setItem('jwt', data.login.jwt)
         console.log(localStorage.getItem('jwt'))

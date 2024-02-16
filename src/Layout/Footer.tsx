@@ -3,14 +3,44 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 //img
-import logolight from 'assets/images/logo-light.png'
-import logodark from 'assets/images/logo-dark.png'
 import visa from 'assets/images/ecommerce/payment/visa.png'
 import discover from 'assets/images/ecommerce/payment/discover.png'
 import americanexpress from 'assets/images/ecommerce/payment/american-express.png'
 import paypal from 'assets/images/ecommerce/payment/paypal.png'
 
+import { useQuery } from 'lib/query-wrapper'
+import { gql } from '@apollo/client'
+import config from 'config/config'
+
+const query = gql`
+    query {
+        getParentCategories {
+            attributes {
+                name
+                slug
+            }
+        }
+        logo {
+            data {
+                attributes {
+                    text {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
+
 const Footer = () => {
+    const { data, loading } = useQuery(query)
+    let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
+    let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
+
     return (
         <React.Fragment>
             <section className="section footer-landing pb-0">
@@ -18,8 +48,8 @@ const Footer = () => {
                     <Row>
                         <Col lg={4}>
                             <div className="footer-info">
-                                <Image src={logolight} alt="" height="28" className="logo-light" />
-                                <Image src={logodark} alt="" height="28" className="logo-dark" />
+                                <Image src={logolight} alt="" height="40" className="logo-light" />
+                                <Image src={logodark} alt="" height="40" className="logo-dark" />
                                 <p className="footer-desc mt-4 mb-2 me-3">
                                     Toner provides best fashion experience for both men and women at best pricing. We follow New fashion approach to
                                     give best premium feel.
@@ -58,21 +88,13 @@ const Footer = () => {
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Categories</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            <li>
-                                                <Link to="#">Men</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Jewellers</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Accessories</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Clothing</Link>
-                                            </li>
-                                            <li>
-                                                <Link to="#">Beauty Items</Link>
-                                            </li>
+                                            {(!loading ? data.getParentCategories : []).map((category: any) => {
+                                                return (
+                                                    <li>
+                                                        <Link to="#">{category.name}</Link>
+                                                    </li>
+                                                )
+                                            })}
                                         </ul>
                                     </div>
                                 </Col>
@@ -145,41 +167,6 @@ const Footer = () => {
                                     </div>
                                 </Col>
                             </Row>
-                        </Col>
-                    </Row>
-
-                    <Row className="footer-border-alt mt-4 align-items-center fs-15">
-                        <Col sm={6}>
-                            {new Date().getFullYear()} © Toner. Design &amp; Develop by{' '}
-                            <Link to="https://themesbrand.com/" target="_blank" className="text-reset text-decoration-underline">
-                                Themesbrand
-                            </Link>
-                        </Col>
-                        <Col sm={6}>
-                            <div className="text-sm-end d-none d-sm-block">
-                                <ul className="list-inline mb-0">
-                                    <li className="list-inline-item">
-                                        <Link to="#">
-                                            <Image src={visa} alt="" height="30" />
-                                        </Link>
-                                    </li>
-                                    <li className="list-inline-item">
-                                        <Link to="#">
-                                            <Image src={discover} alt="" height="30" />
-                                        </Link>
-                                    </li>
-                                    <li className="list-inline-item">
-                                        <Link to="#">
-                                            <Image src={americanexpress} alt="" height="30" />
-                                        </Link>
-                                    </li>
-                                    <li className="list-inline-item">
-                                        <Link to="#">
-                                            <Image src={paypal} alt="" height="30" />
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </div>
                         </Col>
                     </Row>
                 </Container>

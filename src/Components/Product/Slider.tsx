@@ -63,7 +63,6 @@ const Slider = ({ items }: any) => {
                                 ></div>
                                 <div className="swiper-wrapper">
                                     {items.map((item: any) => {
-                                        console.log(item)
                                         return (
                                             <SwiperSlide className="swiper-slide" key={item.slug}>
                                                 <Card className="overflow-hidden">

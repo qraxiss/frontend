@@ -21,9 +21,7 @@ const ContactUs = () => {
             subject: Yup.string().required('Please Enter Your Subject'),
             message: Yup.string().required('Please Enter Your some message')
         }),
-        onSubmit: (values) => {
-            // console.log("value", values);
-        }
+        onSubmit: (values) => {}
     })
 
     return (

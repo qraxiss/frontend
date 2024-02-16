@@ -31,10 +31,6 @@ const query = gql`
 const Checkout = () => {
     let { data, loading, error } = useQuery(query)
 
-    if (!loading) {
-        console.log(simplifyResponse(data))
-    }
-
     document.title = 'Checkout | Toner - React FrontEnd'
     return (
         <React.Fragment>

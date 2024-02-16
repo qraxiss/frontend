@@ -31,7 +31,6 @@ const Home = () => {
     document.title = 'Index | Toner - React FrontEnd'
 
     let { data, loading, error } = useQuery(query)
-    console.log(data)
 
     return (
         <React.Fragment>

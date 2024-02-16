@@ -52,9 +52,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
             phone: Yup.string().matches(RegExp('[0-9]{7}')).required('Please Enter Your Phone'),
             addressType: Yup.string().required('Please Enter Your Type')
         }),
-        onSubmit: (values) => {
-            // console.log("value", values);
-        }
+        onSubmit: (values) => {}
     })
 
     return (

@@ -36,7 +36,6 @@ const query = gql`
 
 export default function Section() {
     const { data, loading } = useQuery(query)
-    console.log(data)
 
     if (loading) {
         return
