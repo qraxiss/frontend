@@ -10,19 +10,7 @@ import { orderHistorys, wishlishProduct } from 'Common/data'
 import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { CommonService } from 'Components/CommonService'
 
-import { useSearchParams } from 'react-router-dom'
-
 const MyAccount = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    let paramsObject: Record<string, string> = {}
-
-    for (let [param, value] of searchParams.entries()) {
-        paramsObject[param] = value
-    }
-
-    console.log(paramsObject)
-
     return (
         <React.Fragment>
             <section className="position-relative">
