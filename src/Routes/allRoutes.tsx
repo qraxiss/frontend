@@ -117,7 +117,7 @@ const publicRoutes = [
     //Passwordcreate
     { path: '/create-password', component: <Passwordcreate /> },
     //Successmsg
-    { path: '/login-succes', component: <Successmsg /> },
+    { path: '/login-success', component: <Successmsg /> },
 
     //error 404
     { path: '/404', component: <Error404 /> },
