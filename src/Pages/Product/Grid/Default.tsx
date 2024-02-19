@@ -9,7 +9,13 @@ import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { CommonService } from 'Components/CommonService'
 import Index from 'Components/Index'
 
+import { useParams } from 'react-router-dom'
+
 const Defaultgrid = () => {
+    let {parent, child} = useParams()
+
+    console.log(parent, child)
+
     return (
         <React.Fragment>
             <section className="position-relative section">

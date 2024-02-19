@@ -169,12 +169,12 @@ const Header = (props: any) => {
         <React.Fragment>
             <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
                 <Container>
-                    <Navbar.Brand href="/#" className="d-none d-lg-block">
+                    <Navbar.Brand href="/" className="d-none d-lg-block">
                         <div className="logo-dark">
-                            <Image src={logodark} alt="" height="35" />
+                            <Image src={logodark} alt="" height="50" />
                         </div>
                         <div className="logo-light">
-                            <Image src={logolight} alt="" height="35" /> <span className="logo-txt"></span>
+                            <Image src={logolight} alt="" height="50" /> 
                         </div>
                     </Navbar.Brand>
                     <Button
@@ -224,7 +224,7 @@ const Header = (props: any) => {
                                             {item.childs.map((child: any) => {
                                                 return (
                                                     <li className="nav-item" key={`${item.slug}-${child.slug}`}>
-                                                        <Link to={`/${item.slug}/${child.slug}`} className="nav-link" data-key={child.slug}>
+                                                        <Link to={`/category/${item.slug}/${child.slug}`} className="nav-link" data-key={child.slug}>
                                                             {props.t(child.name)}
                                                         </Link>
                                                     </li>

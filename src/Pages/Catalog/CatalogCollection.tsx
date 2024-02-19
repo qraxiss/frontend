@@ -4,7 +4,32 @@ import { Form, Row, Col, Card, Button, Image } from 'react-bootstrap'
 import { filterProduct } from 'Common/data'
 import Pagination from 'Components/Pagination'
 
+import { useQuery } from 'lib/query-wrapper'
+import { gql } from '@apollo/client'
+
+const query = gql`
+    query {
+        products {
+            data {
+                attributes {
+                    name
+                    slug
+                    price
+                    images {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
+
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
+    const {data, loading, error} = useQuery(query)
     //select
     const [select, setSelect] = useState('all')
     const pagination: boolean = true

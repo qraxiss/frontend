@@ -5,8 +5,8 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
 //img
-import logodark from 'assets/images/logo-dark.png'
-import logolight from 'assets/images/logo-light.png'
+
+
 import auth1 from 'assets/images/auth/img-1.png'
 
 import { gql } from '@apollo/client'
@@ -56,40 +56,6 @@ const Signin = () => {
     return (
         <React.Fragment>
             <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
-                <div className="auth-header position-fixed top-0 start-0 end-0 bg-body">
-                    <Container fluid>
-                        <Row className="justify-content-between align-items-center">
-                            <Col xs={2}>
-                                <Link className="navbar-brand mb-2 mb-sm-0" to="/">
-                                    <Image src={logodark} className="card-logo card-logo-dark" alt="logo dark" height={22} />
-                                    <Image src={logolight} className="card-logo card-logo-light" alt="logo light" height={22} />
-                                </Link>
-                            </Col>
-                            {/*-end col*/}
-                            <Col className="col-auto">
-                                <ul className="list-unstyled hstack gap-2 mb-0">
-                                    <li className="me-md-3">
-                                        <Link to="#" className="text-body fw-medium fs-15">
-                                            Become a Selling
-                                        </Link>
-                                    </li>
-                                    <li className="d-none d-md-block">
-                                        <Link to="#" className="btn btn-soft-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="bi bi-google-play align-middle me-1" /> Download App
-                                        </Link>
-                                    </li>
-                                    <li className="d-none d-md-block">
-                                        <Link to="#" className="btn btn-soft-primary" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i className="bi bi-apple align-middle me-1" /> Download App
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </Col>
-                        </Row>
-                        {/*end row*/}
-                    </Container>
-                    {/*end container-fluid*/}
-                </div>
                 <div className="w-100">
                     <Container>
                         <Row className="justify-content-center">

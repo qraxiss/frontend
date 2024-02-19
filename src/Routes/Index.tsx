@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Layout from 'Layout'
 
 //routes
-import { authProtectedRoutes, publicRoutes } from './allRoutes'
+import { authProtectedRoutes } from './allRoutes'
 import NonAuthLayout from 'Layout/NonAuthLayout'
 
 const Index = () => {
@@ -16,11 +16,11 @@ const Index = () => {
                     ))}
                 </Route>
 
-                <Route>
+                {/* <Route>
                     {publicRoutes.map((route, idx) => (
                         <Route path={route.path} element={<NonAuthLayout>{route.component}</NonAuthLayout>} key={idx} />
                     ))}
-                </Route>
+                </Route> */}
             </Routes>
         </React.Fragment>
     )

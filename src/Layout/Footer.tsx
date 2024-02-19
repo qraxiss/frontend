@@ -94,8 +94,8 @@ const Footer = () => {
                     <Row>
                         <Col lg={4}>
                             <div className="footer-info">
-                                <Image src={logolight} alt="" height="40" className="logo-light" />
-                                <Image src={logodark} alt="" height="40" className="logo-dark" />
+                                <Image src={logolight} alt="" height="50" className="logo-light" />
+                                <Image src={logodark} alt="" height="50" className="logo-dark" />
                                 <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p>
                             </div>
                         </Col>

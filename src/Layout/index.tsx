@@ -62,7 +62,7 @@ const Layout = (props: any) => {
 
     return (
         <React.Fragment>
-            <TopBar></TopBar>
+            {/* <TopBar></TopBar> */}
             {location.pathname && <MainModal location={location.pathname} />}
             <Header handleMood={handleThemeMood} />
             {props.children}

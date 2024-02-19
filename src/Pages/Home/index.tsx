@@ -14,7 +14,7 @@ const query = gql`
                     name
                     slug
                     price
-                    image {
+                    images {
                         data {
                             attributes {
                                 url

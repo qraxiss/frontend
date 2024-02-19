@@ -20,7 +20,7 @@ const Products = ({ items }: any) => {
                                     <div className={`bg-warning-subtle rounded-top py-4`}>
                                         <div className="gallery-product">
                                             <Image
-                                                src={config.serverUrl + item.image.url}
+                                                src={config.serverUrl + item.images[0].url}
                                                 alt=""
                                                 style={{ maxHeight: '215px', maxWidth: '100%' }}
                                                 className="mx-auto d-block"
@@ -29,7 +29,7 @@ const Products = ({ items }: any) => {
                                     </div>
                                     <Card.Body>
                                         <div>
-                                            <Link to="product-details">
+                                            <Link to={`/product-details/${item.slug}`}>
                                                 <h6 className="fs-15 lh-base text-truncate mb-0">{item.name}</h6>
                                             </Link>
                                             <div className="mt-3">

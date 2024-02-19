@@ -36,9 +36,6 @@ import About from 'Pages/Product/About'
 import ContactUs from 'Pages/ContactUs/Contact'
 
 const authProtectedRoutes = [
-    { path: '/', component: <Home /> },
-
-    //shop
     { path: '/shop/address', component: <ShopIndex /> },
     { path: '/shop/order', component: <Trackorder /> },
     { path: '/shop/payment', component: <PaymentIndex /> },
@@ -49,40 +46,23 @@ const authProtectedRoutes = [
     { path: '/shop/checkout', component: <Checkout /> },
     { path: '/shop/wishList', component: <WishList /> },
 
-    { path: '/products', component: <Defaultgrid /> },
-
-    //Productdetails
-    { path: '/product-details', component: <Productdetails /> },
-
-    //My Account
     { path: '/account', component: <MyAccount /> },
-
+    { path: '/', component: <Home /> },
     { path: '/about-us', component: <About /> },
-
     { path: '/contact', component: <ContactUs /> },
+    { path: '*', component: <Navigate to="/" /> },
+    { path : '/category/:parent/:child', component: <Defaultgrid /> },
+    { path: '/product-details/:slug', component: <Productdetails /> },
 
-    { path: '*', component: <Navigate to="/" /> }
-]
-
-const publicRoutes = [
-    //Signin
     { path: '/signin', component: <Signin /> },
-    //SignUp
     { path: '/signup', component: <SignUp /> },
-    //Logout
     { path: '/logout', component: <Logout /> },
-
-    //Passwordreset
     { path: '/password-reset', component: <Passwordreset /> },
-    //Passwordcreate
     { path: '/create-password', component: <Passwordcreate /> },
-    //Successmsg
     { path: '/login-success', component: <Successmsg /> },
 
-    //error 404
     { path: '/404', component: <Error404 /> },
-    //error 500
-    { path: '/500', component: <Error500 /> }
-]
+    { path: '/500', component: <Error500 /> },
 
-export { authProtectedRoutes, publicRoutes }
+]
+export { authProtectedRoutes }
