@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Col, Container, Row, Tab, Tooltip, Nav, Table, ProgressBar, Breadcrumb, Form, Image, Card } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
@@ -60,6 +60,10 @@ const Productdetails = () => {
         }
     })
 
+    useEffect(()=>{
+        handleSetImg(1)
+    }, [sliderProduct])
+
 
     const [sliderImg, setSliderImg] = useState(sliderProduct)
     const [count, setCount] = useState(0)
@@ -96,7 +100,7 @@ const Productdetails = () => {
                                                 transitionDuration: '0ms'
                                             }}
                                         >
-                                            {(sliderProduct || [])?.map((item: any, idx: number) => {
+                                            {sliderProduct?.map((item: any, idx: number) => {
                                                 return (
                                                     <div
                                                         key={idx}
