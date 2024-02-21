@@ -35,7 +35,7 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
 
 export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
     let jwt = localStorage.getItem('jwt')
-    let { data, error, loading } = useQueryApollo(query, {
+    let { data, error, loading, refetch } = useQueryApollo(query, {
         ...options,
         context: {
             headers: {
@@ -48,5 +48,5 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
         data = simplifyResponse(data)
     }
 
-    return { data, loading, error }
+    return { data, loading, error, refetch }
 }
