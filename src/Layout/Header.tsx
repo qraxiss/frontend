@@ -61,6 +61,7 @@ const Header = (props: any) => {
 
     //card modal
     const [card, setCard] = useState(false)
+    const [columnSegment, setColumnSegment] = useState('')
 
     const handlecardClose = () => setCard(false)
     const handlecardShow = () => setCard(true)
@@ -201,6 +202,39 @@ const Header = (props: any) => {
                                     <Image src={logolight} alt="" height="25" className="card-logo-light mx-auto" />
                                 </Link>
                             </li>
+                            {window.innerWidth < 990 && (
+                                <div className="nav-segment">
+                                    <label
+                                        onClick={() => {
+                                            setColumnSegment('menu')
+                                        }}
+                                        className={`nav-segment-item ${columnSegment === 'menu' ? 'active-item' : ''}`}
+                                    >
+                                        MENU
+                                    </label>
+                                    <label
+                                        onClick={() => {
+                                            setColumnSegment('collection')
+                                        }}
+                                        className={`nav-segment-item ${columnSegment === 'collection' ? 'active-item' : ''}`}
+                                    >
+                                        COLLECTION
+                                    </label>
+                                </div>
+                            )}
+
+                            {/* <Nav fill>
+                                <Nav.Item>
+                                    <Nav.Link eventKey="menu" className="nav-segment-link">
+                                        MENU
+                                    </Nav.Link>
+                                </Nav.Item>
+                                <Nav.Item className="nav-segment-item">
+                                    <Nav.Link eventKey="collection" className="nav-segment-link">
+                                        COLLECTION
+                                    </Nav.Link>
+                                </Nav.Item>
+                            </Nav> */}
                             {(!loading ? data.parentCategories : []).map((item: any) => {
                                 return (
                                     <li className="dropdown nav-item dropdown-hover" key={item.slug}>
@@ -244,6 +278,7 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
+                        {/* Search */}
                         <Button
                             type="button"
                             className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
@@ -255,6 +290,7 @@ const Header = (props: any) => {
                         </Button>
                         <SearchModal show={show} handleClose={handleClose} />
                         <div className="topbar-head-dropdown ms-1 header-item">
+                            {/* Shopping */}
                             <Button
                                 type="button"
                                 className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
@@ -270,7 +306,7 @@ const Header = (props: any) => {
                             </Button>
                         </div>
                         {/* <CardModal show={card} handleClose={handlecardClose} /> */}
-
+                        {/* Theme */}
                         <Dropdown className="topbar-head-dropdown ms-2 header-item dropdown-hover-end" align="start">
                             <Dropdown.Toggle className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" bsPrefix="btn">
                                 <i className="bi bi-sun align-middle fs-20"></i>
@@ -287,7 +323,7 @@ const Header = (props: any) => {
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-
+                        {/* While Loginned */}
                         {!!jwt ? (
                             <div className="dropdown header-item dropdown-hover-end">
                                 <Dropdown>
