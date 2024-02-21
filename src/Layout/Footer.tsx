@@ -8,7 +8,7 @@ import config from 'config/config'
 
 const query = gql`
     query {
-        getParentCategories {
+        parentCategories {
             attributes {
                 name
                 slug
@@ -106,7 +106,7 @@ const Footer = () => {
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Categories</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            {(!loading ? data.getParentCategories : []).map((category: any) => {
+                                            {(!loading ? data.parentCategories : []).map((category: any) => {
                                                 return (
                                                     <li key={category.slug}>
                                                         <Link to="#">{category.name}</Link>

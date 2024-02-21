@@ -15,7 +15,7 @@ import config from 'config/config'
 
 const query = gql`
     query {
-        getParentCategories {
+        parentCategories {
             attributes {
                 name
                 slug
@@ -201,7 +201,7 @@ const Header = (props: any) => {
                                     <Image src={logolight} alt="" height="25" className="card-logo-light mx-auto" />
                                 </Link>
                             </li>
-                            {(!loading ? data.getParentCategories : []).map((item: any) => {
+                            {(!loading ? data.parentCategories : []).map((item: any) => {
                                 return (
                                     <li className="dropdown nav-item dropdown-hover" key={item.slug}>
                                         <Link

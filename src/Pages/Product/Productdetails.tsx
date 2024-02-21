@@ -15,7 +15,7 @@ import config from 'config/config'
 
 const query = gql`
     query GET_PRODUCT($slug: String!) {
-        getProductWithSlug(slug: $slug) {
+        productBySlug(slug: $slug) {
             name
             slug
             price
