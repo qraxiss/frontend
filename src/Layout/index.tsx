@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
@@ -13,6 +13,7 @@ import { createSelector } from 'reselect'
 const Layout = (props: any) => {
     let location = useLocation()
     const dispatch: any = useDispatch()
+    const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
 
     const selectProperties = createSelector(
         (state: any) => state.Layout,
@@ -64,9 +65,47 @@ const Layout = (props: any) => {
         <React.Fragment>
             {/* <TopBar></TopBar> */}
             {location.pathname && <MainModal location={location.pathname} />}
-            <Header handleMood={handleThemeMood} />
-            {props.children}
-            <Footer />
+            <div className="different-layout">
+                <div
+                    onMouseEnter={() => {
+                        setHoverSidebar({ is: true, for: '' })
+                    }}
+                    onMouseLeave={() => {
+                        setHoverSidebar({ is: false, for: '' })
+                    }}
+                    className={`${hoverSidebars ? 'different-sidebar-hover' : 'different-sidebar'}`}
+                >
+                    <div className="different-sidebar-logo-container">
+                        <img
+                            src="https://media.istockphoto.com/id/1000987308/tr/vekt%C3%B6r/kare-simge-vekt%C3%B6r-i%C5%9Fareti-ve-beyaz-arka-plan-%C3%BCzerinde-kare-logo-kavram%C4%B1-izole-sembol%C3%BC.jpg?s=1024x1024&w=is&k=20&c=XMKdEYIwB8H1iRMsZeaeejiOpIJe42k_mBz-jfpiVCI="
+                            className="different-sidebar-main-logo"
+                        />
+                        {hoverSidebars && (
+                            <label
+                                onMouseEnter={() => {
+                                    setHoverSidebar({ is: true, for: 'abc' })
+                                }}
+                                onMouseLeave={() => {
+                                    setHoverSidebar({ is: true, for: '' })
+                                }}
+                                className="differen-sidebar-main-title"
+                            >
+                                asdfghjklşişlkjhgfdfghjk
+                            </label>
+                        )}
+                    </div>
+                    {hoverSidebars.for.length !== 0 ? (
+                        <div style={{ position: 'absolute', height: '100vh', right: '0', backgroundColor: 'black' }}>sidebar barı</div>
+                    ) : (
+                        ''
+                    )}
+                </div>
+                <div className="different-layout-main">
+                    <Header handleMood={handleThemeMood} />
+                    {props.children}
+                    <Footer />
+                </div>
+            </div>
             <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
                 <i className="ri-arrow-up-line"></i>
             </Button>
