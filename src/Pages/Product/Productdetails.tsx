@@ -60,7 +60,6 @@ const Productdetails = () => {
         }
     })
 
-    console.log(sliderProduct)
 
     const [sliderImg, setSliderImg] = useState(sliderProduct)
     const [count, setCount] = useState(0)
@@ -78,7 +77,6 @@ const Productdetails = () => {
         }
     }
 
-    console.log(sliderImg)
     return (
         <React.Fragment>
             <section className="section"></section>

@@ -52,7 +52,6 @@ const Header = (props: any) => {
     let jwt = localStorage.getItem('jwt')
 
     let { data, loading, error } = useQuery(query)
-    console.log(data)
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
 

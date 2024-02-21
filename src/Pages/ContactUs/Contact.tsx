@@ -25,7 +25,6 @@ const query = gql`
 const ContactUs = () => {
     let { fn, data, loading } = useMutation(query)
 
-    console.log(data)
 
     const formik = useFormik({
         initialValues: {

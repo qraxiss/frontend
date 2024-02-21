@@ -29,7 +29,6 @@ const Comingsoon = () => {
                 .required('Please Enter Your Email')
         }),
         onSubmit: (values) => {
-            // console.log("value", values);
         }
     })
 

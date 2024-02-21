@@ -28,7 +28,6 @@ const query = gql`
 const MyAccount = () => {
     const { data, loading } = useQuery(query)
 
-    console.log(data)
 
     return (
         <React.Fragment>
@@ -141,7 +140,6 @@ const MyAccount = () => {
                                                             </div>
                                                             <Row className="mt-4">
                                                                 {data?.accountInformation?.addresses?.map((address: any) => {
-                                                                    console.log(address)
                                                                     return (
                                                                         <Col md={6} key={address.id}>
                                                                             <Card className="mb-0">
