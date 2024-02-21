@@ -51,7 +51,7 @@ const authProtectedRoutes = [
     { path: '/about-us', component: <About /> },
     { path: '/contact', component: <ContactUs /> },
     { path: '*', component: <Navigate to="/" /> },
-    { path : '/category/:parent/:child', component: <Defaultgrid /> },
+    { path: '/category/:parent/:child', component: <Defaultgrid /> },
     { path: '/product-details/:slug', component: <Productdetails /> },
 
     { path: '/signin', component: <Signin /> },
@@ -62,7 +62,6 @@ const authProtectedRoutes = [
     { path: '/login-success', component: <Successmsg /> },
 
     { path: '/404', component: <Error404 /> },
-    { path: '/500', component: <Error500 /> },
-
+    { path: '/500', component: <Error500 /> }
 ]
 export { authProtectedRoutes }

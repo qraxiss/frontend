@@ -1,16 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, Form, Row, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-//img
-
-
-import auth1 from 'assets/images/auth/img-1.png'
-
 import { gql } from '@apollo/client'
-import { useMutation, handle } from 'lib/query-wrapper'
+import { useMutation } from 'lib/query-wrapper'
 
 const mutation = gql`
     mutation LOGIN($identifier: String!, $password: String!) {
@@ -21,12 +16,21 @@ const mutation = gql`
 `
 
 const Signin = () => {
+    const navigate = useNavigate()
     const { fn, data, loading, error } = useMutation(mutation)
-    console.log(data)
-    if (!loading && !!data) {
-        localStorage.setItem('jwt', data.jwt)
-        console.log(localStorage.getItem('jwt'))
-    }
+
+    useEffect(() => {
+        if (localStorage.getItem('jwt')) {
+            navigate('/');
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!loading && data && data.jwt) {
+            localStorage.setItem('jwt', data.jwt);
+            navigate('/'); 
+        }
+    }, [loading, data, navigate]);
 
     const passwordtype = 'password'
     const [password, setPassword] = useState('')
@@ -37,16 +41,16 @@ const Signin = () => {
         },
         validationSchema: Yup.object({
             identifier: Yup.string().required('This field is required'),
-            password: Yup.string()
-                .min(8, 'Password must be at least 8 characters')
-                .matches(RegExp('(.*[a-z].*)'), 'At least lowercase letter')
-                .matches(RegExp('(.*[A-Z].*)'), 'At least uppercase letter')
-                .matches(RegExp('(.*[0-9].*)'), 'At least one number')
-                .required('This field is required')
+            password: Yup.string().required('This field is required')
         }),
 
         onSubmit: (values) => {
-            console.log('value', values)
+                fn({
+                    variables: {
+                        identifier: values.identifier,
+                        password: values.password
+                    }
+                })
         }
     })
 
@@ -62,18 +66,8 @@ const Signin = () => {
                             <Col lg={6}>
                                 <div className="auth-card mx-lg-3">
                                     <Card className="border-0 mb-0">
-                                        <Card.Header className="bg-primary border-0">
-                                            <Row>
-                                                <Col lg={4} xs={3}>
-                                                    <Image src={auth1} alt="" className="img-fluid" />
-                                                </Col>
-                                                <Col lg={8} xs={9}>
-                                                    <h1 className="text-white lh-base fw-lighter">Join Our Toner Store</h1>
-                                                </Col>
-                                            </Row>
-                                        </Card.Header>
                                         <Card.Body>
-                                            <p className="text-muted fs-15">Sign in to continue to Toner.</p>
+                                            <p className="text-muted fs-15">Sign in to continue to Shopcek.</p>
                                             <div className="p-2">
                                                 <Form action="#" onSubmit={formik.handleSubmit}>
                                                     <div className="mb-3">
@@ -93,7 +87,7 @@ const Signin = () => {
                                                     </div>
                                                     <div className="mb-3">
                                                         <div className="float-end">
-                                                            <Link to={'/auth-pass-reset-basic'} className="text-muted">
+                                                            <Link to={'/forgot-password'} className="text-muted">
                                                                 Forgot password?
                                                             </Link>
                                                         </div>
@@ -128,14 +122,6 @@ const Signin = () => {
                                                             variant="primary"
                                                             className="w-100"
                                                             type="submit"
-                                                            onClick={() => {
-                                                                fn({
-                                                                    variables: {
-                                                                        identifier: formik.values.identifier,
-                                                                        password: formik.values.password
-                                                                    }
-                                                                })
-                                                            }}
                                                         >
                                                             Sign In
                                                         </Button>
@@ -163,10 +149,7 @@ const Signin = () => {
                                                 <div className="text-center mt-5">
                                                     <p className="mb-0">
                                                         Don't have an account ?{' '}
-                                                        <Link
-                                                            to="/auth-signup-basic"
-                                                            className="fw-semibold text-secondary text-decoration-underline"
-                                                        >
+                                                        <Link to="/signup" className="fw-semibold text-secondary text-decoration-underline">
                                                             {' '}
                                                             SignUp
                                                         </Link>{' '}
@@ -179,22 +162,7 @@ const Signin = () => {
                             </Col>
                             {/*end col*/}
                         </Row>
-                        {/*end row*/}
                     </Container>
-                    {/*end container*/}
-                    <footer className="footer">
-                        <Container>
-                            <Row>
-                                <Col lg={12}>
-                                    <div className="text-center">
-                                        <p className="mb-0 text-muted">
-                                            ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                                        </p>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </Container>
-                    </footer>
                 </div>
             </section>
         </React.Fragment>

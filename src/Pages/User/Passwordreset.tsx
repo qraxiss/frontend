@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 
 //img
 
-
 import auth1 from 'assets/images/auth/img-1.png'
 
 const Passwordreset = () => {

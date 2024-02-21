@@ -2,15 +2,34 @@ import React from 'react'
 import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-//img
-import usersavatar1 from 'assets/images/users/avatar-1.jpg'
-
 import profilebg from 'assets/images/profile-bg.jpg'
 import { orderHistorys, wishlishProduct } from 'Common/data'
 import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { CommonService } from 'Components/CommonService'
 
+import { useQuery } from 'lib/query-wrapper'
+import config from 'config/config'
+import { gql } from '@apollo/client'
+
+const query = gql`
+    query {
+        profilePicture {
+            url
+        }
+        accountInformation {
+            addresses
+            name
+            surname
+            email
+        }
+    }
+`
+
 const MyAccount = () => {
+    const { data, loading } = useQuery(query)
+
+    console.log(data)
+
     return (
         <React.Fragment>
             <section className="position-relative">
@@ -25,9 +44,14 @@ const MyAccount = () => {
                         <Col lg={12}>
                             <div className="pt-3">
                                 <div className="mt-n5 d-flex gap-3 flex-wrap align-items-end">
-                                    <Image src={usersavatar1} alt="" className="avatar-xl p-1 bg-light mt-n3" rounded />
+                                    <Image
+                                        src={config.serverUrl + data?.profilePicture?.url}
+                                        alt=""
+                                        className="avatar-xl p-1 bg-light mt-n3"
+                                        rounded
+                                    />
                                     <div>
-                                        <h5 className="fs-18">Raquel Murillo</h5>
+                                        <h5 className="fs-18">{`${data?.accountInformation.name} ${data?.accountInformation.surname}`}</h5>
                                         <div className="text-muted">
                                             <i className="bi bi-geo-alt"></i> Phoenix, USA
                                         </div>
@@ -72,7 +96,7 @@ const MyAccount = () => {
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
-                                                <Nav.Link as="a" className="fs-15" href="/auth-logout-basic">
+                                                <Nav.Link as="a" className="fs-15" href="/logout">
                                                     <i className="bi bi-box-arrow-right align-middle me-1"></i> Logout
                                                 </Nav.Link>
                                             </Nav.Item>
@@ -102,23 +126,11 @@ const MyAccount = () => {
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>Customer Name</td>
-                                                                            <td className="fw-medium">Raquel Murillo</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Mobile / Phone Number</td>
-                                                                            <td className="fw-medium">+(253) 01234 5678</td>
+                                                                            <td className="fw-medium">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</td>
                                                                         </tr>
                                                                         <tr>
                                                                             <td>Email Address</td>
-                                                                            <td className="fw-medium">raque@toner.com</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Location</td>
-                                                                            <td className="fw-medium">Phoenix, USA</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Since Member</td>
-                                                                            <td className="fw-medium">Aug, 2022</td>
+                                                                            <td className="fw-medium">{`${data?.accountInformation?.email}`}</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </Table>
@@ -128,60 +140,35 @@ const MyAccount = () => {
                                                                 <h6 className="fs-16 text-decoration-underline">Billing &amp; Shipping Address</h6>
                                                             </div>
                                                             <Row className="mt-4">
-                                                                <Col md={6}>
-                                                                    <Card className="mb-md-0">
-                                                                        <Card.Body>
-                                                                            <div className="float-end clearfix">
-                                                                                {' '}
-                                                                                <Link
-                                                                                    to="/shop/address"
-                                                                                    className="badge bg-primary-subtle text-primary"
-                                                                                >
-                                                                                    <i className="ri-pencil-fill align-bottom me-1"></i> Edit
-                                                                                </Link>{' '}
-                                                                            </div>
-                                                                            <div>
-                                                                                <p className="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
-                                                                                    Home Address
-                                                                                </p>
-                                                                                <h6 className="fs-14 mb-2 d-block">Raquel Murillo</h6>
-                                                                                <span className="text-muted fw-normal text-wrap mb-1 d-block">
-                                                                                    144 Cavendish Avenue, Indianapolis, IN 46251
-                                                                                </span>
-                                                                                <span className="text-muted fw-normal d-block">
-                                                                                    Mo. +(253) 01234 5678
-                                                                                </span>
-                                                                            </div>
-                                                                        </Card.Body>
-                                                                    </Card>
-                                                                </Col>
-                                                                <Col md={6}>
-                                                                    <Card className="mb-0">
-                                                                        <Card.Body>
-                                                                            <div className="float-end clearfix">
-                                                                                {' '}
-                                                                                <Link
-                                                                                    to="/shop/address"
-                                                                                    className="badge bg-primary-subtle text-primary"
-                                                                                >
-                                                                                    <i className="ri-pencil-fill align-bottom me-1"></i> Edit
-                                                                                </Link>{' '}
-                                                                            </div>
-                                                                            <div>
-                                                                                <p className="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
-                                                                                    Shipping Address
-                                                                                </p>
-                                                                                <h6 className="fs-14 mb-2 d-block">James Honda</h6>
-                                                                                <span className="text-muted fw-normal text-wrap mb-1 d-block">
-                                                                                    1246 Virgil Street Pensacola, FL 32501
-                                                                                </span>
-                                                                                <span className="text-muted fw-normal d-block">
-                                                                                    Mo. +(253) 01234 5678
-                                                                                </span>
-                                                                            </div>
-                                                                        </Card.Body>
-                                                                    </Card>
-                                                                </Col>
+                                                                {data?.accountInformation?.addresses?.map((address: any) => {
+                                                                    console.log(address)
+                                                                    return (
+                                                                        <Col md={6} key={address.id}>
+                                                                            <Card className="mb-0">
+                                                                                <Card.Body>
+                                                                                    <div className="float-end clearfix">
+                                                                                        {' '}
+                                                                                        <Link
+                                                                                            to="/shop/address"
+                                                                                            className="badge bg-primary-subtle text-primary"
+                                                                                        >
+                                                                                            <i className="ri-pencil-fill align-bottom me-1"></i> Edit
+                                                                                        </Link>{' '}
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <p className="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
+                                                                                            {address.addressName}
+                                                                                        </p>
+                                                                                        <h6 className="fs-14 mb-2 d-block">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</h6>
+                                                                                        <span className="text-muted fw-normal text-wrap mb-1 d-block">
+                                                                                            {`${address.country}/ ${address.city}/ ${address.zipCode}/ ${address.addressLine1}/ ${address.addressLine2}`}
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </Card.Body>
+                                                                            </Card>
+                                                                        </Col>
+                                                                    )
+                                                                })}
                                                             </Row>
                                                         </Card.Body>
                                                     </Card>

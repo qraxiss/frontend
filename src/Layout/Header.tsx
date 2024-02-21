@@ -42,11 +42,17 @@ const query = gql`
                 }
             }
         }
+        profilePicture {
+            url
+        }
     }
 `
 
 const Header = (props: any) => {
+    let jwt = localStorage.getItem('jwt')
+
     let { data, loading, error } = useQuery(query)
+    console.log(data)
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
 
@@ -174,7 +180,7 @@ const Header = (props: any) => {
                             <Image src={logodark} alt="" height="50" />
                         </div>
                         <div className="logo-light">
-                            <Image src={logolight} alt="" height="50" /> 
+                            <Image src={logolight} alt="" height="50" />
                         </div>
                     </Navbar.Brand>
                     <Button
@@ -283,54 +289,44 @@ const Header = (props: any) => {
                             </Dropdown.Menu>
                         </Dropdown>
 
-                        <div className="dropdown header-item dropdown-hover-end">
-                            <Dropdown>
-                                <Dropdown.Toggle
-                                    id="page-header-user-dropdown"
-                                    bsPrefix="btn"
-                                    className="btn btn-icon btn-topbar btn-link rounded-circle"
-                                    as="a"
-                                >
-                                    <Image className="rounded-circle header-profile-user" src={avtar1} alt="Header Avatar" />
-                                </Dropdown.Toggle>
+                        {!!jwt ? (
+                            <div className="dropdown header-item dropdown-hover-end">
+                                <Dropdown>
+                                    <Dropdown.Toggle
+                                        id="page-header-user-dropdown"
+                                        bsPrefix="btn"
+                                        className="btn btn-icon btn-topbar btn-link rounded-circle"
+                                        as="a"
+                                    >
+                                        <Image
+                                            className="rounded-circle header-profile-user"
+                                            src={config.serverUrl + data?.profilePicture?.url}
+                                            alt="Header Avatar"
+                                        />
+                                    </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="/shop/orderhistory">
-                                        <i className="bi bi-cart4 text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">Order History</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="/shop/order">
-                                        <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">Track Orders</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-3">
-                                        <i className="bi bi-speedometer2 text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">Dashboard</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="/ecommerce-faq">
-                                        <i className="mdi mdi-lifebuoy text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">Help</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="/account">
-                                        <i className="bi bi-coin text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">
-                                            Balance : <b>$8451.36</b>
-                                        </span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="/account">
-                                        <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
-                                        <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle">Settings</span>
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="/auth-logout-basic">
-                                        <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
-                                        <span className="align-middle" data-key="t-logout">
-                                            Logout
-                                        </span>
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="/shop/order">
+                                            <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
+                                            <span className="align-middle">Track Orders</span>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="/account">
+                                            <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
+                                            <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
+                                            <span className="align-middle">Settings</span>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item href="/logout">
+                                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                                            <span className="align-middle" data-key="t-logout">
+                                                Logout
+                                            </span>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                     </div>
                 </Container>
             </Navbar>

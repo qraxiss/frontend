@@ -32,11 +32,11 @@ const query = gql`
 `
 
 type resultType = {
-    name: string,
-    slug: string,
-    price: number,
-    descripton: string,
-    images: {url: string}[]
+    name: string
+    slug: string
+    price: number
+    descripton: string
+    images: { url: string }[]
 }
 
 const Productdetails = () => {
@@ -44,7 +44,6 @@ const Productdetails = () => {
     let { data, loading } = useQuery(query, {
         variables: { slug }
     })
-
 
     data = (data || {
         name: '',
@@ -54,9 +53,9 @@ const Productdetails = () => {
         images: []
     }) as resultType
 
-    let sliderProduct = data.images.map((image: any, index:number)=>{
+    let sliderProduct = data.images.map((image: any, index: number) => {
         return {
-            id: index+1,
+            id: index + 1,
             img: config.serverUrl + image.url
         }
     })
@@ -82,7 +81,7 @@ const Productdetails = () => {
     console.log(sliderImg)
     return (
         <React.Fragment>
-            <section className='section'></section>
+            <section className="section"></section>
             <section className="section">
                 <Container>
                     <Row className="gx-2">
@@ -117,7 +116,6 @@ const Productdetails = () => {
                                         </div>
                                         <span className="swiper-notification" aria-live="assertive" aria-atomic="true" />
                                     </div>
-
                                 </Col>
                                 {/*end col*/}
                                 <Col md={10}>
@@ -134,7 +132,7 @@ const Productdetails = () => {
                                             modules={[FreeMode, Navigation, Thumbs]}
                                             className="swiper productSwiper2 swiper-backface-hidden"
                                         >
-                                            { sliderImg.map((item: any) => {
+                                            {sliderImg.map((item: any) => {
                                                 return (
                                                     <SwiperSlide key={item.id}>
                                                         <div
@@ -148,8 +146,8 @@ const Productdetails = () => {
                                                         </div>
                                                     </SwiperSlide>
                                                 )
-                                            }) }
-                                        </Swiper> 
+                                            })}
+                                        </Swiper>
                                     </div>
                                 </Col>
                                 {/*end col*/}
@@ -296,7 +294,6 @@ const Productdetails = () => {
                 </Container>
                 {/*end container*/}
             </section>
-
         </React.Fragment>
     )
 }

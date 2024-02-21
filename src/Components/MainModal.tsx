@@ -5,7 +5,6 @@ import SimpleBar from 'simplebar-react'
 //img
 import modalImg from 'assets/images/subscribe.png'
 
-
 import avatar1 from 'assets/images/users/avatar-1.jpg'
 import avatar7 from 'assets/images/users/avatar-7.jpg'
 
@@ -17,8 +16,8 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 const query = gql`
-query {
-    logo {
+    query {
+        logo {
             data {
                 attributes {
                     text {
@@ -31,7 +30,7 @@ query {
                 }
             }
         }
-}
+    }
 `
 
 //go to one page to another page opne modal
@@ -83,12 +82,10 @@ export const MainModal = ({ location }: any) => {
 
 //invoice modal
 export const InvoiceModal = ({ modal, handleClose }: any) => {
-    let {data, loading} = useQuery(query)
+    let { data, loading } = useQuery(query)
 
     let logodark = !loading ? config.serverUrl + data.text.url : ''
     let logolight = !loading ? config.serverUrl + data.text.url : ''
-
-
 
     const InvoicePrint = () => {
         window.print()

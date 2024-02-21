@@ -12,7 +12,7 @@ import Index from 'Components/Index'
 import { useParams } from 'react-router-dom'
 
 const Defaultgrid = () => {
-    let {parent, child} = useParams()
+    let { parent, child } = useParams()
 
     console.log(parent, child)
 

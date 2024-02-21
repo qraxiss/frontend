@@ -3,7 +3,6 @@ import { Container, Row, Col, Card, Form, Button, Image } from 'react-bootstrap'
 
 //img
 
-
 import auth1 from 'assets/images/auth/img-1.png'
 import { Link } from 'react-router-dom'
 

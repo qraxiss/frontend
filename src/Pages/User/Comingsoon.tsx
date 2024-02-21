@@ -5,7 +5,6 @@ import Countdown from 'react-countdown'
 
 //img
 
-
 import comingsoon from 'assets/images/comingsoon.png'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'

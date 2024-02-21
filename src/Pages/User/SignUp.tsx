@@ -6,7 +6,6 @@ import { useFormik } from 'formik'
 
 //img
 
-
 import auth1 from 'assets/images/auth/img-1.png'
 
 const SignUp = () => {
@@ -180,7 +179,8 @@ const SignUp = () => {
                                 <Col lg={12}>
                                     <div className="text-center">
                                         <p className="mb-0 text-muted">
-                                            ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
+                                            ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by
+                                            Themesbrand
                                         </p>
                                     </div>
                                 </Col>

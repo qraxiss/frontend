@@ -29,7 +29,7 @@ const query = gql`
 `
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
-    const {data, loading, error} = useQuery(query)
+    const { data, loading, error } = useQuery(query)
     //select
     const [select, setSelect] = useState('all')
     const pagination: boolean = true
