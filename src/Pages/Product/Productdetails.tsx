@@ -60,10 +60,9 @@ const Productdetails = () => {
         }
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         handleSetImg(1)
     }, [loading])
-
 
     const [sliderImg, setSliderImg] = useState(sliderProduct)
     const [count, setCount] = useState(0)

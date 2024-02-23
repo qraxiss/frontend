@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { orderHistorys } from 'Common/data'
 import { Shoptopbar } from 'Components/ShopTopBar'
-import { CommonService } from 'Components/CommonService'
 import { InvoiceModal } from 'Components/MainModal'
 
 const Orderhistory = () => {
@@ -92,8 +90,6 @@ const Orderhistory = () => {
                     <InvoiceModal modal={modal} handleClose={handleClose} />
                 </Container>
             </section>
-            <EmailClothe />
-            <CommonService />
         </React.Fragment>
     )
 }

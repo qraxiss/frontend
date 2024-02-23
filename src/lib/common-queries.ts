@@ -1,19 +1,33 @@
 import { gql } from '@apollo/client'
 
-export let logo = gql`
+export let cartQuery = gql`
     query {
-        logo {
-            data {
-                attributes {
-                    text {
-                        data {
-                            attributes {
-                                url
-                            }
+        cart {
+            product {
+                name
+                price
+                slug
+                images {
+                    data {
+                        attributes {
+                            url
                         }
                     }
                 }
             }
+            count
         }
+    }
+`
+
+export let addItemToCart = gql`
+    mutation ($slug: String!) {
+        addProductToCart(slug: $slug)
+    }
+`
+
+export let deleteItemFromCart = gql`
+    mutation DELETE_PRODUCT_FROM_CART($slug: String!) {
+        deleteProductFromCart(slug: $slug)
     }
 `

@@ -12,26 +12,11 @@ import avatar7 from 'assets/images/users/avatar-7.jpg'
 import { productData } from 'Common/data'
 import DeleteModal from 'Components/DeleteModal'
 
-import { useQuery } from 'lib/query-wrapper'
+import { useQuery, useMutation } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
-const query = gql`
-    query {
-        logo {
-            data {
-                attributes {
-                    text {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
+
+import { addItemToCart, deleteItemFromCart, cartQuery } from 'lib/common-queries'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -82,6 +67,24 @@ export const MainModal = ({ location }: any) => {
 
 //invoice modal
 export const InvoiceModal = ({ modal, handleClose }: any) => {
+    const query = gql`
+        query {
+            logo {
+                data {
+                    attributes {
+                        text {
+                            data {
+                                attributes {
+                                    url
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `
+
     let { data, loading } = useQuery(query)
 
     let logodark = !loading ? config.serverUrl + data.text.url : ''
@@ -504,7 +507,16 @@ export const SearchModal = ({ show, handleClose }: any) => {
 //===================================================
 
 //card modal
+
 export const CardModal = ({ show, handleClose }: any) => {
+    let cartData = useQuery(cartQuery)
+    let addItem = useMutation(addItemToCart)
+    let deleteItem = useMutation(deleteItemFromCart)
+
+    useEffect(() => {
+        cartData.refetch()
+    }, [addItem.loading, deleteItem.loading])
+
     const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
     const [dis, setDis] = useState(0)
@@ -542,70 +554,71 @@ export const CardModal = ({ show, handleClose }: any) => {
         setDis(dis)
         setTax(tax)
     }, [subtotal])
-
-    const countUP = (item: any) => {
-        setProductcount(
-            (productData || [])?.map((count) =>
-                count.id === item.id ? { ...count, num: item.num + 1, Total: (item.num + 1) * item.ItemPrice } : count
-            )
-        )
-    }
-
-    const countDown = (item: any) => {
-        setProductcount(
-            (productData || []).map((count) =>
-                count.id === item.id && count.num >= 0
-                    ? { ...count, num: item.num?.lenght > 0 ? item.num - 1 : 0, Total: (item.num?.lenght > 0 ? item.num - 1 : 0) * item.ItemPrice }
-                    : count
-            )
-        )
-    }
+    
     return (
         <React.Fragment>
             <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
                 <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{productcount.length}</span>
+                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartData.data?.length}</span>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
-                            {(productcount || [])?.map((item: any, inx) => {
+                            {(cartData?.data || [] ).map((item: any) => {
                                 return (
-                                    <li key={inx} className="list-group-item product">
+                                    <li key={item.product.slug} className="list-group-item product">
                                         <div className="d-flex gap-3">
                                             <div className="flex-shrink-0">
-                                                <div className={`avatar-md ${item.bg}-subtle `} style={{ height: '100%' }}>
-                                                    <div className={`avatar-title bg-${item.bg}-subtle rounded-3`}>
-                                                        <Image src={item.img} alt="" className="avatar-sm" />
+                                                <div className={`avatar-md warning-subtle `} style={{ height: '100%' }}>
+                                                    <div className={`avatar-title bg-warning-subtle rounded-3`}>
+                                                        <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-sm" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="flex-grow-1">
                                                 <Link to="#">
-                                                    <h5 className="fs-15">{item.title}</h5>
+                                                    <h5 className="fs-15">{item.product.name}</h5>
                                                 </Link>
                                                 <div className="d-flex mb-3 gap-2">
                                                     <div className="text-muted fw-medium mb-0">
-                                                        $<span className="product-price">{item.ItemPrice}</span>
+                                                        $<span className="product-price">{item.product.price}</span>
                                                     </div>
                                                     <div className="vr"></div>
                                                     <span className="text-success fw-medium">In Stock</span>
                                                 </div>
                                                 <div className="input-step">
-                                                    <Button className="minus" onClick={() => countDown(item)}>
-                                                        –
+                                                    <Button
+                                                        className="minus"
+                                                        onClick={() => {
+                                                            deleteItem.fn({
+                                                                variables: {
+                                                                    slug: item.product.slug
+                                                                }
+                                                            })
+                                                        }}
+                                                    >
+                                                        -
                                                     </Button>
                                                     <Form.Control
                                                         type="number"
                                                         className="product-quantity"
-                                                        value={item.num}
+                                                        value={item.count}
                                                         min="0"
                                                         max="100"
                                                         readOnly
                                                     />
-                                                    <Button className="plus" onClick={() => countUP(item)}>
+                                                    <Button
+                                                        className="plus"
+                                                        onClick={() => {
+                                                            addItem.fn({
+                                                                variables: {
+                                                                    slug: item.product.slug
+                                                                }
+                                                            })
+                                                        }}
+                                                    >
                                                         +
                                                     </Button>
                                                 </div>
@@ -618,7 +631,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <i className="ri-close-fill fs-16"></i>
                                                 </Button>
                                                 <div className="fw-medium mb-0 fs-16">
-                                                    $<span className="product-line-price">{item.Total.toFixed(2)}</span>
+                                                    {/* $<span className="product-line-price">{item.Total.toFixed(2)}</span> */}
                                                 </div>
                                             </div>
                                         </div>
@@ -666,7 +679,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                             </Button>
                         </Col>
                         <Col xs={6}>
-                            <Link to="#" target="_blank" className="btn btn-info w-100">
+                            <Link to="/" target="_blank" className="btn btn-info w-100">
                                 Continue to Checkout
                             </Link>
                         </Col>

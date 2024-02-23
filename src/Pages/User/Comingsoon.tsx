@@ -28,8 +28,7 @@ const Comingsoon = () => {
                 .matches(/^(?!.*@[^,]*,)/)
                 .required('Please Enter Your Email')
         }),
-        onSubmit: (values) => {
-        }
+        onSubmit: (values) => {}
     })
 
     const renderer = ({ days, hours, minutes, seconds, completed }: coundown) => {
