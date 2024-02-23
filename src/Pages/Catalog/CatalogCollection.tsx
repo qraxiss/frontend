@@ -4,8 +4,10 @@ import { Form, Row, Col, Card, Button, Image } from 'react-bootstrap'
 import { filterProduct } from 'Common/data'
 import Pagination from 'Components/Pagination'
 
-import { useQuery } from 'lib/query-wrapper'
+import { useQuery, useMutation } from 'lib/query-wrapper'
+import { addItemToCart, cartQuery } from 'lib/common-queries'
 import { gql } from '@apollo/client'
+import config from 'config/config'
 
 const query = gql`
     query {
@@ -29,7 +31,14 @@ const query = gql`
 `
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
-    const { data, loading, error } = useQuery(query)
+    const products = useQuery(query)
+    const addItem = useMutation(addItemToCart)
+    const cart = useQuery(cartQuery)
+
+    useEffect(() => {
+        cart.refetch()
+    }, [addItem.loading])
+
     //select
     const [select, setSelect] = useState('all')
     const pagination: boolean = true
@@ -84,7 +93,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
         <React.Fragment>
             <div className="flex-grow-1">
                 <div className="d-flex align-items-center gap-2 mb-4">
-                    <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of 84 results</p>
+                    <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {products.data?.length} results</p>
 
                     <div className="flex-shrink-0">
                         <div className="d-flex gap-2">
@@ -105,14 +114,14 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                 </div>
                 <Row id="product-grid">
                     {select &&
-                        (currentpages && currentpages.length > 0 ? (
-                            (currentpages || [])?.map((item: any, idx: any) => {
+                        (!products.loading && products.data ? (
+                            products.data.map((item: any, idx: any) => {
                                 return !cxl ? (
-                                    <Col key={item.id} xxl={cxxl} lg={clg} md={cmd}>
+                                    <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
                                         <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
                                             <div className="bg-light bg-opacity-50 rounded py-4 position-relative">
                                                 <Image
-                                                    src={item.img}
+                                                    src={config.serverUrl + item.images[0].url}
                                                     alt=""
                                                     style={{ maxHeight: '200px', maxWidth: '100%' }}
                                                     className="mx-auto d-block rounded-2"
@@ -189,7 +198,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                                     )}
 
                                                     <Link to="#">
-                                                        <h6 className="text-capitalize fs-15 lh-base text-truncate mb-0">{item?.title}</h6>
+                                                        <h6 className="text-capitalize fs-15 lh-base text-truncate mb-0">{item?.name}</h6>
                                                     </Link>
                                                     <div className="mt-2">
                                                         <span className="float-end">
@@ -197,16 +206,25 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                                             <i className="ri-star-half-fill text-warning align-bottom"></i>
                                                         </span>
                                                         <h5 className="text-secondary mb-0">
-                                                            {item?.price}
+                                                            {item?.price}$
                                                             <span className="text-muted fs-12">
                                                                 <del>{item?.deleteproce}</del>
                                                             </span>
                                                         </h5>
                                                     </div>
                                                     <div className="tn mt-3">
-                                                        <Link to="#" className="btn btn-primary btn-hover w-100 add-btn">
+                                                        <Button
+                                                            className="btn btn-primary btn-hover w-100 add-btn"
+                                                            onClick={() => {
+                                                                addItem.fn({
+                                                                    variables: {
+                                                                        slug: item.slug
+                                                                    }
+                                                                })
+                                                            }}
+                                                        >
                                                             <i className="mdi mdi-cart me-1"></i> Add To Cart
-                                                        </Link>
+                                                        </Button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -219,7 +237,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                             <Row>
                                                 <Col className="col-md-4">
                                                     <div className="bg-light p-2 rounded-2 h-100">
-                                                        <Image src={item.img} alt="" className="img-fluid" />
+                                                        <Image src={config.serverUrl + item.images[0].url} alt="" className="img-fluid" />
                                                     </div>
                                                 </Col>
                                                 <Col className="col-md">
@@ -232,7 +250,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                                             </span>
                                                         </div>
                                                         <Link to="#">
-                                                            <h4 className="fs-16">{item.title}</h4>
+                                                            <h4 className="fs-16">{item.name}</h4>
                                                         </Link>
                                                         <p className="text-muted mb-3">
                                                             T-Shirt house best black boys T-Shirt fully cotton material &amp; all size available hirt
@@ -240,13 +258,13 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                                         </p>
                                                         <div className="d-flex gap-1">
                                                             <h5 className="text-secondary mb-0">
-                                                                {item.price}
+                                                                {item.price}$
                                                                 <span className="text-muted fs-13">
-                                                                    <del> {item.deleteproce}</del>
+                                                                    <del> {item?.deleteproce}</del>
                                                                 </span>
                                                             </h5>
-                                                            <span className={`badge bg-${item.bg}-subtle text-${item.bg} align-middle ms-1`}>
-                                                                {item.stock}
+                                                            <span className={`badge bg-${item?.bg}-subtle text-${item?.bg} align-middle ms-1`}>
+                                                                {item?.stock}
                                                             </span>
                                                         </div>
                                                     </div>

@@ -513,6 +513,9 @@ export const CardModal = ({ show, handleClose }: any) => {
     let addItem = useMutation(addItemToCart)
     let deleteItem = useMutation(deleteItemFromCart)
 
+
+    console.log(cartData)
+
     useEffect(() => {
         cartData.refetch()
     }, [addItem.loading, deleteItem.loading])
@@ -536,10 +539,11 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     const CloseremoveModal = () => setRemovemodel(false)
 
-    const assinged = productcount?.map((M) => M.Total)
     let subtotal = 0
-    for (let i = 0; i < assinged.length; i++) {
-        subtotal += Math.round(assinged[i])
+    if (!cartData?.loading && !cartData.error){
+        for (let i = 0; i < cartData.data.length; i++) {
+            subtotal += cartData.data[i].product.price * cartData.data[i].count
+        }
     }
 
     useEffect(() => {
@@ -554,7 +558,7 @@ export const CardModal = ({ show, handleClose }: any) => {
         setDis(dis)
         setTax(tax)
     }, [subtotal])
-    
+
     return (
         <React.Fragment>
             <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
@@ -566,7 +570,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
-                            {(cartData?.data || [] ).map((item: any) => {
+                            {((!cartData?.loading && !cartData.error) ? cartData?.data : []).map((item: any) => {
                                 return (
                                     <li key={item.product.slug} className="list-group-item product">
                                         <div className="d-flex gap-3">
@@ -578,7 +582,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                 </div>
                                             </div>
                                             <div className="flex-grow-1">
-                                                <Link to="#">
+                                                <Link to={`/product-details/${item.product.slug}`}>
                                                     <h5 className="fs-15">{item.product.name}</h5>
                                                 </Link>
                                                 <div className="d-flex mb-3 gap-2">
