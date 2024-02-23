@@ -17,14 +17,16 @@ import { cartQuery } from 'lib/common-queries'
 const query = gql`
     query {
         parentCategories {
-            attributes {
-                name
-                slug
-                childs {
-                    data {
-                        attributes {
-                            name
-                            slug
+            data {
+                attributes {
+                    name
+                    slug
+                    childs {
+                        data {
+                            attributes {
+                                name
+                                slug
+                            }
                         }
                     }
                 }
@@ -62,7 +64,7 @@ function ShoppingIcon(props: { handlecardShow: any }) {
             >
                 <i className="ph-shopping-cart fs-18"></i>
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">
-                    {(!cartData.loading ? cartData?.data.length: 0)}
+                    {!cartData.loading ? cartData?.data.length : 0}
                 </span>
             </Button>
         </div>
@@ -129,7 +131,6 @@ const Header = (props: any) => {
                 if (parentDropdown) {
                     parentDropdown.querySelector('.dropdown-toggle').classList.add('active')
                     let parentEleDropdown = parentDropdown.parentElement.closest('.dropdown')
-                    console.log('parentEleDropdown', parentEleDropdown)
                     if (parentEleDropdown) {
                         parentEleDropdown.querySelector('.dropdown-toggle').classList.add('active')
                     }
@@ -278,7 +279,7 @@ const Header = (props: any) => {
                             <i className="bx bx-search fs-22"></i>
                         </Button>
                         <SearchModal show={show} handleClose={handleClose} />
-                        {!!jwt ? <ShoppingIcon handlecardShow={handlecardShow}/> : ''}
+                        {!!jwt ? <ShoppingIcon handlecardShow={handlecardShow} /> : ''}
                         <Dropdown className="topbar-head-dropdown ms-2 header-item dropdown-hover-end" align="start">
                             <Dropdown.Toggle className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" bsPrefix="btn">
                                 <i className="bi bi-sun align-middle fs-20"></i>
@@ -313,24 +314,24 @@ const Header = (props: any) => {
 
                                     <Dropdown.Menu>
                                         <Dropdown.Item>
-                                            <Link to='/shop/orders'>
-                                            <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle">Track Orders</span>
+                                            <Link to="/shop/orders">
+                                                <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle">Track Orders</span>
                                             </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Item>
                                             <Link to="/account">
-                                            <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
-                                            <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle">Settings</span>
+                                                <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
+                                                <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle">Settings</span>
                                             </Link>
                                         </Dropdown.Item>
                                         <Dropdown.Item>
-                                            <Link to='/logout'>
-                                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle" data-key="t-logout">
-                                                Logout
-                                            </span>
+                                            <Link to="/logout">
+                                                <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle" data-key="t-logout">
+                                                    Logout
+                                                </span>
                                             </Link>
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
@@ -363,7 +364,6 @@ const Header = (props: any) => {
                                 </Dropdown>
                             </div>
                         )}
-
                     </div>
                 </Container>
             </Navbar>

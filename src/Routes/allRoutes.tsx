@@ -52,6 +52,8 @@ const authProtectedRoutes = [
     { path: '/contact', component: <ContactUs /> },
     { path: '*', component: <Navigate to="/" /> },
     { path: '/category/:parent/:child', component: <Defaultgrid /> },
+    { path: '/category/:parent/', component: <Defaultgrid /> },
+
     { path: '/product-details/:slug', component: <Productdetails /> },
 
     { path: '/signin', component: <Signin /> },

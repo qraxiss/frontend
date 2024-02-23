@@ -44,7 +44,6 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
         }
     })
 
-    console.log(error, data)
     if (!loading) {
         data = simplifyResponse(data)
     }

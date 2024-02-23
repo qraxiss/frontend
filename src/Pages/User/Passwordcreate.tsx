@@ -32,7 +32,6 @@ const Passwordcreate = () => {
                 .oneOf([Yup.ref('password')], 'Passwords do not match')
         }),
         onSubmit: (values) => {
-            // console.log("value", values);
         }
     })
     const handleTooglePassword = () => {

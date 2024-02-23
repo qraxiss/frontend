@@ -20,7 +20,6 @@ const Passwordreset = () => {
                 .required('Please Enter Your Email')
         }),
         onSubmit: (values) => {
-            // console.log("value", values);
         }
     })
     return (

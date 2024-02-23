@@ -9,9 +9,19 @@ import config from 'config/config'
 const query = gql`
     query {
         parentCategories {
-            attributes {
-                name
-                slug
+            data {
+                attributes {
+                    name
+                    slug
+                    childs {
+                        data {
+                            attributes {
+                                name
+                                slug
+                            }
+                        }
+                    }
+                }
             }
         }
         logo {
@@ -109,7 +119,7 @@ const Footer = () => {
                                             {(!loading ? data.parentCategories : []).map((category: any) => {
                                                 return (
                                                     <li key={category.slug}>
-                                                        <Link to="#">{category.name}</Link>
+                                                        <Link to={`/category/${category.slug}`}>{category.name}</Link>
                                                     </li>
                                                 )
                                             })}

@@ -514,8 +514,6 @@ export const CardModal = ({ show, handleClose }: any) => {
     let deleteItem = useMutation(deleteItemFromCart)
 
 
-    console.log(cartData)
-
     useEffect(() => {
         cartData.refetch()
     }, [addItem.loading, deleteItem.loading])
@@ -540,7 +538,7 @@ export const CardModal = ({ show, handleClose }: any) => {
     const CloseremoveModal = () => setRemovemodel(false)
 
     let subtotal = 0
-    if (!cartData?.loading && !cartData.error){
+    if (!cartData?.loading && !cartData.error) {
         for (let i = 0; i < cartData.data.length; i++) {
             subtotal += cartData.data[i].product.price * cartData.data[i].count
         }
@@ -570,7 +568,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
-                            {((!cartData?.loading && !cartData.error) ? cartData?.data : []).map((item: any) => {
+                            {(!cartData?.loading && !cartData.error ? cartData?.data : []).map((item: any) => {
                                 return (
                                     <li key={item.product.slug} className="list-group-item product">
                                         <div className="d-flex gap-3">
