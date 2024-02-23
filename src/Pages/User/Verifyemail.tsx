@@ -7,8 +7,7 @@ import auth1 from 'assets/images/auth/img-1.png'
 import { Link } from 'react-router-dom'
 
 const Verifyemail = () => {
-    const moveToNext = (index: any) => {
-    }
+    const moveToNext = (index: any) => {}
 
     return (
         <React.Fragment>

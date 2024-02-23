@@ -31,9 +31,7 @@ const Passwordcreate = () => {
                 .required()
                 .oneOf([Yup.ref('password')], 'Passwords do not match')
         }),
-        onSubmit: (values) => {
-            // console.log("value", values);
-        }
+        onSubmit: (values) => {}
     })
     const handleTooglePassword = () => {
         passwordtype === password ? setPassword('text') : setPassword('password')

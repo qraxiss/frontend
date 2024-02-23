@@ -21,10 +21,10 @@ const Signin = () => {
 
     useEffect(() => {
         if (!loading && data && data.jwt) {
-            localStorage.setItem('jwt', data.jwt);
-            navigate('/'); 
+            localStorage.setItem('jwt', data.jwt)
+            navigate('/')
         }
-    }, [loading, data, navigate]);
+    }, [loading, data, navigate])
 
     const passwordtype = 'password'
     const [password, setPassword] = useState('')
@@ -39,12 +39,12 @@ const Signin = () => {
         }),
 
         onSubmit: (values) => {
-                fn({
-                    variables: {
-                        identifier: values.identifier,
-                        password: values.password
-                    }
-                })
+            fn({
+                variables: {
+                    identifier: values.identifier,
+                    password: values.password
+                }
+            })
         }
     })
 
@@ -112,11 +112,7 @@ const Signin = () => {
                                                     </div>
                                                     <Form.Check type="checkbox" label="Remember me" />
                                                     <div className="mt-4">
-                                                        <Button
-                                                            variant="primary"
-                                                            className="w-100"
-                                                            type="submit"
-                                                        >
+                                                        <Button variant="primary" className="w-100" type="submit">
                                                             Sign In
                                                         </Button>
                                                     </div>

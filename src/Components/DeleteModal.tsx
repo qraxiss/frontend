@@ -9,6 +9,7 @@ const DeleteModal = ({ removeModel, hideModal, deleteData }: any) => {
         deleteData()
         hideModal()
     }
+
     return (
         <Modal show={removeModel} onHide={hideModal} centered id="removeItemModal" className="zoomIn">
             <Modal.Header closeButton></Modal.Header>

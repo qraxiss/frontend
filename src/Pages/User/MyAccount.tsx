@@ -28,7 +28,6 @@ const query = gql`
 const MyAccount = () => {
     const { data, loading } = useQuery(query)
 
-
     return (
         <React.Fragment>
             <section className="position-relative">

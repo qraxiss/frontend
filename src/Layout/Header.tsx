@@ -12,18 +12,21 @@ import withRouter from 'Components/withRouter'
 import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
+import { cartQuery } from 'lib/common-queries'
 
 const query = gql`
     query {
         parentCategories {
-            attributes {
-                name
-                slug
-                childs {
-                    data {
-                        attributes {
-                            name
-                            slug
+            data {
+                attributes {
+                    name
+                    slug
+                    childs {
+                        data {
+                            attributes {
+                                name
+                                slug
+                            }
                         }
                     }
                 }
@@ -47,11 +50,32 @@ const query = gql`
         }
     }
 `
+function ShoppingIcon(props: { handlecardShow: any }) {
+    let cartData = useQuery(cartQuery)
+    return (
+        <div className="topbar-head-dropdown ms-1 header-item">
+            <Button
+                type="button"
+                className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#ecommerceCart"
+                aria-controls="ecommerceCart"
+                onClick={props.handlecardShow}
+            >
+                <i className="ph-shopping-cart fs-18"></i>
+                <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">
+                    {!cartData.loading ? cartData?.data.length : 0}
+                </span>
+            </Button>
+        </div>
+    )
+}
 
 const Header = (props: any) => {
     let jwt = localStorage.getItem('jwt')
 
     let { data, loading, error } = useQuery(query)
+
     let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
     let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
 
@@ -108,7 +132,6 @@ const Header = (props: any) => {
                 if (parentDropdown) {
                     parentDropdown.querySelector('.dropdown-toggle').classList.add('active')
                     let parentEleDropdown = parentDropdown.parentElement.closest('.dropdown')
-                    console.log('parentEleDropdown', parentEleDropdown)
                     if (parentEleDropdown) {
                         parentEleDropdown.querySelector('.dropdown-toggle').classList.add('active')
                     }
@@ -175,13 +198,15 @@ const Header = (props: any) => {
         <React.Fragment>
             <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
                 <Container>
-                    <Navbar.Brand href="/" className="d-none d-lg-block">
-                        <div className="logo-dark">
-                            <Image src={logodark} alt="" height="50" />
-                        </div>
-                        <div className="logo-light">
-                            <Image src={logolight} alt="" height="50" />
-                        </div>
+                    <Navbar.Brand className="d-none d-lg-block">
+                        <Link to="/">
+                            <div className="logo-dark">
+                                <Image src={logodark} alt="" height="50" />
+                            </div>
+                            <div className="logo-light">
+                                <Image src={logolight} alt="" height="50" />
+                            </div>
+                        </Link>
                     </Navbar.Brand>
                     <Button
                         className="btn btn-soft-primary btn-icon d-lg-none collapsed"
@@ -289,24 +314,7 @@ const Header = (props: any) => {
                             <i className="bx bx-search fs-22"></i>
                         </Button>
                         <SearchModal show={show} handleClose={handleClose} />
-                        <div className="topbar-head-dropdown ms-1 header-item">
-                            {/* Shopping */}
-                            <Button
-                                type="button"
-                                className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
-                                data-bs-toggle="offcanvas"
-                                data-bs-target="#ecommerceCart"
-                                aria-controls="ecommerceCart"
-                                onClick={handlecardShow}
-                            >
-                                <i className="ph-shopping-cart fs-18"></i>
-                                <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">
-                                    4
-                                </span>
-                            </Button>
-                        </div>
-                        {/* <CardModal show={card} handleClose={handlecardClose} /> */}
-                        {/* Theme */}
+                        {!!jwt ? <ShoppingIcon handlecardShow={handlecardShow} /> : ''}
                         <Dropdown className="topbar-head-dropdown ms-2 header-item dropdown-hover-end" align="start">
                             <Dropdown.Toggle className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" bsPrefix="btn">
                                 <i className="bi bi-sun align-middle fs-20"></i>
@@ -323,7 +331,6 @@ const Header = (props: any) => {
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
-                        {/* While Loginned */}
                         {!!jwt ? (
                             <div className="dropdown header-item dropdown-hover-end">
                                 <Dropdown>
@@ -341,26 +348,56 @@ const Header = (props: any) => {
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu>
-                                        <Dropdown.Item href="/shop/order">
-                                            <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle">Track Orders</span>
+                                        <Dropdown.Item>
+                                            <Link to="/shop/orders">
+                                                <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle">Track Orders</span>
+                                            </Link>
                                         </Dropdown.Item>
-                                        <Dropdown.Item href="/account">
-                                            <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
-                                            <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle">Settings</span>
+                                        <Dropdown.Item>
+                                            <Link to="/account">
+                                                <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
+                                                <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle">Settings</span>
+                                            </Link>
                                         </Dropdown.Item>
-                                        <Dropdown.Item href="/logout">
-                                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
-                                            <span className="align-middle" data-key="t-logout">
-                                                Logout
-                                            </span>
+                                        <Dropdown.Item>
+                                            <Link to="/logout">
+                                                <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                                                <span className="align-middle" data-key="t-logout">
+                                                    Logout
+                                                </span>
+                                            </Link>
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
                         ) : (
-                            <></>
+                            <div className="dropdown header-item dropdown-hover-end">
+                                <Dropdown>
+                                    <Dropdown.Toggle
+                                        id="page-header-user-dropdown"
+                                        bsPrefix="btn"
+                                        className="btn btn-icon btn-topbar btn-link rounded-circle"
+                                        as="a"
+                                    >
+                                        <Image
+                                            className="rounded-circle header-profile-user"
+                                            src={config.serverUrl + data?.profilePicture?.url}
+                                            alt="Header Avatar"
+                                        />
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item href="/signin">
+                                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                                            <span className="align-middle" data-key="t-logout">
+                                                Login
+                                            </span>
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </div>
                         )}
                     </div>
                 </Container>
