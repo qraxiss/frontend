@@ -513,7 +513,6 @@ export const CardModal = ({ show, handleClose }: any) => {
     let addItem = useMutation(addItemToCart)
     let deleteItem = useMutation(deleteItemFromCart)
 
-
     useEffect(() => {
         cartData.refetch()
     }, [addItem.loading, deleteItem.loading])

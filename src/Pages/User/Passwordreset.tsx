@@ -19,8 +19,7 @@ const Passwordreset = () => {
                 .matches(/^(?!.*@[^,]*,)/)
                 .required('Please Enter Your Email')
         }),
-        onSubmit: (values) => {
-        }
+        onSubmit: (values) => {}
     })
     return (
         <React.Fragment>
