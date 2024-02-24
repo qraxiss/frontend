@@ -11,8 +11,6 @@ import { createSelector } from 'reselect'
 const Layout = (props: any) => {
   let location = useLocation()
   const dispatch: any = useDispatch()
-  const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
-  const [hoverHover, setHoverHover] = useState(false)
 
   const selectProperties = createSelector(
     (state: any) => state.Layout,
@@ -60,20 +58,21 @@ const Layout = (props: any) => {
     }
   }, [layoutThemeMode, dispatch, footertheme, footerModeType])
 
-  const temp = ['a', 'b', 'c', 'd']
+  // const temp = ['a', 'b', 'c', 'd']
 
-  const _category: any = {
-    a: ['a', 'a', 'a', 'a'],
-    b: ['b', 'b', 'b', 'b'],
-    c: ['c', 'c', 'c', 'c'],
-    d: ['d', 'd', 'd', 'd']
-  }
-
+  // const _category: any = {
+  //   a: ['a', 'a', 'a', 'a'],
+  //   b: ['b', 'b', 'b', 'b'],
+  //   c: ['c', 'c', 'c', 'c'],
+  //   d: ['d', 'd', 'd', 'd']
+  // }
+  // const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
+  // const [hoverHover, setHoverHover] = useState(false)
   return (
     <React.Fragment>
       {/* <TopBar></TopBar> */}
       {location.pathname && <MainModal location={location.pathname} />}
-      <div className="different-layout">
+      {/* <div className="different-layout">
         <div
           onMouseEnter={() => {
             setHoverSidebar({ is: true, for: hoverSidebars.for })
@@ -141,12 +140,12 @@ const Layout = (props: any) => {
           </div>
         </div>
 
-        <div className="different-layout-main">
-          <Header handleMood={handleThemeMood} />
-          {props.children}
-          <Footer />
-        </div>
-      </div>
+        <div className="different-layout-main"> */}
+      <Header handleMood={handleThemeMood} />
+      {props.children}
+      <Footer />
+      {/* </div>
+      </div> */}
       <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
         <i className="ri-arrow-up-line"></i>
       </Button>

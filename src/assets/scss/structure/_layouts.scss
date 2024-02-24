@@ -163,83 +163,83 @@
     }
 }
 
-.different-layout {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: row;
+// .different-layout {
+//     width: 100%;
+//     margin: 0;
+//     padding: 0;
+//     display: flex;
+//     flex-direction: row;
 
-    .different-sidebar-origin{
-        height: 100%;
-        background-color: white;
-        border-radius: 0 20px 20px 0;
-        border-top: 1px solid gainsboro;
-        border-right: 1px solid gainsboro;
-        border-bottom: 1px solid gainsboro;
-        z-index: 1099;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-    }
+//     .different-sidebar-origin{
+//         height: 100%;
+//         background-color: white;
+//         border-radius: 0 20px 20px 0;
+//         border-top: 1px solid gainsboro;
+//         border-right: 1px solid gainsboro;
+//         border-bottom: 1px solid gainsboro;
+//         z-index: 1099;
+//         position: fixed;
+//         left: 0;
+//         top: 0;
+//         bottom: 0;
+//     }
 
-    .different-sidebar {
-        z-index: 1100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 60px;
-        height: 100%;
-        background: #fff;
-        // padding: 20px 10px;
-        border-right: 1px solid gainsboro;
+//     .different-sidebar {
+//         z-index: 1100;
+//         position: fixed;
+//         left: 0;
+//         top: 0;
+//         bottom: 0;
+//         width: 60px;
+//         height: 100%;
+//         background: #fff;
+//         // padding: 20px 10px;
+//         border-right: 1px solid gainsboro;
 
-        .different-sidebar-logo-container {
-            .different-sidebar-main-logo {
-                width: 40px;
-                margin: 10px 10px;
-            }
-        }
-    }
+//         .different-sidebar-logo-container {
+//             .different-sidebar-main-logo {
+//                 width: 40px;
+//                 margin: 10px 10px;
+//             }
+//         }
+//     }
 
-    .different-sidebar:hover {
-        width: 300px;
+//     .different-sidebar:hover {
+//         width: 300px;
 
-        .different-sidebar-logo-container {
-            // padding: 10px 20px;
-            width: 300px;
-            display: flex;
-            align-items: center;
+//         .different-sidebar-logo-container {
+//             // padding: 10px 20px;
+//             width: 300px;
+//             display: flex;
+//             align-items: center;
 
-            .differen-sidebar-main-title {
-                padding-left: 10px;
-                width: 100%;
-            }
-        }
-        .different-sidebar-logo-container:hover {
-            position: relative;
-            display: fixed;
-            width: 500px;
+//             .differen-sidebar-main-title {
+//                 padding-left: 10px;
+//                 width: 100%;
+//             }
+//         }
+//         .different-sidebar-logo-container:hover {
+//             position: relative;
+//             display: fixed;
+//             width: 500px;
 
-            .different-sidebars-sidebar {
-                position: absolute;
-                height: 100vh;
-                width: 200px;
-                right: 0;
-                top: 0;
-                background-color: white;
-                border-radius: 0 20px 20px 0;
-                border-top: 1px solid gainsboro;
-                border-right: 1px solid gainsboro;
-                border-bottom: 1px solid gainsboro;
-            }
-        }
-    }
+//             .different-sidebars-sidebar {
+//                 position: absolute;
+//                 height: 100vh;
+//                 width: 200px;
+//                 right: 0;
+//                 top: 0;
+//                 background-color: white;
+//                 border-radius: 0 20px 20px 0;
+//                 border-top: 1px solid gainsboro;
+//                 border-right: 1px solid gainsboro;
+//                 border-bottom: 1px solid gainsboro;
+//             }
+//         }
+//     }
 
-    .different-layout-main {
-        margin-left: 60px;
-        width: 100%;
-    }
-}
+//     .different-layout-main {
+//         margin-left: 60px;
+//         width: 100%;
+//     }
+// }
