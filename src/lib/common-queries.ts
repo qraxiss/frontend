@@ -35,22 +35,23 @@ export let deleteItemFromCart = gql`
 export let getProductsByCategorySlug = gql`
   query CATEGORY_BY_SLUG($slug: String!) {
     categoryBySlug(slug: $slug) {
-      products {
-        data {
-          attributes {
-            images {
-              data {
-                attributes {
-                  url
+      category {
+        products {
+          data {
+            attributes {
+              price
+              name
+              variants {
+                options {
+                  value
                 }
+                name
               }
             }
-            name
-            price
-            slug
           }
         }
       }
+      variants
     }
   }
 `
