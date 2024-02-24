@@ -1,27 +1,27 @@
-// 
+//
 // _layouts.scss
-// 
+//
 
-[data-layout-width="boxed"] {
+[data-layout-width='boxed'] {
     body {
         background: $body-bg-image;
+
         &::before {
-            content: "";
+            content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(var(--#{$prefix}body-bg-rgb), 0.60);
+            background-color: rgba(var(--#{$prefix}body-bg-rgb), 0.6);
         }
     }
 
     #layout-wrapper {
         max-width: $boxed-layout-width;
         margin: 0 auto;
-        box-shadow: 0 5px 15px rgba(30, 32, 37, 0.40);
+        box-shadow: 0 5px 15px rgba(30, 32, 37, 0.4);
         background-color: var(--#{$prefix}body-bg);
     }
-    
 
-    &[data-layout="vertical"] {
+    &[data-layout='vertical'] {
         #layout-wrapper {
             min-height: 100vh;
         }
@@ -34,9 +34,8 @@
         left: 0 !important;
     }
 
-    &:is([data-sidebar-size="sm-hover"],[data-sidebar-size="sm"]) {
-
-        &[data-layout="vertical"] {
+    &:is([data-sidebar-size='sm-hover'], [data-sidebar-size='sm']) {
+        &[data-layout='vertical'] {
             @media (min-width: 768px) {
                 #layout-wrapper {
                     min-height: 1400px;
@@ -61,8 +60,7 @@
         }
     }
 
-    &:is([data-sidebar-size="sm-hover-active"], [data-sidebar-size="lg"]) {
-
+    &:is([data-sidebar-size='sm-hover-active'], [data-sidebar-size='lg']) {
         #page-topbar,
         .footer {
             max-width: calc(#{$boxed-layout-width} - #{$vertical-menu-width});
@@ -73,8 +71,7 @@
         }
     }
 
-    &[data-sidebar-size="md"] {
-
+    &[data-sidebar-size='md'] {
         #page-topbar,
         .footer {
             max-width: calc(#{$boxed-layout-width} - #{$vertical-menu-width-md});
@@ -87,7 +84,7 @@
 
     // deteched
 
-    &[data-layout=vertical][data-layout-style=detached] {
+    &[data-layout='vertical'][data-layout-style='detached'] {
         body {
             background-color: var(--#{$prefix}body-bg);
         }
@@ -110,8 +107,7 @@
             }
         }
 
-        &:is([data-sidebar-size="sm-hover"], [data-sidebar-size="sm"], [data-sidebar-size="md"], [data-sidebar-size="lg"]) {
-
+        &:is([data-sidebar-size='sm-hover'], [data-sidebar-size='sm'], [data-sidebar-size='md'], [data-sidebar-size='lg']) {
             #page-topbar,
             .footer {
                 max-width: 100%;
@@ -123,8 +119,7 @@
 
 // Horizontal Boxed Layout
 
-[data-layout="horizontal"][data-layout-width="boxed"] {
-
+[data-layout='horizontal'][data-layout-width='boxed'] {
     #page-topbar,
     #layout-wrapper,
     .footer {
@@ -140,7 +135,7 @@
         padding: 0 calc(#{$grid-gutter-width} * 0.5) 0 0;
     }
 
-    &:is([data-sidebar-size="sm-hover"],[data-sidebar-size="sm"], [data-sidebar-size="sm-hover-active"], [data-sidebar-size="lg"]) {
+    &:is([data-sidebar-size='sm-hover'], [data-sidebar-size='sm'], [data-sidebar-size='sm-hover-active'], [data-sidebar-size='lg']) {
         #page-topbar,
         .footer {
             left: 0 !important;
@@ -150,18 +145,16 @@
 
 // Scrollable layout
 
-[data-layout-position="scrollable"] {
+[data-layout-position='scrollable'] {
     @media (min-width: 992px) {
-
         #page-topbar,
         .navbar-menu {
             position: absolute;
         }
     }
 
-    &[data-layout="horizontal"] {
+    &[data-layout='horizontal'] {
         @media (min-width: 992px) {
-
             #page-topbar,
             .topnav {
                 position: absolute;
@@ -169,12 +162,27 @@
         }
     }
 }
+
 .different-layout {
     width: 100%;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: row;
+
+    .different-sidebar-origin{
+        height: 100%;
+        background-color: white;
+        border-radius: 0 20px 20px 0;
+        border-top: 1px solid gainsboro;
+        border-right: 1px solid gainsboro;
+        border-bottom: 1px solid gainsboro;
+        z-index: 1099;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+    }
 
     .different-sidebar {
         z-index: 1100;
@@ -183,54 +191,49 @@
         top: 0;
         bottom: 0;
         width: 60px;
-        min-height: 100vh;
+        height: 100%;
         background: #fff;
-        padding: 20px 10px;
+        // padding: 20px 10px;
         border-right: 1px solid gainsboro;
 
         .different-sidebar-logo-container {
-
-
             .different-sidebar-main-logo {
                 width: 40px;
-                margin: 10px 0;
+                margin: 10px 10px;
             }
-
-            .differen-sidebar-main-title {
-                display: hidden;
-            }
-
         }
-
     }
 
-    .different-sidebar-hover {
-        z-index: 1100;
-        position: fixed;
-        left: 0;
-        top: 0;
-        bottom: 0;
+    .different-sidebar:hover {
         width: 300px;
-        min-height: 100vh;
-        background: #fff;
-        padding: 20px 10px 20px 0;
-        border-right: 1px solid gainsboro;
-
 
         .different-sidebar-logo-container {
-
-            // width: 300px;
+            // padding: 10px 20px;
+            width: 300px;
             display: flex;
             align-items: center;
 
-            .different-sidebar-main-logo {
-                width: 40px;
-                margin: 10px;
-            }
-
             .differen-sidebar-main-title {
                 padding-left: 10px;
+                width: 100%;
+            }
+        }
+        .different-sidebar-logo-container:hover {
+            position: relative;
+            display: fixed;
+            width: 500px;
 
+            .different-sidebars-sidebar {
+                position: absolute;
+                height: 100vh;
+                width: 200px;
+                right: 0;
+                top: 0;
+                background-color: white;
+                border-radius: 0 20px 20px 0;
+                border-top: 1px solid gainsboro;
+                border-right: 1px solid gainsboro;
+                border-bottom: 1px solid gainsboro;
             }
         }
     }
@@ -238,8 +241,5 @@
     .different-layout-main {
         margin-left: 60px;
         width: 100%;
-
     }
-
-
 }
