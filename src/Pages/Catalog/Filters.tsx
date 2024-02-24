@@ -123,8 +123,8 @@ const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
                   {filter.options.map((option: { value: string }, index: number) => {
                     return (
                       <div key={index} className="form-check">
-                        <Form.Check type="checkbox" value={option.value} id="productBrandRadio5" />
-                        <Form.Label className="form-check-label" htmlFor="productBrandRadio5">
+                        <Form.Check type="checkbox" value={option.value} id={option.value} />
+                        <Form.Label className="form-check-label" htmlFor={option.value}>
                           {option.value}
                         </Form.Label>
                       </div>
