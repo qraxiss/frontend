@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import React, { useState, useMemo, useEffect } from 'react'
 import { Form, Row, Col, Card, Button, Image } from 'react-bootstrap'
 import { filterProduct } from 'Common/data'
@@ -6,32 +6,18 @@ import Pagination from 'Components/Pagination'
 
 import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, cartQuery } from 'lib/common-queries'
-import { gql } from '@apollo/client'
 import config from 'config/config'
 
-const query = gql`
-  query {
-    products {
-      data {
-        attributes {
-          name
-          slug
-          price
-          images {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
+import { getProductsByCategorySlug } from 'lib/common-queries'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
-  const products = useQuery(query)
+  let {parent,child} = useParams()
+  
+  const products = useQuery(getProductsByCategorySlug, {
+    variables: {
+      slug: child
+    }
+  })
   const addItem = useMutation(addItemToCart)
   const cart = useQuery(cartQuery)
 
@@ -93,7 +79,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
     <React.Fragment>
       <div className="flex-grow-1">
         <div className="d-flex align-items-center gap-2 mb-4">
-          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {products.data?.length} results</p>
+          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {!products.loading ? products?.data?.products.length: 0} results</p>
 
           <div className="flex-shrink-0">
             <div className="d-flex gap-2">
@@ -115,7 +101,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
         <Row id="product-grid">
           {select &&
             (!products.loading && products.data ? (
-              products.data.map((item: any, idx: any) => {
+              products.data.products.map((item: any, idx: any) => {
                 return !cxl ? (
                   <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
                     <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
