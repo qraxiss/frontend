@@ -3,9 +3,10 @@ import Nouislider from 'nouislider-react'
 import 'nouislider/distribute/nouislider.css'
 import { Collapse, Button, Card, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { type } from 'os'
 // import { filterProduct } from 'Common/data'
 
-const Filters = ({ name, setFilterlist, filterList }: any) => {
+const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
   let newList: any = []
   const [mincost, setMincost] = useState(0)
   const [maxcost, setMaxcost] = useState(2000)
@@ -20,6 +21,19 @@ const Filters = ({ name, setFilterlist, filterList }: any) => {
   const [discount, setDiscount] = useState(false)
   //Rating
   const [rating, setRating] = useState(false)
+
+  //   Her bir filtre için state'e yeni bir key ve boolean değer aktaran bir yapı kurmak için gerekli olan fonksiyon
+  const [isFiltersOpen, setIsFiltersOpen] = useState<any>({})
+  const SetFiltersComponent = () => {
+    let temp: any = {}
+    tempData.forEach((data: any) => {
+      temp[data.name] = false
+    })
+    setIsFiltersOpen(temp)
+  }
+  useEffect(() => {
+    SetFiltersComponent()
+  }, [])
 
   //colors
   const handleColor = (value: any) => {
@@ -67,10 +81,63 @@ const Filters = ({ name, setFilterlist, filterList }: any) => {
     setMincost(value[0])
     setMaxcost(value[1])
   }
-
   useEffect(() => {
     onUpDate([mincost, maxcost])
   }, [mincost, maxcost])
+
+  //   Tekli filtre komponenti açmak için gereken fonksiyon
+  const isOpen = (name: string) => {
+    setIsFiltersOpen({ ...isFiltersOpen, [name]: !isFiltersOpen[name] })
+  }
+
+  //   Tekli filtre kompnoneti
+  const tempFilterComponent = (filter: { name: string; options: { value: string }[] }) => {
+    return (
+      <div className="accordion-item">
+        <h2 className="accordion-header" id="flush-headingBrands">
+          <Button
+            onClick={() => isOpen(filter.name)}
+            className="accordion-button bg-transparent shadow-none"
+            aria-controls="flush-collapseBrands"
+            aria-expanded={brands}
+          >
+            <span className="text-muted text-uppercase fs-12 fw-medium">{filter.name}</span>
+            <span className="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
+          </Button>
+        </h2>
+        <Collapse in={isFiltersOpen[filter.name]}>
+          <div id="flush-collapseBrands">
+            <div className="accordion-collapse collapse show" aria-labelledby="flush-headingBrands">
+              <div className="accordion-body text-body pt-0">
+                {/* Search bar */}
+                <div className="search-box search-box-sm">
+                  <Form.Control type="text" className=" bg-light border-0" id="searchBrandsList" placeholder="Ara..." />
+                  <i className="ri-search-line search-icon"></i>
+                </div>
+                <div className="d-flex flex-column gap-2 mt-3 filter-check">
+                  {filter.options.map((option: { value: string }) => {
+                    return (
+                      <div className="form-check">
+                        <Form.Check type="checkbox" value={option.value} id="productBrandRadio5" />
+                        <Form.Label className="form-check-label" htmlFor="productBrandRadio5">
+                          {option.value}
+                        </Form.Label>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Collapse>
+      </div>
+    )
+  }
+
+  let tempData = [
+    { name: 'Renkler', options: [{ value: 'Kırmızı' }, { value: 'Yeşil' }, { value: 'Mavi' }] },
+    { name: 'Bedenler', options: [{ value: 'Xl' }, { value: 'M' }, { value: 'L' }] }
+  ]
 
   return (
     <React.Fragment>
@@ -171,6 +238,11 @@ const Filters = ({ name, setFilterlist, filterList }: any) => {
                 </ul>
               </div>
             </Card.Body>
+            {tempData.map((data: { name: string; options: { value: string }[] }) => {
+              return tempFilterComponent(data)
+            })}
+
+            {/* {tempFilterComponent(tempData)} */}
 
             {/* Price Slider */}
             <Card.Body className="border-bottom">

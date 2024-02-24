@@ -25,7 +25,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   const [filterList, setFilterlist] = useState<any>(filterProduct)
   return (
     <React.Fragment>
-      <Filters setFilterlist={setFilterlist} filterList={filterList} name={name} />
+      <Filters setFilterlist={setFilterlist} filterList={filterList} name={name} filterOptions={!products.loading ? products.data : []} />
       <CatalogCollection filterList={filterList} cxxl={cxxl} clg={clg} cmd={cmd} cxl={cxl} />
     </React.Fragment>
   )
