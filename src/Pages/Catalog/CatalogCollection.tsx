@@ -78,8 +78,9 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
   return (
     <React.Fragment>
       <div className="flex-grow-1">
+        {/* Headwer Section */}
         <div className="d-flex align-items-center gap-2 mb-4">
-          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {!products.loading ? products?.data?.products.length: 0} results</p>
+          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {!products.loading ? products?.data?.products.length : 0} results</p>
 
           <div className="flex-shrink-0">
             <div className="d-flex gap-2">
@@ -140,7 +141,9 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                               <li>
                                 <Form.Control type="radio" name="sizes1" id="product-color-12" />
                                 <Form.Label
-                                  className={`avatar-xxs btn btn-${item?.color[0] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                  className={`avatar-xxs btn btn-${
+                                    item?.color[0] || ''
+                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
                                   htmlFor="product-color-12"
                                 >
                                   {item.size ? item.size[0] : ''}
@@ -149,7 +152,9 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                               <li>
                                 <Form.Control type="radio" name="sizes1" id="product-color-13" />
                                 <Form.Label
-                                  className={`avatar-xxs btn btn-${item?.color[1] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                  className={`avatar-xxs btn btn-${
+                                    item?.color[1] || ''
+                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
                                   htmlFor="product-color-13"
                                 >
                                   {item.size ? item.size[1] : ''}
@@ -158,7 +163,9 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                               <li>
                                 <Form.Control type="radio" name="sizes1" id="product-color-14" />
                                 <Form.Label
-                                  className={`avatar-xxs btn btn-${item?.color[2] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                  className={`avatar-xxs btn btn-${
+                                    item?.color[2] || ''
+                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
                                   htmlFor="product-color-14"
                                 >
                                   {item.size ? item.size[2] : ''}
@@ -168,7 +175,9 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                                 {' '}
                                 <Form.Control type="radio" name="sizes1" id="product-color-15" />
                                 <Form.Label
-                                  className={`avatar-xxs btn btn-${item?.color[3] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                  className={`avatar-xxs btn btn-${
+                                    item?.color[3] || ''
+                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
                                   htmlFor="product-color-15"
                                 >
                                   {item.size ? item.size[3] : ''}
@@ -332,6 +341,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
                 )
               })
             ) : (
+              // Ürün Yoksa
               <>
                 <Row id="search-result-elem">
                   <Col lg={12}>
