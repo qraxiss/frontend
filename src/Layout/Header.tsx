@@ -85,7 +85,6 @@ const Header = (props: any) => {
 
   //card modal
   const [card, setCard] = useState(false)
-  const [columnSegment, setColumnSegment] = useState('')
 
   const handlecardClose = () => setCard(false)
   const handlecardShow = () => setCard(true)
@@ -223,39 +222,6 @@ const Header = (props: any) => {
                   <Image src={logolight} alt="" height="25" className="card-logo-light mx-auto" />
                 </Link>
               </li>
-              {window.innerWidth < 990 && (
-                <div className="nav-segment">
-                  <label
-                    onClick={() => {
-                      setColumnSegment('menu')
-                    }}
-                    className={`nav-segment-item ${columnSegment === 'menu' ? 'active-item' : ''}`}
-                  >
-                    MENU
-                  </label>
-                  <label
-                    onClick={() => {
-                      setColumnSegment('collection')
-                    }}
-                    className={`nav-segment-item ${columnSegment === 'collection' ? 'active-item' : ''}`}
-                  >
-                    COLLECTION
-                  </label>
-                </div>
-              )}
-
-              {/* <Nav fill>
-                                <Nav.Item>
-                                    <Nav.Link eventKey="menu" className="nav-segment-link">
-                                        MENU
-                                    </Nav.Link>
-                                </Nav.Item>
-                                <Nav.Item className="nav-segment-item">
-                                    <Nav.Link eventKey="collection" className="nav-segment-link">
-                                        COLLECTION
-                                    </Nav.Link>
-                                </Nav.Item>
-                            </Nav> */}
               {(!loading ? data.parentCategories : []).map((item: any) => {
                 return (
                   <li className="dropdown nav-item dropdown-hover" key={item.slug}>
