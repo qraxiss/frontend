@@ -36,34 +36,34 @@ import About from 'Pages/Product/About'
 import ContactUs from 'Pages/ContactUs/Contact'
 
 const authProtectedRoutes = [
-    { path: '/shop/address', component: <ShopIndex /> },
-    { path: '/shop/order', component: <Trackorder /> },
-    { path: '/shop/payment', component: <PaymentIndex /> },
-    { path: '/shop/review', component: <Review />, isLight: 'light' },
-    { path: '/shop/confirm', component: <Confirm /> },
-    { path: '/shop/orderhistory', component: <Orderhistory /> },
-    { path: '/shop/shopingcard', component: <Shopingcard /> },
-    { path: '/shop/checkout', component: <Checkout /> },
-    { path: '/shop/wishList', component: <WishList /> },
+  { path: '/shop/address', component: <ShopIndex /> },
+  { path: '/shop/order', component: <Trackorder /> },
+  { path: '/shop/payment', component: <PaymentIndex /> },
+  { path: '/shop/review', component: <Review />, isLight: 'light' },
+  { path: '/shop/confirm', component: <Confirm /> },
+  { path: '/shop/orderhistory', component: <Orderhistory /> },
+  { path: '/shop/shopingcard', component: <Shopingcard /> },
+  { path: '/shop/checkout', component: <Checkout /> },
+  { path: '/shop/wishList', component: <WishList /> },
 
-    { path: '/account', component: <MyAccount /> },
-    { path: '/', component: <Home /> },
-    { path: '/about-us', component: <About /> },
-    { path: '/contact', component: <ContactUs /> },
-    { path: '*', component: <Navigate to="/" /> },
-    { path: '/category/:parent/:child', component: <Defaultgrid /> },
-    { path: '/category/:parent/', component: <Defaultgrid /> },
+  { path: '/account', component: <MyAccount /> },
+  { path: '/', component: <Home /> },
+  { path: '/about-us', component: <About /> },
+  { path: '/contact', component: <ContactUs /> },
+  { path: '*', component: <Navigate to="/" /> },
+  { path: '/category/:parent/:child', component: <Defaultgrid /> },
+  { path: '/category/:parent/', component: <Defaultgrid /> },
 
-    { path: '/product-details/:slug', component: <Productdetails /> },
+  { path: '/product-details/:slug', component: <Productdetails /> },
 
-    { path: '/signin', component: <Signin /> },
-    { path: '/signup', component: <SignUp /> },
-    { path: '/logout', component: <Logout /> },
-    { path: '/password-reset', component: <Passwordreset /> },
-    { path: '/create-password', component: <Passwordcreate /> },
-    { path: '/login-success', component: <Successmsg /> },
+  { path: '/signin', component: <Signin /> },
+  { path: '/signup', component: <SignUp /> },
+  { path: '/logout', component: <Logout /> },
+  { path: '/password-reset', component: <Passwordreset /> },
+  { path: '/create-password', component: <Passwordcreate /> },
+  { path: '/login-success', component: <Successmsg /> },
 
-    { path: '/404', component: <Error404 /> },
-    { path: '/500', component: <Error500 /> }
+  { path: '/404', component: <Error404 /> },
+  { path: '/500', component: <Error500 /> }
 ]
 export { authProtectedRoutes }

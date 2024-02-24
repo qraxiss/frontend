@@ -7,38 +7,38 @@ import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
 
 const query = gql`
-    query {
-        products {
+  query {
+    products {
+      data {
+        attributes {
+          name
+          slug
+          price
+          images {
             data {
-                attributes {
-                    name
-                    slug
-                    price
-                    images {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
+              attributes {
+                url
+              }
             }
+          }
         }
+      }
     }
+  }
 `
 
 const Home = () => {
-    document.title = 'Index | Toner - React FrontEnd'
+  document.title = 'Index | Toner - React FrontEnd'
 
-    let { data, loading, error } = useQuery(query)
+  let { data, loading, error } = useQuery(query)
 
-    return (
-        <React.Fragment>
-            <Section />
-            <Slider items={data || []} />
-            <Products items={data || []} />
-        </React.Fragment>
-    )
+  return (
+    <React.Fragment>
+      <Section />
+      <Slider items={data || []} />
+      <Products items={data || []} />
+    </React.Fragment>
+  )
 }
 
 export default Home

@@ -9,44 +9,44 @@ import frenchFlag from 'assets/images/flags/french.svg'
 import aeFlag from 'assets/images/flags/ae.svg'
 
 export const languages = {
-    en: {
-        icon: usFlag,
-        lable: 'English',
-        title: 'English'
-    },
-    sp: {
-        icon: spainFlag,
-        lable: 'Española',
-        title: 'Spanish'
-    },
-    gr: {
-        icon: germanyFlag,
-        lable: 'Deutsche',
-        title: 'German'
-    },
-    it: {
-        icon: italyFlag,
-        lable: 'Italiana',
-        title: 'Italian'
-    },
-    ru: {
-        icon: russiaFlag,
-        lable: 'русский',
-        title: 'Russian'
-    },
-    ch: {
-        icon: chinaFlag,
-        lable: '中国人',
-        title: 'Chinese'
-    },
-    fr: {
-        icon: frenchFlag,
-        lable: 'français',
-        title: 'French'
-    },
-    ar: {
-        icon: aeFlag,
-        lable: 'عربى',
-        title: 'Arabic'
-    }
+  en: {
+    icon: usFlag,
+    lable: 'English',
+    title: 'English'
+  },
+  sp: {
+    icon: spainFlag,
+    lable: 'Española',
+    title: 'Spanish'
+  },
+  gr: {
+    icon: germanyFlag,
+    lable: 'Deutsche',
+    title: 'German'
+  },
+  it: {
+    icon: italyFlag,
+    lable: 'Italiana',
+    title: 'Italian'
+  },
+  ru: {
+    icon: russiaFlag,
+    lable: 'русский',
+    title: 'Russian'
+  },
+  ch: {
+    icon: chinaFlag,
+    lable: '中国人',
+    title: 'Chinese'
+  },
+  fr: {
+    icon: frenchFlag,
+    lable: 'français',
+    title: 'French'
+  },
+  ar: {
+    icon: aeFlag,
+    lable: 'عربى',
+    title: 'Arabic'
+  }
 }
