@@ -8,9 +8,7 @@ import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
 
-
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
-
   console.log(filterList)
 
   const addItem = useMutation(addItemToCart)

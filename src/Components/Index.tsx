@@ -9,22 +9,20 @@ import { getProductsByCategorySlug } from 'lib/common-queries'
 import { useParams } from 'react-router-dom'
 
 const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
-    let { child } = useParams()
-    const products = useQuery(getProductsByCategorySlug, {
-      variables: {
-        slug: child
-      }
-    })
-
+  let { child } = useParams()
+  const products = useQuery(getProductsByCategorySlug, {
+    variables: {
+      slug: child
+    }
+  })
 
   const [filterList, setFilterlist] = useState<any>([])
   const [filterOptions, setFilterOptions] = useState<any>([])
 
   useEffect(() => {
     if (!products.loading) {
-      console.log(products.data.variants)
       setFilterOptions(products.data.variants)
-      setFilterlist(products.data.category.products)
+      setFilterlist(products.data.products)
     }
   }, [products.loading, child])
 

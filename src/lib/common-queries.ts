@@ -33,30 +33,27 @@ export let deleteItemFromCart = gql`
 `
 
 export let getProductsByCategorySlug = gql`
-  query CATEGORY_BY_SLUG($slug: String!) {
-    categoryBySlug(slug: $slug) {
+  query CATEGORY_BY_SLUG($slug: String!, $start: Int, $limit: Int) {
+    categoryBySlug(slug: $slug, start: $start, limit: $limit) {
       category {
-        products {
+        name
+      }
+      products {
+        price
+        name
+        slug
+        images {
           data {
             attributes {
-              price
-              name
-              slug
-              images {
-								data {
-                  attributes {
-                    url
-                  }
-                }
-              }
-              variants {
-                options {
-                  value
-                }
-                name
-              }
+              url
             }
           }
+        }
+        variants {
+          options {
+            value
+          }
+          name
         }
       }
       variants

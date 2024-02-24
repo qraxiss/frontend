@@ -38,7 +38,7 @@ const Cardshop = () => {
     setProductcount(productData?.filter((delet: any) => delet.id !== id))
   }
 
-  const assinged = ((!cart.loading && !cart.error) ? cart.data : [])?.map((M: any) => M.count * M.product.price)
+  const assinged = (!cart.loading && !cart.error ? cart.data : [])?.map((M: any) => M.count * M.product.price)
   let subtotal = 0
   for (let i = 0; i < assinged.length; i++) {
     subtotal += Math.round(assinged[i])

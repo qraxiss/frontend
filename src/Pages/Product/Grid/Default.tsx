@@ -3,10 +3,12 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 
 import Index from 'Components/Index'
 
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { params } from 'lib/getQueryVariables'
 
 const Defaultgrid = () => {
-  let { parent, child } = useParams()
+  let obj = useSearchParams()
+  console.log(params(obj[0]))
 
   return (
     <React.Fragment>
