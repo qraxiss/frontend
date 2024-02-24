@@ -665,7 +665,7 @@ export const CardModal = ({ show, handleClose }: any) => {
               </Button>
             </Col>
             <Col xs={6}>
-              <Link to="/" target="_blank" className="btn btn-info w-100">
+              <Link to="/shop/shopingcard" target="_blank" className="btn btn-info w-100">
                 Continue to Checkout
               </Link>
             </Col>
