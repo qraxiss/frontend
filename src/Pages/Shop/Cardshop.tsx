@@ -5,7 +5,22 @@ import { productData } from 'Common/data'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal from 'Components/DeleteModal'
 
+import { cartQuery, addItemToCart, deleteItemFromCart } from 'lib/common-queries'
+import { useMutation, useQuery } from 'lib/query-wrapper'
+
+import config from 'config/config'
+
 const Cardshop = () => {
+    let cart = useQuery(cartQuery)
+    let addItem = useMutation(addItemToCart)
+    let deleteItem = useMutation(deleteItemFromCart)
+
+    useEffect(() => {
+        cart.refetch()
+    }, [addItem.loading, deleteItem.loading])
+
+    console.log(cart.data)
+
     const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
     const [dis, setDis] = useState(0)
@@ -73,38 +88,56 @@ const Cardshop = () => {
                         </Link>
                     </div>
                 </div>
-                {(productcount || [])?.map((item: any, inx) => {
+                {(!cart.loading && !cart.error ? cart.data : [])?.map((item: any, inx: number) => {
                     return (
                         <Card key={inx} className="product">
                             <Card.Body className="p-4">
                                 <Row className="gy-3">
                                     <Col className="col-sm-auto">
                                         <div className="avatar-lg h-100">
-                                            <div className={`avatar-title bg-${item.bg}-subtle rounded py-3`}>
-                                                <Image src={item.img} alt="" className="avatar-md" />
+                                            <div className={`avatar-title bg-info-subtle rounded py-3`}>
+                                                <Image src={config.serverUrl+item.product.images[0].url} alt="" className="avatar-md" />
                                             </div>
                                         </div>
                                     </Col>
                                     <Col className="col-sm">
                                         <Link to="#">
-                                            <h5 className="fs-16 lh-base mb-1">{item.title}</h5>
+                                            <h5 className="fs-16 lh-base mb-1">{item.product.name}</h5>
                                         </Link>
                                         <ul className="list-inline text-muted fs-13 mb-3">
-                                            <li className="list-inline-item">
+                                            {/* <li className="list-inline-item">
                                                 Color : <span className="fw-medium">{item.Color}</span>
-                                            </li>
-                                            {item.Size && (
+                                            </li> */}
+                                            {/* {item.Size && (
                                                 <li className="list-inline-item">
                                                     Size : <span className="fw-medium">{item.Size || ''}</span>
                                                 </li>
-                                            )}
+                                            )} */}
                                         </ul>
                                         <div className="input-step">
-                                            <Button className="minus" onClick={() => countDown(item)}>
-                                                –
+                                            <Button
+                                                className="minus"
+                                                onClick={() => {
+                                                    deleteItem.fn({
+                                                        variables: {
+                                                            slug: item.product.slug
+                                                        }
+                                                    })
+                                                }}
+                                            >
+                                                -
                                             </Button>
-                                            <Form.Control type="number" className="product-quantity" value={item.num} min="0" max="100" readOnly />
-                                            <Button className="plus" onClick={() => countUP(item)}>
+                                            <Form.Control type="number" className="product-quantity" value={item.count} min="0" max="100" readOnly />
+                                            <Button
+                                                className="plus"
+                                                onClick={() => {
+                                                    addItem.fn({
+                                                        variables: {
+                                                            slug: item.product.slug
+                                                        }
+                                                    })
+                                                }}
+                                            >
                                                 +
                                             </Button>
                                         </div>
@@ -113,7 +146,7 @@ const Cardshop = () => {
                                         <div className="text-lg-end">
                                             <p className="text-muted mb-1 fs-12">Item Price:</p>
                                             <h5 className="fs-16">
-                                                $<span className="product-price">{item.ItemPrice}</span>
+                                                $<span className="product-price">{item.product.price}</span>
                                             </h5>
                                         </div>
                                     </Col>
@@ -145,7 +178,7 @@ const Cardshop = () => {
                                         <div className="d-flex align-items-center gap-2 text-muted">
                                             <div>Total :</div>
                                             <h5 className="fs-14 mb-0">
-                                                $<span className="product-line-price">{item.Total.toFixed(2)}</span>
+                                                $<span className="product-line-price">{item.count * item.product.price}</span>
                                             </h5>
                                         </div>
                                     </Col>
