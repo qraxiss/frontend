@@ -21,19 +21,7 @@ const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
   const [discount, setDiscount] = useState(false)
   //Rating
   const [rating, setRating] = useState(false)
-
-  //   Her bir filtre için state'e yeni bir key ve boolean değer aktaran bir yapı kurmak için gerekli olan fonksiyon
-  const [isFiltersOpen, setIsFiltersOpen] = useState<any>({})
-  const SetFiltersComponent = () => {
-    let temp: any = {}
-    tempData.forEach((data: any) => {
-      temp[data.name] = false
-    })
-    setIsFiltersOpen(temp)
-  }
-  useEffect(() => {
-    SetFiltersComponent()
-  }, [])
+  const [filterSettings, setFilterSettings] = useState<any>([])
 
   //colors
   const handleColor = (value: any) => {
@@ -85,27 +73,44 @@ const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
     onUpDate([mincost, maxcost])
   }, [mincost, maxcost])
 
+  //   Her bir filtre için state'e yeni bir key ve boolean değer aktaran bir yapı kurmak için gerekli olan fonksiyon
+  const SetFiltersComponent = () => {
+    let temp: any = {}
+    filterOptions.forEach((data: any) => {
+      temp[data.name] = false
+    })
+    console.log(temp)
+    setFilterSettings(temp)
+  }
+  useEffect(() => {
+    SetFiltersComponent()
+    console.log(filterSettings)
+  }, [])
+
   //   Tekli filtre komponenti açmak için gereken fonksiyon
   const isOpen = (name: string) => {
-    setIsFiltersOpen({ ...isFiltersOpen, [name]: !isFiltersOpen[name] })
+    // let temp= { ...filterSettings, filterSettings[name]: !filterSettings[name].open }
+    // if (!filterSettings[name]) return
+    // filterSettings[name].open = !filterSettings[name].open
+    setFilterSettings({ ...filterSettings, [name]: !filterSettings[name] })
   }
 
   //   Tekli filtre kompnoneti
-  const tempFilterComponent = (filter: { name: string; options: { value: string }[] }) => {
+  const tempFilterComponent = (filter: { name: string; options: { value: string }[] }, index: number) => {
     return (
-      <div className="accordion-item">
+      <div className="accordion-item" key={index}>
         <h2 className="accordion-header" id="flush-headingBrands">
           <Button
             onClick={() => isOpen(filter.name)}
             className="accordion-button bg-transparent shadow-none"
             aria-controls="flush-collapseBrands"
-            aria-expanded={brands}
+            aria-expanded={filterSettings[filter.name]}
           >
             <span className="text-muted text-uppercase fs-12 fw-medium">{filter.name}</span>
             <span className="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
           </Button>
         </h2>
-        <Collapse in={isFiltersOpen[filter.name]}>
+        <Collapse in={filterSettings[filter.name]}>
           <div id="flush-collapseBrands">
             <div className="accordion-collapse collapse show" aria-labelledby="flush-headingBrands">
               <div className="accordion-body text-body pt-0">
@@ -115,9 +120,9 @@ const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
                   <i className="ri-search-line search-icon"></i>
                 </div>
                 <div className="d-flex flex-column gap-2 mt-3 filter-check">
-                  {filter.options.map((option: { value: string }) => {
+                  {filter.options.map((option: { value: string }, index: number) => {
                     return (
-                      <div className="form-check">
+                      <div key={index} className="form-check">
                         <Form.Check type="checkbox" value={option.value} id="productBrandRadio5" />
                         <Form.Label className="form-check-label" htmlFor="productBrandRadio5">
                           {option.value}
@@ -238,8 +243,9 @@ const Filters = ({ name, setFilterlist, filterList, filterOptions }: any) => {
                 </ul>
               </div>
             </Card.Body>
-            {tempData.map((data: { name: string; options: { value: string }[] }) => {
-              return tempFilterComponent(data)
+
+            {filterOptions.map((data: { name: string; options: { value: string }[] }, index: number) => {
+              return tempFilterComponent(data, index)
             })}
 
             {/* {tempFilterComponent(tempData)} */}

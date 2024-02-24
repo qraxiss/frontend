@@ -18,18 +18,19 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
 
 
   const [filterList, setFilterlist] = useState<any>([])
+  const [filterOptions, setFilterOptions] = useState<any>([])
 
-  useEffect(()=>{
-    if (!products.loading){
-      console.log(products)
+  useEffect(() => {
+    if (!products.loading) {
+      console.log(products.data.variants)
+      setFilterOptions(products.data.variants)
       setFilterlist(products.data.category.products)
     }
-
-  },[products.loading, child])
+  }, [products.loading, child])
 
   return (
     <React.Fragment>
-      <Filters setFilterlist={setFilterlist} filterList={filterList} name={name} filterOptions={!products.loading ? products.data : []} />
+      <Filters setFilterlist={setFilterlist} filterList={filterList} name={name} filterOptions={filterOptions} />
       <CatalogCollection filterList={filterList} cxxl={cxxl} clg={clg} cmd={cmd} cxl={cxl} />
     </React.Fragment>
   )
