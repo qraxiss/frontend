@@ -10,7 +10,6 @@ import { useParams } from 'react-router-dom'
 
 const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     let { child } = useParams()
-  
     const products = useQuery(getProductsByCategorySlug, {
       variables: {
         slug: child
@@ -26,7 +25,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
       setFilterlist(products.data.category.products)
     }
 
-  },[products.loading])
+  },[products.loading, child])
 
   return (
     <React.Fragment>
