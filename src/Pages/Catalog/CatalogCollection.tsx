@@ -8,16 +8,11 @@ import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
 
-import { getProductsByCategorySlug } from 'lib/common-queries'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) => {
-  let {parent,child} = useParams()
-  
-  const products = useQuery(getProductsByCategorySlug, {
-    variables: {
-      slug: child
-    }
-  })
+
+  console.log(filterList)
+
   const addItem = useMutation(addItemToCart)
   const cart = useQuery(cartQuery)
 
@@ -80,7 +75,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
       <div className="flex-grow-1">
         {/* Headwer Section */}
         <div className="d-flex align-items-center gap-2 mb-4">
-          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {!products.loading ? products?.data?.products.length : 0} results</p>
+          <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {filterList.length} results</p>
 
           <div className="flex-shrink-0">
             <div className="d-flex gap-2">
@@ -101,8 +96,8 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList }: any) =>
         </div>
         <Row id="product-grid">
           {select &&
-            (!products.loading && products.data ? (
-              products.data.products.map((item: any, idx: any) => {
+            (filterList.length > 0 ? (
+              filterList.map((item: any, idx: any) => {
                 return !cxl ? (
                   <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
                     <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>

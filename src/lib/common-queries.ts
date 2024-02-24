@@ -41,6 +41,14 @@ export let getProductsByCategorySlug = gql`
             attributes {
               price
               name
+              slug
+              images {
+								data {
+                  attributes {
+                    url
+                  }
+                }
+              }
               variants {
                 options {
                   value

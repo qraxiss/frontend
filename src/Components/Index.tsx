@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CatalogCollection from 'Pages/Catalog/CatalogCollection'
 import Filters from 'Pages/Catalog/Filters'
-import { filterProduct } from 'Common/data'
 
 import { useQuery } from 'lib/query-wrapper'
 
@@ -18,11 +17,17 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
       }
     })
 
+
+  const [filterList, setFilterlist] = useState<any>([])
+
+  useEffect(()=>{
     if (!products.loading){
-        console.log(products.data)
+      console.log(products)
+      setFilterlist(products.data.category.products)
     }
 
-  const [filterList, setFilterlist] = useState<any>(filterProduct)
+  },[products.loading])
+
   return (
     <React.Fragment>
       <Filters setFilterlist={setFilterlist} filterList={filterList} name={name} filterOptions={!products.loading ? products.data : []} />
