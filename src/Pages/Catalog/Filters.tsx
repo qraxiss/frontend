@@ -3,9 +3,9 @@ import Nouislider from 'nouislider-react'
 import 'nouislider/distribute/nouislider.css'
 import { Collapse, Button, Card, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { filterProduct } from 'Common/data'
+// import { filterProduct } from 'Common/data'
 
-const Filters = ({ name, setFilterlist }: any) => {
+const Filters = ({ name, setFilterlist, filterList }: any) => {
   let newList: any = []
   const [mincost, setMincost] = useState(0)
   const [maxcost, setMaxcost] = useState(2000)
@@ -23,7 +23,7 @@ const Filters = ({ name, setFilterlist }: any) => {
 
   //colors
   const handleColor = (value: any) => {
-    ;(filterProduct || [])?.map((item: any) => {
+    ;(filterList || [])?.map((item: any) => {
       return item.color?.filter((color: any) => {
         if (color === value) {
           newList.push(item)
@@ -36,7 +36,7 @@ const Filters = ({ name, setFilterlist }: any) => {
 
   //size
   const handleSize = (e: any) => {
-    ;(filterProduct || [])?.map((item: any) => {
+    ;(filterList || [])?.map((item: any) => {
       return item.size?.filter((size: any) => {
         if (size === e.target.value.toUpperCase()) {
           newList.push(item)
@@ -49,17 +49,17 @@ const Filters = ({ name, setFilterlist }: any) => {
 
   // products
   const handleProduct = (value: any) => {
-    setFilterlist(filterProduct?.filter((product: any) => product.products === value))
+    setFilterlist(filterList?.filter((product: any) => product.products === value))
   }
 
   //dicount
   const handleDic = (e: any) => {
-    setFilterlist(filterProduct?.filter((discount: any) => discount.dic === e.value))
+    setFilterlist(filterList?.filter((discount: any) => discount.dic === e.value))
   }
 
   //ratting
   const hanleRat = (value: any) => {
-    setFilterlist(filterProduct?.filter((rat: any) => rat.ratting.toString().startsWith(value)))
+    setFilterlist(filterList?.filter((rat: any) => rat.ratting.toString().startsWith(value)))
   }
 
   //nouislider
@@ -76,6 +76,7 @@ const Filters = ({ name, setFilterlist }: any) => {
     <React.Fragment>
       <div className={`${name}`}>
         <Card className="overflow-hidden">
+          {/* Filter header */}
           <Card.Header>
             <div className="d-flex mb-3">
               <div className="flex-grow-1">
@@ -93,6 +94,7 @@ const Filters = ({ name, setFilterlist }: any) => {
             </div>
           </Card.Header>
           <div className="accordion accordion-flush filter-accordion">
+            {/* Products Section */}
             <Card.Body className="border-bottom">
               <div>
                 <p className="text-muted text-uppercase fs-12 fw-medium mb-3">Products</p>
@@ -170,6 +172,7 @@ const Filters = ({ name, setFilterlist }: any) => {
               </div>
             </Card.Body>
 
+            {/* Price Slider */}
             <Card.Body className="border-bottom">
               <p className="text-muted text-uppercase fs-12 fw-medium mb-4">Price</p>
               <Nouislider
@@ -193,6 +196,7 @@ const Filters = ({ name, setFilterlist }: any) => {
               </div>
             </Card.Body>
 
+            {/* Color Filter */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingColors">
                 <Button
@@ -271,6 +275,7 @@ const Filters = ({ name, setFilterlist }: any) => {
               </Collapse>
             </div>
 
+            {/* Size Filter */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingColors">
                 <Button
@@ -367,6 +372,7 @@ const Filters = ({ name, setFilterlist }: any) => {
               </Collapse>
             </div>
 
+            {/* Brands Filter */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingBrands">
                 <Button
@@ -428,6 +434,8 @@ const Filters = ({ name, setFilterlist }: any) => {
                 </div>
               </Collapse>
             </div>
+
+            {/* Discount Filter */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="flush-headingDiscount">
                 <Button
@@ -488,6 +496,7 @@ const Filters = ({ name, setFilterlist }: any) => {
               </Collapse>
             </div>
 
+            {/* Rating Filter */}
             <Button
               onClick={() => setRating(!rating)}
               aria-controls="flush-collapseRating"
