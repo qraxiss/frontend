@@ -1,18 +1,24 @@
-import React from 'react'
-import { Card, Col, Container, Image, Row } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Card, Col, Container, Image, Row, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { CommonTitle } from 'Components/Homepage'
 import config from 'config/config'
 
+import { addItemToCart, cartQuery } from 'lib/common-queries'
+import { useMutation, useQuery } from 'lib/query-wrapper'
+
 const Products = ({ items }: any) => {
+    let { fn, data, loading, error } = useMutation(addItemToCart)
+    let { refetch } = useQuery(cartQuery)
+
+    useEffect(() => {
+        refetch()
+    }, [loading])
+
     return (
         <React.Fragment>
             <section className="section pb-0">
                 <Container>
-                    <CommonTitle
-                        title="Latest Arrival"
-                        dicription="What you wear is how you present yourself to the world, especially today, when human contacts are so quick. Fashion is instant language."
-                    />
                     <Row>
                         {items.map((item: any) => (
                             <Col lg={3} key={item.slug}>
@@ -43,9 +49,18 @@ const Products = ({ items }: any) => {
                                                 </h5>
                                             </div>
                                             <div className="mt-3">
-                                                <Link to="/shop/shopingcard" className="btn btn-primary btn-sm">
+                                                <Button
+                                                    className="btn btn-primary btn-sm"
+                                                    onClick={() => {
+                                                        fn({
+                                                            variables: {
+                                                                slug: item.slug
+                                                            }
+                                                        })
+                                                    }}
+                                                >
                                                     <i className="mdi mdi-cart me-1"></i> Add to cart
-                                                </Link>
+                                                </Button>
                                             </div>
                                         </div>
                                     </Card.Body>
