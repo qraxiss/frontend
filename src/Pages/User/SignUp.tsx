@@ -1,14 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, Form, Row, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 
-//img
-
-import auth1 from 'assets/images/auth/img-1.png'
+import { register } from 'lib/common-queries'
+import { useMutation } from 'lib/query-wrapper'
 
 const SignUp = () => {
+  const navigate = useNavigate()
+  const { fn, loading, error, data } = useMutation(register)
+
+  useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      navigate('/')
+    }
+
+    if (!loading && data && data.jwt) {
+      localStorage.setItem('jwt', data.jwt)
+      navigate('/')
+    }
+  }, [loading, data, navigate])
+
   const [passwordtype, setPasswordtype] = useState(false)
 
   const formik = useFormik({
@@ -23,14 +36,11 @@ const SignUp = () => {
         .matches(/^(?!.*@[^,]*,)/)
         .required('Please Enter Your Email'),
       username: Yup.string().required('This field is required'),
-      password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .matches(RegExp('(.*[a-z].*)'), 'At least lowercase letter')
-        .matches(RegExp('(.*[A-Z].*)'), 'At least uppercase letter')
-        .matches(RegExp('(.*[0-9].*)'), 'At least one number')
-        .required('This field is required')
+      password: Yup.string().required('This field is required')
     }),
-    onSubmit: (values) => {}
+    onSubmit: (values) => {
+      fn({ variables: values })
+    }
   })
 
   return (
@@ -42,18 +52,8 @@ const SignUp = () => {
               <Col lg={6}>
                 <div className="auth-card mx-lg-3">
                   <Card className="border-0 mb-0">
-                    <Card.Header className="bg-primary border-0">
-                      <Row>
-                        <Col lg={4} xs={3}>
-                          <Image src={auth1} alt="" className="img-fluid" />
-                        </Col>
-                        <Col lg={8} xs={9}>
-                          <h1 className="text-white text-capitalize lh-base fw-lighter">Let's get started with Toner Store</h1>
-                        </Col>
-                      </Row>
-                    </Card.Header>
                     <Card.Body>
-                      <p className="text-muted fs-15">Get your free Toner account now</p>
+                      <p className="text-muted fs-15">Join Shopcek</p>
                       <div className="p-2">
                         <Form className="needs-validation" action="#" onSubmit={formik.handleSubmit}>
                           <div className="mb-3">
@@ -114,14 +114,6 @@ const SignUp = () => {
                               ) : null}
                             </div>
                           </div>
-                          <div className="mb-4">
-                            <p className="mb-0 fs-12 text-muted fst-italic">
-                              By registering you agree to the Toner
-                              <Link to="#" className="text-primary text-decoration-underline fst-normal fw-medium">
-                                Terms of Use
-                              </Link>
-                            </p>
-                          </div>
 
                           <div className="mt-4">
                             <Button variant="primary" className="w-100" type="submit">
@@ -152,7 +144,7 @@ const SignUp = () => {
                       <div className="mt-4 text-center">
                         <p className="mb-0">
                           Already have an account ?{' '}
-                          <Link to="/auth-signin-basic" className="fw-semibold text-primary text-decoration-underline">
+                          <Link to="/signin" className="fw-semibold text-primary text-decoration-underline">
                             {' '}
                             Signin{' '}
                           </Link>{' '}
@@ -162,24 +154,8 @@ const SignUp = () => {
                   </Card>
                 </div>
               </Col>
-              {/*end col*/}
             </Row>
-            {/*end row*/}
           </Container>
-          {/*end container*/}
-          <footer className="footer">
-            <Container>
-              <Row>
-                <Col lg={12}>
-                  <div className="text-center">
-                    <p className="mb-0 text-muted">
-                      ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                    </p>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </footer>
         </div>
       </section>
     </React.Fragment>
