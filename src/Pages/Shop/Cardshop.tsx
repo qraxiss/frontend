@@ -76,7 +76,7 @@ const Cardshop = () => {
       <Col lg={8}>
         <div className="d-flex align-items-center mb-4">
           <h5 className="mb-0 flex-grow-1 fw-medium">
-            There are <span className="fw-bold product-count">4</span> products in your cart
+            There are <span className="fw-bold product-count">{!cart.loading && !cart.error ? cart.data.length : 0}</span> products in your cart
           </h5>
           <div className="flex-shrink-0">
             <Link to="#" className="text-decoration-underline link-secondary">
