@@ -46,12 +46,12 @@ const MyAccount = () => {
                   <div>
                     <h5 className="fs-18">{`${data?.accountInformation.name} ${data?.accountInformation.surname}`}</h5>
                     <div className="text-muted">
-                      <i className="bi bi-geo-alt"></i> Phoenix, USA
+                      <i className="bi bi-geo-alt"></i> Ankara, Türkiye
                     </div>
                   </div>
                   <div className="ms-md-auto">
                     <Link to="/product-list" className="btn btn-success btn-hover">
-                      <i className="bi bi-cart4 me-1 align-middle"></i> Shopping Now
+                      <i className="bi bi-cart4 me-1 align-middle"></i> Şimdi Alışveriş Yap
                     </Link>
                   </div>
                 </div>
@@ -70,27 +70,27 @@ const MyAccount = () => {
                     <Nav variant="pills" className="flex-column gap-3">
                       <Nav.Item as="li">
                         <Nav.Link as="a" eventKey="profile" className="fs-15" role="presentation">
-                          <i className="bi bi-person-circle align-middle me-1"></i> Account Info
+                          <i className="bi bi-person-circle align-middle me-1"></i> Hesap Bilgileri
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item as="li">
                         <Nav.Link as="a" eventKey="list" className="fs-15" role="presentation">
-                          <i className="bi bi-bookmark-check align-middle me-1"></i> Wish list
+                          <i className="bi bi-bookmark-check align-middle me-1"></i> İstek listesi
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item as="li">
                         <Nav.Link as="a" eventKey="order" className="fs-15" role="presentation">
-                          <i className="bi bi-bag align-middle me-1"></i> Order
+                          <i className="bi bi-bag align-middle me-1"></i> Siparişler
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item as="li">
                         <Nav.Link as="a" eventKey="setting" className="fs-15" role="presentation">
-                          <i className="bi bi-gear align-middle me-1"></i> Settings
+                          <i className="bi bi-gear align-middle me-1"></i> Ayarlar
                         </Nav.Link>
                       </Nav.Item>
                       <Nav.Item as="li">
                         <Nav.Link as="a" className="fs-15" href="/logout">
-                          <i className="bi bi-box-arrow-right align-middle me-1"></i> Logout
+                          <i className="bi bi-box-arrow-right align-middle me-1"></i> Çıkış yap
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
@@ -106,10 +106,10 @@ const MyAccount = () => {
                           <Card>
                             <Card.Body>
                               <div className="d-flex mb-4">
-                                <h6 className="fs-16 text-decoration-underline flex-grow-1 mb-0">Personal Info</h6>
+                                <h6 className="fs-16 text-decoration-underline flex-grow-1 mb-0">Kişisel Bilgiler</h6>
                                 <div className="flex-shrink-0">
                                   <Link to="#" className="badge bg-dark-subtle text-body">
-                                    Edit
+                                    Düzenle
                                   </Link>
                                 </div>
                               </div>
@@ -118,11 +118,11 @@ const MyAccount = () => {
                                 <Table className="table-borderless table-sm">
                                   <tbody>
                                     <tr>
-                                      <td>Customer Name</td>
+                                      <td>Müşteri İsmi</td>
                                       <td className="fw-medium">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</td>
                                     </tr>
                                     <tr>
-                                      <td>Email Address</td>
+                                      <td>Email Adresi</td>
                                       <td className="fw-medium">{`${data?.accountInformation?.email}`}</td>
                                     </tr>
                                   </tbody>
@@ -130,7 +130,7 @@ const MyAccount = () => {
                               </div>
 
                               <div className="mt-4">
-                                <h6 className="fs-16 text-decoration-underline">Billing &amp; Shipping Address</h6>
+                                <h6 className="fs-16 text-decoration-underline">Fatura &amp; Teslimat Adresi</h6>
                               </div>
                               <Row className="mt-4">
                                 {data?.accountInformation?.addresses?.map((address: any) => {
@@ -141,7 +141,7 @@ const MyAccount = () => {
                                           <div className="float-end clearfix">
                                             {' '}
                                             <Link to="/shop/address" className="badge bg-primary-subtle text-primary">
-                                              <i className="ri-pencil-fill align-bottom me-1"></i> Edit
+                                              <i className="ri-pencil-fill align-bottom me-1"></i> Düzenle
                                             </Link>{' '}
                                           </div>
                                           <div>
@@ -173,9 +173,9 @@ const MyAccount = () => {
                                 <Table className="fs-15 align-middle">
                                   <thead>
                                     <tr>
-                                      <th scope="col">Product</th>
-                                      <th scope="col">Price</th>
-                                      <th scope="col">Stock Status</th>
+                                      <th scope="col">Ürün</th>
+                                      <th scope="col">Fiyat</th>
+                                      <th scope="col">Stok Bilgisi</th>
                                       <th scope="col">Action</th>
                                     </tr>
                                   </thead>
@@ -562,7 +562,7 @@ const MyAccount = () => {
           </Tab.Container>
         </Container>
       </section>
-      <EmailClothe />
+      {/* <EmailClothe /> */}
       <CommonService />
     </React.Fragment>
   )
