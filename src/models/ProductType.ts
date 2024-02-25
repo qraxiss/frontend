@@ -10,4 +10,5 @@ export type productListType = {
 export type productVariant = {
   options: { value: string }[]
   name: string
+  id?: number
 }
