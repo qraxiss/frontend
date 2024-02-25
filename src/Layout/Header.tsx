@@ -301,26 +301,26 @@ const Header = (props: any) => {
               <div className="dropdown header-item dropdown-hover-end">
                 <Dropdown>
                   <Dropdown.Toggle id="page-header-user-dropdown" bsPrefix="btn" className="btn btn-icon btn-topbar btn-link rounded-circle" as="a">
-                    <Image className="rounded-circle header-profile-user" src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />
+                    <Image className="rounded-circle " src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     <Dropdown.Item>
                       <Link to="/shop/orders">
-                        <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Track Orders</span>
+                        <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Siparişler</span>
                       </Link>
                     </Dropdown.Item>
                     <Dropdown.Item>
                       <Link to="/account">
-                        <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
-                        <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Settings</span>
+                        {/* <span className="badge bg-success-subtle text-success mt-1 float-end">New</span> */}
+                        <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Ayarlar</span>
                       </Link>
                     </Dropdown.Item>
                     <Dropdown.Item>
                       <Link to="/logout">
                         <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
                         <span className="align-middle" data-key="t-logout">
-                          Logout
+                          Çıkış Yap
                         </span>
                       </Link>
                     </Dropdown.Item>
