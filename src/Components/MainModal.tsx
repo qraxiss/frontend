@@ -558,7 +558,7 @@ export const CardModal = ({ show, handleClose }: any) => {
       <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
         <Offcanvas.Header closeButton className="border-bottom">
           <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-            My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartData.data?.length}</span>
+            Sepetim <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartData.data?.length}</span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className=" px-0">
@@ -569,9 +569,19 @@ export const CardModal = ({ show, handleClose }: any) => {
                   <li key={item.product.slug} className="list-group-item product">
                     <div className="d-flex gap-3">
                       <div className="flex-shrink-0">
-                        <div className={`avatar-md warning-subtle `} style={{ height: '100%' }}>
-                          <div className={`avatar-title bg-warning-subtle rounded-3`}>
-                            <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-sm" />
+                        <div className={`avatar-md  `} style={{ height: '100%' }}>
+                          <div className={`avatar-title bg-white  rounded-3`}>
+                            {/* <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-sm" /> */}
+                            <div
+                              style={{
+                                backgroundImage: `url(${config.serverUrl + item.product.images[0].url})`,
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundSize: 'contain',
+                                width: '100%'
+                              }}
+                              className="avatar-sm"
+                            />
                           </div>
                         </div>
                       </div>
@@ -581,10 +591,10 @@ export const CardModal = ({ show, handleClose }: any) => {
                         </Link>
                         <div className="d-flex mb-3 gap-2">
                           <div className="text-muted fw-medium mb-0">
-                            $<span className="product-price">{item.product.price}</span>
+                            ₺<span className="product-price">{item.product.price}</span>
                           </div>
                           <div className="vr"></div>
-                          <span className="text-success fw-medium">In Stock</span>
+                          <span className="text-success fw-medium">Stokta var</span>
                         </div>
                         <div className="input-step">
                           <Button
@@ -629,21 +639,21 @@ export const CardModal = ({ show, handleClose }: any) => {
               <Table className="table table-borderless mb-0 fs-14 fw-semibold">
                 <tbody>
                   <tr>
-                    <td>Sub Total :</td>
+                    <td>Sepet tutarı :</td>
                     <td className="text-end cart-subtotal">${subtotal || '0.00'}</td>
                   </tr>
                   <tr>
                     <td>
-                      Discount <span className="text-muted">(Toner15)</span>:
+                      İndirim <span className="text-muted">(Toner15)</span>:
                     </td>
                     <td className="text-end cart-discount">-${dis || '0.00'}</td>
                   </tr>
                   <tr>
-                    <td>Shipping Charge :</td>
+                    <td>Kar :</td>
                     <td className="text-end cart-shipping">${charge || '0.00'}</td>
                   </tr>
                   <tr>
-                    <td>Estimated Tax (12.5%) : </td>
+                    <td>KDV (20%) : </td>
                     <td className="text-end cart-tax">${tax || '0.00'}</td>
                   </tr>
                 </tbody>
@@ -653,20 +663,20 @@ export const CardModal = ({ show, handleClose }: any) => {
         </Offcanvas.Body>
         <div className="offcanvas-footer border-top p-3 text-center">
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <h6 className="m-0 fs-16 text-muted">Total:</h6>
+            <h6 className="m-0 fs-16 text-muted">Ödenecek tutar:</h6>
             <div className="px-2">
-              <h6 className="m-0 fs-16 cart-total">${subtotal + charge + tax - dis || '0.00'}</h6>
+              <h6 className="m-0 fs-16 cart-total">₺{subtotal + charge + tax - dis || '0.00'}</h6>
             </div>
           </div>
           <Row className="g-2">
-            <Col xs={6}>
-              <Button variant="light" className="btn w-100" id="reset-layout">
-                View Cart
+            {/* <Col xs={12}>
+              <Button variant="light" className="btn btn-primary w-100" id="reset-layout">
+                Sepeti Göster
               </Button>
-            </Col>
-            <Col xs={6}>
-              <Link to="/shop/shopingcard" target="_blank" className="btn btn-info w-100">
-                Continue to Checkout
+            </Col> */}
+            <Col xs={12}>
+              <Link to="/shop/shopingcard" target="_blank" className="btn btn-primary w-100">
+                Sepete git{' '}
               </Link>
             </Col>
           </Row>
