@@ -19,8 +19,6 @@ const Cardshop = () => {
     cart.refetch()
   }, [addItem.loading, deleteItem.loading])
 
-  console.log(cart.data)
-
   const [productcount, setProductcount] = useState(productData)
   const [charge, setCharge] = useState(0)
   const [dis, setDis] = useState(0)

@@ -3,13 +3,8 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 
 import Index from 'Components/Index'
 
-import { useParams, useSearchParams } from 'react-router-dom'
-import { params } from 'lib/getQueryVariables'
 
 const Defaultgrid = () => {
-  let obj = useSearchParams()
-  console.log(params(obj[0]))
-
   return (
     <React.Fragment>
       <section className="position-relative section">

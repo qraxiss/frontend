@@ -9,8 +9,6 @@ import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearchParams }: any) => {
-  console.log(filterList)
-
   const addItem = useMutation(addItemToCart)
   const cart = useQuery(cartQuery)
 
@@ -29,7 +27,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
   }
   const indexOfLast = currentPage * perPageData
   const indexOfFirst = indexOfLast - perPageData
-  const currentdata = useMemo(() => filterList.slice(indexOfFirst, indexOfLast), [filterList, indexOfFirst, indexOfLast])
+  const currentdata = useMemo(() => filterList?.slice(indexOfFirst, indexOfLast), [filterList, indexOfFirst, indexOfLast])
 
   useEffect(() => {
     setCurrentpages(currentdata)
@@ -98,125 +96,126 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
               filterList.map((item: any, idx: any) => {
                 return !cxl ? (
                   <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
-                    <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
-                      <div className="bg-light bg-opacity-50 rounded py-4 position-relative">
-                        <Image
-                          src={config.serverUrl + item.images[0].url}
-                          alt=""
-                          style={{ maxHeight: '200px', maxWidth: '100%' }}
-                          className="mx-auto d-block rounded-2"
-                        />
-                        <div className="action vstack gap-2">
-                          <Button
-                            color="danger"
-                            className="avatar-xs p-0 btn-soft-warning custom-toggle product-action"
-                            data-bs-toggle="button"
-                            onClick={(e) => LikeIcone(e.target)}
-                          >
-                            <span className="icon-on">
-                              <i className="ri-heart-line"></i>
-                            </span>
-                            <span className="icon-off">
-                              <i className="ri-heart-fill"></i>
-                            </span>
-                          </Button>
-                        </div>
-                        {item?.presentag && (
-                          <div className="avatar-xs label">
-                            <div className="avatar-title bg-danger rounded-circle fs-11">{item?.presentag}</div>
-                          </div>
-                        )}
-                      </div>
-                      <div className="pt-4">
-                        <div>
-                          {item?.color ? (
-                            <ul className="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
-                              <li>
-                                <Form.Control type="radio" name="sizes1" id="product-color-12" />
-                                <Form.Label
-                                  className={`avatar-xxs btn btn-${
-                                    item?.color[0] || ''
-                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
-                                  htmlFor="product-color-12"
-                                >
-                                  {item.size ? item.size[0] : ''}
-                                </Form.Label>
-                              </li>
-                              <li>
-                                <Form.Control type="radio" name="sizes1" id="product-color-13" />
-                                <Form.Label
-                                  className={`avatar-xxs btn btn-${
-                                    item?.color[1] || ''
-                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
-                                  htmlFor="product-color-13"
-                                >
-                                  {item.size ? item.size[1] : ''}
-                                </Form.Label>
-                              </li>
-                              <li>
-                                <Form.Control type="radio" name="sizes1" id="product-color-14" />
-                                <Form.Label
-                                  className={`avatar-xxs btn btn-${
-                                    item?.color[2] || ''
-                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
-                                  htmlFor="product-color-14"
-                                >
-                                  {item.size ? item.size[2] : ''}
-                                </Form.Label>
-                              </li>
-                              <li>
-                                {' '}
-                                <Form.Control type="radio" name="sizes1" id="product-color-15" />
-                                <Form.Label
-                                  className={`avatar-xxs btn btn-${
-                                    item?.color[3] || ''
-                                  } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
-                                  htmlFor="product-color-15"
-                                >
-                                  {item.size ? item.size[3] : ''}
-                                </Form.Label>
-                              </li>
-                            </ul>
-                          ) : (
-                            <div className="avatar-xxs mb-3">
-                              <div className="avatar-title bg-light text-muted rounded cursor-pointer">
-                                <i className={`${item?.icone}`}></i>
-                              </div>
-                            </div>
-                          )}
-
-                          <Link to="#">
-                            <h6 className="text-capitalize fs-15 lh-base text-truncate mb-0">{item?.name}</h6>
-                          </Link>
-                          <div className="mt-2">
-                            <span className="float-end">
-                              {item?.ratting}
-                              <i className="ri-star-half-fill text-warning align-bottom"></i>
-                            </span>
-                            <h5 className="text-secondary mb-0">
-                              {item?.price}$
-                              <span className="text-muted fs-12">
-                                <del>{item?.deleteproce}</del>
-                              </span>
-                            </h5>
-                          </div>
-                          <div className="tn mt-3">
+                    <Link to={`/product-details/${item.slug}`}>
+                      <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
+                        <div className="bg-light bg-opacity-50 rounded py-4 position-relative">
+                          <Image
+                            src={config.serverUrl + item.images[0].url}
+                            alt=""
+                            style={{ maxHeight: '200px', maxWidth: '100%' }}
+                            className="mx-auto d-block rounded-2"
+                          />
+                          <div className="action vstack gap-2">
                             <Button
-                              className="btn btn-primary btn-hover w-100 add-btn"
-                              onClick={() => {
-                                addItem.fn({
-                                  variables: {
-                                    slug: item.slug
-                                  }
-                                })
-                              }}
+                              color="danger"
+                              className="avatar-xs p-0 btn-soft-warning custom-toggle product-action"
+                              data-bs-toggle="button"
+                              onClick={(e) => LikeIcone(e.target)}
                             >
-                              <i className="mdi mdi-cart me-1"></i> Add To Cart
+                              <span className="icon-on">
+                                <i className="ri-heart-line"></i>
+                              </span>
+                              <span className="icon-off">
+                                <i className="ri-heart-fill"></i>
+                              </span>
                             </Button>
                           </div>
+                          {item?.presentag && (
+                            <div className="avatar-xs label">
+                              <div className="avatar-title bg-danger rounded-circle fs-11">{item?.presentag}</div>
+                            </div>
+                          )}
                         </div>
-                      </div>
-                    </Card>
+                        <div className="pt-4">
+                          <div>
+                            {item?.color ? (
+                              <ul className="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
+                                <li>
+                                  <Form.Control type="radio" name="sizes1" id="product-color-12" />
+                                  <Form.Label
+                                    className={`avatar-xxs btn btn-${
+                                      item?.color[0] || ''
+                                    } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                    htmlFor="product-color-12"
+                                  >
+                                    {item.size ? item.size[0] : ''}
+                                  </Form.Label>
+                                </li>
+                                <li>
+                                  <Form.Control type="radio" name="sizes1" id="product-color-13" />
+                                  <Form.Label
+                                    className={`avatar-xxs btn btn-${
+                                      item?.color[1] || ''
+                                    } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                    htmlFor="product-color-13"
+                                  >
+                                    {item.size ? item.size[1] : ''}
+                                  </Form.Label>
+                                </li>
+                                <li>
+                                  <Form.Control type="radio" name="sizes1" id="product-color-14" />
+                                  <Form.Label
+                                    className={`avatar-xxs btn btn-${
+                                      item?.color[2] || ''
+                                    } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                    htmlFor="product-color-14"
+                                  >
+                                    {item.size ? item.size[2] : ''}
+                                  </Form.Label>
+                                </li>
+                                <li>
+                                  {' '}
+                                  <Form.Control type="radio" name="sizes1" id="product-color-15" />
+                                  <Form.Label
+                                    className={`avatar-xxs btn btn-${
+                                      item?.color[3] || ''
+                                    } p-0 d-flex align-items-center justify-content-center rounded-circle fs-${item.font || 0}`}
+                                    htmlFor="product-color-15"
+                                  >
+                                    {item.size ? item.size[3] : ''}
+                                  </Form.Label>
+                                </li>
+                              </ul>
+                            ) : (
+                              <div className="avatar-xxs mb-3">
+                                <div className="avatar-title bg-light text-muted rounded cursor-pointer">
+                                  <i className={`${item?.icone}`}></i>
+                                </div>
+                              </div>
+                            )}
+
+                            <h6 className="text-capitalize fs-15 lh-base text-truncate mb-0">{item?.name}</h6>
+
+                            <div className="mt-2">
+                              <span className="float-end">
+                                {item?.ratting}
+                                <i className="ri-star-half-fill text-warning align-bottom"></i>
+                              </span>
+                              <h5 className="text-secondary mb-0">
+                                {item?.price}$
+                                <span className="text-muted fs-12">
+                                  <del>{item?.deleteproce}</del>
+                                </span>
+                              </h5>
+                            </div>
+                            <div className="tn mt-3">
+                              <Button
+                                className="btn btn-primary btn-hover w-100 add-btn"
+                                onClick={() => {
+                                  addItem.fn({
+                                    variables: {
+                                      slug: item.slug
+                                    }
+                                  })
+                                }}
+                              >
+                                <i className="mdi mdi-cart me-1"></i> Add To Cart
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </Card>
+                    </Link>
                   </Col>
                 ) : (
                   <Card className="ribbon-box" key={idx}>
@@ -353,7 +352,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
             ))}
         </Row>
 
-        <Pagination
+        {/* <Pagination
           pagination={pagination}
           pageNumbers={pageNumbers}
           currentpages={currentpages}
@@ -361,7 +360,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
           handleprevPage={handleprevPage}
           handleClick={handleClick}
           handlenextPage={handlenextPage}
-        />
+        /> */}
       </div>
     </React.Fragment>
   )

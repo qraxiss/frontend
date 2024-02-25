@@ -14,14 +14,13 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   let [searchParams, setSearchParams] = useSearchParams()
   let { start } = params(searchParams)
 
-  useEffect(()=>{
-    if (!start){
+  useEffect(() => {
+    if (!start) {
       setSearchParams({
-        start: "0"
+        start: '0'
       })
     }
   }, [child])
-
 
   const products = useQuery(getProductsByCategorySlug, {
     variables: {
@@ -30,8 +29,8 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     }
   })
 
-  const [filterList, setFilterlist] = useState<any>([])
-  const [filterSettings, setFilterSettings] = useState<any>([])
+  const [filterList, setFilterlist] = useState<filterListType[]>([])
+  const [filterSettings, setFilterSettings] = useState<filterSettingsType[]>([])
 
   type filterSettingsType = { name: string; options: { value: string; id: number }[]; choosen: string[]; open: boolean }
   type filterListType = {
@@ -41,7 +40,6 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     images: { url: string }[]
     variants: variant[]
   }
-
   type variant = {
     options: { value: string }[]
     name: string
@@ -49,11 +47,9 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
 
   useEffect(() => {
     if (!products.loading) {
-      console.log(products.data.variants)
       SetFiltersComponent(products.data.variants)
-      // setFilterOptions(products.data.variants)
 
-      setFilterlist(products.data.category.products)
+      setFilterlist(products.data.products)
     }
   }, [products.loading, child, start])
 
@@ -64,9 +60,9 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
 
     filterSettings.forEach((filter: filterSettingsType) => {
       if (filter.choosen.length !== 0) isFiltered = true
-      // filterTheList(filterSettings, filterList)
+      filterTheList(filterSettings, filterList)
     })
-    if (!isFiltered) setFilterlist(products.data.category.products)
+    if (!isFiltered) setFilterlist(products.data.products)
   }, [filterSettings])
 
   // Backendden gelen veriyi filtrelemek için uygun hale getiren manipülasyon
@@ -75,7 +71,6 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     Data.forEach((data: any) => {
       temp.push({ name: data.name, options: data.options, open: false, choosen: [] })
     })
-    console.log(temp)
     setFilterSettings(temp)
   }
 
@@ -91,11 +86,15 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
           // Her bir ürüne bakıyoruz
           products.forEach((product: filterListType) => {
             // Aradığımız filtre isminde variant listesine bakıyoruz
-            let _variant = product.variants.find((vafriant: variant) => vafriant.name === filter.name)
+            let _variant = product.variants.find((variant: variant) => variant.name === filter.name)
+            console.log(_variant)
             // Eğer aradığımız varyant var ise
-            if (_variant && _variant.options.includes({ value: choose })) {
+            if (_variant) {
               // Eğer bu ürün eklenmemişse ekle
-              if (!filteredList.includes(product)) filteredList.push(product)
+              let _option = _variant.options.find((option) => option.value === choose)
+              if (_option && !filteredList.find((_product) => _product.slug === product.slug)) {
+                filteredList.push(product)
+              }
               // Ürünü listemize ekledik
             }
           })

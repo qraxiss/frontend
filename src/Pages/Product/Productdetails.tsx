@@ -53,6 +53,7 @@ const Productdetails = () => {
     images: []
   }) as resultType
 
+
   let sliderProduct = data.images.map((image: any, index: number) => {
     return {
       id: index + 1,
