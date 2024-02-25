@@ -7,6 +7,7 @@ import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
 import { CommonService } from 'Components/CommonService'
 import Collection from './Collection'
+import Service from './CollectionService'
 
 const query = gql`
   query {
@@ -35,11 +36,12 @@ const Home = () => {
   return (
     <React.Fragment>
       <Collection />
-      <Section />
+      {/* <Section /> */}
+      {/* <CommonService /> */}
+      <Service />
       <Slider items={data || []} />
-      <CommonService />
 
-      <Products items={data || []} />
+      {/* <Products items={data || []} /> */}
     </React.Fragment>
   )
 }
