@@ -28,8 +28,6 @@ const query = gql`
 `
 
 const Home = () => {
-  document.title = 'Index | Toner - React FrontEnd'
-
   let { data, loading, error } = useQuery(query)
 
   return (
