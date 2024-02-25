@@ -32,6 +32,8 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   useEffect(() => {
     if (!products.loading) {
       SetFiltersComponent(products.data.variants)
+      console.log(products.data.variants)
+      console.log(products.data.products)
 
       setFilterlist(products.data.products)
     }
@@ -50,7 +52,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   }, [filterSettings])
 
   // Backendden gelen veriyi filtrelemek için uygun hale getiren manipülasyon
-  const SetFiltersComponent = (Data: any) => {
+  const SetFiltersComponent = (Data: productVariant[]) => {
     let temp: any = []
     Data.forEach((data: any) => {
       temp.push({ name: data.name, options: data.options, open: false, choosen: [] })
