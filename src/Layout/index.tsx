@@ -78,7 +78,7 @@ const Layout = (props: any) => {
       {props.children}
       <Footer />
 
-      <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
+      <Button onClick={() => ScrollbarTop()} variant="primary" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
         <i className="ri-arrow-up-line"></i>
       </Button>
     </React.Fragment>
