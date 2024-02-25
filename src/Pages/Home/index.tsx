@@ -6,6 +6,7 @@ import Section from './Section'
 import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
 import { CommonService } from 'Components/CommonService'
+import Collection from './Collection'
 
 const query = gql`
   query {
@@ -33,6 +34,7 @@ const Home = () => {
 
   return (
     <React.Fragment>
+      <Collection />
       <Section />
       <Slider items={data || []} />
       <CommonService />

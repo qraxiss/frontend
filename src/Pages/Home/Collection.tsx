@@ -2,9 +2,9 @@ import React from 'react'
 import { Button, Carousel, Col, Container, Row } from 'react-bootstrap'
 
 //img
-import img1 from 'assets/images/ecommerce/home/img-1.png'
-import img2 from 'assets/images/ecommerce/home/img-2.png'
-import img3 from 'assets/images/ecommerce/home/img-6.jpg'
+import img1 from 'assets/images/Carusel/slide1.png'
+import img2 from 'assets/images/Carusel/slide2.png'
+import img3 from 'assets/images/Carusel/slide3-2.png'
 
 const Collection = () => {
   return (
@@ -14,16 +14,17 @@ const Collection = () => {
           <Carousel.Item>
             <div className="ecommerce-home bg-danger-subtle" style={{ backgroundImage: `url(${img1})` }}>
               <Container>
-                <Row className="justify-content-end">
+                <Row className="justify-content-end text-white">
                   <Col lg={7}>
-                    <div className="text-sm-end">
-                      <p className="fs-15 fw-semibold text-uppercase">
-                        <i className="ri-flashlight-fill text-primary align-bottom me-1"></i> In this season, find the best
+                    <div className="text-sm-end text-white">
+                      <p className="fs-15 fw-semibold text-uppercase text-white">
+                        {/* <i className="ri-flashlight-fill text-primary align-bottom me-1 text-white"></i> */}
+                        Rekor ve Hidrolik parça üretiminde
                       </p>
-                      <h1 className="display-4 fw-bold lh-base text-capitalize mb-3">Exclusive collection for everyone</h1>
-                      <p className="fs-20 mb-4">Biggest offers on this season</p>
-                      <Button variant="danger" className="btn-hover">
-                        <i className="ph-shopping-cart align-middle me-1"></i> Shop Now
+                      <h1 className="display-4 fw-bold lh-base  mb-3 text-white">BENZERSİZ KALİTE VE FİYAT İMKANI</h1>
+                      <p className="fs-20 mb-4 text-white">ŞİMDİ E-TİCARET SİTEMİZDE</p>
+                      <Button variant="ot-blue" className="btn-hover ">
+                        <i className="ph-shopping-cart align-middle me-1"></i> Alışveriş Yap
                       </Button>
                     </div>
                   </Col>
@@ -37,15 +38,15 @@ const Collection = () => {
                 <Row>
                   <Col lg={6}>
                     <div>
-                      <p className="fs-15 fw-semibold text-uppercase">
-                        <i className="ri-flashlight-fill text-info align-bottom me-1"></i> Save up to <span className="text-danger">50%</span> off
+                      <p className="fs-15 fw-semibold text-uppercase text-white">
+                        Rekor ve Hidrolik parça üretiminde
+                        {/* <i className="ri-flashlight-fill text-info align-bottom me-1 text-white"></i> Save up to{' '}
+                        <span className="text-danger">50%</span> off */}
                       </p>
-                      <h1 className="display-4 fw-semibold text-capitalize lh-base">Pro Smart watches for smart People</h1>
-                      <p className="fs-18 mb-4">
-                        <b>40% off</b> up to on all selected products
-                      </p>
-                      <Button variant="primary" className="btn-hover">
-                        <i className="ph-shopping-cart align-middle me-1"></i> Shop Now
+                      <h1 className="display-4 fw-semibold  lh-base text-white">BENZERSİZ KALİTE VE FİYAT İMKANI</h1>
+                      <p className="fs-18 mb-4 text-white">ŞİMDİ E-TİCARET SİTEMİZDE</p>
+                      <Button variant="primary" className="btn-hover ">
+                        <i className="ph-shopping-cart align-middle me-1"></i> Alışveriş Yap
                       </Button>
                     </div>
                   </Col>
@@ -56,20 +57,18 @@ const Collection = () => {
           <Carousel.Item>
             <div className="ecommerce-home" style={{ backgroundImage: `url(${img3})`, backgroundSize: 'cover' }}>
               <Container>
-                <Row className="justify-content-end">
-                  <Col lg={6}>
-                    <div className="text-end">
-                      <p className="fs-15 fw-semibold text-uppercase text-dark">Jewellery Design with Love</p>
-                      <h1 className="display-4 fw-semibold text-capitalize lh-base text-dark">Discover world best Jewellery</h1>
-                      <p className="text-dark lead fs-19 mb-4">Jewellery are like a tribute to being a woman</p>
-                      <div className="hstack gap-2 justify-content-end">
-                        <Button variant="success" className="btn-hover">
-                          Shop Now <i className="ph-arrow-up-right align-middle ms-1"></i>
-                        </Button>
-                        <Button className="btn btn-ghost-secondary btn-hover">
-                          Watch Now <i className="ph-play-circle align-middle ms-1 fs-16"></i>
-                        </Button>
-                      </div>
+                <Row className="justify-content-end text-white">
+                  <Col lg={7}>
+                    <div className="text-sm-end text-white">
+                      <p className="fs-15 fw-semibold text-uppercase text-white">
+                        {/* <i className="ri-flashlight-fill text-primary align-bottom me-1 text-white"></i> */}
+                        Rekor ve Hidrolik parça üretiminde
+                      </p>
+                      <h1 className="display-4 fw-bold lh-base text-capitalize mb-3 text-white">BENZERSİZ KALİTE VE FİYAT İMKANI</h1>
+                      <p className="fs-20 mb-4 text-white">ŞİMDİ E-TİCARET SİTEMİZDE</p>
+                      <Button variant="primary" className="btn-hover ">
+                        <i className="ph-shopping-cart align-middle me-1"></i> Alışveriş Yap
+                      </Button>
                     </div>
                   </Col>
                 </Row>
