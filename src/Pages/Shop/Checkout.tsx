@@ -7,29 +7,7 @@ import { ShopingAddress } from './ShoppingAddress'
 import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { CommonService } from 'Components/CommonService'
 
-import { useQuery } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
-import { simplifyResponse } from 'lib/simplify-response'
-
-const query = gql`
-  query {
-    cart {
-      price
-      name
-      variants {
-        id
-        type
-        options {
-          id
-          value
-        }
-      }
-    }
-  }
-`
-
 const Checkout = () => {
-  let { data, loading, error } = useQuery(query)
 
   document.title = 'Checkout | Toner - React FrontEnd'
   return (

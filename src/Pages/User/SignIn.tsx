@@ -12,6 +12,10 @@ const Signin = () => {
   const { fn, data, loading, error } = useMutation(login)
 
   useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      navigate('/')
+    }
+
     if (!loading && data && data.jwt) {
       localStorage.setItem('jwt', data.jwt)
       navigate('/')
