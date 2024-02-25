@@ -457,19 +457,22 @@ export const CommonProduct = ({ cxxl, clg, cmd }: any) => {
 
 export const DefauilOffer = () => {
   return (
-    <section className="section" style={{ backgroundImage: `url(${profileBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <section
+      className="section bg-primary"
+      // style={{ backgroundImage: `url(${profileBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
       <div className="bg-overlay bg-primary" style={{ opacity: '0.85' }}></div>
       <Container>
         <Row className="justify-content-center">
           <Col lg={6}>
             <div className="text-center">
-              <h1 className="text-white lh-base text-capitalize">Don't miss out on special offers</h1>
-              <p className="text-white-75 fs-15 mb-4 pb-2">Never Miss Anything From Toner By Signing Up To Our Newsletter.</p>
+              <h1 className="text-white lh-base ">İndirimlerden Habersiz Kalma</h1>
+              <p className="text-white-75 fs-15 mb-4 pb-2">Bültenimize kaydolarak Özteknik Rekor indirimlerini kaçırma.</p>
               <Form action="#">
                 <div className="position-relative ecommerce-subscript">
-                  <Form.Control type="email" className="rounded-pill border-0" placeholder="Enter your email" />
-                  <Button type="submit" className="btn btn-darken-primary rounded-pill">
-                    Subscript Now
+                  <Form.Control type="email" className="rounded-pill border-0" placeholder="Email'ini gir" />
+                  <Button type="submit" className="btn bg-blue border-blue rounded-pill">
+                    Abone Ol
                   </Button>
                 </div>
               </Form>
