@@ -7,6 +7,7 @@ import Pagination from 'Components/Pagination'
 import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
+import { CardComponent } from 'Components/newComponents'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearchParams }: any) => {
   const addItem = useMutation(addItemToCart)
@@ -73,7 +74,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
         <div className="d-flex align-items-center gap-2 mb-4">
           <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {filterList.length} results</p>
 
-          <div className="flex-shrink-0">
+          {/* <div className="flex-shrink-0">
             <div className="d-flex gap-2">
               <div className="flex-shrink-0">
                 <Form.Label htmlFor="sort-elem" className="col-form-label">
@@ -88,7 +89,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
                 </Form.Select>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         <Row id="product-grid">
           {select &&
@@ -97,7 +98,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
                 return !cxl ? (
                   <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
                     <Link to={`/product-details/${item.slug}`}>
-                      <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
+                      {/* <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden" key={idx}>
                         <div className="bg-light bg-opacity-50 rounded py-4 position-relative">
                           <Image
                             src={config.serverUrl + item.images[0].url}
@@ -214,7 +215,8 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
                             </div>
                           </div>
                         </div>
-                      </Card>
+                      </Card> */}
+                      <CardComponent data={item} />
                     </Link>
                   </Col>
                 ) : (

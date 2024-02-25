@@ -93,9 +93,13 @@ const Filters = ({ name, filterSettings, setFilterSettings }: any) => {
             </div>
           </Card.Header>
           <div className="accordion accordion-flush filter-accordion">
-            {filterSettings.map((data: filterSettingsType, index: number) => {
-              return tempFilterComponent(data, index)
-            })}
+            {filterSettings.length > 0 ? (
+              filterSettings.map((data: filterSettingsType, index: number) => {
+                return tempFilterComponent(data, index)
+              })
+            ) : (
+              <label style={{ padding: '10px', textAlign: 'center' }}>Bu kategoriye özgü bir filtreleme bulunamadı</label>
+            )}
           </div>
         </Card>
       </div>
