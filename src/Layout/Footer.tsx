@@ -102,7 +102,7 @@ const Footer = () => {
       <section className="section footer-landing pb-0">
         <Container>
           <Row>
-            <Col lg={4}>
+            <Col lg={6}>
               <div className="footer-info">
                 <Image src={logolight} alt="" height="50" className="logo-light" />
                 <Image src={logodark} alt="" height="50" className="logo-dark" />
@@ -110,11 +110,11 @@ const Footer = () => {
               </div>
             </Col>
 
-            <Col lg={8}>
+            <Col lg={6}>
               <Row className="pl-0 pl-lg-3">
-                <Col md={3}>
+                <Col md={7}>
                   <div className="mt-lg-0 mt-4">
-                    <h5 className="footer-title">Categories</h5>
+                    <h5 className="footer-title">Kategoriler</h5>
                     <ul className="list-unstyled footer-link mt-3">
                       {(!loading ? data.parentCategories : []).map((category: any) => {
                         return (
@@ -127,7 +127,7 @@ const Footer = () => {
                   </div>
                 </Col>
 
-                <Col md={3}>
+                {/* <Col md={3}>
                   <div className="mt-lg-0 mt-4">
                     <h5 className="footer-title">Shopcek</h5>
                     <ul className="list-unstyled footer-link mt-3">
@@ -140,9 +140,10 @@ const Footer = () => {
                       })}
                     </ul>
                   </div>
-                </Col>
+                </Col> */}
 
-                <Col md={3}>
+                {/* Legal */}
+                {/* <Col md={3}>
                   <div className="mt-lg-0 mt-4">
                     <h5 className="footer-title">Legal</h5>
                     <ul className="list-unstyled footer-link mt-3">
@@ -155,18 +156,19 @@ const Footer = () => {
                       })}
                     </ul>
                   </div>
-                </Col>
+                </Col> */}
 
-                <Col md={3}>
+                {/* Sosyal medya */}
+                <Col md={4}>
                   <div className="my-lg-0 mt-4">
-                    <h5 className="footer-title">Follow Us</h5>
+                    <h5 className="footer-title">Bizi takip et</h5>
                     {(!loading ? groupedList! : []).map((group, index) => (
-                      <Row key={index} className="footer-socials">
+                      <Row md={3} key={index} className="footer-socials">
                         {group.map((item: any, itemIndex) => {
                           return (
                             <Col key={itemIndex}>
                               <Link to={item.url}>
-                                <Image src={config.serverUrl + item.icon.url} className="footer-social-icon" width={48} />
+                                <Image src={config.serverUrl + item.icon.url} className="footer-social-icon" width={36} />
                               </Link>
                             </Col>
                           )
