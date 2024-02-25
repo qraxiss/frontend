@@ -4,20 +4,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 
-import { gql } from '@apollo/client'
 import { useMutation } from 'lib/query-wrapper'
-
-const mutation = gql`
-  mutation LOGIN($identifier: String!, $password: String!) {
-    login(input: { identifier: $identifier, password: $password }) {
-      jwt
-    }
-  }
-`
+import { login } from 'lib/common-queries'
 
 const Signin = () => {
   const navigate = useNavigate()
-  const { fn, data, loading, error } = useMutation(mutation)
+  const { fn, data, loading, error } = useMutation(login)
 
   useEffect(() => {
     if (!loading && data && data.jwt) {
