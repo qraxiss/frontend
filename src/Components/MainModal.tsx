@@ -649,7 +649,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     <td className="text-end cart-discount">-${dis || '0.00'}</td>
                   </tr>
                   <tr>
-                    <td>Kar :</td>
+                    <td>Kargo Ücreti :</td>
                     <td className="text-end cart-shipping">${charge || '0.00'}</td>
                   </tr>
                   <tr>

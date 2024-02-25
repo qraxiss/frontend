@@ -76,11 +76,11 @@ const Cardshop = () => {
       <Col lg={8}>
         <div className="d-flex align-items-center mb-4">
           <h5 className="mb-0 flex-grow-1 fw-medium">
-            There are <span className="fw-bold product-count">{!cart.loading && !cart.error ? cart.data.length : 0}</span> products in your cart
+            Sepetinde seni bekleyen <span className="fw-bold product-count">{!cart.loading && !cart.error ? cart.data.length : 0}</span> ürün var
           </h5>
           <div className="flex-shrink-0">
             <Link to="#" className="text-decoration-underline link-secondary">
-              Clear Cart
+              Sepeti boşalt
             </Link>
           </div>
         </div>
@@ -160,12 +160,12 @@ const Cardshop = () => {
                           data-bs-target="#removeItemModal"
                           onClick={() => RemoveModel(item.id)}
                         >
-                          <i className="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove
+                          <i className="ri-delete-bin-fill text-muted align-bottom me-1"></i> Kaldır
                         </Link>
                       </div>
                       <div>
                         <Link to="#" className="d-block text-body p-1 px-2">
-                          <i className="ri-star-fill text-muted align-bottom me-1"></i> Add Wishlist
+                          <i className="ri-star-fill text-muted align-bottom me-1"></i> Favorilere Ekle
                         </Link>
                       </div>
                     </div>
@@ -189,10 +189,10 @@ const Cardshop = () => {
           <Shoporder subtotal={subtotal} dic={dis} charge={charge} tax={tax} total={subtotal + charge + tax - dis} />
           <div className="hstack gap-2 justify-content-end">
             <Button variant="danger" className="btn btn-hover">
-              Continue Shopping
+              Alışverişe Devam Et
             </Button>
             <Button variant="success" className="btn btn-hover">
-              Check Out <i className="ri-logout-box-r-line align-bottom ms-1"></i>
+              Ödemeye Geç <i className="ri-logout-box-r-line align-bottom ms-1"></i>
             </Button>
           </div>
         </div>
