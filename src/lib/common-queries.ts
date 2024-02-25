@@ -60,3 +60,11 @@ export let getProductsByCategorySlug = gql`
     }
   }
 `
+
+export let register = gql`
+  mutation REGISTER($password: String!, $username: String!, $email: String!) {
+    register(input: { password: $password, username: $username, email: $email }) {
+      jwt
+    }
+  }
+`
