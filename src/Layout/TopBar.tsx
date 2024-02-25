@@ -20,28 +20,32 @@ const TopBar = () => {
 
   return (
     <React.Fragment>
-      <div className="top-tagbar">
+      <div className="top-tagbar" style={{ color: 'white' }}>
         <Container fluid>
           <Row className="justify-content-between align-items-center">
             <Col md={4} xs={9} className="ps-0">
               <div className="fs-14 fw-medium">
-                <i className="bi bi-geo-alt align-middle me-2"></i> Phoenix, USA
+                <i className="bi bi-geo-alt align-middle me-2"></i> Ankara, Türkiye
               </div>
             </Col>
             <Col md={4} xs={6} className="d-none d-xxl-block">
-              <div className="d-flex align-items-center justify-content-center gap-3 fs-14 fw-medium">
-                <div>
-                  <i className="bi bi-envelope align-middle me-2"></i> support@themesbrand.com
+              <a href="mailto:bilgi@ozteknikrekor.com.tr">
+                <div className="d-flex align-items-center text-white justify-content-center gap-3 fs-14 fw-medium">
+                  <div>
+                    <i className="bi bi-envelope align-middle me-2"></i> bilgi@ozteknikrekor.com.tr
+                  </div>
                 </div>
-              </div>
+              </a>
             </Col>
             <Col md={4} xs={3}>
               <div className="d-flex align-items-center justify-content-end gap-3 fs-14">
-                <div className="text-reset fw-normal d-none d-lg-block">
-                  <i className="bi bi-telephone-outbound align-middle me-2"></i> +(235) 01234 5678
-                </div>
+                <a href="tel:+903123952578" style={{ color: 'white' }}>
+                  <div className="text-reset fw-normal d-none d-lg-block ">
+                    <i className="bi bi-telephone-outbound align-middle me-2"></i>+90 (312) 395 25 78
+                  </div>
+                </a>
                 <hr className="vr d-none d-lg-block" />
-                <Dropdown className="topbar-head-dropdown topbar-tag-dropdown justify-content-end">
+                {/* <Dropdown className="topbar-head-dropdown topbar-tag-dropdown justify-content-end">
                   <Dropdown.Toggle
                     id="language-dropdown"
                     type="button"
@@ -74,7 +78,7 @@ const TopBar = () => {
                       )
                     })}
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
               </div>
             </Col>
           </Row>

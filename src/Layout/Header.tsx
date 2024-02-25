@@ -13,6 +13,7 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
+import TopBar from './TopBar'
 
 const query = gql`
   query {
@@ -63,7 +64,7 @@ function ShoppingIcon(props: { handlecardShow: any }) {
         onClick={props.handlecardShow}
       >
         <i className="ph-shopping-cart fs-18"></i>
-        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">
+        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">
           {!cartData.loading ? cartData?.data.length : 0}
         </span>
       </Button>
@@ -196,6 +197,7 @@ const Header = (props: any) => {
   return (
     <React.Fragment>
       <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
+        {/* <TopBar /> */}
         <Container>
           <Navbar.Brand className="d-none d-lg-block">
             <Link to="/">
@@ -277,13 +279,15 @@ const Header = (props: any) => {
             </Button>
             <SearchModal show={show} handleClose={handleClose} />
             {!!jwt ? <ShoppingIcon handlecardShow={handlecardShow} /> : ''}
-            <Dropdown className="topbar-head-dropdown ms-2 header-item dropdown-hover-end" align="start">
+
+            {/* TEMA */}
+            {/* <Dropdown className="topbar-head-dropdown ms-2 header-item dropdown-hover-end" align="start">
               <Dropdown.Toggle className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted" bsPrefix="btn">
                 <i className="bi bi-sun align-middle fs-20"></i>
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu p-2 dropdown-menu-end" id="light-dark-mode">
                 <Dropdown.Item eventKey="light" onClick={() => props.handleMood('light')}>
-                  <i className="bi bi-sun align-middle me-2"></i> Default (light mode)
+                  <i className="bi bi-sun align-middle me-2"></i> Varsayılan (Aydınlık tema)
                 </Dropdown.Item>
                 <Dropdown.Item eventKey="dark" onClick={() => props.handleMood('dark')}>
                   <i className="bi bi-moon align-middle me-2"></i> Dark
@@ -292,7 +296,7 @@ const Header = (props: any) => {
                   <i className="bi bi-moon-stars align-middle me-2"></i> Auto (system default)
                 </Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
             {!!jwt ? (
               <div className="dropdown header-item dropdown-hover-end">
                 <Dropdown>

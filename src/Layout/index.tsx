@@ -71,8 +71,8 @@ const Layout = (props: any) => {
   // const [hoverHover, setHoverHover] = useState(false)
   return (
     <React.Fragment>
-      {/* <TopBar></TopBar> */}
       {location.pathname && <MainModal location={location.pathname} />}
+      {/* <TopBar></TopBar> */}
 
       <Header handleMood={handleThemeMood} />
       {props.children}
