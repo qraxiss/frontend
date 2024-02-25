@@ -2,6 +2,8 @@ import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 
 import Index from 'Components/Index'
+import { CommonService } from 'Components/CommonService'
+import { DefauilOffer } from 'Components/ProductSilde'
 
 const Defaultgrid = () => {
   return (
@@ -14,6 +16,8 @@ const Defaultgrid = () => {
           </div>
         </Container>
       </section>
+      <CommonService />
+      <DefauilOffer />
     </React.Fragment>
   )
 }
