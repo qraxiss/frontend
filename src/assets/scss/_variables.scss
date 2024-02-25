@@ -64,7 +64,7 @@ $twocolumn-menu-item-color-gradient:              rgba($white, 0.6);
 
 //Top-tagbar
 $top-tagbar-height:                               35px;
-$top-tagbar-bg:                                   #fff9e6;
+$top-tagbar-bg:                                   #ED1C24;
 
 // Topbar
 $header-height:                                    70px;
@@ -412,8 +412,12 @@ $dark:          $gray-900;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":    $primary,
-  "secondary":  $secondary,
+  // "primary":    $primary,
+  "white":#fff,
+  "ot-blue":#023A7D,
+    "primary":   #ED1C24 ,
+  // "secondary":  $secondary,
+  "secondary":  #0072BB,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,
