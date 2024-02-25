@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import CatalogCollection from 'Pages/Catalog/CatalogCollection'
 import Filters from 'Pages/Catalog/Filters'
-
 import { useQuery } from 'lib/query-wrapper'
-
-import { getProductsByCategorySlug } from 'lib/common-queries'
-import { useParams,useSearchParams } from 'react-router-dom'
 import { params } from 'lib/getQueryVariables'
+import React, { useState, useEffect } from 'react'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { getProductsByCategorySlug } from 'lib/common-queries'
+import CatalogCollection from 'Pages/Catalog/CatalogCollection'
+import { filterSettingsType, productListType, productVariant } from 'models/ProductType'
 
 const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   let { child } = useParams()
-
   let [searchParams, setSearchParams] = useSearchParams()
   let { start } = params(searchParams)
-
-  useEffect(() => {
-    if (!start) {
-      setSearchParams({
-        start: '0'
-      })
-    }
-  }, [child])
+  const [filterList, setFilterlist] = useState<productListType[]>([])
+  const [filterSettings, setFilterSettings] = useState<filterSettingsType[]>([])
 
   const products = useQuery(getProductsByCategorySlug, {
     variables: {
@@ -29,21 +21,13 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     }
   })
 
-  const [filterList, setFilterlist] = useState<filterListType[]>([])
-  const [filterSettings, setFilterSettings] = useState<filterSettingsType[]>([])
-
-  type filterSettingsType = { name: string; options: { value: string; id: number }[]; choosen: string[]; open: boolean }
-  type filterListType = {
-    price: number
-    name: string
-    slug: string
-    images: { url: string }[]
-    variants: variant[]
-  }
-  type variant = {
-    options: { value: string }[]
-    name: string
-  }
+  useEffect(() => {
+    if (!start) {
+      setSearchParams({
+        start: '0'
+      })
+    }
+  }, [child])
 
   useEffect(() => {
     if (!products.loading) {
@@ -74,8 +58,8 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
     setFilterSettings(temp)
   }
 
-  const filterTheList = (filterData: filterSettingsType[], products: filterListType[]) => {
-    let filteredList: filterListType[] = []
+  const filterTheList = (filterData: filterSettingsType[], products: productListType[]) => {
+    let filteredList: productListType[] = []
 
     // Her bir filtre objesi için
     filterData.forEach((filter: filterSettingsType) => {
@@ -84,10 +68,9 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
         // Here bir filtre için
         filter.choosen.forEach((choose: string) => {
           // Her bir ürüne bakıyoruz
-          products.forEach((product: filterListType) => {
+          products.forEach((product: productListType) => {
             // Aradığımız filtre isminde variant listesine bakıyoruz
-            let _variant = product.variants.find((variant: variant) => variant.name === filter.name)
-            console.log(_variant)
+            let _variant = product.variants.find((variant: productVariant) => variant.name === filter.name)
             // Eğer aradığımız varyant var ise
             if (_variant) {
               // Eğer bu ürün eklenmemişse ekle

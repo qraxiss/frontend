@@ -1,81 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import Nouislider from 'nouislider-react'
+import React from 'react'
 import 'nouislider/distribute/nouislider.css'
 import { Collapse, Button, Card, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { type } from 'os'
-import { date } from 'yup'
-// import { filterProduct } from 'Common/data'
+import { filterSettingsType } from 'models/ProductType'
 
-const Filters = ({ name, setFilterlist, filterList, filterSettings, setFilterSettings }: any) => {
-  // let newList: any = []
-  // const [mincost, setMincost] = useState(0)
-  // const [maxcost, setMaxcost] = useState(2000)
-  // //Collapse
-  // //colors
-  // const [open, setOpen] = useState(false)
-  // //sizes
-  // const [size, setSize] = useState(false)
-  // //brands
-  // const [brands, setBrands] = useState(false)
-  // //discount
-  // const [discount, setDiscount] = useState(false)
-  // //Rating
-  // const [rating, setRating] = useState(false)
-
-  // const [filterSettings, setFilterSettings] = useState<any>([])
-
-  // //colors
-  // const handleColor = (value: any) => {
-  //   ;(filterList || [])?.map((item: any) => {
-  //     return item.color?.filter((color: any) => {
-  //       if (color === value) {
-  //         newList.push(item)
-  //         setFilterlist(newList)
-  //       }
-  //       return item
-  //     })
-  //   })
-  // }
-  // //size
-  // const handleSize = (e: any) => {
-  //   ;(filterList || [])?.map((item: any) => {
-  //     return item.size?.filter((size: any) => {
-  //       if (size === e.target.value.toUpperCase()) {
-  //         newList.push(item)
-  //         setFilterlist(newList)
-  //       }
-  //       return item
-  //     })
-  //   })
-  // }
-  // // products
-  // const handleProduct = (value: any) => {
-  //   setFilterlist(filterList?.filter((product: any) => product.products === value))
-  // }
-  // //dicount
-  // const handleDic = (e: any) => {
-  //   setFilterlist(filterList?.filter((discount: any) => discount.dic === e.value))
-  // }
-  // //ratting
-  // const hanleRat = (value: any) => {
-  //   setFilterlist(filterList?.filter((rat: any) => rat.ratting.toString().startsWith(value)))
-  // }
-  // //nouislider
-  // const onUpDate = (value: any) => {
-  //   setMincost(value[0])
-  //   setMaxcost(value[1])
-  // }
-  // useEffect(() => {
-  //   onUpDate([mincost, maxcost])
-  // }, [mincost, maxcost])
-
-  //   Her bir filtre için state'e yeni bir key ve boolean değer aktaran bir yapı kurmak için gerekli olan fonksiyon
-
-  //   Filtre komponentini açmak için gerekli olan fonksiyon
-
-  type filterSettingsType = { name: string; options: { value: string; id: number }[]; choosen: string[]; open: boolean }
-
+const Filters = ({ name, filterSettings, setFilterSettings }: any) => {
   const isOpen = (name: string) => {
     const findFilter = filterSettings.find((filter: any) => filter.name === name)
 
@@ -175,7 +104,6 @@ const Filters = ({ name, setFilterlist, filterList, filterSettings, setFilterSet
 }
 
 export default Filters
-
 
 // {/* <div className="search-box">
 // <Form.Control className="" id="searchProductList" autoComplete="off" placeholder="Search Products..." />
