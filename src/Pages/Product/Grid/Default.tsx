@@ -3,7 +3,6 @@ import { Container, Row, Col, Image } from 'react-bootstrap'
 
 import Index from 'Components/Index'
 
-
 const Defaultgrid = () => {
   return (
     <React.Fragment>
