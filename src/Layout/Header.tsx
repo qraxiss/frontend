@@ -338,13 +338,13 @@ const Header = (props: any) => {
                     <Dropdown.Item href="/signin">
                       <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
                       <span className="align-middle" data-key="t-logout">
-                        Sign In
+                        Giriş yap
                       </span>
                     </Dropdown.Item>
                     <Dropdown.Item href="/signup">
                       <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
                       <span className="align-middle" data-key="t-logout">
-                        Sign Up
+                        Üye ol
                       </span>
                     </Dropdown.Item>
                   </Dropdown.Menu>
