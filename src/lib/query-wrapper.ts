@@ -26,11 +26,16 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
     }
   })
 
-  if (!loading && !!data) {
+
+  if (error){
+    return { data, error, loading, fn: handle(fn) }
+  }
+
+  if (!loading && data) {
     data = simplifyResponse(data)
   }
 
-  return { data: data, error: error, loading: loading, fn: handle(fn) }
+  return { data, error, loading, fn: handle(fn) }
 }
 
 export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
@@ -44,7 +49,12 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
     }
   })
 
-  if (!loading) {
+
+  if (error) {
+    return { data, loading, error, refetch }
+  }
+
+  if (!loading && data) {
     data = simplifyResponse(data)
   }
 
