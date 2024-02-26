@@ -193,7 +193,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
         <Link
           className="dropdown-toggle nav-link"
           data-key="t-home"
-          to="/#"
+          to={`/${item.slug}`}
           role="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -202,7 +202,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
             props.menuShow(item.name)
           }}
         >
-          {props.t(item.name)}
+          {(item.name as string).toUpperCase()}
         </Link>
 
         <ul
@@ -455,12 +455,17 @@ const Header = (props: any) => {
 
       <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
         <Container>
+          COLLECTIONS
+
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
               <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t}/>
             </Nav>
           </Navbar.Collapse>
-
+          <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
+          <div className="d-flex align-items-center">
+            WORLDWIDE <br></br> SHIPPING
+          </div>
         </Container>
         
       </Navbar>
