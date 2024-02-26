@@ -157,11 +157,11 @@ const Productdetails = () => {
                     <div className="hstack gap-2">
                       <Button variant="success" className="btn btn-hover w-100">
                         {' '}
-                        <i className="bi bi-basket2 me-2" /> Add To Cart
+                        <i className="bi bi-basket2 me-2" /> Sepete Ekle
                       </Button>
                       <Button variant="primary" className="btn btn-hover w-100">
                         {' '}
-                        <i className="bi bi-cart2 me-2" /> Buy Now
+                        <i className="bi bi-cart2 me-2" /> Satın Al
                       </Button>
                       <Button
                         className="btn btn-soft-danger custom-toggle btn-hover"
@@ -198,7 +198,7 @@ const Productdetails = () => {
                   </ul>
                 </div>
                 <div className="d-flex align-items-center mb-4">
-                  <h5 className="fs-15 mb-0">Quantity:</h5>
+                  <h5 className="fs-15 mb-0">Adet:</h5>
                   <div className="input-step ms-2">
                     <Button className="minus" onClick={() => setCount(count - 1)}>
                       -
