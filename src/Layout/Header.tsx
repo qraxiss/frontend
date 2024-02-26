@@ -108,9 +108,9 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
       >
         {/* <i className="ph-shopping-cart fs-18"></i> */}
         <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
-        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">{cartCount}</span>
+        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">{cartCount}</span>
       </Button>
-      ${totalPrice}
+      <span className='text-secondary'>${totalPrice}</span>
     </div>
   )
 }
@@ -127,7 +127,7 @@ function WishListIcon(props: { handlecardShow: any; iconPath: string }) {
         onClick={props.handlecardShow}
       >
         <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
-        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-danger">0</span>
+        <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">0</span>
       </Button>
     </div>
   )
@@ -460,7 +460,11 @@ const Header = (props: any) => {
           </Navbar.Collapse>
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
           <div className="d-flex align-items-center">
-            WORLDWIDE <br></br> SHIPPING
+            <div className='text-primary' style={{
+              justifyContent: 'right'
+            }}>
+              WORLDWIDE <br></br> SHIPPING
+            </div>
           </div>
         </Container>
       </Navbar>
