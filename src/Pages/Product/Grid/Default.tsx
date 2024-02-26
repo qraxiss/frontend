@@ -6,7 +6,9 @@ import Index from 'Components/Index'
 const Defaultgrid = () => {
   return (
     <React.Fragment>
-      <section className="position-relative section">
+      <section className="position-relative section" style={{
+        paddingTop: '0px'
+      }}>
         <div className="section pb-0 mt-4" />
         <Container>
           <div className="ecommerce-product gap-4">

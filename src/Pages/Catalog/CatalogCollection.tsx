@@ -70,7 +70,6 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
   return (
     <React.Fragment>
       <div className="flex-grow-1">
-        {/* Headwer Section */}
         <div className="d-flex align-items-center gap-2 mb-4">
           <p className="text-muted flex-grow-1 mb-0">Showing 1-12 of {filterList.length} results</p>
 
