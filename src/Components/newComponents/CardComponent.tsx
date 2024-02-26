@@ -4,17 +4,22 @@ import { Link } from 'react-router-dom'
 import config from 'config/config'
 import { productListType } from 'models/ProductType'
 
-export const CardComponent = ({ data, fn }: { data: productListType; fn: any }) => {
+export const CardComponent = ({ data, fn }: { data: productListType; fn?: any }) => {
   return (
     <Card className="overflow-hidden">
-      <div className={`bg-warning-subtle rounded-top py-4`}>
+      <div className={` rounded-top py-4`}>
         <div className="gallery-product">
-          <Image
-            src={config.serverUrl + data.images[0].url}
-            alt=""
-            style={{ maxHeight: '215px', maxWidth: '100%' }}
+          <div
             className="mx-auto d-block"
-          ></Image>
+            style={{
+              backgroundImage: `url(${config.serverUrl + data.images[0].url})`,
+              height: '190px',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: 'contain'
+            }}
+          />
+          {/* <Image src={config.serverUrl + data.images[0].url} alt="" style={{}}></Image> */}
         </div>
       </div>
       <Card.Body>
@@ -25,16 +30,20 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn: any }) 
           <div className="mt-3">
             <span className="float-end">
               {5}
-              <i className="ri-star-half-fill text-warning align-bottom"></i>
+              <i className="ri-star-fill text-warning align-bottom"></i>
+              <i className="ri-star-fill text-warning align-bottom"></i>
+              <i className="ri-star-fill text-warning align-bottom"></i>
+              <i className="ri-star-fill text-warning align-bottom"></i>
+              <i className="ri-star-fill text-warning align-bottom"></i>
             </span>
             <h5 className="mb-0">
               {data.price}
-              {'$'}
+              {'₺'}
             </h5>
           </div>
           <div className="mt-3">
             <Button
-              className="btn btn-primary btn-sm"
+              className="btn btn-primary btn-hover w-100 add-btn"
               onClick={() => {
                 fn({
                   variables: {
@@ -43,7 +52,7 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn: any }) 
                 })
               }}
             >
-              <i className="mdi mdi-cart me-1"></i> Add to cart
+              <i className="mdi mdi-cart me-1"></i> Sepete ekle
             </Button>
           </div>
         </div>
