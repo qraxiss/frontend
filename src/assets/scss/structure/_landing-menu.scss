@@ -6,7 +6,7 @@
     height: 70px;
     transition: all 0.5s ease;
     background-color: var(--#{$prefix}secondary-bg);
-    position: fixed;
+    // position: fixed;
     left: 0;
     right: 0;
     top: 0;
@@ -100,6 +100,10 @@
             display: var(--#{$prefix}card-logo-dark);
         }
     }
+}
+
+.bottom-navbar {
+    background-color: #e8effc !important;
 }
 
 .dropdown-custom-right {

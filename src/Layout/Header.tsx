@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Dropdown, Button, Row, Col, Card, Image, Navbar, Nav } from 'react-bootstrap'
+import { Container, Dropdown, Button, Row, Col, Card, Modal, Image, Navbar, Nav, Form } from 'react-bootstrap'
 
 import { CardModal, SearchModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
@@ -82,7 +82,10 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
   const [cartCount, setCartCount] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
-    if (!!data && !loading && !error) {
+    if (error) {
+      return
+    }
+    if (data && !loading && !error) {
       setCartCount(data.length)
 
       let subtotal = 0
@@ -183,60 +186,46 @@ function Account(props: { iconPath: string }) {
   )
 }
 
-function Pages(props: { categories: any; logo: any; menuShow: any; showMenu: any; t: any }) {
-  return (
-    <Navbar.Collapse id="navbarSupportedContent">
-      <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-        {/* LOGO */}
-        <li className="nav-item d-block d-lg-none">
-          <Link to="/" className="d-block p-3 h-auto text-center">
-            <Image src={props.logo.text.url} alt="" height="25" className="card-logo-dark mx-auto" />
-          </Link>
-          <Link to="/" className="d-block p-3 h-auto text-center">
-            <Image src={props.logo.text.url} alt="" height="25" className="card-logo-light mx-auto" />
-          </Link>
-        </li>
-        {props.categories.map((item: any) => {
-          return (
-            <li className="dropdown nav-item dropdown-hover" key={item.slug}>
-              <Link
-                className="dropdown-toggle nav-link"
-                data-key="t-home"
-                to="/#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                onClick={(e) => {
-                  e.preventDefault()
-                  props.menuShow(item.name)
-                }}
-              >
-                {props.t(item.name)}
-              </Link>
+function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
+  let pages = props.categories.map((item: any) => {
+    return (
+      <li className="dropdown nav-item dropdown-hover" key={item.slug}>
+        <Link
+          className="dropdown-toggle nav-link"
+          data-key="t-home"
+          to="/#"
+          role="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          onClick={(e) => {
+            e.preventDefault()
+            props.menuShow(item.name)
+          }}
+        >
+          {props.t(item.name)}
+        </Link>
 
-              <ul
-                className={
-                  props.showMenu === item.name
-                    ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
-                    : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
-                }
-              >
-                {item.childs.map((child: any) => {
-                  return (
-                    <li className="nav-item" key={`${item.slug}-${child.slug}`}>
-                      <Link to={`/category/${item.slug}/${child.slug}`} className="nav-link" data-key={child.slug}>
-                        {props.t(child.name)}
-                      </Link>
-                    </li>
-                  )
-                })}
-              </ul>
-            </li>
-          )
-        })}
-      </Nav>
-    </Navbar.Collapse>
-  )
+        <ul
+          className={
+            props.showMenu === item.name
+              ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
+              : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
+          }
+        >
+          {item.childs.map((child: any) => {
+            return (
+              <li className="nav-item" key={`${item.slug}-${child.slug}`}>
+                <Link to={`/category/${item.slug}/${child.slug}`} className="nav-link" data-key={child.slug}>
+                  {props.t(child.name)}
+                </Link>
+              </li>
+            )
+          })}
+        </ul>
+      </li>
+    )
+  })
+  return pages
 }
 
 function Search(props: { handleShow: any }) {
@@ -273,6 +262,19 @@ function MoreButton(props: { handleShowColl: any }) {
     <Button className="btn btn-soft-primary btn-icon d-lg-none collapsed" aria-controls="navbarSupportedContent" onClick={props.handleShowColl}>
       <i className="bi bi-list fs-20"></i>
     </Button>
+  )
+}
+
+function SideLogo(props: { logo: any }) {
+  return (
+    <li className="nav-item d-block d-lg-none">
+      <Link to="/" className="d-block p-3 h-auto text-center">
+        <Image src={props.logo.text.url} alt="" height="25" className="card-logo-dark mx-auto" />
+      </Link>
+      <Link to="/" className="d-block p-3 h-auto text-center">
+        <Image src={props.logo.text.url} alt="" height="25" className="card-logo-light mx-auto" />
+      </Link>
+    </li>
   )
 }
 
@@ -333,7 +335,6 @@ const Header = (props: any) => {
     }
   }
 
-
   const path = props.router.location.pathname
   useEffect(() => {
     const initMenu = () => {
@@ -341,6 +342,7 @@ const Header = (props: any) => {
       const ul = document.getElementById('navigation-menu') as HTMLElement
       const items: any = ul.getElementsByTagName('a')
       let itemsArray: any = Array.from(items)
+      console.log(itemsArray)
       removeActivation(itemsArray)
       let matchingMenuItem = itemsArray.find((x: HTMLAnchorElement) => x.pathname === pathName)
       if (matchingMenuItem) {
@@ -429,21 +431,40 @@ const Header = (props: any) => {
     <React.Fragment>
       <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
         <Container>
-          <Logo logo={logo}></Logo>
-          <MoreButton handleShowColl={handleShowColl}></MoreButton>
-          <Pages categories={categories} logo={logo} t={props.t} menuShow={menuShow} showMenu={showMenu}></Pages>
+          <Logo logo={logo} />
+          <MoreButton handleShowColl={handleShowColl} />
+          <Navbar.Collapse id="navbarSupportedContent">
+            <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
+              <SideLogo logo={logo} />
+              <Form.Control size="lg" type="text" onClick={handleShow} />
+              <SearchModal show={show} handleClose={handleClose} />
+            </Nav>
+          </Navbar.Collapse>
 
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
           <div className="d-flex align-items-center">
-            <Search handleShow={handleShow}></Search>
-            <SearchModal show={show} handleClose={handleClose} />
             <Account iconPath={icon.account.url}></Account>
             <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow}></WishListIcon>
             <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
           </div>
         </Container>
+        
       </Navbar>
       <CardModal show={card} handleClose={handlecardClose} />
+
+
+      <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
+        <Container>
+          <Navbar.Collapse id="navbarSupportedContent">
+            <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
+              <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t}/>
+            </Nav>
+          </Navbar.Collapse>
+
+        </Container>
+        
+      </Navbar>
+
     </React.Fragment>
   )
 }

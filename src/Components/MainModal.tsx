@@ -506,13 +506,35 @@ export const SearchModal = ({ show, handleClose }: any) => {
 //card modal
 
 export const CardModal = ({ show, handleClose }: any) => {
+  // if (!localStorage.getItem('jwt')){
+  //   return <></>
+  // }
+
   let cartData = useQuery(cartQuery)
+  console.log(cartData)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
 
-  useEffect(() => {
-    cartData.refetch()
-  }, [addItem.loading, deleteItem.loading])
+  let [cart, setCart] = useState<any[]>([])
+
+  useEffect(()=>{
+    if (cartData.loading){
+      return
+    }
+    if (cartData.error){
+      return
+    }
+    if (!cartData.data){
+      return
+    }
+
+    setCart(cartData.data)
+
+  }, [cartData.loading])
+
+  // useEffect(() => {
+  //   cartData.refetch()
+  // }, [addItem.loading, deleteItem.loading])
 
   const [productcount, setProductcount] = useState(productData)
   const [charge, setCharge] = useState(0)
@@ -534,11 +556,9 @@ export const CardModal = ({ show, handleClose }: any) => {
   const CloseremoveModal = () => setRemovemodel(false)
 
   let subtotal = 0
-  if (!cartData?.loading && !cartData.error) {
-    for (let i = 0; i < cartData.data.length; i++) {
-      subtotal += cartData.data[i].product.price * cartData.data[i].count
+    for (let i = 0; i < cart.length; i++) {
+      subtotal += cart[i].product.price * cart[i].count
     }
-  }
 
   useEffect(() => {
     let dis: any = (0.15 * subtotal).toFixed(2)
@@ -558,13 +578,13 @@ export const CardModal = ({ show, handleClose }: any) => {
       <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
         <Offcanvas.Header closeButton className="border-bottom">
           <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-            My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartData.data?.length}</span>
+            My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cart.length}</span>
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className=" px-0">
           <SimpleBar className="h-100">
             <ul className="list-group list-group-flush cartlist">
-              {(!cartData?.loading && !cartData.error ? cartData?.data : []).map((item: any) => {
+              {cart.map((item: any) => {
                 return (
                   <li key={item.product.slug} className="list-group-item product">
                     <div className="d-flex gap-3">
