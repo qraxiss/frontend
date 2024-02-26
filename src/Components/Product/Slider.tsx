@@ -34,6 +34,10 @@ const Slider = ({ items }: { items: productListType[] }) => {
                   prevEl: '.swiper-button-prev'
                 }}
                 breakpoints={{
+                  0: {
+                    slidesPerView: 2,
+                    spaceBetween: 10
+                  },
                   640: {
                     slidesPerView: 4,
                     spaceBetween: 30
