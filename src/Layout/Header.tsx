@@ -174,6 +174,10 @@ const Header = (props: any) => {
       collapse.classList.add('show')
     }
   }
+  const handleCloseColl = () => {
+    let collapse = document.getElementById('navbarSupportedContent') as HTMLElement
+    collapse.classList.remove('show')
+  }
 
   // Resize Nav Collapse
   const windowResizeHover = () => {
@@ -199,7 +203,8 @@ const Header = (props: any) => {
       <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
         {/* <TopBar /> */}
         <Container>
-          <Navbar.Brand className="d-none d-lg-block">
+          {/* LG sonrası İcon kısmı */}
+          <Navbar.Brand className="">
             <Link to="/">
               <div className="logo-dark">
                 <Image src={logodark} alt="" height="50" />
@@ -209,19 +214,16 @@ const Header = (props: any) => {
               </div>
             </Link>
           </Navbar.Brand>
-          <Button className="btn btn-soft-primary btn-icon d-lg-none collapsed" aria-controls="navbarSupportedContent" onClick={handleShowColl}>
-            <i className="bi bi-list fs-20"></i>
-          </Button>
 
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
               {/* LOGO */}
               <li className="nav-item d-block d-lg-none">
                 <Link to="/#" className="d-block p-3 h-auto text-center">
-                  <Image src={logodark} alt="" height="25" className="card-logo-dark mx-auto" />
+                  <Image src={logodark} alt="" height="50" className="card-logo-dark mx-auto" />
                 </Link>
                 <Link to="/#" className="d-block p-3 h-auto text-center">
-                  <Image src={logolight} alt="" height="25" className="card-logo-light mx-auto" />
+                  <Image src={logolight} alt="" height="50" className="card-logo-light mx-auto" />
                 </Link>
               </li>
               {(!loading ? data.parentCategories : []).map((item: any) => {
@@ -264,8 +266,14 @@ const Header = (props: any) => {
               })}
             </Nav>
           </Navbar.Collapse>
-
-          <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
+          <div
+            className="bg-overlay navbar-overlay"
+            onClick={() => {
+              handleCloseColl()
+            }}
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent.show"
+          ></div>
           <div className="d-flex align-items-center">
             {/* Search */}
             <Button
@@ -351,6 +359,15 @@ const Header = (props: any) => {
                 </Dropdown>
               </div>
             )}
+            {/* LG altı menu buton */}
+            <Button
+              style={{ marginLeft: '5px' }}
+              className="btn btn-soft-primary btn-icon d-lg-none ml-2 collapsed"
+              aria-controls="navbarSupportedContent"
+              onClick={handleShowColl}
+            >
+              <i className="bi bi-list fs-20"></i>
+            </Button>
           </div>
         </Container>
       </Navbar>
