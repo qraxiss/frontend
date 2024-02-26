@@ -3,40 +3,20 @@ import React from 'react'
 import { Slider, Products } from 'Components/Product'
 import Section from './Section'
 
-import { gql } from '@apollo/client'
 import { useQuery } from 'lib/query-wrapper'
+import { products } from 'lib/common-queries'
 
-const query = gql`
-  query {
-    products {
-      data {
-        attributes {
-          name
-          slug
-          price
-          images {
-            data {
-              attributes {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
 
 const Home = () => {
   document.title = 'Index | Toner - React FrontEnd'
 
-  let { data, loading, error } = useQuery(query)
+  let { data, loading, error } = useQuery(products)
 
   return (
     <React.Fragment>
       <Section />
-      <Slider items={data || []} />
-      <Products items={data || []} />
+      <Slider items={data || []} title="Best Sellers" />
+      <Products items={data || []} title="Hot Deals" />
     </React.Fragment>
   )
 }

@@ -5,7 +5,9 @@ import { addItemToCart, cartQuery } from 'lib/common-queries'
 import { useMutation, useQuery } from 'lib/query-wrapper'
 import { CardComponent } from 'Components/newComponents'
 
-const Products = ({ items }: any) => {
+import { CommonTitle } from 'Components/Homepage'
+
+const Products = ({ items, title }: any) => {
   let { fn, data, loading, error } = useMutation(addItemToCart)
   let { refetch } = useQuery(cartQuery)
 
@@ -16,6 +18,9 @@ const Products = ({ items }: any) => {
   return (
     <React.Fragment>
       <section className="section pb-0">
+      <CommonTitle
+            title={title}
+          />
         <Container>
           <Row>
             {items.map((item: any) => (

@@ -13,6 +13,9 @@ import { useQuery } from 'lib/query-wrapper'
 
 import config from 'config/config'
 
+import { Slider } from 'Components/Product'
+import { products } from 'lib/common-queries'
+
 const query = gql`
   query GET_PRODUCT($slug: String!) {
     productBySlug(slug: $slug) {
@@ -44,6 +47,15 @@ const Productdetails = () => {
   let { data, loading } = useQuery(query, {
     variables: { slug }
   })
+
+  let productsData = useQuery(products)
+  const [productsList, setProductsList] = useState<any[]>([])
+  console.log(productsList)
+  useEffect(()=>{
+    if (productsData.data && !productsData.loading && !productsData.error){
+      setProductsList(productsData.data)
+    }
+  },[productsData.data])
 
   data = (data || {
     name: '',
@@ -82,7 +94,6 @@ const Productdetails = () => {
 
   return (
     <React.Fragment>
-      <section className="section"></section>
       <section className="section">
         <Container>
           <Row className="gx-2">
@@ -284,7 +295,8 @@ const Productdetails = () => {
             </Col>
             {/*end col*/}
           </Row>
-          {/*end row*/}
+        
+          <Slider items = {productsList} title = "Related Products"></Slider>  {/*end row*/}
         </Container>
         {/*end container*/}
       </section>

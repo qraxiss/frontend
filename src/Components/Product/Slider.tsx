@@ -11,7 +11,9 @@ import { useMutation, useQuery } from 'lib/query-wrapper'
 import { CardComponent } from 'Components/newComponents'
 import { productListType } from 'models/ProductType'
 
-const Slider = ({ items }: { items: productListType[] }) => {
+import { CommonTitle } from 'Components/Homepage'
+
+const Slider = ({ items , title }: { items: productListType[], title:string }) => {
   let { fn, data, loading, error } = useMutation(addItemToCart)
   let { refetch } = useQuery(cartQuery)
 
@@ -23,11 +25,14 @@ const Slider = ({ items }: { items: productListType[] }) => {
     <React.Fragment>
       <section className="section pb-0">
         <Container>
+        <CommonTitle
+            title={title}
+          />
           <Row>
             <Col lg={12}>
               <Swiper
                 modules={[Navigation, Autoplay]}
-                slidesPerView={4}
+                slidesPerView={5}
                 spaceBetween={30}
                 navigation={{
                   nextEl: '.swiper-button-next',

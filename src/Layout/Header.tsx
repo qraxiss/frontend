@@ -342,7 +342,6 @@ const Header = (props: any) => {
       const ul = document.getElementById('navigation-menu') as HTMLElement
       const items: any = ul.getElementsByTagName('a')
       let itemsArray: any = Array.from(items)
-      console.log(itemsArray)
       removeActivation(itemsArray)
       let matchingMenuItem = itemsArray.find((x: HTMLAnchorElement) => x.pathname === pathName)
       if (matchingMenuItem) {

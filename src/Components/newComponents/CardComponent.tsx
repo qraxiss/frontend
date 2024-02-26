@@ -7,7 +7,7 @@ import { productListType } from 'models/ProductType'
 export const CardComponent = ({ data, fn }: { data: productListType; fn?: any }) => {
   return (
     <Card className="overflow-hidden">
-      <div className={` rounded-top py-4`}>
+      <div className={`rounded-top py-4`}>
         <div className="gallery-product">
           <div
             className="mx-auto d-block"
@@ -29,7 +29,7 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn?: any })
           </Link>
           <div className="mt-3">
             <span className="float-end">
-              {5}
+              {'5 '}
               <i className="ri-star-fill text-warning align-bottom"></i>
               <i className="ri-star-fill text-warning align-bottom"></i>
               <i className="ri-star-fill text-warning align-bottom"></i>
@@ -38,7 +38,7 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn?: any })
             </span>
             <h5 className="mb-0">
               {data.price}
-              {'₺'}
+              {'$'}
             </h5>
           </div>
           <div className="mt-3">
@@ -52,7 +52,7 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn?: any })
                 })
               }}
             >
-              <i className="mdi mdi-cart me-1"></i> Sepete ekle
+              <i className="mdi mdi-cart me-1"></i> Add to cart
             </Button>
           </div>
         </div>

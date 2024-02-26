@@ -76,3 +76,22 @@ export let login = gql`
     }
   }
 `
+
+export let products = gql`  query {
+  products {
+    data {
+      attributes {
+        name
+        slug
+        price
+        images {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}`
