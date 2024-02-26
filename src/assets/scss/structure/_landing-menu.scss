@@ -104,6 +104,14 @@
 
 .bottom-navbar {
     background-color: #e8effc !important;
+
+    .navbar-nav {
+        .nav-item {
+            .nav-link {
+                font-size: 12px;
+            }
+        }
+    }
 }
 
 .dropdown-custom-right {
