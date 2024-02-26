@@ -331,7 +331,7 @@ const Header = (props: any) => {
               <div className="dropdown header-item dropdown-hover-end">
                 <Dropdown>
                   <Dropdown.Toggle id="page-header-user-dropdown" bsPrefix="btn" className="btn btn-icon btn-topbar btn-link rounded-circle" as="a">
-                    <Image className="rounded-circle header-profile-user" src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />
+                    <Image className="rounded-circle " src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
