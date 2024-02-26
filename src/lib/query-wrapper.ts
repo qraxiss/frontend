@@ -26,8 +26,7 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
     }
   })
 
-
-  if (error){
+  if (error) {
     return { data, error, loading, fn: handle(fn) }
   }
 
@@ -48,7 +47,6 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
       }
     }
   })
-
 
   if (error) {
     return { data, loading, error, refetch }

@@ -448,18 +448,15 @@ const Header = (props: any) => {
             <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
           </div>
         </Container>
-        
       </Navbar>
       <CardModal show={card} handleClose={handlecardClose} />
-
 
       <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
         <Container>
           COLLECTIONS
-
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-              <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t}/>
+              <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
             </Nav>
           </Navbar.Collapse>
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
@@ -467,9 +464,7 @@ const Header = (props: any) => {
             WORLDWIDE <br></br> SHIPPING
           </div>
         </Container>
-        
       </Navbar>
-
     </React.Fragment>
   )
 }

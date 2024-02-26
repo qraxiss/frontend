@@ -104,6 +104,8 @@
 
 .bottom-navbar {
     background-color: #e8effc !important;
+    z-index: 10;
+    height: 50px;
 
     .navbar-nav {
         .nav-item {

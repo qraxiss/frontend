@@ -517,19 +517,18 @@ export const CardModal = ({ show, handleClose }: any) => {
 
   let [cart, setCart] = useState<any[]>([])
 
-  useEffect(()=>{
-    if (cartData.loading){
+  useEffect(() => {
+    if (cartData.loading) {
       return
     }
-    if (cartData.error){
+    if (cartData.error) {
       return
     }
-    if (!cartData.data){
+    if (!cartData.data) {
       return
     }
 
     setCart(cartData.data)
-
   }, [cartData.loading])
 
   // useEffect(() => {
@@ -556,9 +555,9 @@ export const CardModal = ({ show, handleClose }: any) => {
   const CloseremoveModal = () => setRemovemodel(false)
 
   let subtotal = 0
-    for (let i = 0; i < cart.length; i++) {
-      subtotal += cart[i].product.price * cart[i].count
-    }
+  for (let i = 0; i < cart.length; i++) {
+    subtotal += cart[i].product.price * cart[i].count
+  }
 
   useEffect(() => {
     let dis: any = (0.15 * subtotal).toFixed(2)
