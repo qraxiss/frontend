@@ -8,7 +8,6 @@ import EmailClothe from 'Pages/Catalog/EmailClothe'
 import { CommonService } from 'Components/CommonService'
 
 const Checkout = () => {
-
   document.title = 'Checkout | Toner - React FrontEnd'
   return (
     <React.Fragment>

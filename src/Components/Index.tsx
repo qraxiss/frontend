@@ -32,8 +32,6 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
   useEffect(() => {
     if (!products.loading) {
       SetFiltersComponent(products.data.variants)
-      console.log(products.data.variants)
-      console.log(products.data.products)
 
       setFilterlist(products.data.products)
     }
