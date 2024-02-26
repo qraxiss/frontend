@@ -195,26 +195,26 @@ const Productdetails = () => {
                   </div>
                 </div>
                 <div className="hstack gap-2">
-                    <Button variant="success" className="btn btn-hover w-100">
-                      <i className="bi bi-basket2 me-2" /> Add To Cart
-                    </Button>
-                    <Button variant="primary" className="btn btn-hover w-100 h-10">
-                      <i className="bi bi-cart2 me-2" /> Buy Now
-                    </Button>
-                    <Button
-                      className="btn btn-soft-danger custom-toggle btn-hover"
-                      data-bs-toggle="button"
-                      aria-pressed="false"
-                      onClick={(ele: any) => handleLikeIcone(ele.target)}
-                    >
-                      <span className="icon-on">
-                        <i className="ri-heart-line" />
-                      </span>
-                      <span className="icon-off">
-                        <i className="ri-heart-fill" />
-                      </span>
-                    </Button>
-                  </div>
+                  <Button variant="success" className="btn btn-hover w-100">
+                    <i className="bi bi-basket2 me-2" /> Add To Cart
+                  </Button>
+                  <Button variant="primary" className="btn btn-hover w-100 h-10">
+                    <i className="bi bi-cart2 me-2" /> Buy Now
+                  </Button>
+                  <Button
+                    className="btn btn-soft-danger custom-toggle btn-hover"
+                    data-bs-toggle="button"
+                    aria-pressed="false"
+                    onClick={(ele: any) => handleLikeIcone(ele.target)}
+                  >
+                    <span className="icon-on">
+                      <i className="ri-heart-line" />
+                    </span>
+                    <span className="icon-off">
+                      <i className="ri-heart-fill" />
+                    </span>
+                  </Button>
+                </div>
                 <Row className="gy-3">
                   <Col md={6}>
                     <div>
@@ -290,7 +290,6 @@ const Productdetails = () => {
             </Col>
             {/*end col*/}
           </Row>
-          <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
         </Container>
         {/*end container*/}
       </section>
@@ -307,6 +306,9 @@ const Productdetails = () => {
                         <Nav.Link as="a" eventKey="Description">
                           {' '}
                           Description
+                        </Nav.Link>
+                        <Nav.Link as="a" eventKey="Description">
+                          {' '}
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
@@ -413,6 +415,10 @@ const Productdetails = () => {
           </Row>
           {/*end row*/}
         </Container>
+      </section>
+
+      <section className="section pt-0">
+        <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
       </section>
     </React.Fragment>
   )
