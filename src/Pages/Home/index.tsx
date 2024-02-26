@@ -6,7 +6,6 @@ import Section from './Section'
 import { useQuery } from 'lib/query-wrapper'
 import { products } from 'lib/common-queries'
 
-
 const Home = () => {
   document.title = 'Index | Toner - React FrontEnd'
 

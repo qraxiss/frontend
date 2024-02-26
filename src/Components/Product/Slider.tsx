@@ -13,7 +13,7 @@ import { productListType } from 'models/ProductType'
 
 import { CommonTitle } from 'Components/Homepage'
 
-const Slider = ({ items , title }: { items: productListType[], title:string }) => {
+const Slider = ({ items, title }: { items: productListType[]; title: string }) => {
   let { fn, data, loading, error } = useMutation(addItemToCart)
   let { refetch } = useQuery(cartQuery)
 
@@ -25,9 +25,7 @@ const Slider = ({ items , title }: { items: productListType[], title:string }) =
     <React.Fragment>
       <section className="section pb-0">
         <Container>
-        <CommonTitle
-            title={title}
-          />
+          <CommonTitle title={title} />
           <Row>
             <Col lg={12}>
               <Swiper

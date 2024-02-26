@@ -18,9 +18,7 @@ const Products = ({ items, title }: any) => {
   return (
     <React.Fragment>
       <section className="section pb-0">
-      <CommonTitle
-            title={title}
-          />
+        <CommonTitle title={title} />
         <Container>
           <Row>
             {items.map((item: any) => (

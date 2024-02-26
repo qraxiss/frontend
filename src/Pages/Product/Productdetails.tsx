@@ -51,11 +51,11 @@ const Productdetails = () => {
   let productsData = useQuery(products)
   const [productsList, setProductsList] = useState<any[]>([])
   console.log(productsList)
-  useEffect(()=>{
-    if (productsData.data && !productsData.loading && !productsData.error){
+  useEffect(() => {
+    if (productsData.data && !productsData.loading && !productsData.error) {
       setProductsList(productsData.data)
     }
-  },[productsData.data])
+  }, [productsData.data])
 
   data = (data || {
     name: '',
@@ -163,33 +163,7 @@ const Productdetails = () => {
                   </div>
                 </Col>
                 {/*end col*/}
-                <Col lg={12}>
-                  <div className="mt-3">
-                    <div className="hstack gap-2">
-                      <Button variant="success" className="btn btn-hover w-100">
-                        {' '}
-                        <i className="bi bi-basket2 me-2" /> Add To Cart
-                      </Button>
-                      <Button variant="primary" className="btn btn-hover w-100">
-                        {' '}
-                        <i className="bi bi-cart2 me-2" /> Buy Now
-                      </Button>
-                      <Button
-                        className="btn btn-soft-danger custom-toggle btn-hover"
-                        data-bs-toggle="button"
-                        aria-pressed="false"
-                        onClick={(ele: any) => handleLikeIcone(ele.target)}
-                      >
-                        <span className="icon-on">
-                          <i className="ri-heart-line" />
-                        </span>
-                        <span className="icon-off">
-                          <i className="ri-heart-fill" />
-                        </span>
-                      </Button>
-                    </div>
-                  </div>
-                </Col>
+
                 {/*end col*/}
               </Row>
               {/*end row*/}
@@ -220,6 +194,27 @@ const Productdetails = () => {
                     </Button>
                   </div>
                 </div>
+                <div className="hstack gap-2">
+                    <Button variant="success" className="btn btn-hover w-100">
+                      <i className="bi bi-basket2 me-2" /> Add To Cart
+                    </Button>
+                    <Button variant="primary" className="btn btn-hover w-100 h-10">
+                      <i className="bi bi-cart2 me-2" /> Buy Now
+                    </Button>
+                    <Button
+                      className="btn btn-soft-danger custom-toggle btn-hover"
+                      data-bs-toggle="button"
+                      aria-pressed="false"
+                      onClick={(ele: any) => handleLikeIcone(ele.target)}
+                    >
+                      <span className="icon-on">
+                        <i className="ri-heart-line" />
+                      </span>
+                      <span className="icon-off">
+                        <i className="ri-heart-fill" />
+                      </span>
+                    </Button>
+                  </div>
                 <Row className="gy-3">
                   <Col md={6}>
                     <div>
@@ -295,10 +290,129 @@ const Productdetails = () => {
             </Col>
             {/*end col*/}
           </Row>
-        
-          <Slider items = {productsList} title = "Related Products"></Slider>  {/*end row*/}
+          <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
         </Container>
         {/*end container*/}
+      </section>
+
+      <section className="section pt-0">
+        <Container>
+          <Row>
+            <Col lg={12}>
+              <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
+                <Row>
+                  <Col sm={12}>
+                    <Nav variant="tabs" className="nav-tabs-custom mb-3">
+                      <Nav.Item as="li">
+                        <Nav.Link as="a" eventKey="Description">
+                          {' '}
+                          Description
+                        </Nav.Link>
+                      </Nav.Item>
+                    </Nav>
+                    <Tab.Content>
+                      <Tab.Pane eventKey="Description">
+                        <div className="tab-pane active show" id="profile1" role="tabpanel">
+                          <Table className="table-sm table-borderless align-middle">
+                            <tbody>
+                              {(
+                                [
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  },
+                                  {
+                                    thead: 'Size',
+                                    tdata: 'Bla bla bla bla bla bla'
+                                  }
+                                ] as any[]
+                              ).map((item: any, idx) => {
+                                return (
+                                  <tr key={idx}>
+                                    <th>{item.thead}</th>
+                                    <td>{item.tdata}</td>
+                                  </tr>
+                                )
+                              })}
+                              <tr>
+                                <th>Color</th>
+                                <td>
+                                  <div className="avatar-xs">
+                                    <div className="avatar-title rounded" />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                          <p className="text-muted fs-15">
+                            Clothing serves many purposes: it can serve as protection from the elements, rough surfaces, sharp stones, rash-causing
+                            plants, insect bites, by providing a barrier between the skin and the environment. It is worth noting that a man's style
+                            goes beyond his outward appearance. Style is about more than the clothes you wear. It's who you are on the inside and how
+                            you present yourself to the outside world. It's having appreciation and cultivating gratitude.
+                          </p>
+                        </div>
+                      </Tab.Pane>
+                    </Tab.Content>
+                  </Col>
+                </Row>
+              </Tab.Container>
+            </Col>
+            {/*end col*/}
+          </Row>
+          {/*end row*/}
+        </Container>
       </section>
     </React.Fragment>
   )

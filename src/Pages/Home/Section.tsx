@@ -93,17 +93,20 @@ export default function Section() {
             </Link>
           </div>
         </Col>
-        <Col >
+        <Col>
           {campaigns.slice(1, campaigns.length).map((campaign: any) => {
             return (
-              <Row className="g-2" style={{
-                gap:'10px'
-              }}>
+              <Row
+                className="g-2"
+                style={{
+                  gap: '10px'
+                }}
+              >
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'flex-start' /* Sağa hizala */,
-                    alignItems: 'flex-start', /* Yukarı hizala */
+                    alignItems: 'flex-start' /* Yukarı hizala */,
                     marginBottom: '10px'
                   }}
                 >
