@@ -306,7 +306,7 @@ const Header = (props: any) => {
               </Dropdown.Menu>
             </Dropdown> */}
             {!!jwt ? (
-              <div className="dropdown header-item dropdown-hover-end">
+              <div className="dropdown header-item dropdown-center dropdown-hover-start">
                 <Dropdown>
                   <Dropdown.Toggle id="page-header-user-dropdown" bsPrefix="btn" className="btn btn-icon btn-topbar btn-link rounded-circle" as="a">
                     <Image className="rounded-circle " src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />
@@ -336,7 +336,7 @@ const Header = (props: any) => {
                 </Dropdown>
               </div>
             ) : (
-              <div className="dropdown header-item dropdown-hover-end">
+              <div className="dropdown header-item dropdown-center dropdown-hover-start">
                 <Dropdown>
                   <Dropdown.Toggle id="page-header-user-dropdown" bsPrefix="btn" className="btn btn-icon btn-topbar btn-link rounded-circle" as="a">
                     <Image className="rounded-circle " src={config.serverUrl + data?.profilePicture?.url} alt="Header Avatar" />

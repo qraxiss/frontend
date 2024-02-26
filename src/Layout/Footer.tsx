@@ -94,12 +94,12 @@ const Footer = () => {
 
   let groupedList
   if (!loading) {
-    groupedList = groupList(data.social.socials, 3)
+    groupedList = groupList(data.social.socials, 1)
   }
 
   return (
     <React.Fragment>
-      <section className="section footer-landing pb-0">
+      <section className="section footer-landing pb-0 px-2">
         <Container>
           <Row>
             <Col lg={6}>
@@ -108,6 +108,30 @@ const Footer = () => {
                 <Image src={logodark} alt="" height="50" className="logo-dark" />
                 <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p>
               </div>
+              {/* <div className="footer-social mt-4">
+                <ul className="list-inline mb-0">
+                  <li className="list-inline-item">
+                    <Link to="#" className="text-reset">
+                      <i className="mdi mdi-facebook"></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#" className="text-reset">
+                      <i className="mdi mdi-twitter"></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#" className="text-reset">
+                      <i className="mdi mdi-google"></i>
+                    </Link>
+                  </li>
+                  <li className="list-inline-item">
+                    <Link to="#" className="text-reset">
+                      <i className="mdi mdi-pinterest"></i>
+                    </Link>
+                  </li>
+                </ul>
+              </div> */}
             </Col>
 
             <Col lg={6}>
@@ -163,10 +187,10 @@ const Footer = () => {
                   <div className="my-lg-0 mt-4">
                     <h5 className="footer-title">Bizi takip et</h5>
                     {(!loading ? groupedList! : []).map((group, index) => (
-                      <Row md={3} key={index} className="footer-socials">
+                      <Row md={2} key={index} className="footer-socials">
                         {group.map((item: any, itemIndex) => {
                           return (
-                            <Col key={itemIndex}>
+                            <Col key={itemIndex} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                               <Link to={item.url}>
                                 <Image src={config.serverUrl + item.icon.url} className="footer-social-icon" width={36} />
                               </Link>
