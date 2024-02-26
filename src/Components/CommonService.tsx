@@ -10,7 +10,7 @@ import { service } from 'Common/data'
 const CommonService = () => {
   return (
     <React.Fragment>
-      <section className="section py-5">
+      <section className="section px-4 py-5">
         <Container>
           <Row className="gy-4 gy-lg-0">
             {(service || [])?.map((item: any, ind: any) => {
