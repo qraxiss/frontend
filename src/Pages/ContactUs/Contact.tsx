@@ -2,7 +2,6 @@ import React from 'react'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
-import { contactdetails } from 'Common/data'
 
 import { gql } from '@apollo/client'
 import { useMutation } from 'lib/query-wrapper'
@@ -66,7 +65,7 @@ const ContactUs = () => {
         <Container>
           <Row>
             <Col lg={4}>
-              {(contactdetails || [])?.map((item, idx) => {
+              {/* {(contactdetails || [])?.map((item, idx) => {
                 return (
                   <Card key={idx} className="border border-opacity-25">
                     <Card.Body className="p-4">
@@ -84,7 +83,7 @@ const ContactUs = () => {
                     </Card.Body>
                   </Card>
                 )
-              })}
+              })} */}
             </Col>
 
             <Col lg={8}>

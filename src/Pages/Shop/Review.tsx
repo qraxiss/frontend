@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, Col, Container, Image, Row } from 'react-bootstrap'
 //component
-import { ContactHelp } from 'Components/CommonService'
+// import { ContactHelp } from 'Components/CommonService'
 import { Shoptopbar } from 'Components/ShopTopBar'
-import { shopReviews } from 'Common/data'
+// import { shopReviews } from 'Common/data'
 
 const Review = () => {
   document.title = 'Customer Review | Toner - React FrontEnd'
@@ -13,7 +13,7 @@ const Review = () => {
       <section className="section">
         <Container>
           <Row data-masonry='{"percentPosition": true }' style={{ position: 'relative', height: '812.982px' }}>
-            {(shopReviews || [])?.map((item, inx) => {
+            {/* {(shopReviews || [])?.map((item, inx) => {
               return (
                 <Col key={inx} lg={4} md={6}>
                   <Card>
@@ -32,11 +32,11 @@ const Review = () => {
                   </Card>
                 </Col>
               )
-            })}
+            })} */}
           </Row>
         </Container>
       </section>
-      <ContactHelp cname="section" />
+      {/* <ContactHelp cname="section" /> */}
     </React.Fragment>
   )
 }

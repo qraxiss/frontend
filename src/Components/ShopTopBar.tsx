@@ -1,7 +1,7 @@
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { recentlyOrder } from 'Common/data'
+// import { recentlyOrder } from 'Common/data'
 
 export const Shoptopbar = ({ title, page }: any) => {
   return (
@@ -119,7 +119,7 @@ export const BrandedProduct = ({ title }: any) => {
             </Col>
           </Row>
           <Row>
-            {(recentlyOrder || []).map((item: any, inx: any) => {
+            {/* {(recentlyOrder || []).map((item: any, inx: any) => {
               return (
                 <Col xxl={3} lg={4} md={6} key={inx}>
                   <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
@@ -204,7 +204,7 @@ export const BrandedProduct = ({ title }: any) => {
                   </Card>
                 </Col>
               )
-            })}
+            })} */}
           </Row>
         </Container>
       </section>

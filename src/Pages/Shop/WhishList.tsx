@@ -2,10 +2,10 @@ import React from 'react'
 import { Container, Row, Col, Table, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
-import { wishlishProduct } from 'Common/data'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
-import HotDeals from 'Components/HotDeals'
+// import { wishlishProduct } from 'Common/data'
+// import EmailClothe from 'Pages/Catalog/EmailClothe'
+// import { CommonService } from 'Components/CommonService'
+// import HotDeals from 'Components/HotDeals'
 
 const WishList = () => {
   document.title = 'Wishlist | Toner - React Frontend'
@@ -27,7 +27,7 @@ const WishList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {(wishlishProduct || [])?.map((item, inx) => {
+                    {/* {(wishlishProduct || [])?.map((item, inx) => {
                       return (
                         <tr key={inx}>
                           <td>
@@ -65,7 +65,7 @@ const WishList = () => {
                           </td>
                         </tr>
                       )
-                    })}
+                    })} */}
                   </tbody>
                 </Table>
               </div>
@@ -81,9 +81,6 @@ const WishList = () => {
           </Row>
         </Container>
       </section>
-      <HotDeals />
-      <EmailClothe />
-      <CommonService />
     </React.Fragment>
   )
 }

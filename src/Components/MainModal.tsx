@@ -9,7 +9,6 @@ import avatar1 from 'assets/images/users/avatar-1.jpg'
 import avatar7 from 'assets/images/users/avatar-7.jpg'
 
 //component
-import { productData } from 'Common/data'
 import DeleteModal from 'Components/DeleteModal'
 
 import { useQuery, useMutation } from 'lib/query-wrapper'
@@ -511,7 +510,6 @@ export const CardModal = ({ show, handleClose }: any) => {
   // }
 
   let cartData = useQuery(cartQuery)
-  console.log(cartData)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
 
@@ -535,7 +533,7 @@ export const CardModal = ({ show, handleClose }: any) => {
   //   cartData.refetch()
   // }, [addItem.loading, deleteItem.loading])
 
-  const [productcount, setProductcount] = useState(productData)
+  // const [productcount, setProductcount] = useState(productData)
   const [charge, setCharge] = useState(0)
   const [dis, setDis] = useState(0)
   const [tax, setTax] = useState(0)
@@ -549,7 +547,7 @@ export const CardModal = ({ show, handleClose }: any) => {
   }
 
   const deleteData = () => {
-    setProductcount(productData?.filter((delet: any) => delet.id !== id))
+    // setProductcount(productData?.filter((delet: any) => delet.id !== id))
   }
 
   const CloseremoveModal = () => setRemovemodel(false)

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Row, Col, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import { shopingsCollection } from 'Common/data'
+// import { shopingsCollection } from 'Common/data'
 import { CommonTitle } from 'Components/Homepage'
 
 const Shoping = () => {
@@ -15,7 +15,7 @@ const Shoping = () => {
             dicription="Shopping Insights gives marketers a 360-degree view of a product's popularity. Harnessing search volume data for more than 7,000 popular products (and counting)"
           />
           <Row className="mt-5">
-            {(shopingsCollection || [])?.map((item, inx) => {
+            {/* {(shopingsCollection || [])?.map((item, inx) => {
               return (
                 <Col lg={4} key={inx}>
                   <Card className="overflow-hidden">
@@ -47,7 +47,7 @@ const Shoping = () => {
                   </Card>
                 </Col>
               )
-            })}
+            })} */}
 
             <div className="mt-4 text-center">
               <Link to="#" className="btn btn-soft-primary btn-hover">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row, Button, Form, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { productData } from 'Common/data'
+// import { productData } from 'Common/data'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal from 'Components/DeleteModal'
 
@@ -19,7 +19,7 @@ const Cardshop = () => {
     cart.refetch()
   }, [addItem.loading, deleteItem.loading])
 
-  const [productcount, setProductcount] = useState(productData)
+  // const [productcount, setProductcount] = useState(productData)
   const [charge, setCharge] = useState(0)
   const [dis, setDis] = useState(0)
   const [tax, setTax] = useState(0)
@@ -33,7 +33,7 @@ const Cardshop = () => {
   }
 
   const deleteData = () => {
-    setProductcount(productData?.filter((delet: any) => delet.id !== id))
+    // setProductcount(productData?.filter((delet: any) => delet.id !== id))
   }
 
   const assinged = (!cart.loading && !cart.error ? cart.data : [])?.map((M: any) => M.count * M.product.price)
@@ -55,21 +55,21 @@ const Cardshop = () => {
     setTax(tax)
   }, [subtotal])
 
-  const countUP = (item: any) => {
-    setProductcount(
-      (productData || [])?.map((count) => (count.id === item.id ? { ...count, num: item.num + 1, Total: (item.num + 1) * item.ItemPrice } : count))
-    )
-  }
+  // const countUP = (item: any) => {
+  //   setProductcount(
+  //     (productData || [])?.map((count) => (count.id === item.id ? { ...count, num: item.num + 1, Total: (item.num + 1) * item.ItemPrice } : count))
+  //   )
+  // }
 
-  const countDown = (item: any) => {
-    setProductcount(
-      (productData || []).map((count: any) =>
-        count.id === item.id && count.num > 0
-          ? { ...count, num: item.num > 0 ? item.num - 1 : 0, Total: (item.num > 0 ? item.num - 1 : 0) * item.ItemPrice }
-          : count
-      )
-    )
-  }
+  // const countDown = (item: any) => {
+  //   setProductcount(
+  //     (productData || []).map((count: any) =>
+  //       count.id === item.id && count.num > 0
+  //         ? { ...count, num: item.num > 0 ? item.num - 1 : 0, Total: (item.num > 0 ? item.num - 1 : 0) * item.ItemPrice }
+  //         : count
+  //     )
+  //   )
+  // }
 
   return (
     <React.Fragment>

@@ -2,10 +2,10 @@ import React from 'react'
 import { Col, Container, Row, Alert, Card, Button, Table, Image } from 'react-bootstrap'
 import { Shoporder, Shoptopbar } from 'Components/ShopTopBar'
 import { Link } from 'react-router-dom'
-import { shopProducDetails } from 'Common/data'
+// import { shopProducDetails } from 'Common/data'
 import { ShopingAddress } from './ShoppingAddress'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
+// import EmailClothe from 'Pages/Catalog/EmailClothe'
+// import { CommonService } from 'Components/CommonService'
 
 const Checkout = () => {
   document.title = 'Checkout | Toner - React FrontEnd'
@@ -40,7 +40,7 @@ const Checkout = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {(shopProducDetails || [])?.map((item, inx) => {
+                        {/* {(shopProducDetails || [])?.map((item, inx) => {
                           return (
                             <tr key={inx}>
                               <td className="text-start">
@@ -61,7 +61,7 @@ const Checkout = () => {
                               <td className="text-end">${item.amount}</td>
                             </tr>
                           )
-                        })}
+                        })} */}
                       </tbody>
                     </Table>
                   </div>
@@ -86,8 +86,8 @@ const Checkout = () => {
           </Row>
         </Container>
       </section>
-      <EmailClothe />
-      <CommonService />
+      {/* <EmailClothe />
+      <CommonService /> */}
     </React.Fragment>
   )
 }

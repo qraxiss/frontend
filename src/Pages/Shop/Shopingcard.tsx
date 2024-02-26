@@ -2,9 +2,7 @@ import React, { useEffect } from 'react'
 import { Row, Col, Alert, Container } from 'react-bootstrap'
 import Cardshop from './Cardshop'
 
-import { BrandedProduct, Shoptopbar } from 'Components/ShopTopBar'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
+import { Shoptopbar } from 'Components/ShopTopBar'
 
 import { cartQuery, addItemToCart, deleteItemFromCart } from 'lib/common-queries'
 import { useMutation, useQuery } from 'lib/query-wrapper'

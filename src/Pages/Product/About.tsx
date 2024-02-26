@@ -7,9 +7,9 @@ import ecommerce1 from 'assets/images/ecommerce/img-1.jpg'
 import ecommerce3 from 'assets/images/ecommerce/img-3.jpg'
 import ecommerce4 from 'assets/images/ecommerce/img-4.jpg'
 import ecommerce5 from 'assets/images/ecommerce/img-5.jpg'
-import { aboutCard, aboutManagement } from 'Common/data'
-import { DefauilOffer } from 'Components/ProductSilde'
-import { CommonService } from 'Components/CommonService'
+// import { aboutCard, aboutManagement } from 'Common/data'
+// import { DefauilOffer } from 'Components/ProductSilde'
+// import { CommonService } from 'Components/CommonService'
 
 const About = () => {
   return (
@@ -51,13 +51,11 @@ const About = () => {
       <div className="ecommerce-about-cta">
         <Container>
           <Row>
-            {(aboutCard || [])?.map((item, inx) => {
+            {/* {(aboutCard || [])?.map((item, inx) => {
               return (
                 <Col lg={4} key={inx}>
                   <Card className="card-animate border-0">
                     <Card.Body>
-                      {/* <lord-icon src="https://cdn.lordicon.com/fcoczpqi.json" trigger="hover" target="div" style="width:70px;height:70px">
-                                                </lord-icon> */}
                       <h5 className="fs-16 mt-3">{item.title}</h5>
                       <p className="text-muted">{item.discription}</p>
                       <div>
@@ -69,7 +67,7 @@ const About = () => {
                   </Card>
                 </Col>
               )
-            })}
+            })} */}
           </Row>
         </Container>
       </div>
@@ -86,7 +84,7 @@ const About = () => {
             </Col>
           </Row>
           <Row className="gy-4">
-            {(aboutManagement || [])?.map((item, inx) => {
+            {/* {(aboutManagement || [])?.map((item, inx) => {
               return (
                 <Col xl={3} md={6} key={inx}>
                   <div className="team-box text-center">
@@ -102,7 +100,7 @@ const About = () => {
                   </div>
                 </Col>
               )
-            })}
+            })} */}
           </Row>
         </Container>
       </section>
@@ -131,8 +129,8 @@ const About = () => {
           </Row>
         </Container>
       </section>
-      <DefauilOffer />
-      <CommonService />
+      {/* <DefauilOffer />
+      <CommonService /> */}
     </React.Fragment>
   )
 }

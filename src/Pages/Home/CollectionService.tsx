@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col, Image } from 'react-bootstrap'
-import { CommonService } from 'Components/CommonService'
+// import { CommonService } from 'Components/CommonService'
 
 //img
 import featuresimg3 from 'assets/images/ecommerce/features/img-3.jpg'
@@ -11,7 +11,7 @@ import { CommonTitle } from 'Components/Homepage'
 const Service = () => {
   return (
     <React.Fragment>
-      <CommonService />
+      {/* <CommonService /> */}
       <section className="section pt-0">
         <Container>
           <Row>

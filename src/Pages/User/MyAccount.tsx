@@ -3,9 +3,9 @@ import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image } from 'react-b
 import { Link } from 'react-router-dom'
 
 import profilebg from 'assets/images/profile-bg.jpg'
-import { orderHistorys, wishlishProduct } from 'Common/data'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
+// import { orderHistorys, wishlishProduct } from 'Common/data'
+// import EmailClothe from 'Pages/Catalog/EmailClothe'
+// import { CommonService } from 'Components/CommonService'
 
 import { useQuery } from 'lib/query-wrapper'
 import config from 'config/config'
@@ -180,7 +180,7 @@ const MyAccount = () => {
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    {(wishlishProduct || [])?.map((item, inx) => {
+                                    {/* {(wishlishProduct || [])?.map((item, inx) => {
                                       return (
                                         <tr key={inx}>
                                           <td>
@@ -218,7 +218,7 @@ const MyAccount = () => {
                                           </td>
                                         </tr>
                                       )
-                                    })}
+                                    })} */}
                                   </tbody>
                                 </Table>
                               </div>
@@ -253,7 +253,7 @@ const MyAccount = () => {
                                 </tr>
                               </thead>
                               <tbody>
-                                {(orderHistorys || [])?.map((item, inx) => {
+                                {/* {(orderHistorys || [])?.map((item, inx) => {
                                   return (
                                     <tr key={inx}>
                                       <td>
@@ -281,7 +281,7 @@ const MyAccount = () => {
                                       </td>
                                     </tr>
                                   )
-                                })}
+                                })} */}
                               </tbody>
                             </Table>
                           </div>
@@ -562,8 +562,8 @@ const MyAccount = () => {
           </Tab.Container>
         </Container>
       </section>
-      <EmailClothe />
-      <CommonService />
+      {/* <EmailClothe />
+      <CommonService /> */}
     </React.Fragment>
   )
 }

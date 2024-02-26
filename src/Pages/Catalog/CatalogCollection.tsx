@@ -1,8 +1,7 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import React, { useState, useMemo, useEffect } from 'react'
 import { Form, Row, Col, Card, Button, Image } from 'react-bootstrap'
-import { filterProduct } from 'Common/data'
-import Pagination from 'Components/Pagination'
+// import { filterProduct } from 'Common/data'
 
 import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, cartQuery } from 'lib/common-queries'
@@ -63,7 +62,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
   //select value
   const selectValue = (value: any) => {
     setSelect(value)
-    setCurrentpages(filterProduct?.filter((e: any) => e.category === select || select === 'all'))
+    // setCurrentpages(filterProduct?.filter((e: any) => e.category === select || select === 'all'))
   }
 
   return (

@@ -3,12 +3,12 @@ import { Col, Container, Row, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal, { ModalAdd } from 'Components/DeleteModal'
-import { selectAddressData } from 'Common/data'
+// import { selectAddressData } from 'Common/data'
 
 const Selectaddress = () => {
   document.title = 'Shop | Select address | Toner - React FrontEnd'
 
-  const [addressData, setAddressData] = useState(selectAddressData)
+  // const [addressData, setAddressData] = useState(selectAddressData)
   //delete id
   const [id, setId] = useState('')
 
@@ -20,7 +20,7 @@ const Selectaddress = () => {
   }
 
   const deleteData = () => {
-    setAddressData(selectAddressData?.filter((delet: any) => delet.id !== id))
+    // setAddressData(selectAddressData?.filter((delet: any) => delet.id !== id))
   }
 
   //Add address
@@ -37,7 +37,7 @@ const Selectaddress = () => {
               <div>
                 <h4 className="fs-18 mb-4">Select or add an address</h4>
                 <Row className="g-4" id="address-list">
-                  {(addressData || [])?.map((item: any) => {
+                  {/* {(addressData || [])?.map((item: any) => {
                     return (
                       <Col lg={6} key={item.id}>
                         <div>
@@ -80,7 +80,7 @@ const Selectaddress = () => {
                         </div>
                       </Col>
                     )
-                  })}
+                  })} */}
                 </Row>
                 <Row className="mt-4">
                   <Col lg={6}>

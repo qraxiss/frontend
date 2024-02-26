@@ -7,7 +7,6 @@ import Footer from './Footer'
 import Header from './Header'
 import { MainModal } from 'Components/MainModal'
 import { createSelector } from 'reselect'
-import TopBar from './TopBar'
 
 const Layout = (props: any) => {
   let location = useLocation()

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { orderHistorys } from 'Common/data'
+// import { orderHistorys } from 'Common/data'
 import { Shoptopbar } from 'Components/ShopTopBar'
 import { InvoiceModal } from 'Components/MainModal'
 
@@ -33,7 +33,7 @@ const Orderhistory = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {(orderHistorys || [])?.map((item, inx) => {
+                      {/* {(orderHistorys || [])?.map((item, inx) => {
                         return (
                           <tr key={inx}>
                             <td>
@@ -70,7 +70,7 @@ const Orderhistory = () => {
                             </td>
                           </tr>
                         )
-                      })}
+                      })} */}
                     </tbody>
                   </Table>
                 </div>

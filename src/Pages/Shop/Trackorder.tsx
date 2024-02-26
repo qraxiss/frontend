@@ -2,9 +2,9 @@ import React from 'react'
 import { Button, Card, Col, Container, Row, Table, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
-import { shopProducDetails } from 'Common/data'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
+// import { shopProducDetails } from 'Common/data'
+// import EmailClothe from 'Pages/Catalog/EmailClothe'
+// import { CommonService } from 'Components/CommonService'
 
 const Trackorder = () => {
   document.title = 'Track Order | Toner - React FrontEnd'
@@ -129,7 +129,7 @@ const Trackorder = () => {
                     </tr>
                   </thead>
                   <tbody id="products-list">
-                    {(shopProducDetails || [])?.map((item, index) => {
+                    {/* {(shopProducDetails || [])?.map((item, index) => {
                       return (
                         <tr key={index}>
                           <th scope="row">0{item.id}</th>
@@ -151,7 +151,7 @@ const Trackorder = () => {
                           <td className="text-end">${item.amount}</td>
                         </tr>
                       )
-                    })}
+                    })} */}
                   </tbody>
                 </Table>
               </div>
@@ -232,8 +232,6 @@ const Trackorder = () => {
           </Card>
         </Container>
       </section>
-      <EmailClothe />
-      <CommonService />
     </React.Fragment>
   )
 }

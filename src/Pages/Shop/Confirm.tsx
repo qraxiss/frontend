@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { Shoptopbar } from 'Components/ShopTopBar'
 import success from 'assets/images/success-img.png'
-import EmailClothe from 'Pages/Catalog/EmailClothe'
-import { CommonService } from 'Components/CommonService'
+// import EmailClothe from 'Pages/Catalog/EmailClothe'
+// import { CommonService } from 'Components/CommonService'
 
 const Confirm = () => {
   document.title = 'Order Completed | Toner - React FrontEnd'
@@ -40,8 +40,8 @@ const Confirm = () => {
           </Row>
         </Container>
       </section>
-      <EmailClothe />
-      <CommonService />
+      {/* <EmailClothe />
+      <CommonService /> */}
     </React.Fragment>
   )
 }
