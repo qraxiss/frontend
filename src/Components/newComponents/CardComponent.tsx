@@ -1,10 +1,10 @@
-import React from 'react'
+import { useEffect } from 'react'
 import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import config from 'config/config'
 import { productListType } from 'models/ProductType'
 
-export const CardComponent = ({ data, fn }: { data: productListType; fn?: any }) => {
+export const CardComponent = ({ data, fn, refetchCart }: { data: productListType; fn?: any; refetchCart: Function }) => {
   return (
     <Card className="overflow-hidden">
       <div className={`rounded-top py-4`}>
@@ -50,6 +50,8 @@ export const CardComponent = ({ data, fn }: { data: productListType; fn?: any })
                     slug: data.slug
                   }
                 })
+
+                refetchCart()
               }}
             >
               <i className="mdi mdi-cart me-1"></i> Add to cart

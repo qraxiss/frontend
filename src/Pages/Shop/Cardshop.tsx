@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Col, Row, Button, Form, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import { productData } from 'Common/data'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal from 'Components/DeleteModal'
 
 import { cartQuery, addItemToCart, deleteItemFromCart } from 'lib/common-queries'
 import { useMutation, useQuery } from 'lib/query-wrapper'
 
+import { useNavigate } from 'react-router-dom'
+
 import config from 'config/config'
 
 const Cardshop = () => {
+  let navigate = useNavigate()
+
   let cart = useQuery(cartQuery)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
@@ -188,10 +191,22 @@ const Cardshop = () => {
         <div className="sticky-side-div">
           <Shoporder subtotal={subtotal} dic={dis} charge={charge} tax={tax} total={subtotal + charge + tax - dis} />
           <div className="hstack gap-2 justify-content-end">
-            <Button variant="danger" className="btn btn-hover">
+            <Button
+              variant="danger"
+              className="btn btn-hover"
+              onClick={() => {
+                navigate('/')
+              }}
+            >
               Continue Shopping
             </Button>
-            <Button variant="success" className="btn btn-hover">
+            <Button
+              variant="success"
+              className="btn btn-hover"
+              onClick={() => {
+                navigate('/shop/checkout')
+              }}
+            >
               Check Out <i className="ri-logout-box-r-line align-bottom ms-1"></i>
             </Button>
           </div>

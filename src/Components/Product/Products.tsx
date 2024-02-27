@@ -8,12 +8,8 @@ import { CardComponent } from 'Components/newComponents'
 import { CommonTitle } from 'Components/Homepage'
 
 const Products = ({ items, title }: any) => {
-  let { fn, data, loading, error } = useMutation(addItemToCart)
+  let { fn } = useMutation(addItemToCart)
   let { refetch } = useQuery(cartQuery)
-
-  useEffect(() => {
-    refetch()
-  }, [loading])
 
   return (
     <React.Fragment>
@@ -23,7 +19,7 @@ const Products = ({ items, title }: any) => {
           <Row>
             {items.map((item: any) => (
               <Col lg={3} key={item.slug}>
-                <CardComponent data={item} fn={fn} />
+                <CardComponent data={item} fn={fn} refetchCart={refetch} />
               </Col>
             ))}
           </Row>

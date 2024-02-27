@@ -513,6 +513,8 @@ export const CardModal = ({ show, handleClose }: any) => {
   //   return <></>
   // }
 
+  let navigate = useNavigate()
+
   let cartData = useQuery(cartQuery)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
@@ -681,14 +683,27 @@ export const CardModal = ({ show, handleClose }: any) => {
           </div>
           <Row className="g-2">
             <Col xs={6}>
-              <Button variant="light" className="btn w-100" id="reset-layout">
+              <Button
+                variant="light"
+                className="btn w-100"
+                id="reset-layout"
+                onClick={() => {
+                  navigate('/shop/shopingcard')
+                }}
+              >
                 View Cart
               </Button>
             </Col>
             <Col xs={6}>
-              <Link to="/shop/shopingcard" target="_blank" className="btn btn-info w-100">
+              <Button
+                target="_blank"
+                className="btn btn-info w-100"
+                onClick={() => {
+                  navigate('/shop/checkout')
+                }}
+              >
                 Continue to Checkout
-              </Link>
+              </Button>
             </Col>
           </Row>
         </div>

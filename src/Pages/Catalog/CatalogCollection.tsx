@@ -96,7 +96,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
               filterList.map((item: any, idx: any) => {
                 return !cxl ? (
                   <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
-                    <CardComponent data={item} fn={addItem.fn}></CardComponent>
+                    <CardComponent data={item} fn={addItem.fn} refetchCart={cart.refetch}></CardComponent>
                   </Col>
                 ) : (
                   <Card className="ribbon-box" key={idx}>

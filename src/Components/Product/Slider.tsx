@@ -14,12 +14,8 @@ import { productListType } from 'models/ProductType'
 import { CommonTitle } from 'Components/Homepage'
 
 const Slider = ({ items, title }: { items: productListType[]; title: string }) => {
-  let { fn, data, loading, error } = useMutation(addItemToCart)
+  let { fn } = useMutation(addItemToCart)
   let { refetch } = useQuery(cartQuery)
-
-  useEffect(() => {
-    refetch()
-  }, [loading])
 
   return (
     <React.Fragment>
@@ -74,7 +70,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                   {items.map((item: any) => {
                     return (
                       <SwiperSlide className="swiper-slide" key={item.slug}>
-                        <CardComponent data={item} fn={fn} />
+                        <CardComponent data={item} fn={fn} refetchCart={refetch} />
                       </SwiperSlide>
                     )
                   })}

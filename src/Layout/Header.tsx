@@ -78,7 +78,6 @@ const query = gql`
 `
 function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
   let { data, loading, error } = useQuery(cartQuery)
-
   const [cartCount, setCartCount] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
   useEffect(() => {
@@ -95,6 +94,10 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
       setTotalPrice(subtotal)
     }
   }, [loading])
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return (
     <div className="topbar-head-dropdown ms-1 header-item">
@@ -466,7 +469,11 @@ const Header = (props: any) => {
 
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
           <div className="d-flex align-items-center">
-            {jwt ? <Account iconPath={icon.account.url}></Account>: <AgirShoppingIcon iconPath={icon.account.url} handlecardShow={handleAccountShow}></AgirShoppingIcon>}
+            {jwt ? (
+              <Account iconPath={icon.account.url}></Account>
+            ) : (
+              <AgirShoppingIcon iconPath={icon.account.url} handlecardShow={handleAccountShow}></AgirShoppingIcon>
+            )}
             <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow}></WishListIcon>
             <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
           </div>
