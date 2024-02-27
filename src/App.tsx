@@ -6,11 +6,11 @@ import './assets/scss/themes.scss'
 import Route from './Routes/Index'
 
 function App() {
-  return (
-    <React.Fragment>
-      <Route />
-    </React.Fragment>
-  )
+    return (
+        <React.Fragment>
+            <Route />
+        </React.Fragment>
+    )
 }
 
 export default App

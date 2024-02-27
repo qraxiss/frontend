@@ -7,134 +7,199 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 
 const query = gql`
-  query {
-    campaign {
-      data {
-        attributes {
-          campaigns {
-            image {
-              data {
+    query {
+        campaign {
+            data {
                 attributes {
-                  url
+                    campaigns {
+                        image {
+                            data {
+                                attributes {
+                                    url
+                                }
+                            }
+                        }
+                        heading
+                        subHeading
+                        btnLink
+                        btnText
+                    }
                 }
-              }
             }
-            heading
-            subHeading
-            btnLink
-            btnText
-          }
         }
-      }
     }
-  }
 `
 
 export default function Section() {
-  const { data, loading, error } = useQuery(query)
+    const { data, loading, error } = useQuery(query)
 
-  const [campaigns, setCampaigns] = useState<any[]>([])
+    const [campaigns, setCampaigns] = useState<any[]>([])
 
-  useEffect(() => {
-    if (loading) {
-      return
-    }
+    useEffect(() => {
+        if (loading) {
+            return
+        }
 
-    if (error) {
-      return
-    }
+        if (error) {
+            return
+        }
 
-    if (!data) {
-      return
-    }
+        if (!data) {
+            return
+        }
 
-    data.campaigns.forEach((item: any) => {
-      item.image.url = config.serverUrl + item.image.url
-    })
+        data.campaigns.forEach((item: any) => {
+            item.image.url = config.serverUrl + item.image.url
+        })
 
-    setCampaigns(data.campaigns)
-  }, [loading])
+        setCampaigns(data.campaigns)
+    }, [loading])
 
-  return (
-    <Container
-      style={{
-        paddingTop: '15px'
-      }}
-    >
-      <Row className="g-2">
-        <Col>
-          <div
+    return (
+        <Container
             style={{
-              display: 'flex',
-              justifyContent: 'flex-end' /* Sağa hizala */,
-              alignItems: 'flex-start' /* Yukarı hizala */
+                paddingTop: '15px'
             }}
-          >
-            <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-              <Image
-                src={campaigns[0]?.image?.url}
-                className="w-100"
-                rounded
-                alt=""
-                style={{
-                  width: '210px',
-                  maxWidth: '600px',
-                  height: '490px',
-                  objectFit: 'cover'
-                }}
-              />
-              <div className="product-content p-3 ps-5">
-                <p className="text-uppercase fs-15 text-secondary fw-semibold mb-2">{campaigns[0]?.heading}</p>
-                <h1 className="display-5 lh-base text-dark ff-secondary">{campaigns[0]?.subHeading}</h1>
-                <div className="product-btn mt-4">
-                  {campaigns[0]?.btnText} <i className="bi bi-arrow-right ms-2"></i>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </Col>
-        <Col>
-          {campaigns.slice(1, campaigns.length).map((campaign: any) => {
-            return (
-              <Row
-                className="g-2"
-                style={{
-                  gap: '10px'
-                }}
-                key={campaign.image.url}
-              >
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-start' /* Sağa hizala */,
-                    alignItems: 'flex-start' /* Yukarı hizala */,
-                    marginBottom: '10px'
-                  }}
-                >
-                  <Link to={campaign.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                    <Image
-                      src={campaign.image.url}
-                      className="w-100"
-                      alt=""
-                      rounded
-                      style={{
-                        width: '210px',
-                        maxWidth: '600px',
-                        height: '240px',
-                        objectFit: 'cover'
-                      }}
-                    />
-                    <div className="product-content p-3 ps-5">
-                      <p className="text-uppercase fw-semibold fs-14 mb-2">{campaign.heading}</p>
-                      <h1 className="lh-base ff-secondary text-dark fw-medium">{campaign.subHeading}</h1>
+        >
+            <Row className="g-2">
+                {/*Sol*/}
+                <Col>
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'flex-end' /* Sağa hizala */,
+                            alignItems: 'flex-start' /* Yukarı hizala */
+                        }}
+                    >
+                        <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                            <Image
+                                src={campaigns[0]?.image?.url}
+                                className="w-100"
+                                rounded
+                                alt=""
+                                style={{
+                                    width: '210px',
+                                    maxWidth: '600px',
+                                    height: '490px',
+                                    objectFit: 'cover'
+                                }}
+                            />
+                            <div className="product-content p-3 ps-5">
+                                <p className="text-uppercase fs-15 text-secondary fw-semibold mb-2">{campaigns[0]?.heading}</p>
+                                <h1 className="display-5 lh-base text-dark ff-secondary">{campaigns[0]?.subHeading}</h1>
+                                <div className="product-btn mt-4">
+                                    {campaigns[0]?.btnText} <i className="bi bi-arrow-right ms-2"></i>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
-                  </Link>
-                </div>
-              </Row>
-            )
-          })}
-        </Col>
-      </Row>
-    </Container>
-  )
+                </Col>
+                <Col>
+                    {/*Sağ*/}
+                    <Row
+                        className="g-2"
+                        style={{
+                            gap: '10px'
+                        }}
+                        key={campaigns[1]?.image.url}
+                    >
+                        <div
+                            style={{
+                                justifyContent: 'flex-start' /* Sağa hizala */,
+                                alignItems: 'flex-start' /* Yukarı hizala */,
+                                marginBottom: '10px'
+                            }}
+                        >
+                            <Link to={campaigns[1]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                                <Image
+                                    src={campaigns[1]?.image.url}
+                                    className="w-100"
+                                    alt=""
+                                    rounded
+                                    style={{
+                                        width: '210px',
+                                        maxWidth: '600px',
+                                        height: '240px',
+                                        objectFit: 'cover'
+                                    }}
+                                />
+                                <div className="product-content p-3 ps-5">
+                                    <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[1]?.heading}</p>
+                                    <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[1]?.subHeading}</h1>
+                                </div>
+                            </Link>
+                        </div>
+                    </Row>
+                    {/*Sağ alt*/}
+                    <Row
+                        className="g-2"
+                        style={{
+                            gap: '10px'
+                        }}
+                    >
+                        {/*sağ*/}
+                        <Col>
+                            <div
+                                style={{
+                                    // display: 'flex',
+                                    justifyContent: 'flex-start' /* Sağa hizala */,
+                                    alignItems: 'flex-start' /* Yukarı hizala */,
+                                    marginBottom: '10px'
+                                }}
+                            >
+                                <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                                    <Image
+                                        src={campaigns[2]?.image.url}
+                                        className="w-100"
+                                        alt=""
+                                        rounded
+                                        style={{
+                                            width: '210px',
+                                            maxWidth: '600px',
+                                            height: '240px',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                    <div className="product-content p-3 ps-5">
+                                        <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[2]?.heading}</p>
+                                        <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[2]?.subHeading}</h1>
+                                    </div>
+                                </Link>
+                            </div>
+                        </Col>
+                        {/*sol*/}
+                        <Col>
+                            <div
+                                style={{
+                                    // display: 'flex',
+                                    justifyContent: 'flex-start' /* Sağa hizala */,
+                                    alignItems: 'flex-start' /* Yukarı hizala */,
+                                    marginBottom: '10px'
+                                }}
+                            >
+                                <Link to={campaigns[3]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                                    <Image
+                                        src={campaigns[3]?.image.url}
+                                        className="w-100"
+                                        alt=""
+                                        rounded
+                                        style={{
+                                            width: '210px',
+                                            maxWidth: '600px',
+                                            height: '240px',
+                                            objectFit: 'cover'
+                                        }}
+                                    />
+                                    <div className="product-content p-3 ps-5">
+                                        <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[3]?.heading}</p>
+                                        <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[3]?.subHeading}</h1>
+                                    </div>
+                                </Link>
+                            </div>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
+    )
 }

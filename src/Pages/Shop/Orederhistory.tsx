@@ -6,34 +6,34 @@ import { Shoptopbar } from 'Components/ShopTopBar'
 import { InvoiceModal } from 'Components/MainModal'
 
 const Orderhistory = () => {
-  document.title = 'Order History | Toner - React FrontEnd'
-  //modal
-  const [modal, setModal] = useState(false)
-  const handleInvoice = () => setModal(true)
-  const handleClose = () => setModal(false)
+    document.title = 'Order History | Toner - React FrontEnd'
+    //modal
+    const [modal, setModal] = useState(false)
+    const handleInvoice = () => setModal(true)
+    const handleClose = () => setModal(false)
 
-  return (
-    <React.Fragment>
-      <Shoptopbar title="Order History" page="Order History" />
-      <section className="section">
-        <Container>
-          <Row>
-            <Col lg={12}>
-              <div>
-                <div className="table-responsive">
-                  <Table className="fs-15 align-middle table-nowrap">
-                    <thead>
-                      <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Total Amount</th>
-                        <th scope="col">Status</th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {/* {(orderHistorys || [])?.map((item, inx) => {
+    return (
+        <React.Fragment>
+            <Shoptopbar title="Order History" page="Order History" />
+            <section className="section">
+                <Container>
+                    <Row>
+                        <Col lg={12}>
+                            <div>
+                                <div className="table-responsive">
+                                    <Table className="fs-15 align-middle table-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Order ID</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Total Amount</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {/* {(orderHistorys || [])?.map((item, inx) => {
                         return (
                           <tr key={inx}>
                             <td>
@@ -71,22 +71,22 @@ const Orderhistory = () => {
                           </tr>
                         )
                       })} */}
-                    </tbody>
-                  </Table>
-                </div>
-                <div className="text-end">
-                  <Button variant="primary" className="btn btn-hover">
-                    Continue Shopping <i className="ri-arrow-right-line align-middle ms-1"></i>
-                  </Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-          <InvoiceModal modal={modal} handleClose={handleClose} />
-        </Container>
-      </section>
-    </React.Fragment>
-  )
+                                        </tbody>
+                                    </Table>
+                                </div>
+                                <div className="text-end">
+                                    <Button variant="primary" className="btn btn-hover">
+                                        Continue Shopping <i className="ri-arrow-right-line align-middle ms-1"></i>
+                                    </Button>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <InvoiceModal modal={modal} handleClose={handleClose} />
+                </Container>
+            </section>
+        </React.Fragment>
+    )
 }
 
 export default Orderhistory

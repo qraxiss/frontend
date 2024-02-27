@@ -9,80 +9,80 @@ import { MainModal } from 'Components/MainModal'
 import { createSelector } from 'reselect'
 
 const Layout = (props: any) => {
-  let location = useLocation()
-  const dispatch: any = useDispatch()
+    let location = useLocation()
+    const dispatch: any = useDispatch()
 
-  const selectProperties = createSelector(
-    (state: any) => state.Layout,
-    (layout) => ({
-      footerModeType: layout.footerModeType,
-      layoutThemeMode: layout.layoutThemeMode
-    })
-  )
+    const selectProperties = createSelector(
+        (state: any) => state.Layout,
+        (layout) => ({
+            footerModeType: layout.footerModeType,
+            layoutThemeMode: layout.layoutThemeMode
+        })
+    )
 
-  const { footerModeType, layoutThemeMode } = useSelector(selectProperties)
+    const { footerModeType, layoutThemeMode } = useSelector(selectProperties)
 
-  //change footer theme on review page
-  const footertheme = props.isLight ? 'light' : 'dark'
+    //change footer theme on review page
+    const footertheme = props.isLight ? 'light' : 'dark'
 
-  //change them mode
-  const handleThemeMood = (value: any) => {
-    if (changeThemeMood) {
-      dispatch(changeThemeMood(value))
+    //change them mode
+    const handleThemeMood = (value: any) => {
+        if (changeThemeMood) {
+            dispatch(changeThemeMood(value))
+        }
     }
-  }
-  window.onscroll = function () {
-    scrollFunction()
-  }
-
-  const scrollFunction = () => {
-    const element = document.getElementById('back-to-top')
-    if (element) {
-      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        element.style.display = 'block'
-      } else {
-        element.style.display = 'none'
-      }
+    window.onscroll = function () {
+        scrollFunction()
     }
-  }
-  //top arrow icone function
-  const ScrollbarTop = () => {
-    document.body.scrollTop = 0
-    document.documentElement.scrollTop = 0
-  }
 
-  useEffect(() => {
-    if (footerModeType || layoutThemeMode) {
-      dispatch(changeLayoutMood(footertheme))
-      dispatch(changeThemeMood(layoutThemeMode))
+    const scrollFunction = () => {
+        const element = document.getElementById('back-to-top')
+        if (element) {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                element.style.display = 'block'
+            } else {
+                element.style.display = 'none'
+            }
+        }
     }
-  }, [layoutThemeMode, dispatch, footertheme, footerModeType])
+    //top arrow icone function
+    const ScrollbarTop = () => {
+        document.body.scrollTop = 0
+        document.documentElement.scrollTop = 0
+    }
 
-  // const temp = ['a', 'b', 'c', 'd']
+    useEffect(() => {
+        if (footerModeType || layoutThemeMode) {
+            dispatch(changeLayoutMood(footertheme))
+            dispatch(changeThemeMood(layoutThemeMode))
+        }
+    }, [layoutThemeMode, dispatch, footertheme, footerModeType])
 
-  // const _category: any = {
-  //   a: ['a', 'a', 'a', 'a'],
-  //   b: ['b', 'b', 'b', 'b'],
-  //   c: ['c', 'c', 'c', 'c'],
-  //   d: ['d', 'd', 'd', 'd']
-  // }
-  // const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
-  // const [hoverHover, setHoverHover] = useState(false)
-  return (
-    <React.Fragment>
-      {/* <TopBar></TopBar> */}
-      {location.pathname && <MainModal location={location.pathname} />}
+    // const temp = ['a', 'b', 'c', 'd']
 
-      <Header handleMood={handleThemeMood} />
+    // const _category: any = {
+    //   a: ['a', 'a', 'a', 'a'],
+    //   b: ['b', 'b', 'b', 'b'],
+    //   c: ['c', 'c', 'c', 'c'],
+    //   d: ['d', 'd', 'd', 'd']
+    // }
+    // const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
+    // const [hoverHover, setHoverHover] = useState(false)
+    return (
+        <React.Fragment>
+            {/* <TopBar></TopBar> */}
+            {location.pathname && <MainModal location={location.pathname} />}
 
-      {props.children}
-      <Footer />
+            <Header handleMood={handleThemeMood} />
 
-      <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
-        <i className="ri-arrow-up-line"></i>
-      </Button>
-    </React.Fragment>
-  )
+            {props.children}
+            <Footer />
+
+            <Button onClick={() => ScrollbarTop()} variant="info" className="btn-icon" style={{ bottom: '50px' }} id="back-to-top">
+                <i className="ri-arrow-up-line"></i>
+            </Button>
+        </React.Fragment>
+    )
 }
 
 export default Layout

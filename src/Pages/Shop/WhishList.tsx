@@ -8,26 +8,26 @@ import { Shoptopbar } from 'Components/ShopTopBar'
 // import HotDeals from 'Components/HotDeals'
 
 const WishList = () => {
-  document.title = 'Wishlist | Toner - React Frontend'
-  return (
-    <React.Fragment>
-      <Shoptopbar title="Wishlist" page="Wishlist" />
-      <section className="section">
-        <Container>
-          <Row>
-            <Col lg={12}>
-              <div className="table-responsive">
-                <Table className="fs-15 table-nowrap align-middle">
-                  <thead>
-                    <tr>
-                      <th scope="col">Product</th>
-                      <th scope="col">Price</th>
-                      <th scope="col">Stock Status</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* {(wishlishProduct || [])?.map((item, inx) => {
+    document.title = 'Wishlist | Toner - React Frontend'
+    return (
+        <React.Fragment>
+            <Shoptopbar title="Wishlist" page="Wishlist" />
+            <section className="section">
+                <Container>
+                    <Row>
+                        <Col lg={12}>
+                            <div className="table-responsive">
+                                <Table className="fs-15 table-nowrap align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Product</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Stock Status</th>
+                                            <th scope="col">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* {(wishlishProduct || [])?.map((item, inx) => {
                       return (
                         <tr key={inx}>
                           <td>
@@ -66,22 +66,22 @@ const WishList = () => {
                         </tr>
                       )
                     })} */}
-                  </tbody>
-                </Table>
-              </div>
-              <div className="hstack gap-2 justify-content-end mt-2">
-                <Link to="product-list" className="btn btn-hover btn-secondary">
-                  Continue Shopping <i className="ri-arrow-right-line align-bottom"></i>
-                </Link>
-                <Link to="/shop/checkout" className="btn btn-hover btn-primary">
-                  Check Out <i className="ri-arrow-right-line align-bottom"></i>
-                </Link>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </React.Fragment>
-  )
+                                    </tbody>
+                                </Table>
+                            </div>
+                            <div className="hstack gap-2 justify-content-end mt-2">
+                                <Link to="product-list" className="btn btn-hover btn-secondary">
+                                    Continue Shopping <i className="ri-arrow-right-line align-bottom"></i>
+                                </Link>
+                                <Link to="/shop/checkout" className="btn btn-hover btn-primary">
+                                    Check Out <i className="ri-arrow-right-line align-bottom"></i>
+                                </Link>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+        </React.Fragment>
+    )
 }
 export default WishList

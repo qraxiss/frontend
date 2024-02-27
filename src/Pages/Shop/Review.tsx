@@ -6,14 +6,14 @@ import { Shoptopbar } from 'Components/ShopTopBar'
 // import { shopReviews } from 'Common/data'
 
 const Review = () => {
-  document.title = 'Customer Review | Toner - React FrontEnd'
-  return (
-    <React.Fragment>
-      <Shoptopbar title="Product Reviews" page="Review" />
-      <section className="section">
-        <Container>
-          <Row data-masonry='{"percentPosition": true }' style={{ position: 'relative', height: '812.982px' }}>
-            {/* {(shopReviews || [])?.map((item, inx) => {
+    document.title = 'Customer Review | Toner - React FrontEnd'
+    return (
+        <React.Fragment>
+            <Shoptopbar title="Product Reviews" page="Review" />
+            <section className="section">
+                <Container>
+                    <Row data-masonry='{"percentPosition": true }' style={{ position: 'relative', height: '812.982px' }}>
+                        {/* {(shopReviews || [])?.map((item, inx) => {
               return (
                 <Col key={inx} lg={4} md={6}>
                   <Card>
@@ -33,12 +33,12 @@ const Review = () => {
                 </Col>
               )
             })} */}
-          </Row>
-        </Container>
-      </section>
-      {/* <ContactHelp cname="section" /> */}
-    </React.Fragment>
-  )
+                    </Row>
+                </Container>
+            </section>
+            {/* <ContactHelp cname="section" /> */}
+        </React.Fragment>
+    )
 }
 
 export default Review

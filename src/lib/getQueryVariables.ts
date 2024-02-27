@@ -1,9 +1,9 @@
 export function params(entries: any) {
-  let paramsObject: Record<string, string> = {}
+    let paramsObject: Record<string, string> = {}
 
-  for (let [param, value] of entries) {
-    paramsObject[param] = value
-  }
+    for (let [param, value] of entries) {
+        paramsObject[param] = value
+    }
 
-  return paramsObject
+    return paramsObject
 }

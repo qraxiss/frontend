@@ -6,38 +6,38 @@ import DeleteModal, { ModalAdd } from 'Components/DeleteModal'
 // import { selectAddressData } from 'Common/data'
 
 const Selectaddress = () => {
-  document.title = 'Shop | Select address | Toner - React FrontEnd'
+    document.title = 'Shop | Select address | Toner - React FrontEnd'
 
-  // const [addressData, setAddressData] = useState(selectAddressData)
-  //delete id
-  const [id, setId] = useState('')
+    // const [addressData, setAddressData] = useState(selectAddressData)
+    //delete id
+    const [id, setId] = useState('')
 
-  //Home Address
-  const [removeModel, setRemovemodel] = useState(false)
-  const RemoveModel = (id: any) => {
-    setRemovemodel(!removeModel)
-    setId(id)
-  }
+    //Home Address
+    const [removeModel, setRemovemodel] = useState(false)
+    const RemoveModel = (id: any) => {
+        setRemovemodel(!removeModel)
+        setId(id)
+    }
 
-  const deleteData = () => {
-    // setAddressData(selectAddressData?.filter((delet: any) => delet.id !== id))
-  }
+    const deleteData = () => {
+        // setAddressData(selectAddressData?.filter((delet: any) => delet.id !== id))
+    }
 
-  //Add address
-  const [addressModal, setAddressModal] = useState(false)
-  const handleClose = () => setAddressModal(false)
-  const handleShow = () => setAddressModal(true)
+    //Add address
+    const [addressModal, setAddressModal] = useState(false)
+    const handleClose = () => setAddressModal(false)
+    const handleShow = () => setAddressModal(true)
 
-  return (
-    <React.Fragment>
-      <section className="section">
-        <Container>
-          <Row>
-            <Col xl={8}>
-              <div>
-                <h4 className="fs-18 mb-4">Select or add an address</h4>
-                <Row className="g-4" id="address-list">
-                  {/* {(addressData || [])?.map((item: any) => {
+    return (
+        <React.Fragment>
+            <section className="section">
+                <Container>
+                    <Row>
+                        <Col xl={8}>
+                            <div>
+                                <h4 className="fs-18 mb-4">Select or add an address</h4>
+                                <Row className="g-4" id="address-list">
+                                    {/* {(addressData || [])?.map((item: any) => {
                     return (
                       <Col lg={6} key={item.id}>
                         <div>
@@ -81,46 +81,46 @@ const Selectaddress = () => {
                       </Col>
                     )
                   })} */}
-                </Row>
-                <Row className="mt-4">
-                  <Col lg={6}>
-                    <div className="text-center p-4 rounded-3 border border-2 border-dashed">
-                      <div className="avatar-md mx-auto mb-4">
-                        <div className="avatar-title bg-success-subtle text-success rounded-circle display-6">
-                          <i className="bi bi-house-add"></i>
-                        </div>
-                      </div>
-                      <h5 className="fs-16 mb-3">Add New Address</h5>
-                      <Button
-                        variant="success"
-                        className="btn-sm w-xs stretched-link addAddress-modal"
-                        data-bs-toggle="modal"
-                        data-bs-target="#addAddressModal"
-                        onClick={handleShow}
-                      >
-                        Add
-                      </Button>
-                    </div>
-                  </Col>
-                </Row>
-                <div className="hstack gap-2 justify-content-start mt-3">
-                  <Button variant="danger" className="btn btn-hover">
-                    Continue Shopping
-                  </Button>
-                </div>
-              </div>
-            </Col>
-            <Col xl={4}>
-              <div className="sticky-side-div">
-                <Shoporder />
-              </div>
-            </Col>
-          </Row>
-          <DeleteModal removeModel={removeModel} hideModal={RemoveModel} deleteData={deleteData} />
-          <ModalAdd addressModal={addressModal} handleClose={handleClose} />
-        </Container>
-      </section>
-    </React.Fragment>
-  )
+                                </Row>
+                                <Row className="mt-4">
+                                    <Col lg={6}>
+                                        <div className="text-center p-4 rounded-3 border border-2 border-dashed">
+                                            <div className="avatar-md mx-auto mb-4">
+                                                <div className="avatar-title bg-success-subtle text-success rounded-circle display-6">
+                                                    <i className="bi bi-house-add"></i>
+                                                </div>
+                                            </div>
+                                            <h5 className="fs-16 mb-3">Add New Address</h5>
+                                            <Button
+                                                variant="success"
+                                                className="btn-sm w-xs stretched-link addAddress-modal"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#addAddressModal"
+                                                onClick={handleShow}
+                                            >
+                                                Add
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </Row>
+                                <div className="hstack gap-2 justify-content-start mt-3">
+                                    <Button variant="danger" className="btn btn-hover">
+                                        Continue Shopping
+                                    </Button>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col xl={4}>
+                            <div className="sticky-side-div">
+                                <Shoporder />
+                            </div>
+                        </Col>
+                    </Row>
+                    <DeleteModal removeModel={removeModel} hideModal={RemoveModel} deleteData={deleteData} />
+                    <ModalAdd addressModal={addressModal} handleClose={handleClose} />
+                </Container>
+            </section>
+        </React.Fragment>
+    )
 }
 export default Selectaddress

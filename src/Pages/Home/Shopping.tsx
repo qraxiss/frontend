@@ -6,16 +6,16 @@ import { Link } from 'react-router-dom'
 import { CommonTitle } from 'Components/Homepage'
 
 const Shoping = () => {
-  return (
-    <React.Fragment>
-      <section className="section bg-light bg-opacity-50">
-        <Container>
-          <CommonTitle
-            title="Shop insights feeds"
-            dicription="Shopping Insights gives marketers a 360-degree view of a product's popularity. Harnessing search volume data for more than 7,000 popular products (and counting)"
-          />
-          <Row className="mt-5">
-            {/* {(shopingsCollection || [])?.map((item, inx) => {
+    return (
+        <React.Fragment>
+            <section className="section bg-light bg-opacity-50">
+                <Container>
+                    <CommonTitle
+                        title="Shop insights feeds"
+                        dicription="Shopping Insights gives marketers a 360-degree view of a product's popularity. Harnessing search volume data for more than 7,000 popular products (and counting)"
+                    />
+                    <Row className="mt-5">
+                        {/* {(shopingsCollection || [])?.map((item, inx) => {
               return (
                 <Col lg={4} key={inx}>
                   <Card className="overflow-hidden">
@@ -49,16 +49,16 @@ const Shoping = () => {
               )
             })} */}
 
-            <div className="mt-4 text-center">
-              <Link to="#" className="btn btn-soft-primary btn-hover">
-                View More Articles <i className="bi bi-arrow-right ms-2"></i>
-              </Link>
-            </div>
-          </Row>
-        </Container>
-      </section>
-    </React.Fragment>
-  )
+                        <div className="mt-4 text-center">
+                            <Link to="#" className="btn btn-soft-primary btn-hover">
+                                View More Articles <i className="bi bi-arrow-right ms-2"></i>
+                            </Link>
+                        </div>
+                    </Row>
+                </Container>
+            </section>
+        </React.Fragment>
+    )
 }
 
 export default Shoping

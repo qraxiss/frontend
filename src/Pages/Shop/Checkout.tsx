@@ -7,29 +7,29 @@ import { ShopingAddress } from './ShoppingAddress'
 import { useNavigate } from 'react-router-dom'
 
 const Checkout = () => {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  document.title = 'Checkout | Toner - React FrontEnd'
-  return (
-    <React.Fragment>
-      <section className="section">
-        <Container>
-          <Row>
-            <Col lg={8}>
-              <Card>
-                <Card.Body>
-                  <div className="table-responsive table-card">
-                    <Table className="align-middle table-borderless table-nowrap text-center mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col">Product</th>
-                          <th scope="col">Rate</th>
-                          <th scope="col">Order ID</th>
-                          <th scope="col">Price</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {/* {(shopProducDetails || [])?.map((item, inx) => {
+    document.title = 'Checkout | Toner - React FrontEnd'
+    return (
+        <React.Fragment>
+            <section className="section">
+                <Container>
+                    <Row>
+                        <Col lg={8}>
+                            <Card>
+                                <Card.Body>
+                                    <div className="table-responsive table-card">
+                                        <Table className="align-middle table-borderless table-nowrap text-center mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Product</th>
+                                                    <th scope="col">Rate</th>
+                                                    <th scope="col">Order ID</th>
+                                                    <th scope="col">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {/* {(shopProducDetails || [])?.map((item, inx) => {
                           return (
                             <tr key={inx}>
                               <td className="text-start">
@@ -51,44 +51,44 @@ const Checkout = () => {
                             </tr>
                           )
                         })} */}
-                      </tbody>
-                    </Table>
-                  </div>
-                </Card.Body>
-              </Card>
-              <ShopingAddress title="Select or add an address" HomeAdd="Home Address" officeAdd="Office Address" />
-              <ShopingAddress title="Billing Address" />
-            </Col>
-            <Col lg={4}>
-              <div className="sticky-side-div">
-                <Shoporder subtotal="510.50" dic="18.00" charge="2.4" tax="1.6" total="630.25" />
-                <div className="hstack gap-2 justify-content-between justify-content-end">
-                  <Button
-                    className="btn btn-hover btn-soft-info w-100"
-                    onClick={() => {
-                      navigate('/shop/shopingcard')
-                    }}
-                  >
-                    Back To Cart <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
-                  </Button>
-                  <Button
-                    className="btn btn-hover btn-primary w-100"
-                    onClick={() => {
-                      navigate('/shop/payment')
-                    }}
-                  >
-                    Continue Payment
-                  </Button>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      {/* <EmailClothe />
+                                            </tbody>
+                                        </Table>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                            <ShopingAddress title="Select or add an address" HomeAdd="Home Address" officeAdd="Office Address" />
+                            <ShopingAddress title="Billing Address" />
+                        </Col>
+                        <Col lg={4}>
+                            <div className="sticky-side-div">
+                                <Shoporder subtotal="510.50" dic="18.00" charge="2.4" tax="1.6" total="630.25" />
+                                <div className="hstack gap-2 justify-content-between justify-content-end">
+                                    <Button
+                                        className="btn btn-hover btn-soft-info w-100"
+                                        onClick={() => {
+                                            navigate('/shop/shopingcard')
+                                        }}
+                                    >
+                                        Back To Cart <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                                    </Button>
+                                    <Button
+                                        className="btn btn-hover btn-primary w-100"
+                                        onClick={() => {
+                                            navigate('/shop/payment')
+                                        }}
+                                    >
+                                        Continue Payment
+                                    </Button>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+            {/* <EmailClothe />
       <CommonService /> */}
-    </React.Fragment>
-  )
+        </React.Fragment>
+    )
 }
 
 export default Checkout

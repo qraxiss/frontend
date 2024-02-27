@@ -11,50 +11,49 @@ import translationFr from './locales/fr.json'
 import translationAr from './locales/ar.json'
 
 const resources = {
-  en: {
-    translation: translationEn
-  },
-  sp: {
-    translation: translationSp
-  },
-  gr: {
-    translation: translationGr
-  },
-  it: {
-    translation: translationIt
-  },
-  ru: {
-    translation: translationRu
-  },
-  ch: {
-    translation: translationCh
-  },
-  fr: {
-    translation: translationFr
-  },
-  ar: {
-    translation: translationAr
-  }
+    en: {
+        translation: translationEn
+    },
+    sp: {
+        translation: translationSp
+    },
+    gr: {
+        translation: translationGr
+    },
+    it: {
+        translation: translationIt
+    },
+    ru: {
+        translation: translationRu
+    },
+    ch: {
+        translation: translationCh
+    },
+    fr: {
+        translation: translationFr
+    },
+    ar: {
+        translation: translationAr
+    }
 }
 
 const language = localStorage.getItem('I18NLANGUAGE')
 if (!language) {
-  localStorage.setItem('I18NLANGUAGE', 'en')
+    localStorage.setItem('I18NLANGUAGE', 'en')
 }
 
-i18n
-  .use(detector)
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: localStorage.getItem('I18NLANGUAGE') || 'en',
-    fallbackLng: 'en', // use en if detected lng is not available
+i18n.use(detector)
+    .use(initReactI18next)
+    .init({
+        resources,
+        lng: localStorage.getItem('I18NLANGUAGE') || 'en',
+        fallbackLng: 'en', // use en if detected lng is not available
 
-    keySeparator: false, // we do not use keys in form messages.welcome
+        keySeparator: false, // we do not use keys in form messages.welcome
 
-    interpolation: {
-      escapeValue: false // react already safes from xss
-    }
-  })
+        interpolation: {
+            escapeValue: false // react already safes from xss
+        }
+    })
 
 export default i18n

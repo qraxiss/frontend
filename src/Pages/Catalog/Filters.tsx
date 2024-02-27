@@ -5,102 +5,102 @@ import { Link } from 'react-router-dom'
 import { filterSettingsType } from 'models/ProductType'
 
 const Filters = ({ name, filterSettings, setFilterSettings }: any) => {
-  const isOpen = (name: string) => {
-    const findFilter = filterSettings.find((filter: any) => filter.name === name)
+    const isOpen = (name: string) => {
+        const findFilter = filterSettings.find((filter: any) => filter.name === name)
 
-    if (findFilter) findFilter.open = !findFilter.open
+        if (findFilter) findFilter.open = !findFilter.open
 
-    setFilterSettings([...filterSettings])
-  }
-
-  // Filtre seçimi için gerekli ekleme çıkarma işlemini yapan fonksiyon
-  const filterChecking = (name: string, option: string, checked: boolean) => {
-    if (filterSettings.length === 0) return
-    const findFilter: filterSettingsType = filterSettings.find((filter: any) => filter.name === name)
-    if (!findFilter) return
-    if (checked) {
-      if (!findFilter.choosen.includes(option)) findFilter.choosen.push(option)
-    } else {
-      if (findFilter.choosen.includes(option)) findFilter.choosen = findFilter.choosen.filter((check: string) => check !== option)
+        setFilterSettings([...filterSettings])
     }
-    setFilterSettings([...filterSettings])
-  }
 
-  //   Tekli filtre kompnoneti
-  const tempFilterComponent = (filter: filterSettingsType, index: number) => {
+    // Filtre seçimi için gerekli ekleme çıkarma işlemini yapan fonksiyon
+    const filterChecking = (name: string, option: string, checked: boolean) => {
+        if (filterSettings.length === 0) return
+        const findFilter: filterSettingsType = filterSettings.find((filter: any) => filter.name === name)
+        if (!findFilter) return
+        if (checked) {
+            if (!findFilter.choosen.includes(option)) findFilter.choosen.push(option)
+        } else {
+            if (findFilter.choosen.includes(option)) findFilter.choosen = findFilter.choosen.filter((check: string) => check !== option)
+        }
+        setFilterSettings([...filterSettings])
+    }
+
+    //   Tekli filtre kompnoneti
+    const tempFilterComponent = (filter: filterSettingsType, index: number) => {
+        return (
+            <div className="accordion-item" key={index}>
+                <h2 className="accordion-header" id="flush-headingBrands">
+                    <Button
+                        onClick={() => isOpen(filter.name)}
+                        className="accordion-button bg-transparent shadow-none"
+                        aria-controls="flush-collapseBrands"
+                        aria-expanded={filter.open}
+                    >
+                        <span className="text-muted text-uppercase fs-12 fw-medium">{filter.name}</span>
+                        <span className="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
+                    </Button>
+                </h2>
+                <Collapse in={filter.open}>
+                    <div id="flush-collapseBrands">
+                        <div className="accordion-collapse collapse show" aria-labelledby="flush-headingBrands">
+                            <div className="accordion-body text-body pt-0">
+                                {/* Search bar */}
+                                <div className="search-box search-box-sm">
+                                    <Form.Control type="text" className=" bg-light border-0" id="searchBrandsList" placeholder="Ara..." />
+                                    <i className="ri-search-line search-icon"></i>
+                                </div>
+                                <div className="d-flex flex-column gap-2 mt-3 filter-check">
+                                    {filter.options.map((option: { value: string }, index: number) => {
+                                        return (
+                                            <div key={index} className="form-check">
+                                                <Form.Check
+                                                    type="checkbox"
+                                                    value={option.value}
+                                                    onChange={(e: any) => filterChecking(filter.name, option.value, e.target.checked)}
+                                                    id={option.value}
+                                                />
+                                                <Form.Label className="form-check-label" htmlFor={option.value}>
+                                                    {option.value}
+                                                </Form.Label>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Collapse>
+            </div>
+        )
+    }
+
     return (
-      <div className="accordion-item" key={index}>
-        <h2 className="accordion-header" id="flush-headingBrands">
-          <Button
-            onClick={() => isOpen(filter.name)}
-            className="accordion-button bg-transparent shadow-none"
-            aria-controls="flush-collapseBrands"
-            aria-expanded={filter.open}
-          >
-            <span className="text-muted text-uppercase fs-12 fw-medium">{filter.name}</span>
-            <span className="badge bg-success rounded-pill align-middle ms-1 filter-badge"></span>
-          </Button>
-        </h2>
-        <Collapse in={filter.open}>
-          <div id="flush-collapseBrands">
-            <div className="accordion-collapse collapse show" aria-labelledby="flush-headingBrands">
-              <div className="accordion-body text-body pt-0">
-                {/* Search bar */}
-                <div className="search-box search-box-sm">
-                  <Form.Control type="text" className=" bg-light border-0" id="searchBrandsList" placeholder="Ara..." />
-                  <i className="ri-search-line search-icon"></i>
-                </div>
-                <div className="d-flex flex-column gap-2 mt-3 filter-check">
-                  {filter.options.map((option: { value: string }, index: number) => {
-                    return (
-                      <div key={index} className="form-check">
-                        <Form.Check
-                          type="checkbox"
-                          value={option.value}
-                          onChange={(e: any) => filterChecking(filter.name, option.value, e.target.checked)}
-                          id={option.value}
-                        />
-                        <Form.Label className="form-check-label" htmlFor={option.value}>
-                          {option.value}
-                        </Form.Label>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
+        <React.Fragment>
+            <div className={`${name}`}>
+                <Card className="overflow-hidden">
+                    {/* Filter header */}
+                    <Card.Header>
+                        <div className="d-flex mb-3">
+                            <div className="flex-grow-1">
+                                <h5 className="fs-16">Filtreler</h5>
+                            </div>
+                            <div className="flex-shrink-0">
+                                <Link to="#" className="text-decoration-underline" id="clearall">
+                                    Hepsini Temizle
+                                </Link>
+                            </div>
+                        </div>
+                    </Card.Header>
+                    <div className="accordion accordion-flush filter-accordion">
+                        {filterSettings.map((data: filterSettingsType, index: number) => {
+                            return tempFilterComponent(data, index)
+                        })}
+                    </div>
+                </Card>
             </div>
-          </div>
-        </Collapse>
-      </div>
+        </React.Fragment>
     )
-  }
-
-  return (
-    <React.Fragment>
-      <div className={`${name}`}>
-        <Card className="overflow-hidden">
-          {/* Filter header */}
-          <Card.Header>
-            <div className="d-flex mb-3">
-              <div className="flex-grow-1">
-                <h5 className="fs-16">Filtreler</h5>
-              </div>
-              <div className="flex-shrink-0">
-                <Link to="#" className="text-decoration-underline" id="clearall">
-                  Hepsini Temizle
-                </Link>
-              </div>
-            </div>
-          </Card.Header>
-          <div className="accordion accordion-flush filter-accordion">
-            {filterSettings.map((data: filterSettingsType, index: number) => {
-              return tempFilterComponent(data, index)
-            })}
-          </div>
-        </Card>
-      </div>
-    </React.Fragment>
-  )
 }
 
 export default Filters

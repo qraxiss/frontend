@@ -4,7 +4,7 @@ import { combineReducers } from '@reduxjs/toolkit'
 import LayoutReducer from './layouts/reducer'
 
 const rootreducer = combineReducers({
-  Layout: LayoutReducer
+    Layout: LayoutReducer
 })
 
 export default rootreducer
