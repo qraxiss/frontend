@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Card, Col, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -33,12 +33,12 @@ const Logout = () => {
   let jwt = localStorage.getItem('jwt')
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    if (!jwt){
+  useEffect(() => {
+    if (!jwt) {
       navigate('/')
     } else {
       localStorage.removeItem('jwt')
-      setTimeout(()=>{
+      setTimeout(() => {
         navigate('/')
       }, 3000)
     }
@@ -47,13 +47,12 @@ const Logout = () => {
   const [icon, setIcon] = useState<string>('')
   const iconRes = useQuery(query)
 
-  useEffect(()=>{
+  useEffect(() => {
     if (iconRes.loading) return
     if (iconRes.error) return
-    if (!iconRes.data) return 
+    if (!iconRes.data) return
 
     setIcon(config.serverUrl + iconRes.data.account.url)
-
   }, [iconRes.loading])
 
   return (
