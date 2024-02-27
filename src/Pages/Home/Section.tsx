@@ -78,8 +78,8 @@ export default function Section() {
                                 rounded
                                 alt=""
                                 style={{
-                                    width: '210px',
-                                    maxWidth: '600px',
+                                    width: '420px',
+                                    maxWidth: '800px',
                                     height: '490px',
                                     objectFit: 'cover'
                                 }}
@@ -117,8 +117,8 @@ export default function Section() {
                                     alt=""
                                     rounded
                                     style={{
-                                        width: '210px',
-                                        maxWidth: '600px',
+                                        width: '420px',
+                                        maxWidth: '800px',
                                         height: '240px',
                                         objectFit: 'cover'
                                     }}
@@ -156,8 +156,8 @@ export default function Section() {
                                         alt=""
                                         rounded
                                         style={{
-                                            width: '210px',
-                                            maxWidth: '600px',
+                                            width: '420px',
+                                            maxWidth: '800px',
                                             height: '240px',
                                             objectFit: 'cover'
                                         }}
@@ -186,8 +186,8 @@ export default function Section() {
                                         alt=""
                                         rounded
                                         style={{
-                                            width: '210px',
-                                            maxWidth: '600px',
+                                            width: '420px',
+                                            maxWidth: '800px',
                                             height: '240px',
                                             objectFit: 'cover'
                                         }}
