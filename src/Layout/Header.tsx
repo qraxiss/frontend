@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Dropdown, Button, Row, Col, Card, Modal, Image, Navbar, Nav, Form } from 'react-bootstrap'
 
-import { CardModal, SearchModal } from 'Components/MainModal'
+import { CardModal, SearchModal, AccountModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
@@ -110,7 +110,7 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
         <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
         <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">{cartCount}</span>
       </Button>
-      <span className='text-secondary'>${totalPrice}</span>
+      <span className="text-secondary">${totalPrice}</span>
     </div>
   )
 }
@@ -278,7 +278,26 @@ function SideLogo(props: { logo: any }) {
   )
 }
 
+function AgirShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
+  return (
+    <div className="topbar-head-dropdown ms-1 header-item">
+      <Button
+        type="button"
+        className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#ecommerceCart"
+        aria-controls="ecommerceCart"
+        onClick={props.handlecardShow}
+      >
+        <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+      </Button>
+    </div>
+  )
+}
+
 const Header = (props: any) => {
+  let jwt = localStorage.getItem('jwt')
+
   let { data, loading, error } = useQuery(query)
   const [categories, setCategories] = useState([])
   const [logo, setLogo] = useState({
@@ -324,6 +343,11 @@ const Header = (props: any) => {
 
   const handlecardClose = () => setCard(false)
   const handlecardShow = () => setCard(true)
+
+  //account modal
+  const [account, setAccount] = useState(false)
+  const handleAccountClose = () => setAccount(false)
+  const handleAccountShow = () => setAccount(true)
 
   const [showMenu, setShowMenu] = useState<any>('')
   const menuShow = (item: any) => {
@@ -435,20 +459,21 @@ const Header = (props: any) => {
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
               <SideLogo logo={logo} />
-              <Form.Control size="lg" type="text" onClick={handleShow} placeholder='Search for product...'/>
+              <Form.Control size="lg" type="text" onClick={handleShow} placeholder="Search for product..." />
               <SearchModal show={show} handleClose={handleClose} />
             </Nav>
           </Navbar.Collapse>
 
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
           <div className="d-flex align-items-center">
-            <Account iconPath={icon.account.url}></Account>
+            {jwt ? <Account iconPath={icon.account.url}></Account>: <AgirShoppingIcon iconPath={icon.account.url} handlecardShow={handleAccountShow}></AgirShoppingIcon>}
             <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow}></WishListIcon>
             <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
           </div>
         </Container>
       </Navbar>
       <CardModal show={card} handleClose={handlecardClose} />
+      <AccountModal show={account} handleClose={handleAccountClose}></AccountModal>
 
       <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
         <Container>
@@ -460,9 +485,12 @@ const Header = (props: any) => {
           </Navbar.Collapse>
           <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
           <div className="d-flex align-items-center">
-            <div className='text-primary' style={{
-              justifyContent: 'right'
-            }}>
+            <div
+              className="text-primary"
+              style={{
+                justifyContent: 'right'
+              }}
+            >
               WORLDWIDE <br></br> SHIPPING
             </div>
           </div>
