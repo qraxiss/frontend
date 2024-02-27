@@ -74,7 +74,7 @@ export default function Section() {
                         <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                             <Image
                                 src={campaigns[0]?.image?.url}
-                                className="w-100"
+                                className="w-100 section-image"
                                 rounded
                                 alt=""
                                 style={{
@@ -113,14 +113,14 @@ export default function Section() {
                             <Link to={campaigns[1]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                 <Image
                                     src={campaigns[1]?.image.url}
-                                    className="w-100"
+                                    className="w-100 section-image"
                                     alt=""
                                     rounded
                                     style={{
                                         width: '210px',
                                         maxWidth: '600px',
                                         height: '240px',
-                                        objectFit: 'cover'
+                                        objectFit: 'cover',
                                     }}
                                 />
                                 <div className="product-content p-3 ps-5">
@@ -150,7 +150,7 @@ export default function Section() {
                                 <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                     <Image
                                         src={campaigns[2]?.image.url}
-                                        className="w-100"
+                                        className="w-100 section-image"
                                         alt=""
                                         rounded
                                         style={{
@@ -180,7 +180,7 @@ export default function Section() {
                                 <Link to={campaigns[3]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                     <Image
                                         src={campaigns[3]?.image.url}
-                                        className="w-100"
+                                        className="w-100 section-image"
                                         alt=""
                                         rounded
                                         style={{
