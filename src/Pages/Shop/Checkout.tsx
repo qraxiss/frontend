@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 const Checkout = () => {
   const navigate = useNavigate()
 
-
   document.title = 'Checkout | Toner - React FrontEnd'
   return (
     <React.Fragment>
@@ -64,18 +63,20 @@ const Checkout = () => {
               <div className="sticky-side-div">
                 <Shoporder subtotal="510.50" dic="18.00" charge="2.4" tax="1.6" total="630.25" />
                 <div className="hstack gap-2 justify-content-between justify-content-end">
-                  <Button className="btn btn-hover btn-soft-info w-100" onClick={
-                    ()=>{
+                  <Button
+                    className="btn btn-hover btn-soft-info w-100"
+                    onClick={() => {
                       navigate('/shop/shopingcard')
-                    }
-                  }>
+                    }}
+                  >
                     Back To Cart <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                   </Button>
-                  <Button className="btn btn-hover btn-primary w-100" onClick={
-                    ()=>{
+                  <Button
+                    className="btn btn-hover btn-primary w-100"
+                    onClick={() => {
                       navigate('/shop/payment')
-                    }
-                  }>
+                    }}
+                  >
                     Continue Payment
                   </Button>
                 </div>

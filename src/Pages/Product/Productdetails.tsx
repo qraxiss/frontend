@@ -34,7 +34,6 @@ const query = gql`
   }
 `
 
-
 type resultType = {
   name: string
   slug: string
@@ -50,7 +49,7 @@ const Productdetails = () => {
   })
 
   let addToCart = useMutation(addItemToCart)
-  let {refetch} = useQuery(cartQuery)
+  let { refetch } = useQuery(cartQuery)
 
   let productsData = useQuery(products)
   const [productsList, setProductsList] = useState<any[]>([])
@@ -199,14 +198,16 @@ const Productdetails = () => {
                   </div>
                 </div>
                 <div className="hstack gap-2">
-                  <Button variant="success" className="btn btn-hover w-100" onClick={
-                    ()=>{
+                  <Button
+                    variant="success"
+                    className="btn btn-hover w-100"
+                    onClick={() => {
                       addToCart.fn({
-                        variables: {slug}
+                        variables: { slug }
                       })
                       refetch()
-                    }
-                  }>
+                    }}
+                  >
                     <i className="bi bi-basket2 me-2" /> Add To Cart
                   </Button>
                   <Button variant="primary" className="btn btn-hover w-100 h-10">

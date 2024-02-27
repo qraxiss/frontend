@@ -714,8 +714,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
 export const AccountModal = ({ show, handleClose }: any) => {
   const [sign, setSign] = useState<boolean>(true)
-  
-  
+
   const SignIn = () => {
     let { fn, data, error, loading } = useMutation(login)
     const navigate = useNavigate()
@@ -836,11 +835,12 @@ export const AccountModal = ({ show, handleClose }: any) => {
                     <div className="text-center mt-5">
                       <p className="mb-0">
                         Don't have an account ?{' '}
-                        <Button className="fw-semibold text-secondary text-decoration-underline" onClick={
-                          ()=>{
+                        <Button
+                          className="fw-semibold text-secondary text-decoration-underline"
+                          onClick={() => {
                             setSign(false)
-                          }
-                        }>
+                          }}
+                        >
                           {' '}
                           SignUp
                         </Button>{' '}
@@ -984,11 +984,12 @@ export const AccountModal = ({ show, handleClose }: any) => {
                   <div className="mt-4 text-center">
                     <p className="mb-0">
                       Already have an account ?{' '}
-                      <Button className="fw-semibold text-primary text-decoration-underline" onClick={
-                          ()=>{
-                            setSign(true)
-                          }
-                        }>
+                      <Button
+                        className="fw-semibold text-primary text-decoration-underline"
+                        onClick={() => {
+                          setSign(true)
+                        }}
+                      >
                         {' '}
                         Signin{' '}
                       </Button>{' '}
@@ -1012,10 +1013,7 @@ export const AccountModal = ({ show, handleClose }: any) => {
           </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className=" px-0">
-          <SimpleBar className="h-100">{
-            sign ? <SignIn/> : <SignUp/>
-
-          }</SimpleBar>
+          <SimpleBar className="h-100">{sign ? <SignIn /> : <SignUp />}</SimpleBar>
         </Offcanvas.Body>
       </Offcanvas>
     </React.Fragment>

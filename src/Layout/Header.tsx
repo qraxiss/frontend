@@ -18,6 +18,13 @@ const query = gql`
         attributes {
           name
           slug
+          icon {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
           childs {
             data {
               attributes {
@@ -205,6 +212,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
             props.menuShow(item.name)
           }}
         >
+          <Image src={config.serverUrl+item.icon.url} className='page-icons'></Image>
           {(item.name as string).toUpperCase()}
         </Link>
 
@@ -230,21 +238,6 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
   })
   return pages
 }
-
-function Search(props: { handleShow: any }) {
-  return (
-    <Button
-      type="button"
-      className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
-      data-bs-toggle="modal"
-      data-bs-target="#searchModal"
-      onClick={props.handleShow}
-    >
-      <i className="bx bx-search fs-22"></i>
-    </Button>
-  )
-}
-
 function Logo(props: { logo: any }) {
   return (
     <Navbar.Brand className="d-none d-lg-block">
@@ -292,7 +285,7 @@ function AgirShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
         aria-controls="ecommerceCart"
         onClick={props.handlecardShow}
       >
-        <Image className="rounded-circle header-profile-user" width="50" src={props.iconPath} alt="Header Avatar" />
+        <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
       </Button>
     </div>
   )
@@ -462,12 +455,16 @@ const Header = (props: any) => {
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
               <SideLogo logo={logo} />
-              <Form.Control size="lg" type="text" onClick={handleShow} placeholder="Search for product..." style={
-                {
+              <Form.Control
+                size="lg"
+                type="text"
+                onClick={handleShow}
+                placeholder="Search for product..."
+                style={{
                   paddingRight: '400px',
                   borderRadius: '35px'
-                }
-              } />
+                }}
+              />
               <SearchModal show={show} handleClose={handleClose} />
             </Nav>
           </Navbar.Collapse>
