@@ -101,6 +101,7 @@ export default function Section() {
                 style={{
                   gap: '10px'
                 }}
+                key={campaign.image.url}
               >
                 <div
                   style={{
