@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Container, Row, Tab, Alert, Nav } from 'react-bootstrap'
+import { Card, Col, Container, Row, Tab, Nav } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 
 const Payment = () => {
@@ -8,13 +8,6 @@ const Payment = () => {
     <React.Fragment>
       <section className="section pb-4">
         <Container>
-          <Row>
-            <Col lg={12}>
-              <Alert className="alert-danger text-center text-capitalize mb-4 fs-14">
-                save up to <b>30%</b> to <b>40%</b> off omg! just look at the <b>great deals</b>!
-              </Alert>
-            </Col>
-          </Row>
           <Row className="product-list">
             <Col xl={8}>
               <h5 className="mb-0 flex-grow-1">Payment Selection</h5>
