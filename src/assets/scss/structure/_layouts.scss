@@ -4,11 +4,6 @@
 
 [data-layout-width='boxed'] {
     body {
-        background: $body-bg-image;
-        zoom: 200%;
-        transform: scale(1.5);
-        transform-origin: 0 0;
-
         &::before {
             content: '';
             position: absolute;
@@ -39,14 +34,14 @@
 
     &:is([data-sidebar-size='sm-hover'], [data-sidebar-size='sm']) {
         &[data-layout='vertical'] {
-            @media (min-width: 768px) {
+            @media (min-width: 1400px) {
                 #layout-wrapper {
                     min-height: 1400px;
                 }
             }
 
             .main-content {
-                @media (max-width: 767.98px) {
+                @media (min-width: 1399px) {
                     margin-left: 0;
                 }
             }
@@ -57,7 +52,7 @@
             left: 0 !important;
             max-width: calc(#{$boxed-layout-width} - #{$vertical-menu-width-sm});
 
-            @media (min-width: 768px) {
+            @media (min-width: 1400px) {
                 left: $vertical-menu-width-sm !important;
             }
         }
@@ -68,7 +63,7 @@
         .footer {
             max-width: calc(#{$boxed-layout-width} - #{$vertical-menu-width});
 
-            @media (min-width: 768px) {
+            @media (min-width: 1400px) {
                 left: $vertical-menu-width !important;
             }
         }
@@ -79,7 +74,7 @@
         .footer {
             max-width: calc(#{$boxed-layout-width} - #{$vertical-menu-width-md});
 
-            @media (min-width: 768px) {
+            @media (min-width: 1400px) {
                 left: $vertical-menu-width-md !important;
             }
         }

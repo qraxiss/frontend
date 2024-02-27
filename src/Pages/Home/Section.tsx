@@ -120,7 +120,7 @@ export default function Section() {
                                         width: '210px',
                                         maxWidth: '600px',
                                         height: '240px',
-                                        objectFit: 'cover',
+                                        objectFit: 'cover'
                                     }}
                                 />
                                 <div className="product-content p-3 ps-5">
@@ -133,9 +133,11 @@ export default function Section() {
                     {/*Sağ alt*/}
                     <Row
                         className="g-2"
-                        style={{
-                            gap: '10px'
-                        }}
+                        style={
+                            {
+                                // gap: '10px'
+                            }
+                        }
                     >
                         {/*sağ*/}
                         <Col>

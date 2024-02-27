@@ -30,6 +30,13 @@ const query = gql`
                     }
                 }
             }
+            categories {
+                data {
+                    attributes {
+                        name
+                    }
+                }
+            }
         }
     }
 `
@@ -155,9 +162,15 @@ const Productdetails = () => {
                                                             data-swiper-slide-index={item.id}
                                                             role="group"
                                                             aria-label={`${item.id} / 5`}
-                                                            style={{ width: '458px', marginRight: '10px' }}
+                                                            style={{ marginRight: '10px' }}
                                                         >
-                                                            <Image src={item.img} alt="" fluid />
+                                                            <Image
+                                                                src={item.img}
+                                                                style={{
+                                                                    width: '100%',
+                                                                    height: 'auto'
+                                                                }}
+                                                            />
                                                         </div>
                                                     </SwiperSlide>
                                                 )
@@ -176,63 +189,7 @@ const Productdetails = () => {
                             <div className="ecommerce-product-widgets mt-4 mt-lg-0">
                                 <div className="mb-4">
                                     <h4 className="lh-base mb-1">{data.name}</h4>
-                                    <p className="text-muted mb-4">{data.description}</p>
                                     <h5 className="fs-24 mb-4">${data.price}</h5>
-                                    <ul className="list-unstyled vstack gap-2">
-                                        <li>
-                                            <i className="bi bi-check2-circle me-2 align-middle text-success" />
-                                            In stock
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="d-flex align-items-center mb-4">
-                                    <h5 className="fs-15 mb-0">Quantity:</h5>
-                                    <div className="input-step ms-2">
-                                        <Button className="minus" onClick={() => setCount(count - 1)}>
-                                            -
-                                        </Button>
-                                        <Form.Control
-                                            type="number"
-                                            className="product-quantity1"
-                                            value={count > 0 ? count : 0}
-                                            min={0}
-                                            max={100}
-                                            readOnly
-                                        />
-                                        <Button className="plus" onClick={() => setCount(count + 1)}>
-                                            +
-                                        </Button>
-                                    </div>
-                                </div>
-                                <div className="hstack gap-2">
-                                    <Button
-                                        variant="success"
-                                        className="btn btn-hover w-100"
-                                        onClick={() => {
-                                            addToCart.fn({
-                                                variables: { slug }
-                                            })
-                                            refetch()
-                                        }}
-                                    >
-                                        <i className="bi bi-basket2 me-2" /> Add To Cart
-                                    </Button>
-                                    <Button variant="primary" className="btn btn-hover w-100 h-10">
-                                        <i className="bi bi-cart2 me-2" /> Buy Now
-                                    </Button>
-                                    <Button
-                                        className="btn btn-soft-danger custom-toggle btn-hover"
-                                        data-bs-toggle="button"
-                                        aria-pressed="false"
-                                        onClick={(ele: any) => handleLikeIcone(ele.target)}
-                                    >
-                                        <span className="icon-on">
-                                            <i className="ri-heart-line" />
-                                        </span>
-                                        <span className="icon-off">
-                                            <i className="ri-heart-fill" />
-                                        </span>
-                                    </Button>
                                 </div>
                                 <Row className="gy-3">
                                     <Col md={6}>
@@ -305,6 +262,55 @@ const Productdetails = () => {
                                         </ul>
                                     </Col>
                                 </Row>
+                                <div className="d-flex align-items-center mb-4">
+                                    <h5 className="fs-15 mb-0">Quantity:</h5>
+                                    <div className="input-step ms-2">
+                                        <Button className="minus" onClick={() => setCount(count - 1)}>
+                                            -
+                                        </Button>
+                                        <Form.Control
+                                            type="number"
+                                            className="product-quantity1"
+                                            value={count > 0 ? count : 0}
+                                            min={0}
+                                            max={100}
+                                            readOnly
+                                        />
+                                        <Button className="plus" onClick={() => setCount(count + 1)}>
+                                            +
+                                        </Button>
+                                    </div>
+                                </div>
+                                <div className="hstack gap-2">
+                                    <Button
+                                        variant="primary"
+                                        className="btn btn-hover w-100"
+                                        onClick={() => {
+                                            addToCart.fn({
+                                                variables: { slug }
+                                            })
+                                            refetch()
+                                        }}
+                                    >
+                                        <i className="bi bi-basket2 me-2" /> Add To Cart
+                                    </Button>
+                                    <Button variant="primary" className="btn btn-hover w-100 h-10">
+                                        <i className="bi bi-cart2 me-2" /> Buy Now
+                                    </Button>
+                                    <Button
+                                        className="btn btn-soft-danger custom-toggle btn-hover"
+                                        data-bs-toggle="button"
+                                        aria-pressed="false"
+                                        onClick={(ele: any) => handleLikeIcone(ele.target)}
+                                    >
+                                        <span className="icon-on">
+                                            <i className="ri-heart-line" />
+                                        </span>
+                                        <span className="icon-off">
+                                            <i className="ri-heart-fill" />
+                                        </span>
+                                    </Button>
+                                </div>
                             </div>
                         </Col>
                         {/*end col*/}
@@ -322,17 +328,32 @@ const Productdetails = () => {
                                     <Col sm={12}>
                                         <Nav variant="tabs" className="nav-tabs-custom mb-3">
                                             <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Information">
+                                                    {' '}
+                                                    Additional Information
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Description">
                                                     {' '}
                                                     Description
                                                 </Nav.Link>
-                                                <Nav.Link as="a" eventKey="Description">
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Reviews">
                                                     {' '}
+                                                    Reviews
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Shipping">
+                                                    {' '}
+                                                    Shipping
                                                 </Nav.Link>
                                             </Nav.Item>
                                         </Nav>
                                         <Tab.Content>
-                                            <Tab.Pane eventKey="Description">
+                                            <Tab.Pane eventKey="Information">
                                                 <div className="tab-pane active show" id="profile1" role="tabpanel">
                                                     <Table className="table-sm table-borderless align-middle">
                                                         <tbody>
@@ -340,63 +361,11 @@ const Productdetails = () => {
                                                                 [
                                                                     {
                                                                         thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
+                                                                        tdata: 'XL'
                                                                     },
                                                                     {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'Bla bla bla bla bla bla'
+                                                                        thead: 'Color',
+                                                                        tdata: 'Blue'
                                                                     }
                                                                 ] as any[]
                                                             ).map((item: any, idx) => {
@@ -407,25 +376,12 @@ const Productdetails = () => {
                                                                     </tr>
                                                                 )
                                                             })}
-                                                            <tr>
-                                                                <th>Color</th>
-                                                                <td>
-                                                                    <div className="avatar-xs">
-                                                                        <div className="avatar-title rounded" />
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
                                                         </tbody>
                                                     </Table>
-                                                    <p className="text-muted fs-15">
-                                                        Clothing serves many purposes: it can serve as protection from the elements, rough surfaces,
-                                                        sharp stones, rash-causing plants, insect bites, by providing a barrier between the skin and
-                                                        the environment. It is worth noting that a man's style goes beyond his outward appearance.
-                                                        Style is about more than the clothes you wear. It's who you are on the inside and how you
-                                                        present yourself to the outside world. It's having appreciation and cultivating gratitude.
-                                                    </p>
                                                 </div>
                                             </Tab.Pane>
+
+                                            <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
                                         </Tab.Content>
                                     </Col>
                                 </Row>
