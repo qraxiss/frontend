@@ -119,7 +119,7 @@ export default function Section() {
                                     style={{
                                         width: '420px',
                                         maxWidth: '800px',
-                                        height: '240px',
+                                        height: '280px',
                                         objectFit: 'cover'
                                     }}
                                 />
@@ -158,7 +158,7 @@ export default function Section() {
                                         style={{
                                             width: '420px',
                                             maxWidth: '800px',
-                                            height: '240px',
+                                            height: '200px',
                                             objectFit: 'cover'
                                         }}
                                     />
@@ -188,7 +188,7 @@ export default function Section() {
                                         style={{
                                             width: '420px',
                                             maxWidth: '800px',
-                                            height: '240px',
+                                            height: '200px',
                                             objectFit: 'cover'
                                         }}
                                     />
