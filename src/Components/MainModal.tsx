@@ -696,7 +696,6 @@ export const CardModal = ({ show, handleClose }: any) => {
             </Col>
             <Col xs={6}>
               <Button
-                target="_blank"
                 className="btn btn-info w-100"
                 onClick={() => {
                   navigate('/shop/checkout')
