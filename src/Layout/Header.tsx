@@ -292,7 +292,7 @@ function AgirShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
         aria-controls="ecommerceCart"
         onClick={props.handlecardShow}
       >
-        <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+        <Image className="rounded-circle header-profile-user" width="50" src={props.iconPath} alt="Header Avatar" />
       </Button>
     </div>
   )
@@ -462,7 +462,12 @@ const Header = (props: any) => {
           <Navbar.Collapse id="navbarSupportedContent">
             <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
               <SideLogo logo={logo} />
-              <Form.Control size="lg" type="text" onClick={handleShow} placeholder="Search for product..." />
+              <Form.Control size="lg" type="text" onClick={handleShow} placeholder="Search for product..." style={
+                {
+                  paddingRight: '400px',
+                  borderRadius: '35px'
+                }
+              } />
               <SearchModal show={show} handleClose={handleClose} />
             </Nav>
           </Navbar.Collapse>
