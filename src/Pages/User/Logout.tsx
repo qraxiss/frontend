@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Card, Col, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
@@ -9,23 +9,52 @@ import config from 'config/config'
 import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 
+import { useNavigate } from 'react-router-dom'
+
 const query = gql`
   query {
-    profilePicture {
-      url
+    icon {
+      data {
+        attributes {
+          account {
+            data {
+              attributes {
+                url
+              }
+            }
+          }
+        }
+      }
     }
   }
 `
 
-let originalPp: string
-
 const Logout = () => {
-  let { data, loading, error } = useQuery(query)
+  let jwt = localStorage.getItem('jwt')
+  const navigate = useNavigate()
 
-  if (!loading && !!localStorage.getItem('jwt')) {
-    originalPp = data.url
-    localStorage.removeItem('jwt')
-  }
+  useEffect(()=>{
+    if (!jwt){
+      navigate('/')
+    } else {
+      localStorage.removeItem('jwt')
+      setTimeout(()=>{
+        navigate('/')
+      }, 3000)
+    }
+  }, [])
+
+  const [icon, setIcon] = useState<string>('')
+  const iconRes = useQuery(query)
+
+  useEffect(()=>{
+    if (iconRes.loading) return
+    if (iconRes.error) return
+    if (!iconRes.data) return 
+
+    setIcon(config.serverUrl + iconRes.data.account.url)
+
+  }, [iconRes.loading])
 
   return (
     <React.Fragment>
@@ -38,7 +67,7 @@ const Logout = () => {
                   <Card className="border-0 mb-0">
                     <Card.Body className="text-center">
                       <div className="mb-4">
-                        <Image src={config.serverUrl + (originalPp || data?.url)} alt="" className="avatar-md rounded-circle" />
+                        <Image src={icon} alt="" className="avatar-md rounded-circle" />
                       </div>
                       <div>
                         <Link to="/signin" className="btn btn-primary w-100">
