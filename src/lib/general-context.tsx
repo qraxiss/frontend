@@ -22,6 +22,10 @@ export const GeneralProvider = ({ children }: any) => {
     const [cartItems, setCartItems] = useState<any[]>([])
 
     useEffect(()=>{
+        if (!localStorage.getItem('jwt')){
+            return
+        }
+
         if (cartData.loading) {
             return
         }
@@ -37,10 +41,17 @@ export const GeneralProvider = ({ children }: any) => {
     }, [cartData.loading])
 
     useEffect(()=>{
+        if (!localStorage.getItem('jwt')){
+            return
+        }
+
         if (cartData.data) setCartItems(cartData.data)
     }, [cartData.data])
 
     useEffect(()=>{
+        if (!localStorage.getItem('jwt')){
+            return
+        }
         cartData.refetch()
         console.log(cartData.loading, 'refetch')
     }, [deleteItem.loading, addItem.loading])
