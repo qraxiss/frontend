@@ -613,7 +613,17 @@
     }
 }
 
-.swiper-slide {
+.product-thumb {
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        border-color: $secondary !important;
+        border-width: 4px;
+    }
+}
+
+.swiper-slide-duplicate{
     img {
         width: 100%;
         height: auto;
