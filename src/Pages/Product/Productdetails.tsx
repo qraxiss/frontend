@@ -267,21 +267,8 @@ const Productdetails = () => {
                                     >
                                         <i className="bi bi-basket2 me-2" /> Add To Cart
                                     </Button>
-                                    <Button variant="primary" className="btn btn-hover w-100 h-10">
+                                    <Button variant="secondary" className="btn btn-hover w-100 h-10">
                                         <i className="bi bi-cart2 me-2" /> Buy Now
-                                    </Button>
-                                    <Button
-                                        className="btn btn-soft-danger custom-toggle btn-hover"
-                                        data-bs-toggle="button"
-                                        aria-pressed="false"
-                                        onClick={(ele: any) => handleLikeIcone(ele.target)}
-                                    >
-                                        <span className="icon-on">
-                                            <i className="ri-heart-line" />
-                                        </span>
-                                        <span className="icon-off">
-                                            <i className="ri-heart-fill" />
-                                        </span>
                                     </Button>
                                 </div>
                             </div>
@@ -299,7 +286,7 @@ const Productdetails = () => {
                             <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
                                 <Row>
                                     <Col sm={12}>
-                                        <Nav variant="tabs" className="nav-tabs-custom mb-3">
+                                        <Nav variant="underline" className="nav-tabs-custom mb-3">
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Information">
                                                     {' '}

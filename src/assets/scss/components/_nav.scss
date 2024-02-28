@@ -29,7 +29,7 @@
 
 .nav-tabs-custom {
     border-bottom: 1px solid var(--#{$prefix}border-color-translucent);
-
+    justify-content: center;
     .nav-item {
         position: relative;
 
