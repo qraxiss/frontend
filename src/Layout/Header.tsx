@@ -9,7 +9,6 @@ import withRouter from 'Components/withRouter'
 import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
-import { cartQuery } from 'lib/common-queries'
 import { useCart } from 'context/cart-context'
 import { useUser } from 'context/user-context'
 
@@ -115,7 +114,11 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
                     {cartCount}
                 </span>
             </Button>
-            <span className="text-secondary">${totalPrice}</span>
+            <span className="text-secondary" style={
+                {
+                    paddingLeft: '15px'
+                }
+            }>${totalPrice}</span>
         </div>
     )
 }
@@ -239,10 +242,10 @@ function Logo(props: { logo: any }) {
         <Navbar.Brand className="d-none d-lg-block">
             <Link to="/">
                 <div className="logo-dark">
-                    <Image src={props.logo.text.url} alt="" height="50" />
+                    <Image src={props.logo.text.url} alt="" height="60" />
                 </div>
                 <div className="logo-light">
-                    <Image src={props.logo.text.url} alt="" height="50" />
+                    <Image src={props.logo.text.url} alt="" height="60" />
                 </div>
             </Link>
         </Navbar.Brand>
@@ -270,7 +273,7 @@ function SideLogo(props: { logo: any }) {
     )
 }
 
-function AgirShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
+function SignInUp(props: { handlecardShow: any; iconPath: string }) {
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Button
@@ -457,11 +460,12 @@ const Header = (props: any) => {
                                 onClick={handleShow}
                                 placeholder="Search for product..."
                                 style={{
-                                    paddingRight: '400px',
-                                    borderRadius: '35px'
+                                    paddingRight: '560px',
+                                    borderRadius: '35px',
+                                    color: 'red'
                                 }}
                             />
-                            <SearchModal show={show} handleClose={handleClose} />
+                            {/* <SearchModal show={show} handleClose={handleClose} /> */}
                         </Nav>
                     </Navbar.Collapse>
 
@@ -470,9 +474,9 @@ const Header = (props: any) => {
                         {jwt ? (
                             <Account iconPath={icon.account.url}></Account>
                         ) : (
-                            <AgirShoppingIcon iconPath={icon.account.url} handlecardShow={handleAccountShow}></AgirShoppingIcon>
+                            <SignInUp iconPath={icon.account.url} handlecardShow={handleAccountShow}></SignInUp>
                         )}
-                        <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow}></WishListIcon>
+
                         <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
                     </div>
                 </Container>
@@ -490,14 +494,25 @@ const Header = (props: any) => {
                     </Navbar.Collapse>
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        <div
-                            className="text-primary"
-                            style={{
-                                justifyContent: 'right'
-                            }}
-                        >
-                            WORLDWIDE <br></br> SHIPPING
+                        <div className="info-box-inner set-cont-mb-s reset-last-child">
+                            <h6 style={{ marginBottom: '0px', fontSize: '14px', textAlign: 'right' }}>WORLDWIDE</h6>
+                            <p
+                                style={{
+                                    textAlign: 'right'
+                                }}
+                            >
+                                <span
+                                    style={{
+                                        color: '#000000',
+                                        fontSize: '14px'
+                                    }}
+                                >
+                                    SHIPPING
+                                </span>
+                            </p>
                         </div>
+                        <Image src={icon.account.url} className='header-profile-user'></Image>
+
                     </div>
                 </Container>
             </Navbar>

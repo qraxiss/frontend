@@ -198,17 +198,19 @@
     height: $header-height;
     display: flex;
     align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .header-profile-user {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
 }
 
 .page-icons {
-    padding-right: 12px;
-    height: 28px;
-    width: 28px;
+    padding-right: 15px;
+    height: 37px;
+    width: 37px;
 }
 
 .topbar-badge-sm {
@@ -217,8 +219,8 @@
 }
 
 .topbar-badge {
-    right: -9px;
-    top: 4px !important;
+    right: -20px;
+    top: -1px !important;
 }
 
 .navbar-header .topbar-user {

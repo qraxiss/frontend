@@ -168,7 +168,7 @@ export const CartProvider = ({ children }: any) => {
             value={{
                 cartItems,
                 deleteItem: deleteItemLocal,
-                addItem: addItemLocal,
+                addItem: addItemLocal
             }}
         >
             {children}
