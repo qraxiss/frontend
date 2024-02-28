@@ -3,10 +3,10 @@ import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import config from 'config/config'
 import { productListType } from 'models/ProductType'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 export const CardComponent = ({ data }: { data: productListType }) => {
-    let { addItem } = useGeneral()
+    let { addItem } = useCart()
 
     return (
         <Card className="overflow-hidden">

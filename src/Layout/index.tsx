@@ -7,7 +7,7 @@ import Footer from './Footer'
 import Header from './Header'
 import { MainModal } from 'Components/MainModal'
 import { createSelector } from 'reselect'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 const Layout = (props: any) => {
     let location = useLocation()

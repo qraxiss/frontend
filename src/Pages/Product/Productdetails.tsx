@@ -13,7 +13,7 @@ import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 
@@ -31,7 +31,7 @@ const Productdetails = () => {
         variables: { slug }
     })
 
-    let { addItem } = useGeneral()
+    let { addItem } = useCart()
 
     let productsData = useQuery(products)
     const [productsList, setProductsList] = useState<any[]>([])

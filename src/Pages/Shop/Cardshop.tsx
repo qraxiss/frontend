@@ -7,12 +7,12 @@ import DeleteModal from 'Components/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 
 import config from 'config/config'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 const Cardshop = () => {
     let navigate = useNavigate()
 
-    let { cartItems, addItem, deleteItem } = useGeneral()
+    let { cartItems, addItem, deleteItem } = useCart()
 
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)

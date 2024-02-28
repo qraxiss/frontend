@@ -10,7 +10,7 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 const query = gql`
     query {
@@ -85,7 +85,7 @@ const query = gql`
     }
 `
 function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
-    let { cartItems } = useGeneral()
+    let { cartItems } = useCart()
     const [cartCount, setCartCount] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     useEffect(() => {

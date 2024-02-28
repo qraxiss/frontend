@@ -1,20 +1,24 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug } from './common-queries'
-import { useQuery, useMutation, useLazyQuery } from './query-wrapper'
+import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug } from '../../lib/common-queries'
+import { useQuery, useMutation, useLazyQuery } from '../../lib/query-wrapper'
+import { useUser } from './user-context'
 
-const GeneralContext = createContext<any>({})
+const CartContext = createContext<any>({})
 
-export const useGeneral = () => {
-    return useContext(GeneralContext) as {
-        addItem: Function
-        deleteItem: Function
-        cartItems: any
-    }
+export type CartContextType = {
+    addItem: Function
+    deleteItem: Function
+    cartItems: any
 }
 
-export const GeneralProvider = ({ children }: any) => {
-    let jwt = localStorage.getItem('jwt')
+export const useCart = () => {
+    return useContext(CartContext) as CartContextType
+}
+
+export const CartProvider = ({ children }: any) => {
+    let {jwt} = useUser()
+
 
     let cartData = useQuery(cartQuery)
     let addItem = useMutation(addItemToCart)
@@ -145,5 +149,5 @@ export const GeneralProvider = ({ children }: any) => {
         }
     }, [deleteItem.loading, addItem.loading])
 
-    return <GeneralContext.Provider value={{ cartItems, deleteItem: deleteItemFn, addItem: addItemFn }}>{children}</GeneralContext.Provider>
+    return <CartContext.Provider value={{ cartItems, deleteItem: deleteItemFn, addItem: addItemFn }}>{children}</CartContext.Provider>
 }

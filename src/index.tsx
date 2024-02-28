@@ -10,7 +10,7 @@ import rootreducer from 'slices'
 import { client } from 'lib/apollo-wrapper'
 import { ApolloProvider } from '@apollo/client'
 
-import { GeneralProvider } from 'lib/general-context'
+import { Context } from 'Components/context'
 
 import ScrollToTop from 'lib/auto-scroll'
 const store = configureStore({ reducer: rootreducer, devTools: true })
@@ -22,9 +22,9 @@ root.render(
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <ApolloProvider client={client}>
                     <ScrollToTop />
-                    <GeneralProvider>
+                    <Context>
                         <App />
-                    </GeneralProvider>
+                    </Context>
                 </ApolloProvider>
             </BrowserRouter>
         </React.Fragment>

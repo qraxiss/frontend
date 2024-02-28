@@ -20,7 +20,7 @@ import { gql } from '@apollo/client'
 import config from 'config/config'
 import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
-import { useGeneral } from 'lib/general-context'
+import { useCart } from 'Components/context/cart-context'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -519,7 +519,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     let navigate = useNavigate()
 
-    let { cartItems, deleteItem, addItem } = useGeneral()
+    let { cartItems, deleteItem, addItem } = useCart()
 
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
