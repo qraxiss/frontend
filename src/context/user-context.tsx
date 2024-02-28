@@ -19,6 +19,15 @@ export const UserProvider = ({ children }: any) => {
         localStorage.removeItem('jwt')
         setJwt(null)
     }
+    
+    useEffect(()=>{
+        if (jwt){
+            console.log('logged')
+            localStorage.setItem('jwt', jwt)
+        } else {
+            console.log('logout')
+        }
+    }, [jwt])
 
     return <UserContext.Provider value={{ jwt, setJwt, deleteJwt }}>{children}</UserContext.Provider>
 }
