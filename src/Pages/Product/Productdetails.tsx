@@ -116,7 +116,6 @@ const Productdetails = () => {
                                 {/*end col*/}
                                 <Col md={10}>
                                     <div className="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
-
                                         <Swiper
                                             // onSwiper={setThumbsSwiper}
                                             rewind={true}
@@ -134,12 +133,7 @@ const Productdetails = () => {
                                                             aria-label={`${item.id} / 5`}
                                                             style={{ marginRight: '10px' }}
                                                         >
-                                                            <Image
-                                                                src={item.img}
-                                                                style={{
-
-                                                                }}
-                                                            />
+                                                            <Image src={item.img} style={{}} />
                                                         </div>
                                                     </SwiperSlide>
                                                 )
@@ -159,6 +153,23 @@ const Productdetails = () => {
                                 <div className="mb-4">
                                     <h4 className="lh-base mb-1">{data.name}</h4>
                                     <h5 className="fs-24 mb-4">${data.price}</h5>
+                                </div>
+
+                                <div className="hstack gap-2">
+                                    <Button
+                                        variant="primary"
+                                        className="btn btn-hover w-100"
+                                        onClick={() => {
+                                            addItem({
+                                                variables: { slug }
+                                            })
+                                        }}
+                                    >
+                                        <i className="bi bi-basket2 me-2" /> Add To Cart
+                                    </Button>
+                                    <Button variant="secondary" className="btn btn-hover w-100 h-10">
+                                        <i className="bi bi-cart2 me-2" /> Buy Now
+                                    </Button>
                                 </div>
                                 <Row className="gy-3">
                                     <Col md={6}>
@@ -250,22 +261,75 @@ const Productdetails = () => {
                                         </Button>
                                     </div>
                                 </div>
-                                <div className="hstack gap-2">
-                                    <Button
-                                        variant="primary"
-                                        className="btn btn-hover w-100"
-                                        onClick={() => {
-                                            addItem({
-                                                variables: { slug }
-                                            })
-                                        }}
-                                    >
-                                        <i className="bi bi-basket2 me-2" /> Add To Cart
-                                    </Button>
-                                    <Button variant="secondary" className="btn btn-hover w-100 h-10">
-                                        <i className="bi bi-cart2 me-2" /> Buy Now
-                                    </Button>
-                                </div>
+                                <Row>
+                                    <Col lg={12}>
+                                        <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
+                                            <Row>
+                                                <Col sm={12}>
+                                                    <Nav variant="underline" className="nav-tabs-custom mb-3">
+                                                        <Nav.Item as="li">
+                                                            <Nav.Link as="a" eventKey="Information">
+                                                                {' '}
+                                                                Additional Information
+                                                            </Nav.Link>
+                                                        </Nav.Item>
+                                                        <Nav.Item as="li">
+                                                            <Nav.Link as="a" eventKey="Description">
+                                                                {' '}
+                                                                Description
+                                                            </Nav.Link>
+                                                        </Nav.Item>
+                                                        <Nav.Item as="li">
+                                                            <Nav.Link as="a" eventKey="Reviews">
+                                                                {' '}
+                                                                Reviews
+                                                            </Nav.Link>
+                                                        </Nav.Item>
+                                                        <Nav.Item as="li">
+                                                            <Nav.Link as="a" eventKey="Shipping">
+                                                                {' '}
+                                                                Shipping
+                                                            </Nav.Link>
+                                                        </Nav.Item>
+                                                    </Nav>
+                                                    <Tab.Content>
+                                                        <Tab.Pane eventKey="Information">
+                                                            <div className="tab-pane active show" id="profile1" role="tabpanel">
+                                                                <Table className="table-sm table-borderless align-middle">
+                                                                    <tbody>
+                                                                        {(
+                                                                            [
+                                                                                {
+                                                                                    thead: 'Size',
+                                                                                    tdata: 'XL'
+                                                                                },
+                                                                                {
+                                                                                    thead: 'Color',
+                                                                                    tdata: 'Blue'
+                                                                                }
+                                                                            ] as any[]
+                                                                        ).map((item: any, idx) => {
+                                                                            return (
+                                                                                <tr key={idx}>
+                                                                                    <th>{item.thead}</th>
+                                                                                    <td>{item.tdata}</td>
+                                                                                </tr>
+                                                                            )
+                                                                        })}
+                                                                    </tbody>
+                                                                </Table>
+                                                            </div>
+                                                        </Tab.Pane>
+
+                                                        <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
+                                                    </Tab.Content>
+                                                </Col>
+                                            </Row>
+                                        </Tab.Container>
+                                    </Col>
+                                    {/*end col*/}
+                                </Row>
+
                             </div>
                         </Col>
                         {/*end col*/}
@@ -274,7 +338,7 @@ const Productdetails = () => {
                 {/*end container*/}
             </section>
 
-            <section className="section pt-0">
+            {/* <section className="section pt-0">
                 <Container>
                     <Row>
                         <Col lg={12}>
@@ -342,11 +406,9 @@ const Productdetails = () => {
                                 </Row>
                             </Tab.Container>
                         </Col>
-                        {/*end col*/}
                     </Row>
-                    {/*end row*/}
                 </Container>
-            </section>
+            </section> */}
 
             <section className="section pt-0">
                 <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}

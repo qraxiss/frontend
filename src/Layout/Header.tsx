@@ -512,9 +512,12 @@ const Header = (props: any) => {
                     <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
                         <Image src={icon.collections.url} className="header-profile-user"></Image>
                         <div>
-                            <h6 className="text-primary" style={{
-                                        marginBottom: '0px'
-                                    }}>
+                            <h6
+                                className="text-primary"
+                                style={{
+                                    marginBottom: '0px'
+                                }}
+                            >
                                 <span>COLLECTIONS</span>
                             </h6>
                         </div>
@@ -541,9 +544,13 @@ const Header = (props: any) => {
                                     <span>FREE SHIPPING</span>
                                 </p>
                             </div>
-                            <Image src={icon.delivery.url} style={{
-                                paddingLeft: '10px'
-                            }} className="header-profile-user"/>
+                            <Image
+                                src={icon.delivery.url}
+                                style={{
+                                    paddingLeft: '10px'
+                                }}
+                                className="header-profile-user"
+                            />
                         </div>
                     </Navbar.Collapse>
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
