@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug } from '../../lib/common-queries'
-import { useQuery, useMutation, useLazyQuery } from '../../lib/query-wrapper'
+import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug } from '../lib/common-queries'
+import { useQuery, useMutation, useLazyQuery } from '../lib/query-wrapper'
 import { useUser } from './user-context'
 
 const CartContext = createContext<any>({})

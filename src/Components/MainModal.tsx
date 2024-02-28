@@ -20,8 +20,8 @@ import { gql } from '@apollo/client'
 import config from 'config/config'
 import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
-import { useCart } from 'Components/context/cart-context'
-import { useUser } from './context/user-context'
+import { useCart } from 'context/cart-context'
+import { useUser } from '../context/user-context'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -514,10 +514,6 @@ export const SearchModal = ({ show, handleClose }: any) => {
 //card modal
 
 export const CardModal = ({ show, handleClose }: any) => {
-    // if (!localStorage.getItem('jwt')){
-    //   return <></>
-    // }
-
     let navigate = useNavigate()
 
     let { cartItems, deleteItem, addItem } = useCart()
@@ -709,7 +705,8 @@ export const CardModal = ({ show, handleClose }: any) => {
 
 export const AccountModal = ({ show, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
-    let { jwt, setJwt } = useUser()
+    let {jwt, setJwt} = useUser()
+
 
     const SignIn = () => {
         let { fn, data, error, loading } = useMutation(login)

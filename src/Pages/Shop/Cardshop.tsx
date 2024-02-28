@@ -7,7 +7,7 @@ import DeleteModal from 'Components/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 
 import config from 'config/config'
-import { useCart } from 'Components/context/cart-context'
+import { useCart } from 'context/cart-context'
 
 const Cardshop = () => {
     let navigate = useNavigate()

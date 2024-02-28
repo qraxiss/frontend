@@ -11,7 +11,7 @@ import { gql } from '@apollo/client'
 
 import { useNavigate } from 'react-router-dom'
 
-import { useUser } from 'Components/context/user-context'
+import { useUser } from 'context/user-context'
 
 const query = gql`
     query {

@@ -10,7 +10,7 @@ import rootreducer from 'slices'
 import { client } from 'lib/apollo-wrapper'
 import { ApolloProvider } from '@apollo/client'
 
-import { Context } from 'Components/context'
+import { Context } from 'context'
 
 import ScrollToTop from 'lib/auto-scroll'
 const store = configureStore({ reducer: rootreducer, devTools: true })

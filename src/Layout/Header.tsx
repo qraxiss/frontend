@@ -10,8 +10,8 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
-import { useCart } from 'Components/context/cart-context'
-import { useUser } from 'Components/context/user-context'
+import { useCart } from 'context/cart-context'
+import { useUser } from 'context/user-context'
 
 const query = gql`
     query {

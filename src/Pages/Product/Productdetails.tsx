@@ -13,7 +13,7 @@ import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
-import { useCart } from 'Components/context/cart-context'
+import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 

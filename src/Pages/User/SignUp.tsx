@@ -6,7 +6,7 @@ import { useFormik } from 'formik'
 
 import { register } from 'lib/common-queries'
 import { useMutation } from 'lib/query-wrapper'
-import { useUser } from 'Components/context/user-context'
+import { useUser } from 'context/user-context'
 
 const SignUp = () => {
     let { jwt, setJwt } = useUser()
