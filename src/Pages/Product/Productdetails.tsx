@@ -116,10 +116,6 @@ const Productdetails = () => {
                                 {/*end col*/}
                                 <Col md={10}>
                                     <div className="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
-                                        <div className="ribbon ribbon-danger ribbon-shape trending-ribbon">
-                                            <span className="trending-ribbon-text">Trending</span>
-                                            <i className="ri-flashlight-fill text-white align-bottom float-end ms-1" />
-                                        </div>
 
                                         <Swiper
                                             // onSwiper={setThumbsSwiper}
@@ -141,8 +137,7 @@ const Productdetails = () => {
                                                             <Image
                                                                 src={item.img}
                                                                 style={{
-                                                                    width: '100%',
-                                                                    height: 'auto'
+
                                                                 }}
                                                             />
                                                         </div>

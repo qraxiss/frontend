@@ -610,16 +610,16 @@
             height: 80px !important;
             margin-bottom: 15px;
         }
+    }
+}
 
-        .product-thumb {
-            border: 1px solid var(--#{$prefix}border-color-translucent);
-        }
-
-        &.swiper-slide-thumb-active {
-            .product-thumb {
-                border-color: $primary;
-            }
-        }
+.swiper-slide {
+    img {
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        border-color: $secondary !important;
+        border-width: 4px;
     }
 }
 
