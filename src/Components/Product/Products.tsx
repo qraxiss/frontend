@@ -13,7 +13,12 @@ const Products = ({ items, title }: any) => {
                 <Container>
                     <Row>
                         {items.map((item: any) => (
-                            <Col lg={3} key={item.slug}>
+                            <Col lg={2} key={item.slug}>
+                                <CardComponent data={item} />
+                            </Col>
+                        ))}{' '}
+                        {items.map((item: any) => (
+                            <Col lg={2} key={item.slug}>
                                 <CardComponent data={item} />
                             </Col>
                         ))}
