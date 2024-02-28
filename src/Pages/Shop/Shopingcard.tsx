@@ -2,7 +2,6 @@ import React from 'react'
 import { Row, Container } from 'react-bootstrap'
 import Cardshop from './Cardshop'
 
-
 const Shopingcard = () => {
     document.title = 'Shop Cart | Toner - React Frontend'
     return (

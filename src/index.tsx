@@ -23,7 +23,7 @@ root.render(
                 <ApolloProvider client={client}>
                     <ScrollToTop />
                     <GeneralProvider>
-                        <App/>
+                        <App />
                     </GeneralProvider>
                 </ApolloProvider>
             </BrowserRouter>

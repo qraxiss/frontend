@@ -6,8 +6,8 @@ import { productListType } from 'models/ProductType'
 import { useGeneral } from 'lib/general-context'
 
 export const CardComponent = ({ data }: { data: productListType }) => {
-    let {addItem} = useGeneral()
-    
+    let { addItem } = useGeneral()
+
     return (
         <Card className="overflow-hidden">
             <div className={`rounded-top py-4`}>

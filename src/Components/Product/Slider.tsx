@@ -65,7 +65,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                     {items.map((item: any) => {
                                         return (
                                             <SwiperSlide className="swiper-slide" key={item.slug}>
-                                                <CardComponent data={item}/>
+                                                <CardComponent data={item} />
                                             </SwiperSlide>
                                         )
                                     })}

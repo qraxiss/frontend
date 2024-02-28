@@ -519,10 +519,8 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     let navigate = useNavigate()
 
-    let {cartItems, deleteItem, addItem} = useGeneral()
+    let { cartItems, deleteItem, addItem } = useGeneral()
 
-    console.log(cartItems, 'cardModal')
-    
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
     const [dis, setDis] = useState(0)

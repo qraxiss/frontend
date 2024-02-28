@@ -7,7 +7,6 @@ import config from 'config/config'
 import { CardComponent } from 'Components/newComponents'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearchParams }: any) => {
-    
     //select
     const [select, setSelect] = useState('all')
     const pagination: boolean = true
@@ -87,7 +86,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
                             filterList.map((item: any, idx: any) => {
                                 return !cxl ? (
                                     <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
-                                        <CardComponent data={item} ></CardComponent>
+                                        <CardComponent data={item}></CardComponent>
                                     </Col>
                                 ) : (
                                     <Card className="ribbon-box" key={idx}>

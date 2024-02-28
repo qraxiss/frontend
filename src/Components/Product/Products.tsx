@@ -6,7 +6,6 @@ import { CardComponent } from 'Components/newComponents'
 import { CommonTitle } from 'Components/Homepage'
 
 const Products = ({ items, title }: any) => {
-
     return (
         <React.Fragment>
             <section className="section pb-0">

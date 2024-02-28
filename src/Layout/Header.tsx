@@ -85,7 +85,7 @@ const query = gql`
     }
 `
 function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
-    let {cartItems} = useGeneral()
+    let { cartItems } = useGeneral()
     const [cartCount, setCartCount] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     useEffect(() => {

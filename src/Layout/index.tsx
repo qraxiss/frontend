@@ -9,7 +9,6 @@ import { MainModal } from 'Components/MainModal'
 import { createSelector } from 'reselect'
 import { useGeneral } from 'lib/general-context'
 
-
 const Layout = (props: any) => {
     let location = useLocation()
     const dispatch: any = useDispatch()
@@ -70,7 +69,6 @@ const Layout = (props: any) => {
     // }
     // const [hoverSidebars, setHoverSidebar] = useState({ is: false, for: '' })
     // const [hoverHover, setHoverHover] = useState(false)
-
 
     return (
         <React.Fragment>

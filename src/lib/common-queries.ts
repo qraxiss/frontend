@@ -97,3 +97,28 @@ export let products = gql`
         }
     }
 `
+
+export const getSingleProductBySlug = gql`
+    query GET_PRODUCT($slug: String!) {
+        productBySlug(slug: $slug) {
+            name
+            slug
+            price
+            description
+            images {
+                data {
+                    attributes {
+                        url
+                    }
+                }
+            }
+            categories {
+                data {
+                    attributes {
+                        name
+                    }
+                }
+            }
+        }
+    }
+`

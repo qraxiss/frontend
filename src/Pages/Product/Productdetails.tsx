@@ -8,38 +8,14 @@ import 'swiper/css/thumbs'
 import 'swiper/css/navigation'
 
 import { useParams } from 'react-router-dom'
-import { gql } from '@apollo/client'
-import { useQuery, useMutation } from 'lib/query-wrapper'
+import { useQuery } from 'lib/query-wrapper'
 import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
 import { useGeneral } from 'lib/general-context'
 
-const query = gql`
-    query GET_PRODUCT($slug: String!) {
-        productBySlug(slug: $slug) {
-            name
-            slug
-            price
-            description
-            images {
-                data {
-                    attributes {
-                        url
-                    }
-                }
-            }
-            categories {
-                data {
-                    attributes {
-                        name
-                    }
-                }
-            }
-        }
-    }
-`
+import { getSingleProductBySlug } from 'lib/common-queries'
 
 type resultType = {
     name: string
@@ -51,11 +27,11 @@ type resultType = {
 
 const Productdetails = () => {
     let { slug } = useParams()
-    let { data, loading } = useQuery(query, {
+    let { data, loading } = useQuery(getSingleProductBySlug, {
         variables: { slug }
     })
 
-    let {addItem} = useGeneral()
+    let { addItem } = useGeneral()
 
     let productsData = useQuery(products)
     const [productsList, setProductsList] = useState<any[]>([])
