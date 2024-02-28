@@ -114,11 +114,14 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
                     {cartCount}
                 </span>
             </Button>
-            <span className="text-secondary" style={
-                {
+            <span
+                className="text-secondary"
+                style={{
                     paddingLeft: '15px'
-                }
-            }>${totalPrice}</span>
+                }}
+            >
+                ${totalPrice}
+            </span>
         </div>
     )
 }
@@ -511,8 +514,7 @@ const Header = (props: any) => {
                                 </span>
                             </p>
                         </div>
-                        <Image src={icon.account.url} className='header-profile-user'></Image>
-
+                        <Image src={icon.account.url} className="header-profile-user"></Image>
                     </div>
                 </Container>
             </Navbar>
