@@ -15,8 +15,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
     return (
         <React.Fragment>
             <section className="section pb-0">
-                <Container>
-                    <CommonTitle title={title} />
+                    <CommonTitle title={title}/>
                     <Row>
                         <Col lg={12}>
                             <Swiper
@@ -29,11 +28,11 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                 }}
                                 breakpoints={{
                                     640: {
-                                        slidesPerView: 4,
+                                        slidesPerView: 2,
                                         spaceBetween: 30
                                     },
                                     768: {
-                                        slidesPerView: 4,
+                                        slidesPerView: 3,
                                         spaceBetween: 30
                                     },
                                     1024: {
@@ -73,7 +72,6 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                             </Swiper>
                         </Col>
                     </Row>
-                </Container>
             </section>
         </React.Fragment>
     )
