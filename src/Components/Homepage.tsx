@@ -6,11 +6,14 @@ export const CommonTitle = ({ title, dicription }: any) => {
         <Row className="justify-content-center">
             <Col lg={7}>
                 <div className="text-center">
-                    <p className="mb-3" style={
-                        {
-                            'fontSize': '30px'
-                        }
-                    }>{title}</p>
+                    <p
+                        className="mb-3"
+                        style={{
+                            fontSize: '30px'
+                        }}
+                    >
+                        {title}
+                    </p>
                     <p className="text-muted fs-15">{dicription}</p>
                 </div>
             </Col>
