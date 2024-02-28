@@ -15,9 +15,9 @@ export const UserProvider = ({ children }: any) => {
     let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
     let tempJwt = localStorage.getItem('jwt')
 
-    if (jwt !== tempJwt){
+    useEffect(()=>{
         setJwt(tempJwt)
-    }
-
+    }, [tempJwt])
+    
     return <UserContext.Provider value={{ jwt, setJwt }}>{children}</UserContext.Provider>
 }
