@@ -16,18 +16,17 @@ export const useAll = (): AllContextValue => {
 export const Context = ({ children }: any) => {
     const userContextValue = useUser()
     const cartContextValue = useCart()
-  
+
     const allContextValue: AllContextValue = {
-      user: userContextValue,
-      cart: cartContextValue,
-    };
-  
+        user: userContextValue,
+        cart: cartContextValue
+    }
+
     return (
-      <AllContext.Provider value={allContextValue}>
-        <UserProvider>
-          <CartProvider>{children}</CartProvider>
-        </UserProvider>
-      </AllContext.Provider>
-    );
-  };
-  
+        <AllContext.Provider value={allContextValue}>
+            <UserProvider>
+                <CartProvider>{children}</CartProvider>
+            </UserProvider>
+        </AllContext.Provider>
+    )
+}

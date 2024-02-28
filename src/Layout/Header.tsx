@@ -11,6 +11,7 @@ import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
 import { useCart } from 'Components/context/cart-context'
+import { useUser } from 'Components/context/user-context'
 
 const query = gql`
     query {
@@ -138,7 +139,7 @@ function WishListIcon(props: { handlecardShow: any; iconPath: string }) {
 }
 
 function Account(props: { iconPath: string }) {
-    let jwt = localStorage.getItem('jwt')
+    let { jwt } = useUser()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
@@ -287,7 +288,7 @@ function AgirShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
 }
 
 const Header = (props: any) => {
-    let jwt = localStorage.getItem('jwt')
+    let { jwt } = useUser()
 
     let { data, loading, error } = useQuery(query)
     const [categories, setCategories] = useState([])

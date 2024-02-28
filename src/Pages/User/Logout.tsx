@@ -11,6 +11,8 @@ import { gql } from '@apollo/client'
 
 import { useNavigate } from 'react-router-dom'
 
+import { useUser } from 'Components/context/user-context'
+
 const query = gql`
     query {
         icon {
@@ -30,14 +32,14 @@ const query = gql`
 `
 
 const Logout = () => {
-    let jwt = localStorage.getItem('jwt')
+    let { jwt, deleteJwt } = useUser()
     const navigate = useNavigate()
 
     useEffect(() => {
         if (!jwt) {
             navigate('/')
         } else {
-            localStorage.removeItem('jwt')
+            deleteJwt()
             setTimeout(() => {
                 navigate('/')
             }, 3000)

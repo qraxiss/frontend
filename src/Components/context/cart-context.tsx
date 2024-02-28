@@ -17,8 +17,7 @@ export const useCart = () => {
 }
 
 export const CartProvider = ({ children }: any) => {
-    let {jwt} = useUser()
-
+    let { jwt } = useUser()
 
     let cartData = useQuery(cartQuery)
     let addItem = useMutation(addItemToCart)
@@ -130,7 +129,6 @@ export const CartProvider = ({ children }: any) => {
             if (JSON.stringify(cartData.data) !== JSON.stringify(cartItems)) {
                 setCartItems(cartData.data)
             }
-            console.log(cartData.data)
         }
     }, [cartData.data])
 
@@ -143,7 +141,6 @@ export const CartProvider = ({ children }: any) => {
             cartData.refetch().then(() => {
                 if (cartData.data) {
                     setCartItems(cartData.data)
-                    console.log(cartData.data)
                 }
             })
         }

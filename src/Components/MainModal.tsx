@@ -21,6 +21,7 @@ import config from 'config/config'
 import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'Components/context/cart-context'
+import { useUser } from './context/user-context'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -708,6 +709,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
 export const AccountModal = ({ show, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
+    let { jwt, setJwt } = useUser()
 
     const SignIn = () => {
         let { fn, data, error, loading } = useMutation(login)
@@ -715,7 +717,7 @@ export const AccountModal = ({ show, handleClose }: any) => {
 
         useEffect(() => {
             if (!loading && data && data.jwt) {
-                localStorage.setItem('jwt', data.jwt)
+                setJwt(data.jwt)
                 navigate('/account')
             }
         }, [loading, data])
@@ -858,7 +860,7 @@ export const AccountModal = ({ show, handleClose }: any) => {
 
         useEffect(() => {
             if (!loading && data && data.jwt) {
-                localStorage.setItem('jwt', data.jwt)
+                setJwt(data.jwt)
                 navigate('/account')
             }
         }, [loading, data])

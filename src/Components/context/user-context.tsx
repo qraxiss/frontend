@@ -5,6 +5,7 @@ const UserContext = createContext<any>({})
 export type UserContextType = {
     jwt: string | undefined | null
     setJwt: Function
+    deleteJwt: Function
 }
 
 export const useUser = () => {
@@ -13,11 +14,11 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }: any) => {
     let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
-    let tempJwt = localStorage.getItem('jwt')
 
-    useEffect(()=>{
-        setJwt(tempJwt)
-    }, [tempJwt])
-    
-    return <UserContext.Provider value={{ jwt, setJwt }}>{children}</UserContext.Provider>
+    let deleteJwt = () => {
+        localStorage.removeItem('jwt')
+        setJwt(null)
+    }
+
+    return <UserContext.Provider value={{ jwt, setJwt, deleteJwt }}>{children}</UserContext.Provider>
 }

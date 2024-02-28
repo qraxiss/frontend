@@ -6,18 +6,21 @@ import * as Yup from 'yup'
 
 import { useMutation } from 'lib/query-wrapper'
 import { login } from 'lib/common-queries'
+import { useUser } from 'Components/context/user-context'
 
 const Signin = () => {
+    let { jwt, setJwt } = useUser()
+
     const navigate = useNavigate()
     const { fn, data, loading, error } = useMutation(login)
 
     useEffect(() => {
-        if (localStorage.getItem('jwt')) {
+        if (jwt) {
             navigate('/')
         }
 
         if (!loading && data && data.jwt) {
-            localStorage.setItem('jwt', data.jwt)
+            setJwt(data.jwt)
             navigate('/')
         }
     }, [loading, data, navigate])
