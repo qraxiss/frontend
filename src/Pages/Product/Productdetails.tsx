@@ -10,11 +10,11 @@ import 'swiper/css/navigation'
 import { useParams } from 'react-router-dom'
 import { gql } from '@apollo/client'
 import { useQuery, useMutation } from 'lib/query-wrapper'
-import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
+import { useGeneral } from 'lib/general-context'
 
 const query = gql`
     query GET_PRODUCT($slug: String!) {
@@ -55,12 +55,10 @@ const Productdetails = () => {
         variables: { slug }
     })
 
-    let addToCart = useMutation(addItemToCart)
-    let { refetch } = useQuery(cartQuery)
+    let {addItem} = useGeneral()
 
     let productsData = useQuery(products)
     const [productsList, setProductsList] = useState<any[]>([])
-    console.log(productsList)
     useEffect(() => {
         if (productsData.data && !productsData.loading && !productsData.error) {
             setProductsList(productsData.data)
@@ -286,10 +284,9 @@ const Productdetails = () => {
                                         variant="primary"
                                         className="btn btn-hover w-100"
                                         onClick={() => {
-                                            addToCart.fn({
+                                            addItem({
                                                 variables: { slug }
                                             })
-                                            refetch()
                                         }}
                                     >
                                         <i className="bi bi-basket2 me-2" /> Add To Cart

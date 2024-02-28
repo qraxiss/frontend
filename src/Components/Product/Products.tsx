@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import { addItemToCart, cartQuery } from 'lib/common-queries'
-import { useMutation, useQuery } from 'lib/query-wrapper'
 import { CardComponent } from 'Components/newComponents'
 
 import { CommonTitle } from 'Components/Homepage'
 
 const Products = ({ items, title }: any) => {
-    let { fn } = useMutation(addItemToCart)
-    let { refetch } = useQuery(cartQuery)
 
     return (
         <React.Fragment>
@@ -19,7 +15,7 @@ const Products = ({ items, title }: any) => {
                     <Row>
                         {items.map((item: any) => (
                             <Col lg={3} key={item.slug}>
-                                <CardComponent data={item} fn={fn} refetchCart={refetch} />
+                                <CardComponent data={item} />
                             </Col>
                         ))}
                     </Row>

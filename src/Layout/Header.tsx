@@ -10,6 +10,7 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
+import { useGeneral } from 'lib/general-context'
 
 const query = gql`
     query {
@@ -84,27 +85,18 @@ const query = gql`
     }
 `
 function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
-    let { data, loading, error } = useQuery(cartQuery)
+    let {cartItems} = useGeneral()
     const [cartCount, setCartCount] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     useEffect(() => {
-        if (error) {
-            return
-        }
-        if (data && !loading && !error) {
-            setCartCount(data.length)
+        setCartCount(cartItems.length)
 
-            let subtotal = 0
-            for (let i = 0; i < data.length; i++) {
-                subtotal += data[i].product.price * data[i].count
-            }
-            setTotalPrice(subtotal)
+        let subtotal = 0
+        for (let i = 0; i < cartItems.length; i++) {
+            subtotal += cartItems[i].product.price * cartItems[i].count
         }
-    }, [loading])
-
-    useEffect(() => {
-        console.log(data)
-    }, [data])
+        setTotalPrice(subtotal)
+    }, [cartItems])
 
     return (
         <div className="topbar-head-dropdown ms-1 header-item">

@@ -4,23 +4,16 @@ import { Link } from 'react-router-dom'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal from 'Components/DeleteModal'
 
-import { cartQuery, addItemToCart, deleteItemFromCart } from 'lib/common-queries'
-import { useMutation, useQuery } from 'lib/query-wrapper'
-
 import { useNavigate } from 'react-router-dom'
 
 import config from 'config/config'
+import { useGeneral } from 'lib/general-context'
 
 const Cardshop = () => {
     let navigate = useNavigate()
 
-    let cart = useQuery(cartQuery)
-    let addItem = useMutation(addItemToCart)
-    let deleteItem = useMutation(deleteItemFromCart)
-
-    useEffect(() => {
-        cart.refetch()
-    }, [addItem.loading, deleteItem.loading])
+    let {cartItems, addItem, deleteItem} = useGeneral()
+    console.log(cartItems, 'Cardshop')
 
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
@@ -39,7 +32,7 @@ const Cardshop = () => {
         // setProductcount(productData?.filter((delet: any) => delet.id !== id))
     }
 
-    const assinged = (!cart.loading && !cart.error ? cart.data : [])?.map((M: any) => M.count * M.product.price)
+    const assinged = cartItems.map((M: any) => M.count * M.product.price)
     let subtotal = 0
     for (let i = 0; i < assinged.length; i++) {
         subtotal += Math.round(assinged[i])
@@ -58,28 +51,12 @@ const Cardshop = () => {
         setTax(tax)
     }, [subtotal])
 
-    // const countUP = (item: any) => {
-    //   setProductcount(
-    //     (productData || [])?.map((count) => (count.id === item.id ? { ...count, num: item.num + 1, Total: (item.num + 1) * item.ItemPrice } : count))
-    //   )
-    // }
-
-    // const countDown = (item: any) => {
-    //   setProductcount(
-    //     (productData || []).map((count: any) =>
-    //       count.id === item.id && count.num > 0
-    //         ? { ...count, num: item.num > 0 ? item.num - 1 : 0, Total: (item.num > 0 ? item.num - 1 : 0) * item.ItemPrice }
-    //         : count
-    //     )
-    //   )
-    // }
-
     return (
         <React.Fragment>
             <Col lg={8}>
                 <div className="d-flex align-items-center mb-4">
                     <h5 className="mb-0 flex-grow-1 fw-medium">
-                        There are <span className="fw-bold product-count">{!cart.loading && !cart.error ? cart.data.length : 0}</span> products in
+                        There are <span className="fw-bold product-count">{cartItems.length}</span> products in
                         your cart
                     </h5>
                     <div className="flex-shrink-0">
@@ -88,7 +65,7 @@ const Cardshop = () => {
                         </Link>
                     </div>
                 </div>
-                {(!cart.loading && !cart.error ? cart.data : [])?.map((item: any, inx: number) => {
+                {cartItems.map((item: any, inx: number) => {
                     return (
                         <Card key={inx} className="product">
                             <Card.Body className="p-4">
@@ -118,7 +95,7 @@ const Cardshop = () => {
                                             <Button
                                                 className="minus"
                                                 onClick={() => {
-                                                    deleteItem.fn({
+                                                    deleteItem({
                                                         variables: {
                                                             slug: item.product.slug
                                                         }
@@ -131,7 +108,7 @@ const Cardshop = () => {
                                             <Button
                                                 className="plus"
                                                 onClick={() => {
-                                                    addItem.fn({
+                                                    addItem({
                                                         variables: {
                                                             slug: item.product.slug
                                                         }

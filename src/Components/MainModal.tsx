@@ -18,8 +18,9 @@ import DeleteModal from 'Components/DeleteModal'
 import { useQuery, useMutation } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
-import { addItemToCart, deleteItemFromCart, cartQuery, login, register } from 'lib/common-queries'
+import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
+import { useGeneral } from 'lib/general-context'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -518,30 +519,10 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     let navigate = useNavigate()
 
-    let cartData = useQuery(cartQuery)
-    let addItem = useMutation(addItemToCart)
-    let deleteItem = useMutation(deleteItemFromCart)
+    let {cartItems, deleteItem, addItem} = useGeneral()
 
-    let [cart, setCart] = useState<any[]>([])
-
-    useEffect(() => {
-        if (cartData.loading) {
-            return
-        }
-        if (cartData.error) {
-            return
-        }
-        if (!cartData.data) {
-            return
-        }
-
-        setCart(cartData.data)
-    }, [cartData.loading])
-
-    // useEffect(() => {
-    //   cartData.refetch()
-    // }, [addItem.loading, deleteItem.loading])
-
+    console.log(cartItems, 'cardModal')
+    
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
     const [dis, setDis] = useState(0)
@@ -562,8 +543,8 @@ export const CardModal = ({ show, handleClose }: any) => {
     const CloseremoveModal = () => setRemovemodel(false)
 
     let subtotal = 0
-    for (let i = 0; i < cart.length; i++) {
-        subtotal += cart[i].product.price * cart[i].count
+    for (let i = 0; i < cartItems.length; i++) {
+        subtotal += cartItems[i].product.price * cartItems[i].count
     }
 
     useEffect(() => {
@@ -584,13 +565,13 @@ export const CardModal = ({ show, handleClose }: any) => {
             <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
                 <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title id="ecommerceCartLabel" as="h5">
-                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cart.length}</span>
+                        My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartItems.length}</span>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
-                            {cart.map((item: any) => {
+                            {cartItems.map((item: any) => {
                                 return (
                                     <li key={item.product.slug} className="list-group-item product">
                                         <div className="d-flex gap-3">
@@ -616,7 +597,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="minus"
                                                         onClick={() => {
-                                                            deleteItem.fn({
+                                                            deleteItem({
                                                                 variables: {
                                                                     slug: item.product.slug
                                                                 }
@@ -636,7 +617,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="plus"
                                                         onClick={() => {
-                                                            addItem.fn({
+                                                            addItem({
                                                                 variables: {
                                                                     slug: item.product.slug
                                                                 }

@@ -1,22 +1,13 @@
 import { Link } from 'react-router-dom'
 import React, { useState, useMemo, useEffect } from 'react'
-import { Form, Row, Col, Card, Button, Image } from 'react-bootstrap'
-// import { filterProduct } from 'Common/data'
+import { Form, Row, Col, Card, Image } from 'react-bootstrap'
 
-import { useQuery, useMutation } from 'lib/query-wrapper'
-import { addItemToCart, cartQuery } from 'lib/common-queries'
 import config from 'config/config'
 
 import { CardComponent } from 'Components/newComponents'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearchParams }: any) => {
-    const addItem = useMutation(addItemToCart)
-    const cart = useQuery(cartQuery)
-
-    useEffect(() => {
-        cart.refetch()
-    }, [addItem.loading])
-
+    
     //select
     const [select, setSelect] = useState('all')
     const pagination: boolean = true
@@ -96,7 +87,7 @@ const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearch
                             filterList.map((item: any, idx: any) => {
                                 return !cxl ? (
                                     <Col key={item.slug} xxl={cxxl} lg={clg} md={cmd}>
-                                        <CardComponent data={item} fn={addItem.fn} refetchCart={cart.refetch}></CardComponent>
+                                        <CardComponent data={item} ></CardComponent>
                                     </Col>
                                 ) : (
                                     <Card className="ribbon-box" key={idx}>

@@ -35,7 +35,7 @@ const query = gql`
 const Collection = ({ data }: any) => {
     return (
         <React.Fragment>
-            <section className="position-relative">
+            <section className="position-relative section-image">
                 <Carousel id="ecommerceHero" data-bs-ride="carousel">
                     {data.map((item: any) => {
                         return (

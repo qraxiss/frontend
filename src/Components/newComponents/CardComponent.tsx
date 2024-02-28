@@ -3,8 +3,11 @@ import { Button, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import config from 'config/config'
 import { productListType } from 'models/ProductType'
+import { useGeneral } from 'lib/general-context'
 
-export const CardComponent = ({ data, fn, refetchCart }: { data: productListType; fn?: any; refetchCart: Function }) => {
+export const CardComponent = ({ data }: { data: productListType }) => {
+    let {addItem} = useGeneral()
+    
     return (
         <Card className="overflow-hidden">
             <div className={`rounded-top py-4`}>
@@ -46,13 +49,11 @@ export const CardComponent = ({ data, fn, refetchCart }: { data: productListType
                         <Button
                             className="btn btn-primary btn-hover w-100 add-btn"
                             onClick={() => {
-                                fn({
+                                addItem({
                                     variables: {
                                         slug: data.slug
                                     }
                                 })
-
-                                refetchCart()
                             }}
                         >
                             <i className="mdi mdi-cart me-1"></i> Add to cart

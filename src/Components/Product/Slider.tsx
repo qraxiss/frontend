@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Autoplay } from 'swiper/modules'
@@ -6,17 +6,12 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { addItemToCart, cartQuery } from 'lib/common-queries'
-import { useMutation, useQuery } from 'lib/query-wrapper'
 import { CardComponent } from 'Components/newComponents'
 import { productListType } from 'models/ProductType'
 
 import { CommonTitle } from 'Components/Homepage'
 
 const Slider = ({ items, title }: { items: productListType[]; title: string }) => {
-    let { fn } = useMutation(addItemToCart)
-    let { refetch } = useQuery(cartQuery)
-
     return (
         <React.Fragment>
             <section className="section pb-0">
@@ -70,7 +65,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                     {items.map((item: any) => {
                                         return (
                                             <SwiperSlide className="swiper-slide" key={item.slug}>
-                                                <CardComponent data={item} fn={fn} refetchCart={refetch} />
+                                                <CardComponent data={item}/>
                                             </SwiperSlide>
                                         )
                                     })}
