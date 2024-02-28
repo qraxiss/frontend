@@ -9,7 +9,7 @@ const CartContext = createContext<any>({})
 export type CartContextType = {
     addItem: Function
     deleteItem: Function
-    cartItems: any
+    cartItems: any[]
 }
 
 export const useCart = () => {
@@ -31,6 +31,8 @@ export const CartProvider = ({ children }: any) => {
 
     let [getSingleProduct, singleProduct] = useLazyQuery(getSingleProductBySlug) as any
     function addItemLocal(variables: any) {
+        addItem.fn(variables)
+
         let item = cartItems.find((product: any) => {
             return product.product.slug === variables.variables.slug
         })
@@ -60,6 +62,8 @@ export const CartProvider = ({ children }: any) => {
     }, [singleProduct.loading, singleProduct.called])
 
     function deleteItemLocal(variables: any) {
+        deleteItem.fn(variables)
+
         let item = cartItems.find((product: any) => {
             return product.product.slug === variables.variables.slug
         })
@@ -92,6 +96,19 @@ export const CartProvider = ({ children }: any) => {
 
     let addItemFn = jwt ? addItem.fn : addItemLocal
     let deleteItemFn = jwt ? deleteItem.fn : deleteItemLocal
+
+    //after login send all data to backend
+    useEffect(() => {
+        if (jwt) {
+            cartItems.forEach((item: any) => {
+                addItem.fn({
+                    variables: {
+                        slug: item.product.slug
+                    }
+                })
+            })
+        }
+    }, [jwt])
 
     // store in localstorage
     useEffect(() => {
@@ -146,5 +163,15 @@ export const CartProvider = ({ children }: any) => {
         }
     }, [deleteItem.loading, addItem.loading])
 
-    return <CartContext.Provider value={{ cartItems, deleteItem: deleteItemFn, addItem: addItemFn }}>{children}</CartContext.Provider>
+    return (
+        <CartContext.Provider
+            value={{
+                cartItems,
+                deleteItem: deleteItemLocal,
+                addItem: addItemLocal,
+            }}
+        >
+            {children}
+        </CartContext.Provider>
+    )
 }

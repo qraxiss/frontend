@@ -509,8 +509,6 @@ export const SearchModal = ({ show, handleClose }: any) => {
     )
 }
 
-//===================================================
-
 //card modal
 
 export const CardModal = ({ show, handleClose }: any) => {
@@ -705,8 +703,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
 export const AccountModal = ({ show, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
-    let {jwt, setJwt} = useUser()
-
+    let { jwt, setJwt } = useUser()
 
     const SignIn = () => {
         let { fn, data, error, loading } = useMutation(login)

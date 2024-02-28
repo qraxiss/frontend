@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useCart } from './cart-context'
 
 const UserContext = createContext<any>({})
 
@@ -19,13 +20,11 @@ export const UserProvider = ({ children }: any) => {
         localStorage.removeItem('jwt')
         setJwt(null)
     }
-    
-    useEffect(()=>{
-        if (jwt){
-            console.log('logged')
+
+    useEffect(() => {
+        //login | register
+        if (jwt) {
             localStorage.setItem('jwt', jwt)
-        } else {
-            console.log('logout')
         }
     }, [jwt])
 

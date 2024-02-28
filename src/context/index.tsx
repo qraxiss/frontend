@@ -25,7 +25,9 @@ export const Context = ({ children }: any) => {
     return (
         <AllContext.Provider value={allContextValue}>
             <UserProvider>
-                <CartProvider>{children}</CartProvider>
+                <CartProvider>
+                    <UserProvider>{children}</UserProvider>
+                </CartProvider>
             </UserProvider>
         </AllContext.Provider>
     )
