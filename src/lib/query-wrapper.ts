@@ -1,4 +1,4 @@
-import { useMutation as useMutationApollo, useQuery as useQueryApollo } from '@apollo/client'
+import { useMutation as useMutationApollo, useLazyQuery as useLazyQueryApollo, useQuery as useQueryApollo } from '@apollo/client'
 import { DocumentNode, MutationHookOptions, QueryHookOptions } from '@apollo/client'
 
 import config from 'config/config'
@@ -57,4 +57,26 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
     }
 
     return { data, loading, error, refetch }
+}
+
+export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
+    let jwt = localStorage.getItem('jwt')
+    let [lazyCallFunction, { data, error, loading, refetch, called }] = useLazyQueryApollo(query, {
+        ...options,
+        context: {
+            headers: {
+                Authorization: `Bearer ${!!jwt ? jwt : config.publicReadOnlyApiKey}`
+            }
+        }
+    })
+
+    if (called && error) {
+        return { data, loading, error, refetch }
+    }
+
+    if (called && !loading && data) {
+        data = simplifyResponse(data)
+    }
+
+    return [lazyCallFunction, { data, loading, error, refetch, called }]
 }

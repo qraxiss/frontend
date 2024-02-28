@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import { cartQuery, addItemToCart, deleteItemFromCart } from './common-queries'
-import { useQuery, useMutation } from './query-wrapper'
+import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug } from './common-queries'
+import { useQuery, useMutation, useLazyQuery } from './query-wrapper'
 
 const GeneralContext = createContext<any>({})
 
@@ -14,20 +14,91 @@ export const useGeneral = () => {
 }
 
 export const GeneralProvider = ({ children }: any) => {
+    let jwt = localStorage.getItem('jwt')
+
     let cartData = useQuery(cartQuery)
     let addItem = useMutation(addItemToCart)
     let deleteItem = useMutation(deleteItemFromCart)
 
     const [cartItems, setCartItems] = useState<any[]>([])
 
+    const addToCart = (newProduct: any) => {
+        setCartItems([...cartItems, { product: newProduct, count: 1 }])
+    }
+
+    let [getSingleProduct, singleProduct] = useLazyQuery(getSingleProductBySlug) as any
+    function addItemLocal(variables: any) {
+        let item = cartItems.find((product: any) => {
+            return product.product.slug === variables.variables.slug
+        })
+
+        if (item) {
+            setCartItems(
+                cartItems.map((product: any) => {
+                    if (product.product.slug === variables.variables.slug) {
+                        return {
+                            ...product,
+                            count: product.count + 1
+                        }
+                    } else {
+                        return product
+                    }
+                })
+            )
+        } else {
+            getSingleProduct(variables)
+        }
+    }
+
+    useEffect(() => {
+        if (singleProduct.data) {
+            addToCart(singleProduct.data)
+        }
+    }, [singleProduct.loading, singleProduct.called])
+
+    function deleteItemLocal(variables: any) {
+        let item = cartItems.find((product: any) => {
+            return product.product.slug === variables.variables.slug
+        })
+
+        if (!item) {
+            return
+        }
+
+        if (item.count > 1) {
+            setCartItems(
+                cartItems.map((product: any) => {
+                    if (product.product.slug === variables.variables.slug) {
+                        return {
+                            ...product,
+                            count: product.count - 1
+                        }
+                    } else {
+                        return product
+                    }
+                })
+            )
+        } else {
+            setCartItems(
+                cartItems.filter((product: any) => {
+                    return product.product.slug !== variables.variables.slug
+                })
+            )
+        }
+    }
+
+    let addItemFn = jwt ? addItem.fn : addItemLocal
+    let deleteItemFn = jwt ? deleteItem.fn : deleteItemLocal
+
     // store in localstorage
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
     }, [cartItems])
 
+    // first mount
     useEffect(() => {
-        //if logged in
-        if (localStorage.getItem('jwt')) {
+        //if logged in get from backend
+        if (jwt) {
             if (cartData.loading) {
                 return
             }
@@ -39,7 +110,9 @@ export const GeneralProvider = ({ children }: any) => {
             }
 
             setCartItems(cartData.data)
-        } else {
+        }
+        // if not logged in get from localStorage
+        else {
             let items = localStorage.getItem('cartItems')
             if (items) {
                 setCartItems(JSON.parse(items))
@@ -47,19 +120,19 @@ export const GeneralProvider = ({ children }: any) => {
         }
     }, [cartData.loading])
 
+    // if cartData.refecth called, set data
     useEffect(() => {
         if (cartData.data) {
-            // Eğer cartItems mevcut değerle aynı değilse set et
             if (JSON.stringify(cartData.data) !== JSON.stringify(cartItems)) {
                 setCartItems(cartData.data)
             }
             console.log(cartData.data)
         }
     }, [cartData.data])
-    useEffect(() => {
-        console.log('delete', deleteItem.loading, 'add', addItem.loading)
 
-        if (!localStorage.getItem('jwt')) {
+    //if addItem or deleteItem called get card again.
+    useEffect(() => {
+        if (!jwt) {
             return
         }
         if (!deleteItem.loading && !addItem.loading) {
@@ -72,5 +145,5 @@ export const GeneralProvider = ({ children }: any) => {
         }
     }, [deleteItem.loading, addItem.loading])
 
-    return <GeneralContext.Provider value={{ cartItems, deleteItem: deleteItem.fn, addItem: addItem.fn }}>{children}</GeneralContext.Provider>
+    return <GeneralContext.Provider value={{ cartItems, deleteItem: deleteItemFn, addItem: addItemFn }}>{children}</GeneralContext.Provider>
 }
