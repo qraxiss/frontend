@@ -6,6 +6,8 @@ import config from 'config/config'
 import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 
+import { Carousel } from 'react-bootstrap'
+
 const query = gql`
     query {
         campaign {
@@ -29,6 +31,35 @@ const query = gql`
         }
     }
 `
+
+const Collection = ({ data }: any) => {
+    return (
+        <React.Fragment>
+            <section className="position-relative">
+                <Carousel id="ecommerceHero" data-bs-ride="carousel">
+                    {data.map((item: any) => {
+                        return (
+                            <Carousel.Item>
+                                <Image
+                                    src={item.image.url}
+                                    className="w-100 section-image"
+                                    rounded
+                                    alt=""
+                                    style={{
+                                        width: '420px',
+                                        maxWidth: '800px',
+                                        height: '490px',
+                                        objectFit: 'cover'
+                                    }}
+                                ></Image>
+                            </Carousel.Item>
+                        )
+                    })}
+                </Carousel>
+            </section>
+        </React.Fragment>
+    )
+}
 
 export default function Section() {
     const { data, loading, error } = useQuery(query)
@@ -72,18 +103,7 @@ export default function Section() {
                         }}
                     >
                         <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                            <Image
-                                src={campaigns[0]?.image?.url}
-                                className="w-100 section-image"
-                                rounded
-                                alt=""
-                                style={{
-                                    width: '420px',
-                                    maxWidth: '800px',
-                                    height: '490px',
-                                    objectFit: 'cover'
-                                }}
-                            />
+                            <Collection data={campaigns} />
                             <div className="product-content p-3 ps-5">
                                 <p className="text-uppercase fs-15 text-secondary fw-semibold mb-2">{campaigns[0]?.heading}</p>
                                 <h1 className="display-5 lh-base text-dark ff-secondary">{campaigns[0]?.subHeading}</h1>
