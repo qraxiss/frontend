@@ -238,43 +238,61 @@ function Account(props: { iconPath: string }) {
 
 function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
     return props.categories.map((item: any) => {
-        return (
-            <li className="dropdown nav-item dropdown-hover" key={item.page.url}>
-                <Link
-                    className="dropdown-toggle nav-link"
-                    data-key="t-home"
-                    to={`/${item.page.url}`}
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    onClick={(e) => {
-                        e.preventDefault()
-                        props.menuShow(item.page.name)
-                    }}
-                >
-                    <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
-                    {(item.page.title as string).toUpperCase()}
-                </Link>
-
-                {item.subPages.length>0 ? <ul
-                    className={
-                        props.showMenu === item.page.name
-                            ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
-                            : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
-                    }
-                >
-                    {item.subPages.map((sub: any) => {
-                        return (
-                            <li className="nav-item" key={sub.url}>
-                                <Link to={sub.url} className="nav-link" data-key={sub.url}>
-                                    {props.t(sub.title)}
-                                </Link>
-                            </li>
-                        )
-                    })}
-                </ul> : <></>}
-            </li>
-        )
+        if (item.subPages.length > 0) {
+            return (
+                <li className="dropdown nav-item dropdown-hover" key={item.page.url}>
+                    <Link
+                        className="dropdown-toggle nav-link"
+                        data-key="t-home"
+                        to={item.page.url}
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            props.menuShow(item.page.title)
+                        }}
+                    >
+                        <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                        {(item.page.title as string).toUpperCase()}
+                    </Link>
+                    <ul
+                        className={
+                            props.showMenu === item.page.name
+                                ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
+                                : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
+                        }
+                    >
+                        {item.subPages.map((sub: any) => {
+                            return (
+                                <li className="nav-item" key={sub.url}>
+                                    <Link to={sub.url} className="nav-link" data-key={sub.url}>
+                                        {props.t(sub.title)}
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </li>
+            )
+        } else {
+            return (
+                <li className="nav-item">
+                    <Link
+                        className="nav-link"
+                        to={item.page.url}
+                        role="button"
+                        // onClick={(e) => {
+                        //     e.preventDefault()
+                        //     props.menuShow(item.page.title)
+                        // }}
+                    >
+                        <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                        {(item.page.title as string).toUpperCase()}
+                    </Link>
+                </li>
+            )
+        }
     })
 }
 function Logo(props: { logo: any }) {
