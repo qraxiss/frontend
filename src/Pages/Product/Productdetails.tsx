@@ -131,15 +131,15 @@ const Productdetails = () => {
                                         >
                                             {sliderProduct?.map((item: any, idx: number) => {
                                                 return (
-                                                    <Row lg={10}
+                                                    <Row
+                                                        lg={10}
                                                         key={idx}
                                                         className="swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-next"
                                                         role="group"
                                                         aria-label={`${item.id} / 5 `}
-                                                        style={{ height: '110px', 'width': '110px', marginBottom: '10px' }}
+                                                        style={{ height: '110px', width: '110px', marginBottom: '10px' }}
                                                     >
                                                         <div className="product-thumb rounded cursor-pointer">
-                                                        
                                                             <Image src={item.img} alt="" fluid onClick={() => handleSetImg(item.id)} />
                                                         </div>
                                                     </Row>
@@ -192,43 +192,6 @@ const Productdetails = () => {
                                     </span>
                                     <h5 className="fs-24 mb-4 text-primary">${data.price}</h5>
                                 </div>
-
-                                <div className="hstack gap-2">
-                                    <div className="input-step ms-2">
-                                        <Button className="minus" onClick={() => setCount(count - 1)}>
-                                            -
-                                        </Button>
-                                        <Form.Control
-                                            type="number"
-                                            className="product-quantity1"
-                                            value={count > 0 ? count : 0}
-                                            min={0}
-                                            max={100}
-                                            readOnly
-                                        />
-                                        <Button className="plus" onClick={() => setCount(count + 1)}>
-                                            +
-                                        </Button>
-                                    </div>
-
-                                    <Button
-                                        variant="primary"
-                                        className="btn btn-hover w-100"
-                                        onClick={() => {
-                                            addItem({
-                                                variables: { slug }
-                                            })
-                                        }}
-                                    >
-                                        <i className="bi bi-basket2 me-2" /> Add To Cart
-                                    </Button>
-                                    <Button variant="secondary" className="btn btn-hover w-100 h-10">
-                                        <i className="bi bi-cart2 me-2" /> Buy Now
-                                    </Button>
-                                </div>
-
-                                <hr className="primary" />
-
                                 <Row className="gy-3">
                                     <Col md={6}>
                                         <div>
@@ -301,6 +264,45 @@ const Productdetails = () => {
                                     </Col>
                                 </Row>
 
+                                <Row className="information">
+                                    <p>6 People watching this product now!</p>
+                                </Row>
+
+                                <hr className="primary" />
+
+                                <div className="hstack gap-2">
+                                    <div className="input-step ms-2">
+                                        <Button className="minus" onClick={() => setCount(count - 1)}>
+                                            -
+                                        </Button>
+                                        <Form.Control
+                                            type="number"
+                                            className="product-quantity1"
+                                            value={count > 0 ? count : 0}
+                                            min={0}
+                                            max={100}
+                                            readOnly
+                                        />
+                                        <Button className="plus" onClick={() => setCount(count + 1)}>
+                                            +
+                                        </Button>
+                                    </div>
+
+                                    <Button
+                                        variant="primary"
+                                        className="btn btn-hover w-100"
+                                        onClick={() => {
+                                            addItem({
+                                                variables: { slug }
+                                            })
+                                        }}
+                                    >
+                                        <i className="bi bi-basket2 me-2" /> Add To Cart
+                                    </Button>
+                                    <Button variant="secondary" className="btn btn-hover w-100 h-10">
+                                        <i className="bi bi-cart2 me-2" /> Buy Now
+                                    </Button>
+                                </div>
                                 <hr />
 
                                 <Col lg={7}>
@@ -316,6 +318,10 @@ const Productdetails = () => {
                                     </Row>
                                     <br />
                                 </Col>
+
+                                <Row className="information">
+                                    <p>1 Item sold in last 24 hours</p>
+                                </Row>
 
                                 <Row>
                                     <Col lg={10}>

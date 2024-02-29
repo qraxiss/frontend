@@ -137,14 +137,19 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
     }, [cartItems])
 
     return (
-        <div className="topbar-head-dropdown ms-1 header-item">
+        <div
+            className="topbar-head-dropdown ms-1 header-item"
+            style={{
+                cursor: 'pointer'
+            }}
+            onClick={props.handlecardShow}
+        >
             <Button
                 type="button"
                 className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#ecommerceCart"
                 aria-controls="ecommerceCart"
-                onClick={props.handlecardShow}
             >
                 {/* <i className="ph-shopping-cart fs-18"></i> */}
                 <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
@@ -558,11 +563,18 @@ const Header = (props: any) => {
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                 <Container>
                     <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
-                        <Image src={icon.collections.url} className="header-profile-user"></Image>
+                        <Image
+                            src={icon.collections.url}
+                            className="header-profile-user"
+                            style={{
+                                width: '25px',
+                                height: 'auto'
+                            }}
+                        ></Image>
                         <div>
-                            <h6 className="text-secondary">
+                            <h6 className="text-primary">
                                 <span
-                                    className="text-secondary"
+                                    className="text-primary"
                                     style={{
                                         marginBottom: '0px',
                                         fontSize: '14px',

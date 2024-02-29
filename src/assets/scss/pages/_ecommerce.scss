@@ -368,6 +368,22 @@
 
 }
 
+.information {
+    p {
+        padding-top: 10px;
+    }
+
+    background-color: #dceef4;
+    border-radius: 15px;
+    height: 40px;
+    text-align: center;
+    justify-self: center;
+    align-items: center;
+    display: flex;
+}
+
+
+
 .ecommerce-product-widgets {
     background-color: var(--#{$prefix}body-bg);
 

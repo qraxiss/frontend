@@ -673,7 +673,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     <Row className="g-2">
                         <Col xs={6}>
                             <Button
-                                variant="light"
+                                variant="secondary"
                                 className="btn w-100"
                                 id="reset-layout"
                                 onClick={() => {
@@ -685,12 +685,13 @@ export const CardModal = ({ show, handleClose }: any) => {
                         </Col>
                         <Col xs={6}>
                             <Button
+                                variant="primary"
                                 className="btn btn-info w-100"
                                 onClick={() => {
                                     navigate('/shop/checkout')
                                 }}
                             >
-                                Continue to Checkout
+                                Checkout
                             </Button>
                         </Col>
                     </Row>

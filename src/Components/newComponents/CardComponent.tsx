@@ -9,7 +9,12 @@ export const CardComponent = ({ data }: { data: productListType }) => {
     let { addItem } = useCart()
 
     return (
-        <Card className="overflow-hidden">
+        <Card
+            className="overflow-hidden"
+            style={{
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+            }}
+        >
             <div className={`rounded-top py-4`}>
                 <div className="gallery-product">
                     <Image
@@ -23,7 +28,6 @@ export const CardComponent = ({ data }: { data: productListType }) => {
                             borderRadius: '18px'
                         }}
                     />
-                    {/* <Image src={config.serverUrl + data.images[0].url} alt="" style={{}}></Image> */}
                 </div>
             </div>
             <Card.Body>
@@ -46,18 +50,19 @@ export const CardComponent = ({ data }: { data: productListType }) => {
                         </h5>
                     </div>
                     <div className="mt-3">
-                        <Button
+                        <Link
+                            to={`/product-details/${data.slug}`}
                             className="btn btn-primary btn-hover w-100 add-btn"
-                            onClick={() => {
-                                addItem({
-                                    variables: {
-                                        slug: data.slug
-                                    }
-                                })
-                            }}
+                            // onClick={() => {
+                            //     addItem({
+                            //         variables: {
+                            //             slug: data.slug
+                            //         }
+                            //     })
+                            // }}
                         >
-                            <i className="mdi mdi-cart me-1"></i> Add to cart
-                        </Button>
+                            <i className="mdi mdi-cart me-1"></i> Select options
+                        </Link>
                     </div>
                 </div>
             </Card.Body>

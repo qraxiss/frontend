@@ -220,8 +220,6 @@ const Footer = () => {
                                                 </Col>
                                             ))}
                                         </Row>
-
-                                        {/* </Container> */}
                                     </div>
                                 </Col>
                             </Row>
@@ -238,6 +236,14 @@ const Footer = () => {
                         >
                             Made with one mission: to accelerate the next billion's onboarding to crypto
                         </Col>
+                    </Row>
+
+                    <Row
+                        style={{
+                            opacity: 0
+                        }}
+                    >
+                        s
                     </Row>
                 </Container>
             </section>

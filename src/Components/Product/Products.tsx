@@ -11,14 +11,29 @@ const Products = ({ items, title }: any) => {
             <section className="section pb-0">
                 <CommonTitle title={title} />
                 <Container>
-                    <Row>
+                    <Row style={{}}>
                         {items.map((item: any) => (
-                            <Col lg={2} key={item.slug}>
+                            <Col key={item.slug}>
                                 <CardComponent data={item} />
                             </Col>
-                        ))}{' '}
-                        {items.map((item: any) => (
-                            <Col lg={2} key={item.slug}>
+                        ))}
+                                                {items.map((item: any) => (
+                            <Col key={item.slug}>
+                                <CardComponent data={item} />
+                            </Col>
+                        ))}
+                                                                        {items.map((item: any) => (
+                            <Col key={item.slug}>
+                                <CardComponent data={item} />
+                            </Col>
+                        ))}
+                                                                        {items.map((item: any) => (
+                            <Col key={item.slug}>
+                                <CardComponent data={item} />
+                            </Col>
+                        ))}
+                                                                        {items.map((item: any) => (
+                            <Col key={item.slug}>
                                 <CardComponent data={item} />
                             </Col>
                         ))}
