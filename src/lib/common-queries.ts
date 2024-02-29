@@ -122,3 +122,31 @@ export const getSingleProductBySlug = gql`
         }
     }
 `
+
+export let getPages = gql`
+    query {
+        page {
+            data {
+                attributes {
+                    header {
+                        page {
+                            url
+                            title
+                            icon {
+                                data {
+                                    attributes {
+                                        url
+                                    }
+                                }
+                            }
+                        }
+                        subPages {
+                            url
+                            title
+                        }
+                    }
+                }
+            }
+        }
+    }
+`

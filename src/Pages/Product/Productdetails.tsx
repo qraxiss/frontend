@@ -329,7 +329,6 @@ const Productdetails = () => {
                                     </Col>
                                     {/*end col*/}
                                 </Row>
-
                             </div>
                         </Col>
                         {/*end col*/}

@@ -14,6 +14,30 @@ import { useUser } from 'context/user-context'
 
 const query = gql`
     query {
+        page {
+            data {
+                attributes {
+                    header {
+                        page {
+                            url
+                            title
+                            icon {
+                                data {
+                                    attributes {
+                                        url
+                                    }
+                                }
+                            }
+                        }
+                        subPages {
+                            url
+                            title
+                        }
+                    }
+                }
+            }
+        }
+
         parentCategories {
             data {
                 attributes {
@@ -213,46 +237,45 @@ function Account(props: { iconPath: string }) {
 }
 
 function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
-    let pages = props.categories.map((item: any) => {
+    return props.categories.map((item: any) => {
         return (
-            <li className="dropdown nav-item dropdown-hover" key={item.slug}>
+            <li className="dropdown nav-item dropdown-hover" key={item.page.url}>
                 <Link
                     className="dropdown-toggle nav-link"
                     data-key="t-home"
-                    to={`/${item.slug}`}
+                    to={`/${item.page.url}`}
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                     onClick={(e) => {
                         e.preventDefault()
-                        props.menuShow(item.name)
+                        props.menuShow(item.page.name)
                     }}
                 >
-                    <Image src={config.serverUrl + item.icon.url} className="page-icons"></Image>
-                    {(item.name as string).toUpperCase()}
+                    <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                    {(item.page.title as string).toUpperCase()}
                 </Link>
 
-                <ul
+                {item.subPages.length>0 ? <ul
                     className={
-                        props.showMenu === item.name
+                        props.showMenu === item.page.name
                             ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
                             : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
                     }
                 >
-                    {item.childs.map((child: any) => {
+                    {item.subPages.map((sub: any) => {
                         return (
-                            <li className="nav-item" key={`${item.slug}-${child.slug}`}>
-                                <Link to={`/category/${item.slug}/${child.slug}`} className="nav-link" data-key={child.slug}>
-                                    {props.t(child.name)}
+                            <li className="nav-item" key={sub.url}>
+                                <Link to={sub.url} className="nav-link" data-key={sub.url}>
+                                    {props.t(sub.title)}
                                 </Link>
                             </li>
                         )
                     })}
-                </ul>
+                </ul> : <></>}
             </li>
         )
     })
-    return pages
 }
 function Logo(props: { logo: any }) {
     return (
@@ -336,6 +359,8 @@ const Header = (props: any) => {
     })
     useEffect(() => {
         if (!!data && !loading && !error) {
+            console.log(data.page)
+
             Object.keys(data.icon).map((key) => {
                 data.icon[key] = {
                     url: config.serverUrl + data.icon[key].url
@@ -343,7 +368,7 @@ const Header = (props: any) => {
             })
             setIcon(data.icon)
 
-            setCategories(data.parentCategories)
+            setCategories(data.page.header)
             setLogo({
                 text: {
                     url: config.serverUrl + data.logo.text.url
