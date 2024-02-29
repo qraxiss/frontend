@@ -400,8 +400,8 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary:       $blue;
-$secondary:     $purple;
+$primary:       #13C5F0;
+$secondary:     #F556B7;
 $success:       $green;
 $info:          $cyan;
 $warning:       $yellow;
@@ -412,8 +412,8 @@ $dark:          $gray-900;
 
 // scss-docs-start theme-colors-map
 $theme-colors: (
-  "primary":   #5dbae4,
-  "secondary":  #eb67be,
+  "primary":   #13C5F0,
+  "secondary":  #F556B7,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,

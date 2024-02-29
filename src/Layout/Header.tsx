@@ -152,14 +152,15 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
                     {cartCount}
                 </span>
             </Button>
-            <span
+            <h5
                 className="text-secondary"
                 style={{
-                    paddingLeft: '15px'
+                    paddingLeft: '15px',
+                    marginBottom: '0px'
                 }}
             >
                 ${totalPrice}
-            </span>
+            </h5>
         </div>
     )
 }
@@ -242,7 +243,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
             return (
                 <li className="dropdown nav-item dropdown-hover" key={item.page.url}>
                     <Link
-                        className="dropdown-toggle nav-link"
+                        className="dropdown-toggle nav-link "
                         data-key="t-home"
                         to={item.page.url}
                         role="button"
@@ -279,7 +280,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
             return (
                 <li className="nav-item">
                     <Link
-                        className="nav-link"
+                        className={`nav-link ${item.page.title==='Earn' ? 'earn': ''}`} 
                         to={item.page.url}
                         role="button"
                         // onClick={(e) => {
@@ -524,7 +525,7 @@ const Header = (props: any) => {
                                 size="lg"
                                 type="text"
                                 onClick={handleShow}
-                                placeholder="Search for product..."
+                                placeholder="Search for product"
                                 style={{
                                     paddingRight: '560px',
                                     borderRadius: '35px',
@@ -556,7 +557,7 @@ const Header = (props: any) => {
                         <Image src={icon.collections.url} className="header-profile-user"></Image>
                         <div>
                             <h6
-                                className="text-primary"
+                                className="text-secondary"
                                 style={{
                                     marginBottom: '0px'
                                 }}
@@ -584,7 +585,14 @@ const Header = (props: any) => {
                                         marginBottom: '0px'
                                     }}
                                 >
-                                    <span>FREE SHIPPING</span>
+                                    <h6
+                                        style={{
+                                            marginBottom: '0px'
+                                        }}
+                                    >
+                                        {' '}
+                                        <span className="text-primary">FREE SHIPPING</span>
+                                    </h6>
                                 </p>
                             </div>
                             <Image
