@@ -533,7 +533,7 @@ const Header = (props: any) => {
                                 onClick={handleShow}
                                 placeholder="Search for product"
                                 style={{
-                                    paddingRight: '560px',
+                                    paddingRight: '610px',
                                     borderRadius: '35px',
                                     color: 'red'
                                 }}

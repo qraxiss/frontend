@@ -37,8 +37,8 @@
             }
             .earn {
                 color: $secondary;
-                font-size: 20px;
-                font-weight: 700px;
+                font-size: 20px !important;
+                font-weight: 700px !important;
     
                 &:hover,
                 &.active {
