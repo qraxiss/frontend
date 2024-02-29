@@ -8,7 +8,7 @@ import CatalogCollection from 'Pages/Catalog/CatalogCollection'
 import { filterSettingsType, productListType, productVariant } from 'models/ProductType'
 
 const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
-    let { child } = useParams()
+    let { category } = useParams()
     let [searchParams, setSearchParams] = useSearchParams()
     let { start } = params(searchParams)
     const [filterList, setFilterlist] = useState<productListType[]>([])
@@ -16,7 +16,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
 
     const products = useQuery(getProductsByCategorySlug, {
         variables: {
-            slug: child,
+            slug: category,
             start: Number(start)
         }
     })
@@ -27,7 +27,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
                 start: '0'
             })
         }
-    }, [child])
+    }, [category])
 
     useEffect(() => {
         if (!products.loading) {
@@ -35,7 +35,7 @@ const Index = ({ name, cxxl, clg, cmd, cxl }: any) => {
 
             setFilterlist(products.data.products)
         }
-    }, [products.loading, child, start])
+    }, [products.loading, category, start])
 
     // Filtre kalmamışsa eski ürünlere göster
     useEffect(() => {
