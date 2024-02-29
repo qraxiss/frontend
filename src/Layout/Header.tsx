@@ -253,6 +253,9 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                             e.preventDefault()
                             props.menuShow(item.page.title)
                         }}
+                        style={{
+                            fontSize: '14px'
+                        }}
                     >
                         <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
                         {(item.page.title as string).toUpperCase()}
@@ -283,6 +286,9 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                         className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
                         to={item.page.url}
                         role="button"
+                        style={{
+                            fontSize: '14px'
+                        }}
                         // onClick={(e) => {
                         //     e.preventDefault()
                         //     props.menuShow(item.page.title)
@@ -543,7 +549,7 @@ const Header = (props: any) => {
                         ) : (
                             <SignInUp iconPath={icon.account.url} handlecardShow={handleAccountShow}></SignInUp>
                         )}
-
+                        <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow} />
                         <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
                     </div>
                 </Container>
@@ -558,11 +564,14 @@ const Header = (props: any) => {
                         <div>
                             <h6
                                 className="text-secondary"
-                                style={{
-                                    marginBottom: '0px'
-                                }}
+
                             >
-                                <span>COLLECTIONS</span>
+                                <span className='text-secondary'                                 style={{
+                                    marginBottom: '0px',
+                                    fontSize: '14px',
+                                    bottom: '25px',
+                                    position: 'absolute'
+                                }}>COLLECTIONS</span>
                             </h6>
                         </div>
                     </div>
