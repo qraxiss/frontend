@@ -148,14 +148,39 @@ const Productdetails = () => {
                             {/*end row*/}
                         </Col>
                         {/*end col*/}
-                        <Col lg={5} className="ms-auto">
+                        <Col lg={3} className="ms-auto">
                             <div className="ecommerce-product-widgets mt-4 mt-lg-0">
                                 <div className="mb-4">
-                                    <h4 className="lh-base mb-1">{data.name}</h4>
-                                    <h5 className="fs-24 mb-4">${data.price}</h5>
+                                    <span
+                                        className="lh-base mb-1"
+                                        style={{
+                                            fontSize: '20px',
+                                            fontWeight: '500'
+                                        }}
+                                    >
+                                        {data.name}
+                                    </span>
+                                    <h5 className="fs-24 mb-4 text-primary">${data.price}</h5>
                                 </div>
 
                                 <div className="hstack gap-2">
+                                <div className="input-step ms-2">
+                                            <Button className="minus" onClick={() => setCount(count - 1)}>
+                                                -
+                                            </Button>
+                                            <Form.Control
+                                                type="number"
+                                                className="product-quantity1"
+                                                value={count > 0 ? count : 0}
+                                                min={0}
+                                                max={100}
+                                                readOnly
+                                            />
+                                            <Button className="plus" onClick={() => setCount(count + 1)}>
+                                                +
+                                            </Button>
+                                        </div>
+
                                     <Button
                                         variant="primary"
                                         className="btn btn-hover w-100"
@@ -242,99 +267,85 @@ const Productdetails = () => {
                                         </ul>
                                     </Col>
                                 </Row>
-                                <div className="d-flex align-items-center mb-4">
-                                    <h5 className="fs-15 mb-0">Quantity:</h5>
-                                    <div className="input-step ms-2">
-                                        <Button className="minus" onClick={() => setCount(count - 1)}>
-                                            -
-                                        </Button>
-                                        <Form.Control
-                                            type="number"
-                                            className="product-quantity1"
-                                            value={count > 0 ? count : 0}
-                                            min={0}
-                                            max={100}
-                                            readOnly
-                                        />
-                                        <Button className="plus" onClick={() => setCount(count + 1)}>
-                                            +
-                                        </Button>
-                                    </div>
-                                </div>
-                                <Row>
-                                    <Col lg={12}>
-                                        <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
-                                            <Row>
-                                                <Col sm={12}>
-                                                    <Nav variant="underline" className="nav-tabs-custom mb-3">
-                                                        <Nav.Item as="li">
-                                                            <Nav.Link as="a" eventKey="Information">
-                                                                {' '}
-                                                                Additional Information
-                                                            </Nav.Link>
-                                                        </Nav.Item>
-                                                        <Nav.Item as="li">
-                                                            <Nav.Link as="a" eventKey="Description">
-                                                                {' '}
-                                                                Description
-                                                            </Nav.Link>
-                                                        </Nav.Item>
-                                                        <Nav.Item as="li">
-                                                            <Nav.Link as="a" eventKey="Reviews">
-                                                                {' '}
-                                                                Reviews
-                                                            </Nav.Link>
-                                                        </Nav.Item>
-                                                        <Nav.Item as="li">
-                                                            <Nav.Link as="a" eventKey="Shipping">
-                                                                {' '}
-                                                                Shipping
-                                                            </Nav.Link>
-                                                        </Nav.Item>
-                                                    </Nav>
-                                                    <Tab.Content>
-                                                        <Tab.Pane eventKey="Information">
-                                                            <div className="tab-pane active show" id="profile1" role="tabpanel">
-                                                                <Table className="table-sm table-borderless align-middle">
-                                                                    <tbody>
-                                                                        {(
-                                                                            [
-                                                                                {
-                                                                                    thead: 'Size',
-                                                                                    tdata: 'XL'
-                                                                                },
-                                                                                {
-                                                                                    thead: 'Color',
-                                                                                    tdata: 'Blue'
-                                                                                }
-                                                                            ] as any[]
-                                                                        ).map((item: any, idx) => {
-                                                                            return (
-                                                                                <tr key={idx}>
-                                                                                    <th>{item.thead}</th>
-                                                                                    <td>{item.tdata}</td>
-                                                                                </tr>
-                                                                            )
-                                                                        })}
-                                                                    </tbody>
-                                                                </Table>
-                                                            </div>
-                                                        </Tab.Pane>
-
-                                                        <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
-                                                    </Tab.Content>
-                                                </Col>
-                                            </Row>
-                                        </Tab.Container>
-                                    </Col>
-                                    {/*end col*/}
-                                </Row>
                             </div>
                         </Col>
                         {/*end col*/}
                     </Row>
                 </Container>
                 {/*end container*/}
+            </section>
+
+            <section className="section pt-0">
+                <Container>
+                    <Row>
+                        <Col lg={12}>
+                            <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
+                                <Row>
+                                    <Col sm={12}>
+                                        <Nav variant="underline" className="nav-tabs-custom mb-3">
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Information">
+                                                    {' '}
+                                                    Additional Information
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Description">
+                                                    {' '}
+                                                    Description
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Reviews">
+                                                    {' '}
+                                                    Reviews
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="Shipping">
+                                                    {' '}
+                                                    Shipping
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                        </Nav>
+                                        <Tab.Content>
+                                            <Tab.Pane eventKey="Information">
+                                                <div className="tab-pane active show" id="profile1" role="tabpanel">
+                                                    <Table className="table-sm table-borderless align-middle">
+                                                        <tbody>
+                                                            {(
+                                                                [
+                                                                    {
+                                                                        thead: 'Size',
+                                                                        tdata: 'XL'
+                                                                    },
+                                                                    {
+                                                                        thead: 'Color',
+                                                                        tdata: 'Blue'
+                                                                    }
+                                                                ] as any[]
+                                                            ).map((item: any, idx) => {
+                                                                return (
+                                                                    <tr key={idx}>
+                                                                        <th>{item.thead}</th>
+                                                                        <td>{item.tdata}</td>
+                                                                    </tr>
+                                                                )
+                                                            })}
+                                                        </tbody>
+                                                    </Table>
+                                                </div>
+                                            </Tab.Pane>
+
+                                            <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
+                                        </Tab.Content>
+                                    </Col>
+                                </Row>
+                            </Tab.Container>
+                        </Col>
+                        {/*end col*/}
+                    </Row>
+                </Container>
             </section>
 
             {/* <section className="section pt-0">
