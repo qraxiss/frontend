@@ -384,8 +384,6 @@ const Header = (props: any) => {
     })
     useEffect(() => {
         if (!!data && !loading && !error) {
-            console.log(data.page)
-
             Object.keys(data.icon).map((key) => {
                 data.icon[key] = {
                     url: config.serverUrl + data.icon[key].url
@@ -562,16 +560,18 @@ const Header = (props: any) => {
                     <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
                         <Image src={icon.collections.url} className="header-profile-user"></Image>
                         <div>
-                            <h6
-                                className="text-secondary"
-
-                            >
-                                <span className='text-secondary'                                 style={{
-                                    marginBottom: '0px',
-                                    fontSize: '14px',
-                                    bottom: '25px',
-                                    position: 'absolute'
-                                }}>COLLECTIONS</span>
+                            <h6 className="text-secondary">
+                                <span
+                                    className="text-secondary"
+                                    style={{
+                                        marginBottom: '0px',
+                                        fontSize: '14px',
+                                        bottom: '22px',
+                                        position: 'absolute'
+                                    }}
+                                >
+                                    COLLECTIONS
+                                </span>
                             </h6>
                         </div>
                     </div>

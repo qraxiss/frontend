@@ -116,6 +116,7 @@ export const getSingleProductBySlug = gql`
                 data {
                     attributes {
                         name
+                        slug
                     }
                 }
             }

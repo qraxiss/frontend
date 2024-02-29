@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Button, Col, Container, Row, Tab, Tooltip, Nav, Table, ProgressBar, Breadcrumb, Form, Image, Card } from 'react-bootstrap'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
+
+import { Link } from 'react-router-dom'
 //scss
 import 'swiper/css'
 import 'swiper/css/thumbs'
@@ -9,6 +11,7 @@ import 'swiper/css/navigation'
 
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'lib/query-wrapper'
+import { gql } from '@apollo/client'
 import config from 'config/config'
 
 import { Slider } from 'Components/Product'
@@ -16,6 +19,28 @@ import { products } from 'lib/common-queries'
 import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
+
+const socials = gql`
+    query {
+        social {
+            data {
+                attributes {
+                    socials {
+                        name
+                        url
+                        icon {
+                            data {
+                                attributes {
+                                    url
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`
 
 type resultType = {
     name: string
@@ -30,13 +55,23 @@ const Productdetails = () => {
     let { data, loading } = useQuery(getSingleProductBySlug, {
         variables: { slug }
     })
+    let socialData = useQuery(socials)
+    let [socialState, setSocialState] = useState<any>([])
+
+    console.log(data)
+
+    useEffect(() => {
+        if (!socialData.loading) {
+            setSocialState(socialData.data.socials)
+        }
+    }, [socialData.loading])
 
     let { addItem } = useCart()
 
     let productsData = useQuery(products)
     const [productsList, setProductsList] = useState<any[]>([])
     useEffect(() => {
-        if (productsData.data && !productsData.loading && !productsData.error) {
+        if (JSON.stringify(productsData.data) !== JSON.stringify(productsList) && !productsData.loading && !productsData.error) {
             setProductsList(productsData.data)
         }
     }, [productsData.data])
@@ -96,28 +131,27 @@ const Productdetails = () => {
                                         >
                                             {sliderProduct?.map((item: any, idx: number) => {
                                                 return (
-                                                    <div
+                                                    <Row lg={10}
                                                         key={idx}
                                                         className="swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-next"
                                                         role="group"
                                                         aria-label={`${item.id} / 5 `}
-                                                        style={{ height: '105px', marginBottom: '10px' }}
+                                                        style={{ height: '110px', 'width': '110px', marginBottom: '10px' }}
                                                     >
                                                         <div className="product-thumb rounded cursor-pointer">
+                                                        
                                                             <Image src={item.img} alt="" fluid onClick={() => handleSetImg(item.id)} />
                                                         </div>
-                                                    </div>
+                                                    </Row>
                                                 )
                                             })}
                                         </div>
                                         <span className="swiper-notification" aria-live="assertive" aria-atomic="true" />
                                     </div>
                                 </Col>
-                                {/*end col*/}
                                 <Col md={10}>
                                     <div className="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
                                         <Swiper
-                                            // onSwiper={setThumbsSwiper}
                                             rewind={true}
                                             navigation={true}
                                             modules={[FreeMode, Navigation, Thumbs]}
@@ -141,14 +175,10 @@ const Productdetails = () => {
                                         </Swiper>
                                     </div>
                                 </Col>
-                                {/*end col*/}
-
-                                {/*end col*/}
                             </Row>
-                            {/*end row*/}
                         </Col>
                         {/*end col*/}
-                        <Col lg={3} className="ms-auto">
+                        <Col lg={5} className="ms-auto">
                             <div className="ecommerce-product-widgets mt-4 mt-lg-0">
                                 <div className="mb-4">
                                     <span
@@ -164,22 +194,22 @@ const Productdetails = () => {
                                 </div>
 
                                 <div className="hstack gap-2">
-                                <div className="input-step ms-2">
-                                            <Button className="minus" onClick={() => setCount(count - 1)}>
-                                                -
-                                            </Button>
-                                            <Form.Control
-                                                type="number"
-                                                className="product-quantity1"
-                                                value={count > 0 ? count : 0}
-                                                min={0}
-                                                max={100}
-                                                readOnly
-                                            />
-                                            <Button className="plus" onClick={() => setCount(count + 1)}>
-                                                +
-                                            </Button>
-                                        </div>
+                                    <div className="input-step ms-2">
+                                        <Button className="minus" onClick={() => setCount(count - 1)}>
+                                            -
+                                        </Button>
+                                        <Form.Control
+                                            type="number"
+                                            className="product-quantity1"
+                                            value={count > 0 ? count : 0}
+                                            min={0}
+                                            max={100}
+                                            readOnly
+                                        />
+                                        <Button className="plus" onClick={() => setCount(count + 1)}>
+                                            +
+                                        </Button>
+                                    </div>
 
                                     <Button
                                         variant="primary"
@@ -196,6 +226,9 @@ const Productdetails = () => {
                                         <i className="bi bi-cart2 me-2" /> Buy Now
                                     </Button>
                                 </div>
+
+                                <hr className="primary" />
+
                                 <Row className="gy-3">
                                     <Col md={6}>
                                         <div>
@@ -267,12 +300,41 @@ const Productdetails = () => {
                                         </ul>
                                     </Col>
                                 </Row>
+
+                                <hr />
+
+                                <Col lg={7}>
+                                    <Row>
+                                        <Col>Share:</Col>
+                                        {socialState.map((item: any, index: number) => (
+                                            <Col key={index}>
+                                                <Link to={item.url}>
+                                                    <Image src={config.serverUrl + item.icon.url} className="social-icon" />
+                                                </Link>
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                    <br />
+                                </Col>
+
+                                <Row>
+                                    <Col lg={10}>
+                                        <Row>
+                                            <Col>Categories:</Col>
+                                            {(!loading ? data.categories : []).map((item: any, index: number) => {
+                                                return (
+                                                    <Col>
+                                                        <Link to={`/category/${item.slug}`}>{' ' + item.name + ','}</Link>
+                                                    </Col>
+                                                )
+                                            })}
+                                        </Row>
+                                    </Col>
+                                </Row>
                             </div>
                         </Col>
-                        {/*end col*/}
                     </Row>
                 </Container>
-                {/*end container*/}
             </section>
 
             <section className="section pt-0">
@@ -343,82 +405,9 @@ const Productdetails = () => {
                                 </Row>
                             </Tab.Container>
                         </Col>
-                        {/*end col*/}
                     </Row>
                 </Container>
             </section>
-
-            {/* <section className="section pt-0">
-                <Container>
-                    <Row>
-                        <Col lg={12}>
-                            <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
-                                <Row>
-                                    <Col sm={12}>
-                                        <Nav variant="underline" className="nav-tabs-custom mb-3">
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Information">
-                                                    {' '}
-                                                    Additional Information
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Description">
-                                                    {' '}
-                                                    Description
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Reviews">
-                                                    {' '}
-                                                    Reviews
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Shipping">
-                                                    {' '}
-                                                    Shipping
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                        </Nav>
-                                        <Tab.Content>
-                                            <Tab.Pane eventKey="Information">
-                                                <div className="tab-pane active show" id="profile1" role="tabpanel">
-                                                    <Table className="table-sm table-borderless align-middle">
-                                                        <tbody>
-                                                            {(
-                                                                [
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'XL'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Color',
-                                                                        tdata: 'Blue'
-                                                                    }
-                                                                ] as any[]
-                                                            ).map((item: any, idx) => {
-                                                                return (
-                                                                    <tr key={idx}>
-                                                                        <th>{item.thead}</th>
-                                                                        <td>{item.tdata}</td>
-                                                                    </tr>
-                                                                )
-                                                            })}
-                                                        </tbody>
-                                                    </Table>
-                                                </div>
-                                            </Tab.Pane>
-
-                                            <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
-                                        </Tab.Content>
-                                    </Col>
-                                </Row>
-                            </Tab.Container>
-                        </Col>
-                    </Row>
-                </Container>
-            </section> */}
 
             <section className="section pt-0">
                 <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
