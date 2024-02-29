@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { useQuery } from 'lib/query-wrapper'
@@ -28,6 +28,13 @@ const query = gql`
             data {
                 attributes {
                     text {
+                        data {
+                            attributes {
+                                url
+                            }
+                        }
+                    }
+                    icon {
                         data {
                             attributes {
                                 url
@@ -89,8 +96,8 @@ const groupList = <T extends any>(list: T[], groupSize: number): T[][] => {
 
 const Footer = () => {
     const { data, loading } = useQuery(query)
-    let logodark = !loading ? config.serverUrl + data.logo.text.url : ''
-    let logolight = !loading ? config.serverUrl + data.logo.text.url : ''
+    let logodark = !loading ? config.serverUrl + data.logo.icon.url : ''
+    let logolight = !loading ? config.serverUrl + data.logo.icon.url : ''
 
     let groupedList
     if (!loading) {
@@ -100,19 +107,24 @@ const Footer = () => {
     return (
         <React.Fragment>
             <section className="section footer-landing pb-0">
-                <Container>
+                <Container
+                // style={{
+                //     marginLeft: '15px',
+                //     marginRight: '15px'
+                // }}
+                >
                     <Row>
-                        <Col lg={4}>
+                        <Col lg={3}>
                             <div className="footer-info">
-                                <Image src={logolight} alt="" height="50" className="logo-light" />
-                                <Image src={logodark} alt="" height="50" className="logo-dark" />
-                                <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p>
+                                <Image src={logolight} className="logo" />
+                                {/* <Image src={logodark} alt="" height="300" className="logo-dark" /> */}
+                                {/* <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p> */}
                             </div>
                         </Col>
 
                         <Col lg={8}>
                             <Row className="pl-0 pl-lg-3">
-                                <Col md={3}>
+                                <Col md={2}>
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Categories</h5>
                                         <ul className="list-unstyled footer-link mt-3">
@@ -127,7 +139,7 @@ const Footer = () => {
                                     </div>
                                 </Col>
 
-                                <Col md={3}>
+                                <Col md={2}>
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Shopcek</h5>
                                         <ul className="list-unstyled footer-link mt-3">
@@ -142,7 +154,7 @@ const Footer = () => {
                                     </div>
                                 </Col>
 
-                                <Col md={3}>
+                                <Col md={2}>
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Legal</h5>
                                         <ul className="list-unstyled footer-link mt-3">
@@ -157,29 +169,74 @@ const Footer = () => {
                                     </div>
                                 </Col>
 
-                                <Col md={3}>
+                                <Col
+                                    md={5}
+                                    style={{
+                                        display: 'flex',
+                                        justifyContent: 'right'
+                                    }}
+                                >
                                     <div className="my-lg-0 mt-4">
-                                        <h5 className="footer-title">Follow Us</h5>
-                                        {(!loading ? groupedList! : []).map((group, index) => (
-                                            <Row key={index} className="footer-socials">
-                                                {group.map((item: any, itemIndex) => {
-                                                    return (
-                                                        <Col key={itemIndex}>
-                                                            <Link to={item.url}>
-                                                                <Image
-                                                                    src={config.serverUrl + item.icon.url}
-                                                                    className="footer-social-icon"
-                                                                    width={48}
-                                                                />
-                                                            </Link>
-                                                        </Col>
-                                                    )
-                                                })}
+                                        <h5 className="footer-title">Subscribe Our Newsletter</h5>
+                                        {/* <Container> */}
+                                        <Form
+                                            style={{
+                                                right: '-10rem'
+                                            }}
+                                        >
+                                            <Row sm={2}>
+                                                <div className="mb-4">
+                                                    <Form.Control
+                                                        type="email"
+                                                        id="email"
+                                                        name="email"
+                                                        placeholder="Enter your email..."
+                                                        autoComplete="off"
+                                                    />
+                                                </div>
                                             </Row>
-                                        ))}
+
+                                            <Row sm={3}>
+                                                <div
+                                                    className="text-center mt-4"
+                                                    style={{
+                                                        top: '-30px',
+                                                        right: '-4rem'
+                                                    }}
+                                                >
+                                                    <Button variant="primary" className="w-100" type="submit">
+                                                        Subscribe
+                                                    </Button>
+                                                </div>
+                                            </Row>
+                                        </Form>
+
+                                        <Row lg={6}>
+                                            {(!loading ? data.social.socials! : []).map((item: any, index: number) => (
+                                                <Col key={index}>
+                                                    <Link to={item.url}>
+                                                        <Image src={config.serverUrl + item.icon.url} className="footer-social-icon" width={48} />
+                                                    </Link>
+                                                </Col>
+                                            ))}
+                                        </Row>
+
+                                        {/* </Container> */}
                                     </div>
                                 </Col>
                             </Row>
+                        </Col>
+                    </Row>
+
+                    <hr className="solid"></hr>
+                    <Row>
+                        <Col>Copyright 2024 SHOPCEK-All Rights Reserved</Col>
+                        <Col
+                            style={{
+                                textAlign: 'right'
+                            }}
+                        >
+                            Made with one mission: to accelerate the next billion's onboarding to crypto
                         </Col>
                     </Row>
                 </Container>

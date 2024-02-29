@@ -280,7 +280,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
             return (
                 <li className="nav-item">
                     <Link
-                        className={`nav-link ${item.page.title==='Earn' ? 'earn': ''}`} 
+                        className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
                         to={item.page.url}
                         role="button"
                         // onClick={(e) => {
