@@ -42,7 +42,7 @@ const Logout = () => {
                       </div>
                       <div>
                         <Link to="/signin" className="btn btn-primary w-100">
-                          Sign In
+                          Giriş Yap
                         </Link>
                       </div>
                     </Card.Body>

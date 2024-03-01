@@ -41,19 +41,6 @@ const Error500 = () => {
             {/*end row*/}
           </Container>
           {/*end container*/}
-          <footer className="footer">
-            <Container>
-              <Row>
-                <Col lg={12}>
-                  <div className="text-center">
-                    <p className="mb-0 text-muted">
-                      ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                    </p>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </footer>
         </div>
       </section>
     </React.Fragment>
