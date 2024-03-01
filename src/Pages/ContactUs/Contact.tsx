@@ -33,13 +33,13 @@ const ContactUs = () => {
       message: ''
     },
     validationSchema: Yup.object({
-      name: Yup.string().required('Please Enter Your Name'),
+      name: Yup.string().required('Bu alanı doldurmak zorunludur!'),
       email: Yup.string()
         .email()
         .matches(/^(?!.*@[^,]*,)/)
-        .required('Please Enter Your Email'),
-      subject: Yup.string().required('Please Enter Your Subject'),
-      message: Yup.string().required('Please Enter Your some message')
+        .required('Bu alanı doldurmak zorunludur!'),
+      subject: Yup.string().required('Bu alanı doldurmak zorunludur!'),
+      message: Yup.string().required('Bu alanı doldurmak zorunludur!')
     }),
     onSubmit: (values) => {
       fn({
@@ -55,8 +55,8 @@ const ContactUs = () => {
           <Row className="justify-content-center">
             <Col lg={5}>
               <div className="text-center">
-                <h1 className="text-white">Contact Us</h1>
-                <p className="fs-16 mb-0 text-white-75">Let's start something great together. Get in touch with one of the team today!</p>
+                <h1 className="text-white">Bizimle İletişime Geçin</h1>
+                {/* <p className="fs-16 mb-0 text-white-75">Let's start something great together. Get in touch with one of the team today!</p> */}
               </div>
             </Col>
           </Row>
@@ -78,7 +78,7 @@ const ContactUs = () => {
                         </div>
                         <div className="ms-3 flex-grow-1">
                           <h5 className="fs-17 lh-base mb-2">{item.title}</h5>
-                          <p className="text-muted fs-14 mb-0">{item.describe}</p>
+                          <p className="text-muted fs-14 mb-2">{item.describe}</p>
                         </div>
                       </div>
                     </Card.Body>
@@ -93,19 +93,19 @@ const ContactUs = () => {
                   <Row>
                     <Col lg={12}>
                       <div className="text-center mb-4">
-                        <h3 className="text-capitalize">Get In Touch with us for more Information</h3>
+                        <h3 className="text-capitalize">Bilgi Almak İçin Bize Ulaşın</h3>
                       </div>
                     </Col>
                     <Col lgt={6}>
                       <div className="form-group mt-3">
                         <Form.Label htmlFor="nameInput">
-                          Name<span className="text-danger">*</span>
+                          İsim<span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control
                           name="name"
                           id="nameInput"
                           type="text"
-                          placeholder="Enter name"
+                          placeholder="İsminizi giriniz"
                           value={formik.values.name}
                           onBlur={formik.handleBlur}
                           onChange={formik.handleChange}
@@ -122,7 +122,7 @@ const ContactUs = () => {
                           name="email"
                           id="emailInput"
                           type="email"
-                          placeholder="Enter email"
+                          placeholder="Email adresinizi giriniz"
                           value={formik.values.email}
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
@@ -133,12 +133,12 @@ const ContactUs = () => {
                     <Col lg={12}>
                       <div className="form-group mt-3">
                         <Form.Label htmlFor="subjectInput">
-                          Subject<span className="text-danger">*</span>
+                          Konu<span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control
                           type="text"
                           id="subjectInput"
-                          placeholder="Enter Subject.."
+                          placeholder="Bahsetmek istediğiniz konuyu giriniz"
                           name="subject"
                           value={formik.values.subject}
                           onChange={formik.handleChange}
@@ -150,14 +150,14 @@ const ContactUs = () => {
                     <Col lg={12}>
                       <div className="form-group mt-3">
                         <Form.Label htmlFor="messageInput">
-                          Message<span className="text-danger">*</span>
+                          Mesaj<span className="text-danger">*</span>
                         </Form.Label>
                         <Form.Control
                           as="textarea"
                           name="message"
                           id="messageInput"
                           rows={4}
-                          placeholder="Enter message..."
+                          placeholder="Mesajınızı giriniz"
                           value={formik.values.message}
                           onChange={formik.handleChange}
                           onBlur={formik.handleBlur}
@@ -169,7 +169,7 @@ const ContactUs = () => {
                     <Col lg={12}>
                       <div className="text-end mt-4">
                         <Button type="submit" id="submit" name="submit" variant="primary">
-                          Send Message <i className="bi bi-arrow-right-short align-middle fs-16 ms-1"></i>
+                          Gönder <i className="bi bi-arrow-right-short align-middle fs-16 ms-1"></i>
                         </Button>
                       </div>
                     </Col>
