@@ -12,8 +12,8 @@ const Passwordcreate = () => {
   const passwordtype = 'password'
   const confirmPasswordtype = 'password'
 
-  const [password, setPassword] = useState('')
-  const [confirmpassword, setConfirmpassword] = useState('')
+  const [password, setPassword] = useState('password')
+  const [confirmpassword, setConfirmpassword] = useState('password')
 
   const formik = useFormik({
     initialValues: {
@@ -22,14 +22,14 @@ const Passwordcreate = () => {
     },
     validationSchema: Yup.object({
       password: Yup.string()
-        .min(8, 'Password must be at least 8 characters')
-        .matches(RegExp('(.*[a-z].*)'), 'At least lowercase letter')
-        .matches(RegExp('(.*[A-Z].*)'), 'At least uppercase letter')
-        .matches(RegExp('(.*[0-9].*)'), 'At least one number')
-        .required('This field is required'),
+        .min(8, 'Şifre 8 karakterden uzun olmalıdır!')
+        .matches(RegExp('(.*[a-z].*)'), 'Küçük karakter içermelidir!')
+        .matches(RegExp('(.*[A-Z].*)'), 'Büyük karakter içermelidir')
+        .matches(RegExp('(.*[0-9].*)'), 'Sayı içermelidir')
+        .required('Bu alan zorunludur!'),
       confirmPassword: Yup.string()
-        .required()
-        .oneOf([Yup.ref('password')], 'Passwords do not match')
+        .required('Bu alan zorunludur!')
+        .oneOf([Yup.ref('password')], 'Şifre eşleşmedi')
     }),
     onSubmit: (values) => {}
   })
@@ -54,22 +54,22 @@ const Passwordcreate = () => {
                           <Image src={auth1} alt="" className="img-fluid" />
                         </Col>
                         <Col lg={8} xs={9}>
-                          <h1 className="text-white lh-base fw-lighter">Create New Password</h1>
+                          <h1 className="text-white lh-base fw-lighter">Yeni Şifre Oluştur</h1>
                         </Col>
                       </Row>
                     </Card.Header>
                     <Card.Body>
-                      <p className="text-muted fs-15">Your new password must be different from previous used password.</p>
+                      <p className="text-muted fs-15">Yeni şifren eski şifrelerden farklı olmalıdır.</p>
                       <div className="p-2">
                         <Form action="/auth-signin-basic" onSubmit={formik.handleSubmit}>
                           <div className="mb-3">
-                            <Form.Label htmlFor="password-input">Password</Form.Label>
+                            <Form.Label htmlFor="password-input">Şifre</Form.Label>
                             <div className="position-relative auth-pass-inputgroup">
                               <Form.Control
                                 type={password}
                                 autoComplete="off"
                                 className="pe-5 password-input"
-                                placeholder="Enter password"
+                                placeholder="Şifre giriniz"
                                 id="password-input"
                                 name="password"
                                 onChange={formik.handleChange}
@@ -89,17 +89,17 @@ const Passwordcreate = () => {
                               </Button>
                             </div>
                             <div id="passwordInput" className="form-text">
-                              Your password must be 8-20 characters long.
+                              Şifre uzunluğu 8 - 20 karakter arasında olmalıdır.
                             </div>
                           </div>
                           <div className="mb-3">
-                            <Form.Label htmlFor="confirm-password-input">Confirm Password</Form.Label>
+                            <Form.Label htmlFor="confirm-password-input">Şifreyi Doğrula</Form.Label>
                             <div className="position-relative auth-pass-inputgroup mb-3">
                               <Form.Control
                                 type={confirmpassword}
                                 className="pe-5 password-input"
                                 autoComplete="off"
-                                placeholder="Confirm password"
+                                placeholder="Girmiş olduğunuz şifrenizi doğrulayınız"
                                 id="confirm-password-input"
                                 name="confirmPassword"
                                 value={formik.values.confirmPassword}
@@ -119,25 +119,25 @@ const Passwordcreate = () => {
                               </Button>
                             </div>
                           </div>
-                          <div className="form-check form-check-primary">
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }} className="form-check form-check-primary">
                             <Form.Control className="form-check-input" type="checkbox" id="auth-remember-check" />
                             <Form.Label className="form-check-label" htmlFor="auth-remember-check">
-                              Remember me
+                              Beni hatırla
                             </Form.Label>
                           </div>
                           <div className="mt-4">
                             <Button variant="primary" className="w-100" type="submit">
-                              Reset Password
+                              Şifreyi Değiştir
                             </Button>
                           </div>
                         </Form>
                       </div>
                       <div className="mt-4 text-center">
                         <p className="mb-0">
-                          Wait, I remember my password...{' '}
-                          <Link to="/auth-signin-basic" className="fw-semibold text-primary text-decoration-underline">
+                          Bekle, Şifremi hatırladım...{' '}
+                          <Link to="/signin" className="fw-semibold text-primary text-decoration-underline">
                             {' '}
-                            Click here{' '}
+                            Buraya tıkla{' '}
                           </Link>{' '}
                         </p>
                       </div>
@@ -150,19 +150,6 @@ const Passwordcreate = () => {
             {/*end row*/}
           </Container>
           {/*end container*/}
-          <footer className="footer">
-            <Container>
-              <Row>
-                <Col lg={12}>
-                  <div className="text-center">
-                    <p className="mb-0 text-muted">
-                      ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                    </p>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </footer>
         </div>
       </section>
     </React.Fragment>

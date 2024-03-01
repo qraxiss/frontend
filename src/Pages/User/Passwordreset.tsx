@@ -16,8 +16,8 @@ const Passwordreset = () => {
     validationSchema: Yup.object({
       email: Yup.string()
         .email()
-        .matches(/^(?!.*@[^,]*,)/)
-        .required('Please Enter Your Email')
+        .matches(RegExp(/^(?!.*@[^,]*,)/), 'Geçerli bir email giriniz!')
+        .required('Bu alanı doldurmak zorunludur!')
     }),
     onSubmit: (values) => {}
   })
@@ -36,14 +36,14 @@ const Passwordreset = () => {
                           <Image src={auth1} alt="" className="img-fluid" />
                         </Col>
                         <Col lg={8} xs={9}>
-                          <h1 className="text-white lh-base fw-lighter">Forgot Password?</h1>
+                          <h1 className="text-white lh-base fw-lighter">Şifremi Unuttum?</h1>
                         </Col>
                       </Row>
                     </Card.Header>
                     <Card.Body>
-                      <p className="text-muted fs-15">Reset password with Toner.</p>
+                      <p className="text-muted fs-15">Şifremi Sıfırla</p>
                       <Alert className="alert-borderless alert-warning text-center mb-2 mx-2" role="alert">
-                        Enter your email and instructions will be sent to you!
+                        Email adresini gir ve gelen talimatları takip et
                       </Alert>
                       <div className="p-2">
                         <Form onSubmit={formik.handleSubmit}>
@@ -53,7 +53,7 @@ const Passwordreset = () => {
                               type="email"
                               id="email"
                               name="email"
-                              placeholder="Enter your email or username"
+                              placeholder="Email adresinizi giriniz"
                               value={formik.values.email}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -63,7 +63,7 @@ const Passwordreset = () => {
                           </div>
                           <div className="text-center mt-4">
                             <Button variant="primary" className="w-100" type="submit">
-                              Send Reset Link
+                              Şifreyi Sıfırla
                             </Button>
                           </div>
                         </Form>
@@ -71,10 +71,10 @@ const Passwordreset = () => {
                       </div>
                       <div className="mt-4 text-center">
                         <p className="mb-0">
-                          Wait, I remember my password...{' '}
+                          Beklei, Şifremi hatırladım...{' '}
                           <Link to="/auth-signin-basic" className="fw-semibold text-primary text-decoration-underline">
                             {' '}
-                            Click here{' '}
+                            Buraya tıkla{' '}
                           </Link>{' '}
                         </p>
                       </div>
@@ -87,19 +87,6 @@ const Passwordreset = () => {
             {/*end row*/}
           </Container>
           {/*end container*/}
-          <footer className="footer">
-            <Container>
-              <Row>
-                <Col lg={12}>
-                  <div className="text-center">
-                    <p className="mb-0 text-muted">
-                      ©{new Date().getFullYear()} Toner. Crafted with <i className="mdi mdi-heart text-danger" /> by Themesbrand
-                    </p>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          </footer>
         </div>
       </section>
     </React.Fragment>
