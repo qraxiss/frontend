@@ -52,7 +52,7 @@ const Productdetails = () => {
     description: '',
     images: []
   }) as resultType
-
+  console.log(data)
   let sliderProduct = data.images.map((image: any, index: number) => {
     return {
       id: index + 1,
@@ -72,13 +72,13 @@ const Productdetails = () => {
   }
 
   //like button
-  const handleLikeIcone = (event: any) => {
-    if (event.closest('button').classList.contains('active')) {
-      event.closest('button').classList.remove('active')
-    } else {
-      event.closest('button').classList.add('active')
-    }
-  }
+  // const handleLikeIcone = (event: any) => {
+  //   if (event.closest('button').classList.contains('active')) {
+  //     event.closest('button').classList.remove('active')
+  //   } else {
+  //     event.closest('button').classList.add('active')
+  //   }
+  // }
 
   return (
     <React.Fragment>
@@ -86,9 +86,11 @@ const Productdetails = () => {
       <section className="section">
         <Container>
           <Row className="gx-2">
+            {/* Left side */}
             <Col lg={6}>
               <Row>
                 <Col md={2}>
+                  {/* Resim */}
                   <div className="swiper productSwiper mb-3 mb-lg-0 swiper-initialized swiper-vertical swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
                     <div
                       className="swiper-wrapper"
@@ -106,7 +108,7 @@ const Productdetails = () => {
                             className="swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-next"
                             role="group"
                             aria-label={`${item.id} / 5 `}
-                            style={{ height: '105px', marginBottom: '10px' }}
+                            style={{ width: '100%', marginBottom: '10px' }}
                           >
                             <div className="product-thumb rounded cursor-pointer">
                               <Image src={item.img} alt="" fluid onClick={() => handleSetImg(item.id)} />
@@ -163,7 +165,8 @@ const Productdetails = () => {
                         {' '}
                         <i className="bi bi-cart2 me-2" /> Satın Al
                       </Button>
-                      <Button
+                      {/* Favori */}
+                      {/* <Button
                         className="btn btn-soft-danger custom-toggle btn-hover"
                         data-bs-toggle="button"
                         aria-pressed="false"
@@ -175,7 +178,7 @@ const Productdetails = () => {
                         <span className="icon-off">
                           <i className="ri-heart-fill" />
                         </span>
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                 </Col>
@@ -184,16 +187,17 @@ const Productdetails = () => {
               {/*end row*/}
             </Col>
             {/*end col*/}
+            {/* Right side */}
             <Col lg={5} className="ms-auto">
               <div className="ecommerce-product-widgets mt-4 mt-lg-0">
                 <div className="mb-4">
                   <h4 className="lh-base mb-1">{data.name}</h4>
                   <p className="text-muted mb-4">{data.description}</p>
-                  <h5 className="fs-24 mb-4">${data.price}</h5>
+                  <h5 className="fs-24 mb-4">₺{data.price}</h5>
                   <ul className="list-unstyled vstack gap-2">
                     <li>
                       <i className="bi bi-check2-circle me-2 align-middle text-success" />
-                      In stock
+                      Stokta var
                     </li>
                   </ul>
                 </div>
@@ -210,7 +214,8 @@ const Productdetails = () => {
                   </div>
                 </div>
                 <Row className="gy-3">
-                  <Col md={6}>
+                  {/* Size */}
+                  {/* <Col md={12}>
                     <div>
                       <h6 className="fs-14 fw-medium text-muted">Sizes:</h6>
                       <ul className="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
@@ -252,8 +257,9 @@ const Productdetails = () => {
                         </li>
                       </ul>
                     </div>
-                  </Col>
-                  <Col md={6}>
+                  </Col> */}
+                  {/* Colors */}
+                  {/* <Col md={6}>
                     <h6 className="fs-14 fw-medium text-muted">Colors: </h6>
                     <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
                       <li>
@@ -278,7 +284,7 @@ const Productdetails = () => {
                         />
                       </li>
                     </ul>
-                  </Col>
+                  </Col> */}
                 </Row>
               </div>
             </Col>
