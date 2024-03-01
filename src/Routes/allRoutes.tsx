@@ -48,9 +48,8 @@ const authProtectedRoutes = [
 
   { path: '/account', component: <MyAccount /> },
   { path: '/', component: <Home /> },
-  { path: '/about-us', component: <About /> },
+  // { path: '/about-us', component: <About /> },
   { path: '/contact', component: <ContactUs /> },
-  { path: '*', component: <Navigate to="/" /> },
   { path: '/category/:parent/:child', component: <Defaultgrid /> },
   { path: '/category/:parent/', component: <Defaultgrid /> },
 
@@ -58,12 +57,13 @@ const authProtectedRoutes = [
 
   { path: '/signin', component: <Signin /> },
   { path: '/signup', component: <SignUp /> },
-  { path: '/logout', component: <Logout /> },
+  // { path: '/logout', component: <Logout /> },
   { path: '/password-reset', component: <Passwordreset /> },
   { path: '/create-password', component: <Passwordcreate /> },
-  { path: '/login-success', component: <Successmsg /> },
+  // { path: '/login-success', component: <Successmsg /> },
 
-  { path: '/404', component: <Error404 /> },
-  { path: '/500', component: <Error500 /> }
+  { path: '*', component: <Navigate to="/404" /> },
+  { path: '/404', component: <Error404 /> }
+  // { path: '/500', component: <Error500 /> }
 ]
 export { authProtectedRoutes }
