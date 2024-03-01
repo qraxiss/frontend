@@ -30,8 +30,8 @@ const Signin = () => {
       password: ''
     },
     validationSchema: Yup.object({
-      identifier: Yup.string().required('This field is required'),
-      password: Yup.string().required('This field is required')
+      identifier: Yup.string().required('Kullanıcı adı girmek zorunludur!'),
+      password: Yup.string().required('Şifre girmek zorunludur!')
     }),
 
     onSubmit: (values) => {
@@ -57,16 +57,16 @@ const Signin = () => {
                 <div className="auth-card mx-lg-3">
                   <Card className="border-0 mb-0">
                     <Card.Body>
-                      <p className="text-muted fs-15">Sign in to continue to Shopcek.</p>
+                      <p className="text-muted fs-15">Giriş Yap</p>
                       <div className="p-2">
                         <Form action="#" onSubmit={formik.handleSubmit}>
                           <div className="mb-3">
-                            <Form.Label htmlFor="identifier">Username</Form.Label>
+                            <Form.Label htmlFor="identifier">Kullanıcı Adı</Form.Label>
                             <Form.Control
                               type="text"
                               name="identifier"
                               id="identifier"
-                              placeholder="Enter username"
+                              placeholder="Kullanıcı adınızı giriniz"
                               value={formik.values.identifier}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -78,16 +78,16 @@ const Signin = () => {
                           <div className="mb-3">
                             <div className="float-end">
                               <Link to={'/forgot-password'} className="text-muted">
-                                Forgot password?
+                                Şifremi unuttum?
                               </Link>
                             </div>
-                            <Form.Label htmlFor="password-input">Password</Form.Label>
+                            <Form.Label htmlFor="password-input">Şifre</Form.Label>
                             <div className="position-relative auth-pass-inputgroup mb-3">
                               <Form.Control
                                 type={password}
                                 className=" pe-5 password-input"
                                 name="password"
-                                placeholder="Enter password"
+                                placeholder="Şifrrenizi giriniz"
                                 id="password-input"
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
@@ -109,10 +109,10 @@ const Signin = () => {
                           <Form.Check type="checkbox" label="Remember me" />
                           <div className="mt-4">
                             <Button variant="primary" className="w-100" type="submit">
-                              Sign In
+                              Giriş Yap
                             </Button>
                           </div>
-                          <div className="mt-4 pt-2 text-center">
+                          {/* <div className="mt-4 pt-2 text-center">
                             <div className="signin-other-title">
                               <h5 className="fs-13 mb-4 title">Sign In with</h5>
                             </div>
@@ -130,15 +130,15 @@ const Signin = () => {
                                 <i className="ri-twitter-fill fs-16" />
                               </Button>
                             </div>
-                          </div>
+                          </div> */}
                         </Form>
                         <div className="text-center mt-5">
                           <p className="mb-0">
-                            Don't have an account ?{' '}
+                            Henüz üye değil misin ?{' '}
                             <Link to="/signup" className="fw-semibold text-secondary text-decoration-underline">
                               {' '}
-                              SignUp
-                            </Link>{' '}
+                              Üye Ol
+                            </Link>
                           </p>
                         </div>
                       </div>

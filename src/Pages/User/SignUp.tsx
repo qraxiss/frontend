@@ -27,16 +27,16 @@ const SignUp = () => {
   const formik = useFormik({
     initialValues: {
       email: '',
-      username: 'admin@themesbrand.com',
-      password: '123456'
+      username: '',
+      password: ''
     },
     validationSchema: Yup.object({
       email: Yup.string()
         .email()
-        .matches(/^(?!.*@[^,]*,)/)
-        .required('Please Enter Your Email'),
-      username: Yup.string().required('This field is required'),
-      password: Yup.string().required('This field is required')
+        .matches(/^(?!.*@[^,]*,)/, 'Lütfen geçerli bir email giriniz!')
+        .required('Email girmek zoruludur!'),
+      username: Yup.string().required('Kullanıcı adı girmek zorunludur!'),
+      password: Yup.string().min(6, 'Şifreniz en az 6 karakterden oluşmalıdır!').required('Şifre girmek zorunludur!')
     }),
     onSubmit: (values) => {
       fn({ variables: values })
@@ -53,9 +53,24 @@ const SignUp = () => {
                 <div className="auth-card mx-lg-3">
                   <Card className="border-0 mb-0">
                     <Card.Body>
-                      <p className="text-muted fs-15">Join Shopcek</p>
+                      <p className="text-muted fs-15">Üye olun</p>
                       <div className="p-2">
                         <Form className="needs-validation" action="#" onSubmit={formik.handleSubmit}>
+                          <div className="mb-3">
+                            <Form.Label htmlFor="username">
+                              Kullanıcı Adı <span className="text-danger">*</span>
+                            </Form.Label>
+                            <Form.Control
+                              type="text"
+                              id="username"
+                              name="username"
+                              placeholder="Kullanıcı adınızı giriniz"
+                              value={formik.values.username}
+                              onChange={formik.handleChange}
+                              onBlur={formik.handleBlur}
+                            />
+                            {formik.errors.username && formik.touched.username ? <span className="text-danger">{formik.errors.username}</span> : null}
+                          </div>
                           <div className="mb-3">
                             <Form.Label htmlFor="useremail">
                               Email <span className="text-danger">*</span>
@@ -64,7 +79,7 @@ const SignUp = () => {
                               type="email"
                               id="useremail"
                               name="email"
-                              placeholder="Enter email address"
+                              placeholder="Email adresinizi giriniz"
                               value={formik.values.email}
                               onChange={formik.handleChange}
                               onBlur={formik.handleBlur}
@@ -72,28 +87,14 @@ const SignUp = () => {
                             {formik.errors.email && formik.touched.email ? <span className="text-danger">{formik.errors.email}</span> : null}
                           </div>
                           <div className="mb-3">
-                            <Form.Label htmlFor="username">
-                              Username <span className="text-danger">*</span>
+                            <Form.Label htmlFor="password-input">
+                              Şifre <span className="text-danger">*</span>
                             </Form.Label>
-                            <Form.Control
-                              type="text"
-                              id="username"
-                              name="username"
-                              placeholder="Enter username"
-                              value={formik.values.username}
-                              onChange={formik.handleChange}
-                              onBlur={formik.handleBlur}
-                            />
-
-                            {formik.errors.username && formik.touched.username ? <span className="text-danger">{formik.errors.username}</span> : null}
-                          </div>
-                          <div className="mb-3">
-                            <Form.Label htmlFor="password-input">Password</Form.Label>
                             <div className="position-relative auth-pass-inputgroup">
                               <Form.Control
                                 type={passwordtype ? 'text' : 'password'}
                                 className="pe-5 password-input"
-                                placeholder="Enter password"
+                                placeholder="Şifrenizi giriniz"
                                 id="password-input"
                                 name="password"
                                 value={formik.values.password}
@@ -117,12 +118,12 @@ const SignUp = () => {
 
                           <div className="mt-4">
                             <Button variant="primary" className="w-100" type="submit">
-                              Sign Up
+                              Üye Ol
                             </Button>
                           </div>
-                          <div className="mt-4 text-center">
+                          {/* <div className="mt-4 text-center">
                             <div className="signin-other-title">
-                              <h5 className="fs-13 mb-4 title text-muted">Create account with</h5>
+                              <h5 className="fs-13 mb-4 title text-muted">Şununla hesap oluştur</h5>
                             </div>
                             <div className="pt-2 hstack gap-2 justify-content-center">
                               <Button className="btn btn-soft-primary btn-icon">
@@ -131,23 +132,17 @@ const SignUp = () => {
                               <Button className="btn btn-soft-danger btn-icon">
                                 <i className="ri-google-fill fs-16" />
                               </Button>
-                              <Button className="btn btn-soft-dark btn-icon">
-                                <i className="ri-github-fill fs-16" />
-                              </Button>
-                              <Button className="btn btn-soft-info btn-icon">
-                                <i className="ri-twitter-fill fs-16" />
-                              </Button>
                             </div>
-                          </div>
+                          </div> */}
                         </Form>
                       </div>
                       <div className="mt-4 text-center">
                         <p className="mb-0">
-                          Already have an account ?{' '}
+                          Hesabın mı var ?{' '}
                           <Link to="/signin" className="fw-semibold text-primary text-decoration-underline">
                             {' '}
-                            Signin{' '}
-                          </Link>{' '}
+                            Giriş Yap{' '}
+                          </Link>
                         </p>
                       </div>
                     </Card.Body>
