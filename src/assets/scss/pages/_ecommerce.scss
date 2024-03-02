@@ -4,6 +4,97 @@
 
 //ecommerce landing page
 
+.purple-box {
+    background-color: rgba(245, 86, 183, 0.7);
+    display: flex;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 16rem;
+    width: 8rem;
+
+    img {
+        width: 80%;
+        height: auto;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
+
+.blue-box {
+    background-color: rgba(19, 197, 240, 0.7);
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 16rem;
+    width: 16rem;
+}
+
+.divider {
+    font-size: 140px;
+    font-weight: 800;
+    margin-top: 1rem;
+}
+
+.blue-box-container {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.purple-box-container {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.name-services {
+    h1 {
+        color: $secondary;
+    }
+}
+
+.task-rewards {
+    h1 {
+        color: $primary
+    }
+}
+
+.login-to-earn{
+    h1 {
+        color: $secondary;
+    }
+
+}
+
+.stay-here-to-earn {
+    h1 {
+        color: $primary
+    }
+}
+
+.top-container {
+    padding-left: 30px;
+    padding-right: 30px;
+
+    .claim {
+        display: flex;
+        justify-content: space-between;
+
+        p {
+            font-size: 18px;
+        }
+
+        button {
+            margin-bottom: 18px;
+            width: 8rem;
+        }
+    }
+}
+
 #ecommerceHero {
 
     .carousel-control-prev,

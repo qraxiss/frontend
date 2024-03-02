@@ -34,6 +34,7 @@ import About from 'Pages/Product/About'
 
 //contact
 import ContactUs from 'Pages/ContactUs/Contact'
+import Earn from 'Pages/Earn'
 
 const authProtectedRoutes = [
     { path: '/shop/address', component: <ShopIndex /> },
@@ -45,6 +46,8 @@ const authProtectedRoutes = [
     { path: '/shop/shopingcard', component: <Shopingcard /> },
     { path: '/shop/checkout', component: <Checkout /> },
     { path: '/shop/wishList', component: <WishList /> },
+
+    { path: '/earn', component: <Earn /> },
 
     { path: '/account', component: <MyAccount /> },
     { path: '/', component: <Home /> },
