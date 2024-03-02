@@ -3,7 +3,7 @@ export default function TaskRewards() {
         <section className="section pb-0">
             <div className="task-rewards">
                 <div className="top-container">
-                    <h1>Task Rewards</h1>
+                    <h1>Spin To Earn</h1>
                 </div>
             </div>
         </section>

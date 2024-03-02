@@ -15,7 +15,7 @@ export default function StayHereToEarn() {
                 <div className="top-container">
                     <h1>Stay Here To Earn</h1>
                     <div className="claim">
-                        <Button className="btn btn btn-primary">Claim</Button>
+                        <Button className="btn btn btn-primary">Invite Now</Button>
                         <p>Earn rewards based on the time you spend here</p>
                     </div>
 

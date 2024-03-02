@@ -1,11 +1,12 @@
 import LoginToEarn from './LoginToEarn'
 import StayHereToEarn from './StayHereToEarn'
 import NameService from './NameServices'
-import TaskRewards from './SpinToEarn'
+import SpinToEarn from './SpinToEarn'
+import TaskRewards from './TaskRewards'
 
 export default function Earn() {
     return (
-        <div>
+        <div className="earn-page">
             <LoginToEarn />
             <hr />
             <StayHereToEarn />
@@ -13,6 +14,8 @@ export default function Earn() {
             <NameService />
             <hr />
             <TaskRewards />
+            <hr />
+            <SpinToEarn />
             <section className="section" />
         </div>
     )
