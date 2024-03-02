@@ -1,7 +1,13 @@
 import { Button } from 'react-bootstrap'
 
 export default function StayHereToEarn() {
-    let box = <div className="blue-box divider">00</div>
+    let box = (
+        <div className="blue-box divider">
+            <p>00</p>
+
+            <p className="time">Days</p>
+        </div>
+    )
 
     return (
         <section className="section pb-0">

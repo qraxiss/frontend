@@ -31,6 +31,13 @@
     text-align: center;
     height: 16rem;
     width: 16rem;
+
+    display: flex;
+    flex-direction: column;
+
+    p.time {
+        font-size: 30px !important;
+    }
 }
 
 .divider {
@@ -55,12 +62,66 @@
     h1 {
         color: $secondary;
     }
+
+    input {
+        border-radius: 5px;
+        background-color: rgba(245, 86, 183, 0.3);
+        width: 60%;
+    }
+
+    .input {
+        display: flex;
+        gap:1.5rem;
+    }
+
+    .payment {
+        display: flex;
+        height: 5rem;
+        gap: 2rem;
+    } 
+
+    .method {
+        display: flex;
+        flex-direction: column;
+
+        p:last-child{
+            padding-left: 5px;
+        }
+    }
+
+    .prices {
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 1em 0;
+            padding: 0;
+        }
+
+        .price {
+            display: flex;
+            flex-direction: column;
+        }
+    }
 }
 
 .task-rewards {
     h1 {
         color: $primary
     }
+}
+
+.vl {
+    background-color: black;
+    height: 100%;
+    width: 1px;
+}
+
+.hl {
+    border-top: 2px solid black;
+    width: 10px;
+    height: 0px;
 }
 
 .login-to-earn{

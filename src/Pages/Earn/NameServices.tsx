@@ -1,3 +1,5 @@
+import { Form, Button } from 'react-bootstrap'
+
 export default function NameService() {
     return (
         <section className="section pb-0">
@@ -6,6 +8,31 @@ export default function NameService() {
                     <h1>.shpc Name Services</h1>
                     <div className="claim">
                         <p>Increase XP Gain multiplier</p>
+                    </div>
+                    <div className="input">
+                        <Form.Control size="lg" type="text" placeholder="Enter a Handle" />
+                        <Button className="btn btn btn-secondary">Buy</Button>
+                    </div>
+
+                    <div className="payment">
+                        <div className="prices">
+                            <div className="price">
+                                <p>8 - 11 digits: 4.99USDT</p>
+                            </div>
+                            <div className="price">
+                                <p>8 - 11 digits: 4.99USDT</p>
+                            </div>
+                            <div className="price">
+                                <p>8 - 11 digits: 4.99USDT</p>
+                            </div>
+                        </div>
+
+                        <div className="vl" />
+
+                        <div className="method">
+                            <p>Payment Method</p>
+                            <p>BSC</p>
+                        </div>
                     </div>
                 </div>
             </div>

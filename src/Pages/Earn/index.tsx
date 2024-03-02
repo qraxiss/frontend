@@ -7,8 +7,11 @@ export default function Earn() {
     return (
         <div>
             <LoginToEarn />
+            <hr />
             <StayHereToEarn />
+            <hr />
             <NameService />
+            <hr />
             <TaskRewards />
             <section className="section" />
         </div>
