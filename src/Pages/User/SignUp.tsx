@@ -6,8 +6,10 @@ import { useFormik } from 'formik'
 
 import { register } from 'lib/common-queries'
 import { useMutation } from 'lib/query-wrapper'
+import { Alert } from 'Components/newComponents'
 
 const SignUp = () => {
+  const [alert, setAlert] = useState<{ type: string; description: string; show: boolean }>({ type: '', description: '', show: true })
   const navigate = useNavigate()
   const { fn, loading, error, data } = useMutation(register)
 
@@ -22,6 +24,10 @@ const SignUp = () => {
     }
   }, [loading, data, navigate])
 
+  useEffect(() => {
+    if (error) setAlert({ type: 'danger', description: error.message, show: true })
+  }, [error])
+
   const [passwordtype, setPasswordtype] = useState(false)
 
   const formik = useFormik({
@@ -35,7 +41,7 @@ const SignUp = () => {
         .email()
         .matches(/^(?!.*@[^,]*,)/, 'Lütfen geçerli bir email giriniz!')
         .required('Email girmek zoruludur!'),
-      username: Yup.string().required('Kullanıcı adı girmek zorunludur!'),
+      username: Yup.string().min(3, 'Kullanıcı adı en az 3 karakterden oluşmalıdır!').required('Kullanıcı adı girmek zorunludur!'),
       password: Yup.string().min(6, 'Şifreniz en az 6 karakterden oluşmalıdır!').required('Şifre girmek zorunludur!')
     }),
     onSubmit: (values) => {
@@ -45,6 +51,7 @@ const SignUp = () => {
 
   return (
     <React.Fragment>
+      <Alert alert={alert} />
       <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
         <div className="w-100">
           <Container>
@@ -138,7 +145,7 @@ const SignUp = () => {
                       </div>
                       <div className="mt-4 text-center">
                         <p className="mb-0">
-                          Hesabın mı var ?{' '}
+                          Zaten hesabın mı var ?{' '}
                           <Link to="/signin" className="fw-semibold text-primary text-decoration-underline">
                             {' '}
                             Giriş Yap{' '}
