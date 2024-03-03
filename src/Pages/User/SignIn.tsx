@@ -6,8 +6,10 @@ import * as Yup from 'yup'
 
 import { useMutation } from 'lib/query-wrapper'
 import { login } from 'lib/common-queries'
+import { Alert } from 'Components/newComponents'
 
 const Signin = () => {
+  const [alert, setAlert] = useState<{ type: string; description: string; show: boolean }>({ type: '', description: '', show: true })
   const navigate = useNavigate()
   const { fn, data, loading, error } = useMutation(login)
 
@@ -21,6 +23,10 @@ const Signin = () => {
       navigate('/')
     }
   }, [loading, data, navigate])
+
+  useEffect(() => {
+    if (error) setAlert({ type: 'danger', description: error.message, show: true })
+  }, [error])
 
   const passwordtype = 'password'
   const [password, setPassword] = useState('')
@@ -49,6 +55,7 @@ const Signin = () => {
   }
   return (
     <React.Fragment>
+      <Alert alert={alert} />
       <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
         <div className="w-100">
           <Container>
