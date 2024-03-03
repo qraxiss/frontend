@@ -34,6 +34,7 @@ import About from 'Pages/Product/About'
 
 //contact
 import ContactUs from 'Pages/ContactUs/Contact'
+import Alpi from 'Pages/Alpi'
 
 const authProtectedRoutes = [
   { path: '/shop/address', component: <ShopIndex /> },
@@ -57,10 +58,12 @@ const authProtectedRoutes = [
 
   { path: '/signin', component: <Signin /> },
   { path: '/signup', component: <SignUp /> },
-  // { path: '/logout', component: <Logout /> },
+  { path: '/logout', component: <Logout /> },
   { path: '/password-reset', component: <Passwordreset /> },
   { path: '/create-password', component: <Passwordcreate /> },
   // { path: '/login-success', component: <Successmsg /> },
+
+  { path: '/alpi', component: <Alpi /> },
 
   { path: '*', component: <Navigate to="/404" /> },
   { path: '/404', component: <Error404 /> }
