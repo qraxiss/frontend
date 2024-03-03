@@ -1,13 +1,13 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 
-export const CommonTitle = ({ title, dicription }: any) => {
+export const CommonTitle = ({ title, description }: any) => {
   return (
-    <Row className="justify-content-center">
+    <Row className="justify-content-center text-primary">
       <Col lg={7}>
         <div className="text-center">
           <h3 className="mb-3">{title}</h3>
-          <p className="text-muted fs-15">{dicription}</p>
+          <p className="text-muted fs-15">{description}</p>
         </div>
       </Col>
     </Row>
