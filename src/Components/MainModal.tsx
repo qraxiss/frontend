@@ -17,7 +17,6 @@ import config from 'config/config'
 
 import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, deleteItemFromCart, cartQuery } from 'lib/common-queries'
-import { useProductStore } from 'store/ProductStore/productStore'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -510,12 +509,10 @@ export const CardModal = ({ show, handleClose }: any) => {
   let cartData = useQuery(cartQuery)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
-  const {CartData,GetCartProduct}=useProductStore()
 
   console.log(cardData)
   useEffect(() => {
     cartData.refetch()
-    // GetCartProduct()
   }, [addItem.loading, deleteItem.loading])
 
   const [productcount, setProductcount] = useState(productData)
