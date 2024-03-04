@@ -415,6 +415,8 @@ const Productdetails = () => {
                 </Container>
             </section>
 
+                                                            <hr />
+
             <section className="section pt-0">
                 <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
             </section>
