@@ -12,3 +12,11 @@ export type productVariant = {
   name: string
   id?: number
 }
+
+export const tempProduct = {
+  name: '',
+  slug: '',
+  price: 0,
+  description: '',
+  images: []
+}

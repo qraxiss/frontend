@@ -7,11 +7,13 @@ import 'swiper/css'
 import 'swiper/css/thumbs'
 import 'swiper/css/navigation'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { gql } from '@apollo/client'
-import { useQuery } from 'lib/query-wrapper'
+import { useMutation, useQuery } from 'lib/query-wrapper'
 
 import config from 'config/config'
+import { addItemToCart, cartQuery } from 'lib/common-queries'
+import { productListType, tempProduct } from 'models/ProductType'
 
 const query = gql`
   query GET_PRODUCT($slug: String!) {
@@ -31,28 +33,28 @@ const query = gql`
   }
 `
 
-type resultType = {
-  name: string
-  slug: string
-  price: number
-  descripton: string
-  images: { url: string }[]
-}
-
 const Productdetails = () => {
+  const navigate = useNavigate()
   let { slug } = useParams()
+  let cartData = useQuery(cartQuery)
+  let addItem = useMutation(addItemToCart)
   let { data, loading } = useQuery(query, {
     variables: { slug }
   })
 
-  data = (data || {
-    name: '',
-    slug: '',
-    price: 0,
-    description: '',
-    images: []
-  }) as resultType
+  const addCart = () => {
+    addItem
+      .fn({
+        variables: {
+          slug: slug
+        }
+      })
+      .then(() => cartData.refetch())
+  }
+
+  data = (data || tempProduct) as productListType
   console.log(data)
+
   let sliderProduct = data.images.map((image: any, index: number) => {
     return {
       id: index + 1,
@@ -65,7 +67,7 @@ const Productdetails = () => {
   }, [loading])
 
   const [sliderImg, setSliderImg] = useState(sliderProduct)
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(1)
 
   const handleSetImg = (id: any) => {
     setSliderImg(sliderProduct.filter((selectImg: any) => selectImg.id === id))
@@ -79,21 +81,20 @@ const Productdetails = () => {
   //     event.closest('button').classList.add('active')
   //   }
   // }
-
   return (
     <React.Fragment>
-      <section className="section"></section>
+      <section className="section d-md-block d-none"></section>
       <section className="section">
         <Container>
           <Row className="gx-2">
-            {/* Left side */}
             <Col lg={6}>
-              <Row>
-                <Col md={2}>
-                  {/* Resim */}
+              <Row className="">
+                {/* LG ekran üstü için küçük resimler */}
+                <Col className="d-md-block d-none" md={2}>
+                  {/* Küçük Resimler */}
                   <div className="swiper productSwiper mb-3 mb-lg-0 swiper-initialized swiper-vertical swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
                     <div
-                      className="swiper-wrapper"
+                      className="swiper-wrapper hidden d-md-block"
                       id="swiper-wrapper-6100bf53c3db1675b"
                       aria-live="polite"
                       style={{
@@ -108,10 +109,99 @@ const Productdetails = () => {
                             className="swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-next"
                             role="group"
                             aria-label={`${item.id} / 5 `}
-                            style={{ width: '100%', marginBottom: '10px' }}
+                            style={{ width: 'fit-content', marginBottom: '10px' }}
                           >
                             <div className="product-thumb rounded cursor-pointer">
-                              <Image src={item.img} alt="" fluid onClick={() => handleSetImg(item.id)} />
+                              {/* <Image src={item.img} alt="" className="rounded" fluid onClick={() => handleSetImg(item.id)} /> */}
+                              <img
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                src={item.img}
+                                className="rounded"
+                                alt=""
+                                onClick={() => handleSetImg(item.id)}
+                              />
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <span className="swiper-notification" aria-live="assertive" aria-atomic="true" />
+                  </div>
+                </Col>
+                {/* Büyük resim */}
+                <Col md={10}>
+                  <div style={{ height: '100%', width: '100%' }} className=" rounded-2 position-relative ribbon-box overflow-hidden">
+                    <Swiper
+                      // onSwiper={setThumbsSwiper}
+                      rewind={true}
+                      navigation={true}
+                      style={{ height: '100%', width: '100%' }}
+                      modules={[FreeMode, Navigation, Thumbs]}
+                      className="swiper productSwiper2 swiper-backface-hidden"
+                    >
+                      {sliderImg.map((item: any) => {
+                        return (
+                          <SwiperSlide key={item.id}>
+                            <div
+                              className="swiper-slide swiper-slide-duplicate  swiper-slide-image"
+                              data-swiper-slide-index={item.id}
+                              role="group"
+                              aria-label={`${item.id} / 5`}
+                              style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                marginRight: '10px',
+                                // width: '100%',
+                                // height: '30vh',
+                                objectFit: 'cover'
+                              }}
+                            >
+                              {/* <Image src={item.img} alt="" fluid /> */}
+                              <img style={{ width: '100%', objectFit: 'cover' }} alt="" src={item.img} />
+                            </div>
+                          </SwiperSlide>
+                        )
+                      })}
+                    </Swiper>
+                  </div>
+                </Col>
+                {/* Lg altı için küçük resimler */}
+                <Col className="d-md-none" md={2}>
+                  {/* Küçük Resimler */}
+                  <div className="swiper productSwiper  mb-lg-0 swiper-initialized swiper-vertical swiper-pointer-events swiper-free-mode swiper-watch-progress swiper-backface-hidden swiper-thumbs">
+                    <div
+                      className="swiper-wrapper hidden d-lg-block"
+                      id="swiper-wrapper-6100bf53c3db1675b"
+                      aria-live="polite"
+                      style={{
+                        flexDirection: 'row',
+                        gap: '10px',
+                        marginTop: '30px',
+                        overflowX: 'scroll',
+                        scrollbarWidth: 'none',
+                        transform: 'translate3d(0px, 0px, 0px)',
+                        transitionDuration: '0ms'
+                      }}
+                    >
+                      {sliderProduct?.map((item: any, idx: number) => {
+                        return (
+                          <div
+                            key={idx}
+                            className="swiper-slide swiper-slide-thumb-active swiper-slide-visible swiper-slide-next"
+                            role="group"
+                            aria-label={`${item.id} / 5 `}
+                            style={{ width: 'fit-content', marginBottom: '10px' }}
+                          >
+                            <div className="product-thumb rounded cursor-pointer">
+                              {/* <Image src={item.img} alt="" className="rounded" fluid onClick={() => handleSetImg(item.id)} /> */}
+                              <img
+                                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                                src={item.img}
+                                className="rounded"
+                                alt=""
+                                onClick={() => handleSetImg(item.id)}
+                              />
                             </div>
                           </div>
                         )
@@ -121,64 +211,22 @@ const Productdetails = () => {
                   </div>
                 </Col>
                 {/*end col*/}
-                <Col md={10}>
-                  <div className="bg-light rounded-2 position-relative ribbon-box overflow-hidden">
-                    <div className="ribbon ribbon-danger ribbon-shape trending-ribbon">
-                      <span className="trending-ribbon-text">Trending</span>
-                      <i className="ri-flashlight-fill text-white align-bottom float-end ms-1" />
-                    </div>
-
-                    <Swiper
-                      // onSwiper={setThumbsSwiper}
-                      rewind={true}
-                      navigation={true}
-                      modules={[FreeMode, Navigation, Thumbs]}
-                      className="swiper productSwiper2 swiper-backface-hidden"
-                    >
-                      {sliderImg.map((item: any) => {
-                        return (
-                          <SwiperSlide key={item.id}>
-                            <div
-                              className="swiper-slide swiper-slide-duplicate"
-                              data-swiper-slide-index={item.id}
-                              role="group"
-                              aria-label={`${item.id} / 5`}
-                              style={{ width: '458px', marginRight: '10px' }}
-                            >
-                              <Image src={item.img} alt="" fluid />
-                            </div>
-                          </SwiperSlide>
-                        )
-                      })}
-                    </Swiper>
-                  </div>
-                </Col>
-                {/*end col*/}
                 <Col lg={12}>
                   <div className="mt-3">
                     <div className="hstack gap-2">
-                      <Button variant="success" className="btn btn-hover w-100">
-                        {' '}
+                      <Button variant="success" className="btn btn-hover w-100" onClick={addCart}>
                         <i className="bi bi-basket2 me-2" /> Sepete Ekle
                       </Button>
-                      <Button variant="primary" className="btn btn-hover w-100">
-                        {' '}
+                      <Button
+                        variant="primary"
+                        className="btn btn-hover w-100"
+                        onClick={() => {
+                          addCart()
+                          navigate('/shop/shopingcard')
+                        }}
+                      >
                         <i className="bi bi-cart2 me-2" /> Satın Al
                       </Button>
-                      {/* Favori */}
-                      {/* <Button
-                        className="btn btn-soft-danger custom-toggle btn-hover"
-                        data-bs-toggle="button"
-                        aria-pressed="false"
-                        onClick={(ele: any) => handleLikeIcone(ele.target)}
-                      >
-                        <span className="icon-on">
-                          <i className="ri-heart-line" />
-                        </span>
-                        <span className="icon-off">
-                          <i className="ri-heart-fill" />
-                        </span>
-                      </Button> */}
                     </div>
                   </div>
                 </Col>
