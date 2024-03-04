@@ -16,7 +16,6 @@ export default function TaskRewards() {
         <section className="section pb-0 task-rewards">
             <div className="top-container">
                 <h1>Task Rewards</h1>
-                <Container>
                     <Row>
                         <Col>
                             <Row>{task}</Row>
@@ -33,7 +32,6 @@ export default function TaskRewards() {
                             <Row>{task}</Row>
                         </Col>
                     </Row>
-                </Container>
             </div>
         </section>
     )
