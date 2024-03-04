@@ -6,7 +6,7 @@ import TaskRewards from './TaskRewards'
 
 export default function Earn() {
     return (
-        <div className="container">
+        <div className="container earn-page">
             <LoginToEarn />
             <hr />
             <StayHereToEarn />
@@ -16,7 +16,6 @@ export default function Earn() {
             <TaskRewards />
             <hr />
             <SpinToEarn />
-            <section className="section" />
         </div>
     )
 }

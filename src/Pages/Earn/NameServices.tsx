@@ -5,7 +5,7 @@ export default function NameService() {
         <section className="section pb-0">
             <div className="name-services">
                 <div className="top-container">
-                    <h1>.shpc Name Services</h1>
+                    <h1>Shopcek Domain Service</h1>
                     <div className="claim">
                         <p>Increase XP Gain multiplier</p>
                     </div>
@@ -20,17 +20,17 @@ export default function NameService() {
                     <div className="prices">
                         <div className="price">
                             <p>8 - 11 digits:</p>
-                            <p className="lined-text">000000000</p>
+                            <p className="lined-text">00000000000</p>
                             <p>4.99USDT</p>
                         </div>
                         <div className="price">
                             <p>8 - 11 digits:</p>
-                            <p className="lined-text">000000000</p>
+                            <p className="lined-text">00000000000</p>
                             <p>4.99USDT</p>
                         </div>
                         <div className="price">
                             <p>8 - 11 digits:</p>
-                            <p className="lined-text">000000000</p>
+                            <p className="lined-text">00000000000</p>
                             <p>4.99USDT</p>
                         </div>
                     </div>

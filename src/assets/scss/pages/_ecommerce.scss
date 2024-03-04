@@ -5,7 +5,7 @@
 //ecommerce landing page
 
 .purple-box {
-    background-color: rgba(245, 86, 183, 0.7);
+    background-color: #FFCEEC;
     display: flex;
     border-radius: 15px;
     align-items: center;
@@ -23,8 +23,12 @@
     }
 }
 
+.purple-box:first-child {
+    background-color: #FF5BC0 !important;
+}
+
 .blue-box {
-    background-color: rgba(19, 197, 240, 0.7);
+    background-color: rgb(231,245,251);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -34,10 +38,6 @@
 
     display: flex;
     flex-direction: column;
-
-    p.time {
-        font-size: 30px !important;
-    }
 }
 
 .divider {
@@ -50,6 +50,12 @@
     display: flex;
     justify-content: center;
     gap: 3rem;
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .purple-box-container {
@@ -61,6 +67,7 @@
 .name-services {
     h1 {
         color: $secondary;
+        font-family: Archivo;
     }
 
     input {
@@ -88,8 +95,8 @@
 
     .payment {
         display: flex;
-        gap: 2rem;
-        font-size: 25px;
+        gap: 3rem;
+        font-size: 26px;
         padding-top: 1.5rem;
         padding-left: 1rem;
     }
@@ -116,7 +123,7 @@
         .price {
             display: flex;
             flex-direction: row;
-            gap: 0.4rem;
+            gap: 1rem;
         }
     }
 }
@@ -124,8 +131,8 @@
 .earn-page {
 
     section.section {
-        padding-top: 0px !important;
-        padding-bottom: 80px !important;
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
     }
 
     
@@ -133,7 +140,9 @@
 
 .task-rewards {
     h1 {
-        color: $primary
+        color: $primary;
+        font-family: 'Archivo';
+
     }
     
     .row {
@@ -142,7 +151,7 @@
     }
 
     .task {
-        background-color: rgba(19, 197, 240, 0.5);
+        background-color: rgb(231,245,251);
         border-radius: 10px;
         height: 5rem;
         width: 80%;
@@ -166,6 +175,7 @@
 .login-to-earn{
     h1 {
         color: $secondary;
+        font-family: 'Archivo';
     }
 
 }
@@ -183,20 +193,29 @@
 
 .stay-here-to-earn {
     h1 {
-        color: $primary
+        color: $primary;
+        font-family: 'Archivo' !important;
     }
 
+    font-family: Arial;
 
     .title {
         display: flex;
         justify-content: end;
     }
 
+    p.time {
+        font-size: 30px !important;
+        color: $primary;
+        font-family: Archivo !important;
+    }
+
 }
 
 .spin-to-earn {
     h1 {
-        color: $secondary
+        color: $secondary;
+        font-family: 'Archivo';
     }
 
     .title {
