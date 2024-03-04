@@ -10,24 +10,14 @@ export const CardComponent = ({ data }: { data: productListType }) => {
 
     return (
         <Card
-            className="overflow-hidden"
-            style={{
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-                borderRadius: '18px'
-            }}
+            className="overflow-hidden card"
+
         >
             <div className={`rounded-top py-4`}>
                 <div className="gallery-product">
                     <Image
                         className="mx-auto d-block"
                         src={config.serverUrl + data.images[0].url}
-                        style={{
-                            height: '18rem',
-                            backgroundPosition: 'center',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'contain',
-                            borderRadius: '18px'
-                        }}
                     />
                 </div>
             </div>

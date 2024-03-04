@@ -18,14 +18,13 @@
     border-radius: '18px';
 
     .gallery-product {
-        height: '18rem';
-        background-position: 'center';
-        background-repeat: 'no-repeat';
-        background-size: 'contain';
-        border-radius: '18px';
-
         img {
             transition: transform .2s;
+            height: '18rem';
+            background-position: 'center';
+            background-repeat: 'no-repeat';
+            background-size: 'contain';
+            border-radius: '18px';
         }
 
         img:hover {
