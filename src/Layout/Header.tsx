@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Dropdown, Button, Row, Col, Card, Image, Navbar, Nav } from 'react-bootstrap'
+import { Container, Dropdown, Button, Image, Navbar, Nav } from 'react-bootstrap'
 
-//img
-import avtar1 from 'assets/images/users/avatar-1.jpg'
-
-import { CardModal, SearchModal } from 'Components/MainModal'
+import { SearchModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
@@ -13,7 +10,7 @@ import { useQuery } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { cartQuery } from 'lib/common-queries'
-import TopBar from './TopBar'
+import { CartModal } from 'Components/newComponents'
 
 const query = gql`
   query {
@@ -371,7 +368,7 @@ const Header = (props: any) => {
           </div>
         </Container>
       </Navbar>
-      <CardModal show={card} handleClose={handlecardClose} />
+      <CartModal show={card} handleClose={handlecardClose} />
     </React.Fragment>
   )
 }

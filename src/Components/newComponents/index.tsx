@@ -1,2 +1,5 @@
 export * from './CardComponent'
+export * from './CartCard'
 export * from './Alert'
+export * from './DeleteModal'
+export * from './CartModal'
