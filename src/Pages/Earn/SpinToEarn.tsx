@@ -15,19 +15,16 @@ export default function SpinToEarn() {
 
                     <div className="box">
                         <div className="rules">
-                        <p>
-                            You can turn it once in 24 hours
-                        </p><p>
-                            You can turn it once in 24 hours
-                        </p><p>
-                            You can turn it once in 24 hours
-                        </p><p>
-                            You can turn it once in 24 hours
-                        </p>
-
+                            <p>You can turn it once in 24 hours</p>
+                            <p>You can turn it once in 24 hours</p>
+                            <p>You can turn it once in 24 hours</p>
+                            <p>You can turn it once in 24 hours</p>
                         </div>
 
-                        <Image className='wheel' src="http://145.239.90.41:8000/uploads/thumbnail_lucky_wheel_c807a72256.png?updatedAt=2024-03-04T09%3A26%3A34.443Z" />
+                        <Image
+                            className="wheel"
+                            src="http://145.239.90.41:8000/uploads/thumbnail_lucky_wheel_c807a72256.png?updatedAt=2024-03-04T09%3A26%3A34.443Z"
+                        />
                     </div>
                 </div>
             </div>

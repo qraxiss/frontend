@@ -16,22 +16,22 @@ export default function TaskRewards() {
         <section className="section pb-0 task-rewards">
             <div className="top-container">
                 <h1>Task Rewards</h1>
-                    <Row>
-                        <Col>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                        </Col>
-                        <Col>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                            <Row>{task}</Row>
-                        </Col>
-                    </Row>
+                <Row>
+                    <Col>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                    </Col>
+                    <Col>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                        <Row>{task}</Row>
+                    </Col>
+                </Row>
             </div>
         </section>
     )

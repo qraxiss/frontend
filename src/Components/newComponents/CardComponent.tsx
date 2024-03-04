@@ -12,7 +12,8 @@ export const CardComponent = ({ data }: { data: productListType }) => {
         <Card
             className="overflow-hidden"
             style={{
-                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
+                boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                borderRadius: '18px'
             }}
         >
             <div className={`rounded-top py-4`}>
@@ -21,7 +22,7 @@ export const CardComponent = ({ data }: { data: productListType }) => {
                         className="mx-auto d-block"
                         src={config.serverUrl + data.images[0].url}
                         style={{
-                            height: '190px',
+                            height: '18rem',
                             backgroundPosition: 'center',
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'contain',

@@ -242,71 +242,145 @@ function Account(props: { iconPath: string }) {
     )
 }
 
-function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
-    return props.categories.map((item: any) => {
-        if (item.subPages.length > 0) {
-            return (
-                <li className="dropdown nav-item dropdown-hover" key={item.page.url}>
-                    <Link
-                        className="dropdown-toggle nav-link "
-                        data-key="t-home"
-                        to={item.page.url}
-                        role="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
-                        onClick={(e) => {
-                            e.preventDefault()
-                            props.menuShow(item.page.title)
-                        }}
+function WorldWideShipping(props: { iconPath: string }) {
+    return (
+        <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
+            <div>
+                <h6
+                    className="text-secondary"
+                    style={{
+                        marginBottom: '0px'
+                    }}
+                >
+                    <span>WORLDWIDE</span>
+                </h6>
+                <p
+                    style={{
+                        marginBottom: '0px'
+                    }}
+                >
+                    <h6
                         style={{
-                            fontSize: '14px'
+                            marginBottom: '0px'
                         }}
                     >
-                        <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
-                        {(item.page.title as string).toUpperCase()}
-                    </Link>
-                    <ul
-                        className={
-                            props.showMenu === item.page.name
-                                ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
-                                : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
-                        }
-                    >
-                        {item.subPages.map((sub: any) => {
-                            return (
-                                <li className="nav-item" key={sub.url}>
-                                    <Link to={sub.url} className="nav-link" data-key={sub.url}>
-                                        {props.t(sub.title)}
-                                    </Link>
-                                </li>
-                            )
-                        })}
-                    </ul>
-                </li>
-            )
-        } else {
-            return (
-                <li className="nav-item">
-                    <Link
-                        className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
-                        to={item.page.url}
-                        role="button"
-                        style={{
-                            fontSize: '14px'
-                        }}
-                        // onClick={(e) => {
-                        //     e.preventDefault()
-                        //     props.menuShow(item.page.title)
-                        // }}
-                    >
-                        <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
-                        {(item.page.title as string).toUpperCase()}
-                    </Link>
-                </li>
-            )
-        }
-    })
+                        {' '}
+                        <span className="text-primary">FREE SHIPPING</span>
+                    </h6>
+                </p>
+            </div>
+            <Image
+                src={props.iconPath}
+                style={{
+                    paddingLeft: '10px'
+                }}
+                className="header-profile-user"
+            />
+        </div>
+    )
 }
+
+function Collections(props: { iconPath: string }) {
+    return (
+        <div className='collections'>
+            <Image
+                src={props.iconPath}
+                className="header-profile-user"
+                style={{
+                    width: '25px',
+                    height: 'auto'
+                }}
+            ></Image>
+            <div style={{
+                paddingTop:"10px"
+            }}>
+                <h6 className="text-primary">
+                    <span
+                        className="text-primary"
+                        style={{
+                            marginBottom: '0px',
+                            fontSize: '14px',
+                            bottom: '22px',
+                        }}
+                    >
+                        COLLECTIONS
+                    </span>
+                </h6>
+            </div>
+        </div>
+    )
+}
+
+function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
+    return (
+        <div className="pages">
+            {props.categories.map((item: any) => {
+                if (item.subPages.length > 0) {
+                    return (
+                        <div className="dropdown nav-item dropdown-hover" key={item.page.url}>
+                            <Link
+                                className="dropdown-toggle nav-link "
+                                data-key="t-home"
+                                to={item.page.url}
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    props.menuShow(item.page.title)
+                                }}
+                                style={{
+                                    fontSize: '14px'
+                                }}
+                            >
+                                <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                                {(item.page.title as string).toUpperCase()}
+                            </Link>
+                            <ul
+                                className={
+                                    props.showMenu === item.page.name
+                                        ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
+                                        : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
+                                }
+                            >
+                                {item.subPages.map((sub: any) => {
+                                    return (
+                                        <li className="nav-item" key={sub.url}>
+                                            <Link to={sub.url} className="nav-link" data-key={sub.url}>
+                                                {props.t(sub.title)}
+                                            </Link>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    )
+                } else {
+                    return (
+                        <div className="nav-item">
+                            <Link
+                                className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
+                                to={item.page.url}
+                                role="button"
+                                style={{
+                                    fontSize: '14px'
+                                }}
+                                // onClick={(e) => {
+                                //     e.preventDefault()
+                                //     props.menuShow(item.page.title)
+                                // }}
+                            >
+                                <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                                {(item.page.title as string).toUpperCase()}
+                            </Link>
+                        </div>
+                    )
+                }
+            })}
+        </div>
+    )
+}
+
 function Logo(props: { logo: any }) {
     return (
         <Navbar.Brand className="d-none d-lg-block">
@@ -561,71 +635,16 @@ const Header = (props: any) => {
             <AccountModal show={account} handleClose={handleAccountClose}></AccountModal>
 
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
-                <Container>
-                    <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
-                        <Image
-                            src={icon.collections.url}
-                            className="header-profile-user"
-                            style={{
-                                width: '25px',
-                                height: 'auto'
-                            }}
-                        ></Image>
-                        <div>
-                            <h6 className="text-primary">
-                                <span
-                                    className="text-primary"
-                                    style={{
-                                        marginBottom: '0px',
-                                        fontSize: '14px',
-                                        bottom: '22px',
-                                        position: 'absolute'
-                                    }}
-                                >
-                                    COLLECTIONS
-                                </span>
-                            </h6>
-                        </div>
-                    </div>
-                    <Navbar.Collapse id="navbarSupportedContent">
-                        <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-                            <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
-                        </Nav>
-                        <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
-                            <div>
-                                <h6
-                                    className="text-secondary"
-                                    style={{
-                                        marginBottom: '0px'
-                                    }}
-                                >
-                                    <span>WORLDWIDE</span>
-                                </h6>
-                                <p
-                                    style={{
-                                        marginBottom: '0px'
-                                    }}
-                                >
-                                    <h6
-                                        style={{
-                                            marginBottom: '0px'
-                                        }}
-                                    >
-                                        {' '}
-                                        <span className="text-primary">FREE SHIPPING</span>
-                                    </h6>
-                                </p>
-                            </div>
-                            <Image
-                                src={icon.delivery.url}
-                                style={{
-                                    paddingLeft: '10px'
-                                }}
-                                className="header-profile-user"
-                            />
-                        </div>
-                    </Navbar.Collapse>
-                    <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
+                <Container className='navbar-nav'>
+                    
+                        
+                        <Collections iconPath={icon.collections.url} />
+
+                        <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
+
+                        <WorldWideShipping iconPath={icon.delivery.url} />
+
+                    {/* <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div> */}
                 </Container>
             </Navbar>
         </React.Fragment>

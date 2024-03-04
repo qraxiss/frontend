@@ -14,8 +14,7 @@
     padding: 0;
 
     ::placeholder {
-        color: $gray-800;
-        opacity: 0.8;
+        color: #b2b2b6;
       }
 
     .navbar-nav {
@@ -23,7 +22,7 @@
             .nav-link {
                 color: $primary;
                 font-size: 15px;
-                font-weight: 600;
+                font-weight: 500;
                 padding: 0px 14px;
                 height: 70px;
                 display: flex;
@@ -37,8 +36,8 @@
             }
             .earn {
                 color: $secondary;
-                font-size: 20px !important;
-                font-weight: 700px !important;
+                // font-size: 20px !important;
+                // font-weight: 700px !important;
     
                 &:hover,
                 &.active {

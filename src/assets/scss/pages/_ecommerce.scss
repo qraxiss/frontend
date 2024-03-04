@@ -4,6 +4,36 @@
 
 //ecommerce landing page
 
+.pages {
+    display: flex;
+    justify-content: center;
+}
+
+.collections {
+    display: flex;
+}
+
+.card {
+    box-shadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)';
+    border-radius: '18px';
+
+    .gallery-product {
+        height: '18rem';
+        background-position: 'center';
+        background-repeat: 'no-repeat';
+        background-size: 'contain';
+        border-radius: '18px';
+
+        img {
+            transition: transform .2s;
+        }
+
+        img:hover {
+            transform: scale(1.06);
+        }
+    }
+}
+
 .purple-box {
     background-color: #FFCEEC;
     display: flex;
@@ -324,6 +354,10 @@
 
 .section-image {
     border-radius: 18px !important;
+}
+
+.section-slider {
+    padding-top: 30px;
 }
 
 .product-banner-1 {
