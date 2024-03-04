@@ -16,11 +16,12 @@
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 18px;
+    transition: transform .2s;
+
 
     .gallery-product {
 
         img {
-            transition: transform .2s;
             height: 18rem;
             background-position: center;
             background-repeat: no-repeat;
@@ -28,10 +29,11 @@
             border-radius: 18px;
         }
 
-        img:hover {
-            transform: scale(1.06);
-        }
     }
+}
+
+.card:hover {
+    transform: scale(1.06);
 }
 
 .purple-box {
