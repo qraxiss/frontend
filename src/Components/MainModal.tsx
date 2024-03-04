@@ -9,14 +9,15 @@ import avatar1 from 'assets/images/users/avatar-1.jpg'
 import avatar7 from 'assets/images/users/avatar-7.jpg'
 
 //component
-import { productData } from 'Common/data'
+import { cardData, productData } from 'Common/data'
 import DeleteModal from 'Components/DeleteModal'
 
-import { useQuery, useMutation } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 
+import { useQuery, useMutation } from 'lib/query-wrapper'
 import { addItemToCart, deleteItemFromCart, cartQuery } from 'lib/common-queries'
+import { useProductStore } from 'store/ProductStore/productStore'
 
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
@@ -509,9 +510,12 @@ export const CardModal = ({ show, handleClose }: any) => {
   let cartData = useQuery(cartQuery)
   let addItem = useMutation(addItemToCart)
   let deleteItem = useMutation(deleteItemFromCart)
+  const {CartData,GetCartProduct}=useProductStore()
 
+  console.log(cardData)
   useEffect(() => {
     cartData.refetch()
+    // GetCartProduct()
   }, [addItem.loading, deleteItem.loading])
 
   const [productcount, setProductcount] = useState(productData)
@@ -519,17 +523,17 @@ export const CardModal = ({ show, handleClose }: any) => {
   const [dis, setDis] = useState(0)
   const [tax, setTax] = useState(0)
   //delete id
-  const [id, setId] = useState('')
+  const [productSlug, setProductSlug] = useState('')
   //modal
   const [removeModel, setRemovemodel] = useState(false)
   const RemoveModel = (id: any) => {
     setRemovemodel(true)
-    setId(id)
+    setProductSlug(id)
   }
 
-  const deleteData = () => {
-    setProductcount(productData?.filter((delet: any) => delet.id !== id))
-  }
+  // const deleteData = () => {
+  //   setProductcount(productData?.filter((delet: any) => delet.id !== id))
+  // }
 
   const CloseremoveModal = () => setRemovemodel(false)
 
@@ -568,10 +572,10 @@ export const CardModal = ({ show, handleClose }: any) => {
                 return (
                   <li key={item.product.slug} className="list-group-item product">
                     <div className="d-flex gap-3">
+                      {/* ürün Fotoğrafı */}
                       <div className="flex-shrink-0">
                         <div className={`avatar-md  `} style={{ height: '100%' }}>
                           <div className={`avatar-title bg-white  rounded-3`}>
-                            {/* <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-sm" /> */}
                             <div
                               style={{
                                 backgroundImage: `url(${config.serverUrl + item.product.images[0].url})`,
@@ -585,6 +589,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                           </div>
                         </div>
                       </div>
+                      {/* Ürün bilgisi */}
                       <div className="flex-grow-1">
                         <Link to={`/product-details/${item.product.slug}`}>
                           <h5 className="fs-15">{item.product.name}</h5>
@@ -625,7 +630,13 @@ export const CardModal = ({ show, handleClose }: any) => {
                         </div>
                       </div>
                       <div className="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
-                        <Button className="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn" onClick={() => RemoveModel(item.id)}>
+                        <Button
+                          className="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn"
+                          onClick={() => {
+                            RemoveModel(item.product.slug)
+                            console.log(item)
+                          }}
+                        >
                           <i className="ri-close-fill fs-16"></i>
                         </Button>
                         <div className="fw-medium mb-0 fs-16">{/* $<span className="product-line-price">{item.Total.toFixed(2)}</span> */}</div>
@@ -635,26 +646,27 @@ export const CardModal = ({ show, handleClose }: any) => {
                 )
               })}
             </ul>
+            {/* Fiyat detayları */}
             <div className="table-responsive mx-2 border-top border-top-dashed">
               <Table className="table table-borderless mb-0 fs-14 fw-semibold">
                 <tbody>
                   <tr>
                     <td>Sepet tutarı :</td>
-                    <td className="text-end cart-subtotal">${subtotal || '0.00'}</td>
+                    <td className="text-end cart-subtotal">₺{subtotal || '0.00'}</td>
                   </tr>
                   <tr>
                     <td>
-                      İndirim <span className="text-muted">(Toner15)</span>:
+                      İndirim <span className="text-muted">(OT-15)</span>:
                     </td>
-                    <td className="text-end cart-discount">-${dis || '0.00'}</td>
+                    <td className="text-end cart-discount">-₺{dis || '0.00'}</td>
                   </tr>
                   <tr>
                     <td>Kargo Ücreti :</td>
-                    <td className="text-end cart-shipping">${charge || '0.00'}</td>
+                    <td className="text-end cart-shipping">₺{charge || '0.00'}</td>
                   </tr>
                   <tr>
                     <td>KDV (20%) : </td>
-                    <td className="text-end cart-tax">${tax || '0.00'}</td>
+                    <td className="text-end cart-tax">₺{tax || '0.00'}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -682,7 +694,21 @@ export const CardModal = ({ show, handleClose }: any) => {
           </Row>
         </div>
       </Offcanvas>
-      <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} />
+      <DeleteModal
+        hideModal={CloseremoveModal}
+        removeModel={removeModel}
+        deleteData={() => {
+          deleteItem
+            .fn({
+              variables: {
+                slug: productSlug
+              }
+            })
+            .then(() => {
+              cartData.refetch()
+            })
+        }}
+      />
     </React.Fragment>
   )
 }
