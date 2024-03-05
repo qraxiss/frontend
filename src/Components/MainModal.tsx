@@ -15,7 +15,7 @@ import avatar7 from 'assets/images/users/avatar-7.jpg'
 //component
 import DeleteModal from 'Components/DeleteModal'
 
-import { useQuery, useMutation } from 'lib/query-wrapper'
+import { useQuery, useMutation, handle } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
 import { login, register } from 'lib/common-queries'
@@ -555,14 +555,22 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     let [slug, setSlug] = useState('')
 
+
+    // let canvas = 
+    // if (canvas){
+    //     console.log(canvas)
+    //     canvas.addEventListener('click', handleClose)
+    // }
+
     return (
         <React.Fragment>
-            <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
+            <Offcanvas show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton className="border-bottom">
                     <Offcanvas.Title id="ecommerceCartLabel" as="h5">
                         My Cart <span className="badge bg-danger align-middle ms-1 cartitem-badge">{cartItems.length}</span>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
+
                 <Offcanvas.Body className=" px-0">
                     <SimpleBar className="h-100">
                         <ul className="list-group list-group-flush cartlist">
@@ -675,6 +683,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                 id="reset-layout"
                                 onClick={() => {
                                     navigate('/shop/shopingcard')
+                                    handleClose()
                                 }}
                             >
                                 View Cart
@@ -686,6 +695,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                 className="btn btn-info w-100"
                                 onClick={() => {
                                     navigate('/shop/checkout')
+                                    handleClose()
                                 }}
                             >
                                 Checkout
