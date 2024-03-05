@@ -607,15 +607,11 @@ const Header = (props: any) => {
                         <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
                             <SideLogo logo={logo} />
                             <Form.Control
+                                className='search-bar'
                                 size="lg"
                                 type="text"
                                 onClick={handleShow}
                                 placeholder="Search for product"
-                                style={{
-                                    paddingRight: '610px',
-                                    borderRadius: '35px',
-                                    color: 'red'
-                                }}
                             />
                             {/* <SearchModal show={show} handleClose={handleClose} /> */}
                         </Nav>

@@ -36,6 +36,21 @@
     display: flex;
 }
 
+.search-bar{
+    padding-right:610px !important;
+    border-radius: 35px !important;
+    color: $secondary !important;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    font-size: 15px;
+    background-color: #f7f7ff;
+}
+
+.carousel-item {
+    border-radius: 18px;
+}
+
 .nav-tabs-custom {
     border-top: 1px solid var(--#{$prefix}border-color-translucent);
     justify-content: center;
