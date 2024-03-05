@@ -3,56 +3,60 @@
 //
 
 .ts-wrapper {
-    .ts-control{
+    .ts-control {
         background-color: $dropdown-bg;
         border-color: var(--#{$prefix}border-color-translucent);
         padding: $input-padding-y $input-padding-x;
-        input{
+        input {
             color: $dropdown-link-color;
-            &::placeholder{
+            &::placeholder {
                 color: $input-placeholder-color;
             }
         }
     }
-    &.multi{
+    &.multi {
         &.has-items {
-            .ts-control{
+            .ts-control {
                 padding: calc($input-padding-y - 1px) $input-padding-x calc($input-padding-y - 4px);
             }
         }
-        .ts-control>div{
+        .ts-control > div {
             background-color: var(--#{$prefix}light);
             color: var(--#{$prefix}secondary-color);
         }
     }
-    
-    &.focus .ts-control{
+
+    &.focus .ts-control {
         color: $dropdown-link-color;
         box-shadow: none;
     }
 
-    .ts-control, .ts-control input, .ts-dropdown{
+    .ts-control,
+    .ts-control input,
+    .ts-dropdown {
         color: $dropdown-link-color;
     }
 
-    .ts-control, .ts-wrapper.single.input-active .ts-control{
+    .ts-control,
+    .ts-wrapper.single.input-active .ts-control {
         background-color: $dropdown-bg !important;
     }
-    
-    .ts-dropdown, .ts-dropdown.form-control, .ts-dropdown.form-select{
+
+    .ts-dropdown,
+    .ts-dropdown.form-control,
+    .ts-dropdown.form-select {
         background-color: $dropdown-bg;
     }
-    .ts-dropdown .active{
+    .ts-dropdown .active {
         background-color: $dropdown-link-active-bg;
         color: $dropdown-link-active-color;
     }
-    
 
-    .ts-dropdown{
-        .create, 
-        .no-results, 
-        .optgroup-header, 
-        .option{
+    .ts-dropdown {
+        .create,
+        .no-results,
+        .optgroup-header,
+        .option {
             padding: $dropdown-item-padding-y $dropdown-item-padding-x;
         }
     }
@@ -71,12 +75,12 @@
 
     &.contacts {
         .ts-control {
-            >div {
+            > div {
                 .email {
                     opacity: 0.7;
                 }
 
-                .name+.email {
+                .name + .email {
                     margin-left: 5px;
                 }
 

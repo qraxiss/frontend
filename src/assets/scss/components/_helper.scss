@@ -131,15 +131,14 @@ $border-style-mixing: double, dashed, groove, outset, ridge, dotted, inset;
     fill: rgba($gray-500, 0.16);
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .icon-dual-#{$color} {
         color: $value;
         fill: rgba($value, 0.16);
     }
 }
 
-// Search 
+// Search
 .search-box {
     position: relative;
 
@@ -181,7 +180,7 @@ $value in $theme-colors {
     z-index: 1000;
 }
 
-// 
+//
 code {
     user-select: all;
 }
@@ -233,7 +232,7 @@ code {
         animation: fade-up 1.5s infinite linear;
     }
 
-    @media (max-width: 767.98px) { 
+    @media (max-width: 767.98px) {
         bottom: 50px;
     }
 }
@@ -266,14 +265,14 @@ code {
     bottom: 0px;
     left: 0;
 
-    &>svg {
+    & > svg {
         width: 100%;
         height: auto;
     }
 }
 
 .container-custom {
-    @media (min-width: 992px){
+    @media (min-width: 992px) {
         max-width: 90%;
     }
 }

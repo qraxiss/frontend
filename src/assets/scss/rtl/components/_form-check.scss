@@ -81,12 +81,11 @@
     margin-left: auto;
 }
 
-.p-treenode-content{
-    .p-checkbox{
+.p-treenode-content {
+    .p-checkbox {
         margin-left: 0.5rem;
     }
-
-} 
+}
 
 // Switch sizes
 .form-switch-md {
@@ -125,16 +124,15 @@
     }
 }
 
-
-.form-control{
-    &::placeholder{
+.form-control {
+    &::placeholder {
         text-align: right;
     }
 }
 
 // form-select
 
-.form-select{
+.form-select {
     background-position: left 0.9rem center;
     padding: 0.6rem 0.7rem 0.6rem 1.9rem;
 }

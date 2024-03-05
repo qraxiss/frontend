@@ -1,15 +1,14 @@
-@import "utilities";
-@import "helper";
-@import "alerts";
-@import "nav";
-@import "badge";
-@import "buttons";
-@import "form-check";
-@import "ribbons";
-@import "table";
-@import "progress";
-@import "offcanvas";
-
+@import 'utilities';
+@import 'helper';
+@import 'alerts';
+@import 'nav';
+@import 'badge';
+@import 'buttons';
+@import 'form-check';
+@import 'ribbons';
+@import 'table';
+@import 'progress';
+@import 'offcanvas';
 
 .accordion-button {
     &::after {
@@ -32,9 +31,8 @@
     }
 }
 
-//accordion Color 
-@each $color,
-$value in $theme-colors {
+//accordion Color
+@each $color, $value in $theme-colors {
     .accordion-#{$color} {
         .accordion-item {
             border-color: rgba($value, 0.6);
@@ -42,13 +40,12 @@ $value in $theme-colors {
     }
 }
 
-
 .offcanvas.offcanvas-start {
     right: 0;
     left: auto;
     border-right: 0;
     border-left: var(--tb-offcanvas-border-width) solid var(--tb-offcanvas-border-color);
-    transform: translateX(100%)
+    transform: translateX(100%);
 }
 
 .offcanvas.offcanvas-end {
@@ -56,7 +53,7 @@ $value in $theme-colors {
     right: auto;
     border-left: 0;
     border-right: var(--tb-offcanvas-border-width) solid var(--tb-offcanvas-border-color);
-    transform: translateX(-100%)
+    transform: translateX(-100%);
 }
 
 .dropdown-menu {
@@ -70,21 +67,20 @@ $value in $theme-colors {
     right: auto !important;
 }
 
-
 .modal-header {
     .btn-close {
-        margin: calc(-.5 * var(--#{$prefix}modal-header-padding-y)) auto calc(-.5 * var(--#{$prefix}modal-header-padding-y)) calc(-.5 * var(--#{$prefix}modal-header-padding-x));
+        margin: calc(-0.5 * var(--#{$prefix}modal-header-padding-y)) auto calc(-0.5 * var(--#{$prefix}modal-header-padding-y))
+            calc(-0.5 * var(--#{$prefix}modal-header-padding-x));
     }
 }
 
-
 .breadcrumb-item {
-    +.breadcrumb-item {
+    + .breadcrumb-item {
         padding-left: 0;
         padding-right: var(--#{$prefix}breadcrumb-item-padding-x);
 
         &::before {
-            content: "\F0141";
+            content: '\F0141';
             float: right; // Suppress inline spacings and underlining of the separator
             padding-left: var(--#{$prefix}breadcrumb-item-padding-x);
             padding-right: 0;
@@ -136,28 +132,26 @@ $value in $theme-colors {
     }
 }
 
-
 .btn-group {
-
-    > :not(.btn-check:first-child)+.btn,
-    >.btn-group:not(:first-child) {
+    > :not(.btn-check:first-child) + .btn,
+    > .btn-group:not(:first-child) {
         margin-left: 0;
         margin-right: calc($btn-border-width * -1);
     }
 
     // Reset rounded corners
-    >.btn:not(:last-child):not(.dropdown-toggle),
-    >.btn.dropdown-toggle-split:first-child,
-    >.btn-group:not(:last-child)>.btn {
+    > .btn:not(:last-child):not(.dropdown-toggle),
+    > .btn.dropdown-toggle-split:first-child,
+    > .btn-group:not(:last-child) > .btn {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         border-top-right-radius: var(--#{$prefix}btn-border-radius);
         border-bottom-right-radius: var(--#{$prefix}btn-border-radius);
     }
 
-    >.btn:nth-child(n + 3),
-    > :not(.btn-check)+.btn,
-    >.btn-group:not(:first-child)>.btn {
+    > .btn:nth-child(n + 3),
+    > :not(.btn-check) + .btn,
+    > .btn-group:not(:first-child) > .btn {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-top-left-radius: var(--#{$prefix}btn-border-radius);
@@ -174,6 +168,5 @@ $value in $theme-colors {
     .nav-link {
         margin-left: auto !important;
         margin-right: 0 !important;
-
     }
 }

@@ -606,13 +606,7 @@ const Header = (props: any) => {
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
                             <SideLogo logo={logo} />
-                            <Form.Control
-                                className='search-bar'
-                                size="lg"
-                                type="text"
-                                onClick={handleShow}
-                                placeholder="Search for product"
-                            />
+                            <Form.Control className="search-bar" size="lg" type="text" onClick={handleShow} placeholder="Search for product" />
                             {/* <SearchModal show={show} handleClose={handleClose} /> */}
                         </Nav>
                     </Navbar.Collapse>

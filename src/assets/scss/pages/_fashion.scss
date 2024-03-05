@@ -3,12 +3,12 @@
 //
 
 //modern fashion-home
-.modern-fashion-home{
+.modern-fashion-home {
     .font-effect {
         font-size: 14rem;
         opacity: 0.04;
         top: 50px;
-        @media (max-width: 991.98px) { 
+        @media (max-width: 991.98px) {
             font-size: 5rem;
         }
     }
@@ -56,7 +56,7 @@
 
     &::after,
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         border: 50px solid $warning;
         opacity: 0.1;
@@ -127,7 +127,7 @@
 
                     i {
                         &::before {
-                            content: "\f586";
+                            content: '\f586';
                         }
                     }
                 }
@@ -142,7 +142,6 @@
         right: calc($card-spacer-x * 0.5);
         opacity: 0;
         transition: all 0.5s ease;
-
     }
 
     .product-img-2 {
@@ -203,7 +202,7 @@
     }
 
     &::before {
-        content: "";
+        content: '';
         width: 0;
         height: 2px;
         position: absolute;
@@ -215,7 +214,7 @@
     }
 
     &::after {
-        content: "";
+        content: '';
         width: 0;
         height: 2px;
         position: absolute;
@@ -228,7 +227,7 @@
 
     .effect::before,
     .effect::after {
-        content: "";
+        content: '';
         width: 2px;
         height: 0;
         position: absolute;
@@ -259,10 +258,9 @@
         top: 10px;
         height: calc(100% - 20px);
     }
-
 }
 
-//trend fashion home 
+//trend fashion home
 
 .trend-fashion-home {
     position: relative;

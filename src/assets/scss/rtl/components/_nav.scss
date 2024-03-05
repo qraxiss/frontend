@@ -2,7 +2,8 @@
 .nav,
 .list-group,
 .list-inline,
-.list-unstyled, .pagination {
+.list-unstyled,
+.pagination {
     padding-right: 0;
 }
 
@@ -14,15 +15,14 @@
     }
 }
 
-
-.custom-verti-nav-pills{
-    .nav-link{
-        &:before{
+.custom-verti-nav-pills {
+    .nav-link {
+        &:before {
             right: auto;
             left: -20px;
         }
         @media (min-width: 992px) {
-            &.active::before{
+            &.active::before {
                 border-left-color: transparent;
                 border-right-color: $primary;
             }
@@ -32,7 +32,7 @@
 
 .custom-hover-nav-tabs {
     .nav-item .nav-link {
-        .nav-tab-position{
+        .nav-tab-position {
             right: -33px;
             left: 0;
         }
@@ -44,7 +44,7 @@
     .nav {
         .nav-link {
             &::before {
-                content: "";
+                content: '';
                 left: -7px;
                 right: auto;
             }

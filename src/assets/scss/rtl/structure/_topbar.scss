@@ -1,14 +1,12 @@
 #page-topbar {
-
     @media (min-width: 768px) {
         right: $vertical-menu-width;
         left: 0;
     }
-
 }
 
 .navbar-header {
-    padding: 0 calc(#{$grid-gutter-width} / 2) 0 $grid-gutter-width
+    padding: 0 calc(#{$grid-gutter-width} / 2) 0 $grid-gutter-width;
 }
 
 .app-search {
@@ -43,8 +41,8 @@
     right: auto;
 }
 
-[data-layout="vertical"] {
-    &[data-layout-style="detached"] {
+[data-layout='vertical'] {
+    &[data-layout-style='detached'] {
         @media (min-width: 1024.1px) {
             #page-topbar {
                 right: 0 !important;
@@ -54,25 +52,23 @@
                 padding-right: 0;
             }
 
-            &:is([data-sidebar-size="sm"], [data-sidebar-size="sm-hover"]) {
+            &:is([data-sidebar-size='sm'], [data-sidebar-size='sm-hover']) {
                 .navbar-brand-box {
                     text-align: right;
                 }
             }
         }
-
     }
 }
 
-[data-layout="horizontal"] {
+[data-layout='horizontal'] {
     #page-topbar {
         right: 0;
     }
 }
 
-[data-layout="vertical"] {
-
-    &:is([data-sidebar-size="sm"], [data-sidebar-size="sm-hover"]) {
+[data-layout='vertical'] {
+    &:is([data-sidebar-size='sm'], [data-sidebar-size='sm-hover']) {
         #page-topbar {
             @media (min-width: 768px) {
                 right: $vertical-menu-width-sm;
@@ -81,7 +77,7 @@
         }
     }
 
-    &[data-sidebar-size="md"] {
+    &[data-sidebar-size='md'] {
         #page-topbar {
             @media (min-width: 768px) {
                 right: $vertical-menu-width-md;
@@ -91,7 +87,7 @@
     }
 }
 
-[data-layout="twocolumn"] {
+[data-layout='twocolumn'] {
     #page-topbar {
         @media (min-width: 768px) {
             right: calc(#{$twocolumn-menu-iconview-width} + #{$twocolumn-menu-width});

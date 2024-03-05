@@ -1,4 +1,4 @@
-// 
+//
 // ribbons.scss
 //
 
@@ -25,7 +25,7 @@
 
             &::before,
             &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 border-radius: 5px 0 0 5px;
             }
@@ -46,7 +46,7 @@
             }
         }
 
-        &.vertical-shape{
+        &.vertical-shape {
             position: absolute;
             color: $white;
             display: flex;
@@ -57,8 +57,8 @@
             top: -2px;
             transform: rotate(-90deg) translateX(-27%);
             font-weight: $font-weight-medium;
-            &:after{
-                content: "";
+            &:after {
+                content: '';
                 border-top: 18px solid $primary;
                 border-bottom: 18px solid $primary;
                 border-right: 11px solid transparent;
@@ -67,9 +67,7 @@
                 left: -11px;
                 top: 0;
             }
-           
         }
-
     }
 
     // ribbon circle
@@ -174,20 +172,18 @@
                 }
             }
         }
-
     }
 
     .ribbon-content {
         clear: both;
     }
 
-    @each $color,
-    $value in $theme-colors {
+    @each $color, $value in $theme-colors {
         .ribbon-#{$color} {
             background: ($value);
 
-            &.vertical-shape{
-                &:after{
+            &.vertical-shape {
+                &:after {
                     border-top: 18px solid $value;
                     border-bottom: 18px solid $value;
                 }

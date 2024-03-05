@@ -1,4 +1,4 @@
-// 
+//
 // reboot.scss
 //
 
@@ -9,7 +9,7 @@ html {
 
 b,
 strong {
-  font-weight: $font-weight-semibold;
+    font-weight: $font-weight-semibold;
 }
 
 // blockquote
@@ -39,7 +39,7 @@ strong {
 }
 
 // row
-.row>*{
+.row > * {
     position: relative;
 }
 
@@ -48,8 +48,7 @@ strong {
 @function set-color-from-background($color) {
     @if (lightness($color) > 70) {
         @return $color-contrast-dark;
-    }
-    @else {
+    } @else {
         @return $color-contrast-light;
     }
 }

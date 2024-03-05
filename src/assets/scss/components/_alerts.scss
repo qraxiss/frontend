@@ -48,7 +48,7 @@
         overflow: hidden;
         .label-icon {
             &:after {
-                content: "";
+                content: '';
                 position: absolute;
                 border: 6px solid transparent;
                 border-left-color: $primary;
@@ -57,7 +57,6 @@
         }
     }
 }
-
 
 // Alert border left example
 
@@ -76,10 +75,10 @@
 
 //alert additional example
 
-.alert-additional { 
+.alert-additional {
     padding: 0;
 
-    .alert-body{
+    .alert-body {
         padding: $alert-padding-y $alert-padding-x;
     }
     .alert-content {
@@ -111,7 +110,7 @@
         &.alert-#{$color} {
             --#{$prefix}alert-bg: #{$value};
             --#{$prefix}alert-color: #{set-color-from-background($value)};
-            --#{$prefix}alert-border-color:  #{$value};
+            --#{$prefix}alert-border-color: #{$value};
         }
     }
 
@@ -166,7 +165,7 @@
     //             color: $value;
     //         }
     //     }
-        
+
     // }
 
     //alert additional example
@@ -177,30 +176,30 @@
                 color: set-color-from-background($value);
             }
         }
-    }   
+    }
 }
 .alert-dismissible {
     .btn-close {
         background: transparent !important;
         &::after {
             background: transparent !important;
-            content: "\F0156" !important;
+            content: '\F0156' !important;
             font-size: 18px;
-            line-height:15px;
-            font-family: "Material Design Icons" !important;
+            line-height: 15px;
+            font-family: 'Material Design Icons' !important;
         }
     }
 }
 
-.alert-outline.alert-dark{
+.alert-outline.alert-dark {
     color: var(--#{$prefix}secondary-color);
 }
 
-.alert-border-left.alert-dark{
+.alert-border-left.alert-dark {
     border-color: var(--#{$prefix}dark);
 }
 
-.alert-border-left.alert-light{
+.alert-border-left.alert-light {
     border-color: var(--#{$prefix}light);
 }
 
@@ -212,10 +211,10 @@
     border-top-color: var(--#{$prefix}dark);
 }
 
-.alert-modern{
+.alert-modern {
     overflow: hidden;
     position: relative;
-    .icons  {
+    .icons {
         position: absolute;
         top: -20px;
         opacity: 0.08;

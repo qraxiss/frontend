@@ -21,7 +21,7 @@
                 margin-right: auto;
             }
 
-            &[data-bs-toggle=collapse] {
+            &[data-bs-toggle='collapse'] {
                 &:after {
                     right: auto;
                     left: 20px;
@@ -66,7 +66,6 @@
     &.open {
         transform: rotate(90deg);
         span {
-
             &:nth-child(1) {
                 right: 1px;
                 left: auto;
@@ -87,7 +86,7 @@
     }
 }
 
-[data-layout="vertical"] {
+[data-layout='vertical'] {
     .app-menu {
         @media (max-width: 767.98px) {
             margin-right: -100%;
@@ -96,8 +95,7 @@
     }
 
     /********** sm-hover **********/
-    &[data-sidebar-size="sm-hover"] {
-
+    &[data-sidebar-size='sm-hover'] {
         .main-content {
             margin-right: $vertical-menu-width-sm;
             margin-left: 0;
@@ -127,13 +125,13 @@
     }
 
     /********** sm-hover-active **********/
-    &[data-sidebar-size="sm-hover-active"] {
+    &[data-sidebar-size='sm-hover-active'] {
         .navbar-brand-box {
             text-align: right;
         }
     }
 
-    &:is([data-sidebar-size="sm-hover"], [data-sidebar-size="sm-hover-active"]) {
+    &:is([data-sidebar-size='sm-hover'], [data-sidebar-size='sm-hover-active']) {
         .navbar-header {
             @media (min-width: 1025px) {
                 padding-right: $grid-gutter-width;
@@ -143,7 +141,7 @@
     }
 
     /********** sidebar sm **********/
-    &[data-sidebar-size="sm"] {
+    &[data-sidebar-size='sm'] {
         @media (min-width: 768px) {
             .main-content {
                 margin-right: $vertical-menu-width-sm;
@@ -153,17 +151,16 @@
 
         // Side menu
         .navbar-menu {
-
             // Sidebar Menu
             .navbar-nav {
                 .nav-item {
                     &:hover {
-                        > a.menu-link span{
+                        > a.menu-link span {
                             padding-left: 0;
                             padding-right: 25px;
                         }
 
-                        > .menu-dropdown{
+                        > .menu-dropdown {
                             left: 0;
                             right: $vertical-menu-width-sm;
                         }
@@ -178,11 +175,10 @@
                 }
             }
         }
-        
     }
 
     /********** sidebar md **********/
-    &[data-sidebar-size="md"] {
+    &[data-sidebar-size='md'] {
         @media (min-width: 768px) {
             .main-content {
                 margin-right: $vertical-menu-width-md;
@@ -194,7 +190,7 @@
         .navbar-menu {
             .navbar-nav {
                 .nav-link {
-                    &[data-bs-toggle=collapse]:after {
+                    &[data-bs-toggle='collapse']:after {
                         left: 0;
                         right: auto;
                     }
@@ -208,9 +204,8 @@
     }
 
     /********** dark **********/
-    &[data-sidebar="dark"] {
-        &[data-sidebar-size="sm"] {
-
+    &[data-sidebar='dark'] {
+        &[data-sidebar-size='sm'] {
             // Side menu
             .navbar-menu {
                 .navbar-nav {
@@ -226,7 +221,7 @@
     }
 
     /********** detached **********/
-    &[data-layout-style="detached"] {
+    &[data-layout-style='detached'] {
         @media (min-width: 1024.1px) {
             #layout-wrapper {
                 padding-right: $grid-gutter-width;
@@ -246,7 +241,7 @@
     }
 }
 
-.vertical-overlay { 
+.vertical-overlay {
     left: auto;
     right: 0;
 }
@@ -259,7 +254,7 @@
 }
 
 //sidebar-images
-.sidebar-background { 
+.sidebar-background {
     right: 0;
     left: 0;
 }

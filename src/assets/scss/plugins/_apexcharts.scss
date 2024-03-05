@@ -15,10 +15,10 @@
 .apexcharts-tooltip-title,
 .apexcharts-tooltip-text {
     color: var(--#{$prefix}primary);
-    font-family: $font-family-base !important;  
+    font-family: $font-family-base !important;
 }
 
-.apexcharts-tooltip{
+.apexcharts-tooltip {
     border: 1px solid var(--#{$prefix}border-color-translucent) !important;
     background-color: var(--#{$prefix}secondary-bg) !important;
     box-shadow: $box-shadow !important;
@@ -27,13 +27,13 @@
         color: $gray-600 !important;
     }
 
-    .apexcharts-tooltip-title{
-        background-color: rgba(var(--#{$prefix}light-rgb), .75) !important;
+    .apexcharts-tooltip-title {
+        background-color: rgba(var(--#{$prefix}light-rgb), 0.75) !important;
         border-bottom: 1px solid var(--#{$prefix}border-color-translucent) !important;
     }
 }
 
-.apexcharts-tooltip.apexcharts-theme-dark{
+.apexcharts-tooltip.apexcharts-theme-dark {
     * {
         color: $white !important;
     }
@@ -45,7 +45,7 @@
 
 .apexcharts-gridline {
     pointer-events: none;
-    stroke: rgba(var(--#{$prefix}light-rgb), .75);
+    stroke: rgba(var(--#{$prefix}light-rgb), 0.75);
 }
 
 .apexcharts-legend-text {
@@ -58,7 +58,8 @@
     fill: $white !important;
 }
 
-.apexcharts-title-text, .apexcharts-subtitle-text{
+.apexcharts-title-text,
+.apexcharts-subtitle-text {
     fill: $gray-500;
 }
 
@@ -133,23 +134,24 @@
 
 // radar chart
 
-.apexcharts-radar-series{
-    polygon, line{
+.apexcharts-radar-series {
+    polygon,
+    line {
         stroke: var(--#{$prefix}border-color-translucent);
     }
 }
 
-.apexcharts-pie{
-    circle ,line{
+.apexcharts-pie {
+    circle,
+    line {
         stroke: var(--#{$prefix}border-color-translucent);
     }
-    text{
+    text {
         fill: var(--#{$prefix}secondary-color);
     }
 }
 
 .apex-charts {
-
     .apexcharts-xaxis,
     .apexcharts-yaxis {
         line {
@@ -192,8 +194,8 @@
     }
 }
 
-.apexcharts-xaxistooltip{
-    &.apexcharts-theme-light{
+.apexcharts-xaxistooltip {
+    &.apexcharts-theme-light {
         box-shadow: $box-shadow;
         color: $text-muted;
         background: var(--#{$prefix}secondary-bg);

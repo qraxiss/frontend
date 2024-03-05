@@ -23,8 +23,8 @@
     }
 }
 
-.profile-basic{
-    height: 180px;   
+.profile-basic {
+    height: 180px;
 }
 
 //account
@@ -55,11 +55,14 @@
             margin-top: 8px;
             background-color: $body-secondary-bg;
             border: 1px solid $primary;
-            box-shadow: rgba($primary, 0.2) 2px 2px, rgba($primary, 0.1) 4px 4px, rgba($primary, 0.05) 6px 6px;
+            box-shadow:
+                rgba($primary, 0.2) 2px 2px,
+                rgba($primary, 0.1) 4px 4px,
+                rgba($primary, 0.05) 6px 6px;
         }
 
         &:before {
-            content: "";
+            content: '';
             position: absolute;
             border-left: 1px dashed var(--#{$prefix}border-color);
             left: 4px;

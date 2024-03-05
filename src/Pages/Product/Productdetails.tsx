@@ -165,11 +165,13 @@ function ProductInfo(props: { price: string; name: string }) {
     )
 }
 
-function AddToWishList(){
-    return <div className="wishlist">
-            <i className="bi bi-arrow-through-heart"/>
+function AddToWishList() {
+    return (
+        <div className="wishlist">
+            <i className="bi bi-arrow-through-heart" />
             <p>Add to wishlist!</p>
-    </div>
+        </div>
+    )
 }
 
 const Productdetails = () => {
@@ -249,7 +251,7 @@ const Productdetails = () => {
                                     onClick={() => {
                                         handleSetImg(sliderId - 1)
                                     }}
-                                    className='btn-primary'
+                                    className="btn-primary"
                                 >
                                     <i className="bi bi-arrow-down"></i>
                                 </Button>
@@ -257,7 +259,7 @@ const Productdetails = () => {
                                     onClick={() => {
                                         handleSetImg(sliderId + 1)
                                     }}
-                                    className='btn-secondary'
+                                    className="btn-secondary"
                                 >
                                     <i className="bi bi-arrow-up"></i>
                                 </Button>
@@ -281,7 +283,7 @@ const Productdetails = () => {
 
                         <Information text="6 People watching this product now!" icon="bi bi-eye" />
 
-                        <AddToWishList/>
+                        <AddToWishList />
 
                         <Socials socialState={socialState} />
 

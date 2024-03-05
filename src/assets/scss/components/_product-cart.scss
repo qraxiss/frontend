@@ -1,19 +1,18 @@
-// 
+//
 // product-cart.scss
-// 
-
+//
 
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow:
+        0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 18px;
-    transition: transform .2s;
-
+    transition: transform 0.2s;
 
     .py-4 {
         padding-bottom: 0px !important;
 
         .gallery-product {
-
             img {
                 height: 18rem;
                 background-position: center;
@@ -21,7 +20,6 @@
                 background-size: contain;
                 border-radius: 18px;
             }
-    
         }
     }
 }

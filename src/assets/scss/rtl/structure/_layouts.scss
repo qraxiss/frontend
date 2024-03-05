@@ -1,16 +1,15 @@
-// 
+//
 // _layouts.scss
-// 
+//
 
-[data-layout-width="boxed"] {
-
+[data-layout-width='boxed'] {
     #page-topbar,
     .footer {
         right: 0 !important;
     }
 
-    &:is([data-sidebar-size="sm"], [data-sidebar-size="sm-hover"]) {
-        &[data-layout="vertical"] {
+    &:is([data-sidebar-size='sm'], [data-sidebar-size='sm-hover']) {
+        &[data-layout='vertical'] {
             .main-content {
                 @media (max-width: 767.98px) {
                     margin-right: 0;
@@ -29,8 +28,7 @@
         }
     }
 
-    &:is([data-sidebar-size="sm-hover-active"], [data-sidebar-size="lg"]) {
-
+    &:is([data-sidebar-size='sm-hover-active'], [data-sidebar-size='lg']) {
         #page-topbar,
         .footer {
             @media (min-width: 768px) {
@@ -40,8 +38,7 @@
         }
     }
 
-    &[data-sidebar-size="md"] {
-
+    &[data-sidebar-size='md'] {
         #page-topbar,
         .footer {
             @media (min-width: 768px) {
@@ -52,9 +49,8 @@
     }
 
     // deteched
-    &[data-layout=vertical][data-layout-style=detached] {
-        &:is([data-sidebar-size="sm"], [data-sidebar-size="sm-hover"], [data-sidebar-size="md"], [data-sidebar-size="lg"]) {
-
+    &[data-layout='vertical'][data-layout-style='detached'] {
+        &:is([data-sidebar-size='sm'], [data-sidebar-size='sm-hover'], [data-sidebar-size='md'], [data-sidebar-size='lg']) {
             #page-topbar,
             .footer {
                 right: 0 !important;
@@ -64,20 +60,17 @@
 }
 
 // Horizontal Boxed Layout
-[data-layout="horizontal"][data-layout-width="boxed"] {
-
+[data-layout='horizontal'][data-layout-width='boxed'] {
     .navbar-header {
         padding: 0 0 0 calc(#{$grid-gutter-width} / 2);
     }
 
-    &[data-sidebar-size="sm-hover"],
-    &[data-sidebar-size="sm"] &[data-sidebar-size="sm-hover-active"],
-    &[data-sidebar-size="lg"] {
-
+    &[data-sidebar-size='sm-hover'],
+    &[data-sidebar-size='sm'] &[data-sidebar-size='sm-hover-active'],
+    &[data-sidebar-size='lg'] {
         #page-topbar,
         .footer {
             right: 0 !important;
         }
     }
-
 }

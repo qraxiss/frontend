@@ -1,19 +1,17 @@
-// 
+//
 // _table.scss
-// 
+//
 
 .table {
-    >thead {
+    > thead {
         border-color: $table-border-color;
     }
-    >:not(:first-child) {
+    > :not(:first-child) {
         border-top-width: $table-border-width;
     }
 }
 
-
 .table-nowrap {
-
     th,
     td {
         white-space: nowrap;
@@ -21,17 +19,16 @@
 }
 
 // card table
-.table-card{
+.table-card {
     margin: (-$card-spacer-y) (-$card-spacer-x);
 
     th,
     td {
-
-        &:first-child{
+        &:first-child {
             padding-left: 16px;
         }
 
-        &:last-child{
+        &:last-child {
             padding-right: 16px;
         }
     }
@@ -41,8 +38,7 @@
     }
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .border-#{$color} {
         &.table {
             > thead {
@@ -53,7 +49,7 @@ $value in $theme-colors {
     .table-#{$color} {
         &.table {
             > thead {
-                border-bottom-color:lighten($value, 10%) !important;
+                border-bottom-color: lighten($value, 10%) !important;
             }
         }
     }
@@ -73,18 +69,18 @@ $value in $theme-colors {
     .sort {
         position: relative;
         &::before {
-            content: "\f035d";
+            content: '\f035d';
             position: absolute;
             right: 0.5rem;
             top: 18px;
             font-size: 0.8rem;
-            font-family: "Material Design Icons";
+            font-family: 'Material Design Icons';
         }
         &::after {
-            position:absolute;
+            position: absolute;
             right: 0.5rem;
-            content: "\f0360";
-            font-family: "Material Design Icons";
+            content: '\f0360';
+            font-family: 'Material Design Icons';
             font-size: 0.8rem;
             top: 12px;
         }

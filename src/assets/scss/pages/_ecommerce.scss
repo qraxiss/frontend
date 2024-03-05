@@ -5,7 +5,6 @@
 //ecommerce landing page
 
 #ecommerceHero {
-
     .carousel-control-prev,
     .carousel-control-next {
         opacity: 0;
@@ -18,13 +17,12 @@
         transition: all 0.5s ease;
         transform: rotate(45deg);
 
-        i, .carousel-control-prev-icon, .carousel-control-next-icon{
+        i,
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
             transform: rotate(-45deg);
         }
-        
     }
-
-    
 
     .carousel-control-next {
         right: 45px !important;
@@ -35,7 +33,6 @@
     }
 
     &:hover {
-
         .carousel-control-prev,
         .carousel-control-next {
             opacity: 0.85;
@@ -53,7 +50,7 @@
     align-items: center;
     justify-content: center;
 
-    @media (max-width:1200px) {
+    @media (max-width: 1200px) {
         min-width: 100%;
     }
 }
@@ -64,6 +61,47 @@
 
 .section-slider {
     padding-top: 20px;
+
+    .right {
+        gap: 10px;
+
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 10px;
+
+        img {
+            width: 420px;
+            max-width: 800px;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .right-down {
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 10px;
+
+            img {
+                height: 200px;
+            }
+        }
+
+        .left-down {
+            justify-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 10px;
+
+            img {
+                height: 200px;
+            }
+        }
+    }
+
+    .left {
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
 }
 
 .product-banner-1 {
@@ -131,7 +169,7 @@
 
             &::before,
             &::after {
-                content: "";
+                content: '';
                 position: absolute;
                 height: 8px;
                 width: 8px;
@@ -189,7 +227,7 @@
         }
     }
 
-    @media (max-width:1200px) {
+    @media (max-width: 1200px) {
         flex-direction: column;
 
         .sidebar,
@@ -199,7 +237,7 @@
         }
     }
 
-    @media (max-width:1440px) {
+    @media (max-width: 1440px) {
         .offer-bar {
             display: none;
         }
@@ -209,9 +247,8 @@
 //ecommerce widgets
 .clothe-colors {
     li {
-
-        input[type="radio"],
-        input[type="checkbox"] {
+        input[type='radio'],
+        input[type='checkbox'] {
             display: none;
         }
 
@@ -224,10 +261,10 @@
             position: relative;
         }
 
-        input[type="radio"]:checked+label,
-        input[type="checkbox"]:checked+label {
+        input[type='radio']:checked + label,
+        input[type='checkbox']:checked + label {
             &::after {
-                content: "\f33e";
+                content: '\f33e';
                 font-family: Phosphor;
                 position: absolute;
                 inset: 0;
@@ -242,9 +279,8 @@
 
 .clothe-size {
     li {
-
-        input[type="radio"],
-        input[type="checkbox"] {
+        input[type='radio'],
+        input[type='checkbox'] {
             display: none;
         }
 
@@ -257,8 +293,8 @@
             position: relative;
         }
 
-        input[type="radio"]:checked+label,
-        input[type="checkbox"]:checked+label {
+        input[type='radio']:checked + label,
+        input[type='checkbox']:checked + label {
             border-color: var(--#{$prefix}border-color);
             background-color: $primary;
             color: $white;
@@ -273,7 +309,7 @@
         transform: translateY(-50%);
         top: 50%;
 
-        @media (max-width:425px) {
+        @media (max-width: 425px) {
             right: 30px;
             margin-top: 10px;
         }
@@ -285,7 +321,7 @@
 .error-msg {
     display: none;
     color: var(--#{$prefix}danger-text);
-    font-size: .875em;
+    font-size: 0.875em;
 }
 
 .was-validated .error-msg {
@@ -337,7 +373,6 @@
             right: 0;
             margin: 0 auto;
         }
-
     }
 
     .gallery-product-actions {
@@ -369,12 +404,7 @@
             opacity: 1;
         }
     }
-
 }
-
-
-
-
 
 .ecommerce-product-widgets {
     background-color: var(--#{$prefix}body-bg);
@@ -442,7 +472,7 @@
     .swiper-pagination-bullet-active {
         &:before {
             position: absolute;
-            content: "";
+            content: '';
             left: -5px;
             right: 0;
             border: 2px solid $secondary;
@@ -452,7 +482,6 @@
             top: -5px;
         }
     }
-
 }
 
 // client images
@@ -461,7 +490,7 @@
         position: relative;
 
         &:before {
-            content: "";
+            content: '';
             position: absolute;
             width: 25px;
             height: 60px;
@@ -512,7 +541,7 @@
     }
 }
 
-// INSTAGRAM 
+// INSTAGRAM
 .insta-img {
     background-color: $secondary;
     display: block;
@@ -607,7 +636,6 @@
 .productSwiper {
     .swiper-slide {
         @media (min-width: 768px) {
-            
             margin-bottom: 15px;
         }
     }
@@ -623,7 +651,7 @@
     }
 }
 
-.swiper-slide-duplicate{
+.swiper-slide-duplicate {
     img {
         width: 100%;
         height: auto;

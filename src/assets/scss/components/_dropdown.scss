@@ -1,24 +1,24 @@
-// 
+//
 // _dropdown.scss
 //
 
-.sikko-clas{
+.sikko-clas {
     background-color: aqua;
 }
 
 .dropdown-toggle::after {
     display: inline-block;
-    margin-left: .255em;
+    margin-left: 0.255em;
     font-size: 15px;
     line-height: 15px;
-    content: "\F0140";
-    font-family: "Material Design Icons";
+    content: '\F0140';
+    font-family: 'Material Design Icons';
 }
 
 .dropdown-menu {
     box-shadow: $box-shadow-lg;
     animation-name: DropDownSlide;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-fill-mode: both;
     position: absolute;
     z-index: 1000;
@@ -29,7 +29,7 @@
         right: 0 !important;
     }
 
-    &[data-popper-placement="top-start"] {
+    &[data-popper-placement='top-start'] {
         animation-name: DropDownSlideDown;
     }
 }
@@ -76,7 +76,7 @@
     }
 
     &:before {
-        content: "";
+        content: '';
         position: absolute;
         background-color: rgba($white, 0.12);
         top: -$btn-border-width;
@@ -103,7 +103,7 @@
     width: 26rem;
 }
 
-[dir="ltr"] {
+[dir='ltr'] {
     .dropdown-menu-start {
         --bs-position: end;
     }
@@ -136,11 +136,9 @@
     font-size: x-large;
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .dropdownmenu-#{$color} {
         .dropdown-item {
-
             &:focus,
             &:hover,
             &.active {
@@ -153,7 +151,7 @@ $value in $theme-colors {
 
 //arrow-none
 
-.arrow-none{
+.arrow-none {
     &::after {
         display: none !important;
     }

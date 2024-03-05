@@ -1,6 +1,6 @@
-// 
+//
 // _card.scss
-// 
+//
 
 .card {
     margin-bottom: $grid-gutter-width;
@@ -38,15 +38,14 @@
     height: calc(100% - #{$grid-gutter-width});
 }
 
-.card-animate{
+.card-animate {
     transition: all 0.4s;
 
-    &:hover{
+    &:hover {
         transform: translateY(calc(#{-$grid-gutter-width} / 5));
         box-shadow: $box-shadow-lg;
     }
 }
-
 
 // card color variant
 
@@ -55,12 +54,12 @@
     background-color: $bg;
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .card-#{$color} {
         @include card-variant($value);
 
-        .card-header, .card-footer {
+        .card-header,
+        .card-footer {
             background-color: rgba($white, 0.1);
             color: $white;
             border-color: transparent;
@@ -72,24 +71,25 @@ $value in $theme-colors {
     }
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .card-border-#{$color} {
         border-color: $value !important;
-        .card-header, .card-footer {
+        .card-header,
+        .card-footer {
             border-color: $value;
         }
-
     }
 }
 
-.card-light{
+.card-light {
     background-color: var(--#{$prefix}light);
-    .card-header, .card-footer{
+    .card-header,
+    .card-footer {
         color: var(--#{$prefix}body-color) !important;
         background-color: rgba(var(--#{$prefix}dark-rgb), 0.1);
     }
-    .card-title, .card-text { 
+    .card-title,
+    .card-text {
         color: var(--#{$prefix}body-color) !important;
     }
 }
@@ -97,7 +97,6 @@ $value in $theme-colors {
 .stretched-link {
     position: static;
 }
-
 
 // Loader
 
@@ -117,7 +116,7 @@ $value in $theme-colors {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%)!important;
+    transform: translate(-50%, -50%) !important;
 }
 
 .custom-loader {
@@ -125,14 +124,16 @@ $value in $theme-colors {
 }
 
 @keyframes spin {
-	to { transform: rotate(360deg) }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.card-overlay{
+.card-overlay {
     position: relative;
     overflow: hidden;
     &:before {
-        content: "";
+        content: '';
         background-color: rgba($primary, 0.7);
         position: absolute;
         top: 0;
@@ -140,7 +141,8 @@ $value in $theme-colors {
         left: 0;
         bottom: 0;
     }
-    .card-header, .card-footer {
+    .card-header,
+    .card-footer {
         border-color: rgba($white, 0.15) !important;
     }
 }
@@ -151,16 +153,16 @@ $value in $theme-colors {
         font-size: 17px;
     }
     .minimize-card {
-        .plus{
+        .plus {
             display: none;
-        }  
+        }
         .minus {
             display: block;
         }
-        &.collapsed{
-            .plus{
+        &.collapsed {
+            .plus {
                 display: block;
-            }  
+            }
             .minus {
                 display: none;
             }

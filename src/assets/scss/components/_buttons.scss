@@ -1,6 +1,6 @@
-// 
+//
 // _buttons.scss
-// 
+//
 
 button,
 a {
@@ -22,7 +22,7 @@ a {
 
 .btn.show,
 .btn:first-child:active,
-:not(.btn-check)+.btn:active {
+:not(.btn-check) + .btn:active {
     border-color: transparent;
 }
 
@@ -58,12 +58,11 @@ a {
 
 //
 // Soft Buttons
-// 
-@each $color,
-$value in $theme-colors {
+//
+@each $color, $value in $theme-colors {
     .btn-soft-#{$color} {
         --#{$prefix}btn-color: #{$value};
-        --#{$prefix}btn-bg: #{rgba($value, .1)};
+        --#{$prefix}btn-bg: #{rgba($value, 0.1)};
         --#{$prefix}btn-border-color: transparent;
         --#{$prefix}btn-hover-color: #{$white};
         --#{$prefix}btn-hover-bg: #{shade-color($value, 10%)};
@@ -90,19 +89,18 @@ $value in $theme-colors {
 
 //
 // Ghost Buttons
-// 
-@each $color,
-$value in $theme-colors {
+//
+@each $color, $value in $theme-colors {
     .btn-ghost-#{$color} {
         --#{$prefix}btn-color: #{$value};
         --#{$prefix}btn-bg: transparent;
         --#{$prefix}btn-border-color: transparent;
         --#{$prefix}btn-hover-color: #{$value};
-        --#{$prefix}btn-hover-bg: #{rgba($value, .1)};
+        --#{$prefix}btn-hover-bg: #{rgba($value, 0.1)};
         --#{$prefix}btn-hover-border-color: transparent;
         --#{$prefix}btn-focus-shadow-rgb: #{to-rgb($value)};
         --#{$prefix}btn-active-color: #{$value};
-        --#{$prefix}btn-active-bg: #{rgba($value, .1)};
+        --#{$prefix}btn-active-bg: #{rgba($value, 0.1)};
         --#{$prefix}btn-active-border-color: transparent;
     }
 }
@@ -146,7 +144,9 @@ $value in $theme-colors {
 
 .btn-animation {
     overflow: hidden;
-    transition: border-color 0.3s, background-color 0.3s;
+    transition:
+        border-color 0.3s,
+        background-color 0.3s;
     transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 
     &::after {
@@ -159,13 +159,17 @@ $value in $theme-colors {
         opacity: 0;
         transform: translate3d(0, 25%, 0);
         padding: $btn-padding-y $btn-padding-x;
-        transition: transform 0.3s, opacity 0.3s;
+        transition:
+            transform 0.3s,
+            opacity 0.3s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
     }
 
-    >span {
+    > span {
         display: block;
-        transition: transform 0.3s, opacity 0.3s;
+        transition:
+            transform 0.3s,
+            opacity 0.3s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
     }
 
@@ -175,13 +179,12 @@ $value in $theme-colors {
             transform: translate3d(0, 0, 0);
         }
 
-        >span {
+        > span {
             opacity: 0;
             transform: translate3d(0, -25%, 0);
         }
     }
 }
-
 
 @mixin button-variant($bg) {
     &.btn-animation {
@@ -198,8 +201,7 @@ $value in $theme-colors {
     }
 }
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .btn-#{$color} {
         @include button-variant($value);
     }
@@ -218,8 +220,8 @@ $value in $theme-colors {
         border: none;
     }
 
-    .btn-check:active+.btn-light,
-    .btn-check:checked+.btn-light,
+    .btn-check:active + .btn-light,
+    .btn-check:checked + .btn-light,
     .btn-light.active,
     .btn-light.dropdown-toggle.show,
     .btn-light:active {
@@ -229,61 +231,60 @@ $value in $theme-colors {
 }
 
 // theme dark
-[data-bs-theme="dark"] {
-
-    .btn-check:focus+.btn-light,
-    .btn-check:focus+.btn-outline-light,
-    .btn-check:focus+.btn-soft-light,
+[data-bs-theme='dark'] {
+    .btn-check:focus + .btn-light,
+    .btn-check:focus + .btn-outline-light,
+    .btn-check:focus + .btn-soft-light,
     .btn-soft-light:focus {
         color: var(--#{$prefix}dark);
         background-color: rgba(var(--#{$prefix}light-rgb), 0.75);
         border-color: rgba(var(--#{$prefix}light-rgb), 0.75);
     }
 
-    .btn-check:active+.btn-light,
-    .btn-check:active+.btn-outline-light,
-    .btn-check:active+.btn-soft-light,
-    .btn-check:checked+.btn-light,
-    .btn-check:checked+.btn-outline-light,
-    .btn-check:checked+.btn-soft-light,
+    .btn-check:active + .btn-light,
+    .btn-check:active + .btn-outline-light,
+    .btn-check:active + .btn-soft-light,
+    .btn-check:checked + .btn-light,
+    .btn-check:checked + .btn-outline-light,
+    .btn-check:checked + .btn-soft-light,
     .btn-light.active,
     .btn-light:active,
     .btn-outline-light.active,
     .btn-outline-light:active,
     .btn-soft-light.active,
     .btn-soft-light:active,
-    .show>.btn-light.dropdown-toggle,
-    .show>.btn-outline-light.dropdown-toggle,
-    .show>.btn-soft-light.dropdown-toggle {
+    .show > .btn-light.dropdown-toggle,
+    .show > .btn-outline-light.dropdown-toggle,
+    .show > .btn-soft-light.dropdown-toggle {
         color: var(--#{$prefix}light);
         // background-color: rgba(var(--#{$prefix}light-rgb), 0.75);
         // border-color: rgba(var(--#{$prefix}light-rgb), 0.75);
     }
 
-    .btn-check:focus+.btn-dark,
-    .btn-check:focus+.btn-outline-dark,
-    .btn-check:focus+.btn-soft-dark,
+    .btn-check:focus + .btn-dark,
+    .btn-check:focus + .btn-outline-dark,
+    .btn-check:focus + .btn-soft-dark,
     .btn-soft-dark:focus {
         color: var(--#{$prefix}light);
         background-color: rgba(var(--#{$prefix}dark-rgb), 0.75);
         border-color: rgba(var(--#{$prefix}dark-rgb), 0.75);
     }
 
-    .btn-check:active+.btn-dark,
-    .btn-check:active+.btn-outline-dark,
-    .btn-check:active+.btn-soft-dark,
-    .btn-check:checked+.btn-dark,
-    .btn-check:checked+.btn-outline-dark,
-    .btn-check:checked+.btn-soft-dark,
+    .btn-check:active + .btn-dark,
+    .btn-check:active + .btn-outline-dark,
+    .btn-check:active + .btn-soft-dark,
+    .btn-check:checked + .btn-dark,
+    .btn-check:checked + .btn-outline-dark,
+    .btn-check:checked + .btn-soft-dark,
     .btn-dark.active,
     .btn-dark:active,
     .btn-outline-dark.active,
     .btn-outline-dark:active,
     .btn-soft-dark.active,
     .btn-soft-dark:active,
-    .show>.btn-dark.dropdown-toggle,
-    .show>.btn-outline-dark.dropdown-toggle,
-    .show>.btn-soft-dark.dropdown-toggle {
+    .show > .btn-dark.dropdown-toggle,
+    .show > .btn-outline-dark.dropdown-toggle,
+    .show > .btn-soft-dark.dropdown-toggle {
         color: var(--#{$prefix}body-color);
         background-color: rgba(var(--#{$prefix}dark-rgb), 0.75);
         border-color: rgba(var(--#{$prefix}dark-rgb), 0.75);
@@ -348,7 +349,6 @@ $value in $theme-colors {
 }
 
 .btn-load {
-
     .spinner-border,
     .spinner-grow {
         height: 19px;
@@ -362,7 +362,7 @@ $value in $theme-colors {
     overflow: hidden;
 
     &::before {
-        content: "";
+        content: '';
         position: absolute;
         left: 0;
         bottom: 0;
@@ -381,9 +381,7 @@ $value in $theme-colors {
 }
 
 //Border Bottom Buttons Style
-@each $color,
-$value in $theme-colors {
-
+@each $color, $value in $theme-colors {
     .btn-#{$color},
     .btn-outline-#{$color},
     .btn-soft-#{$color} {

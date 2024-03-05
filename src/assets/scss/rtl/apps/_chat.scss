@@ -5,7 +5,7 @@
 .chat-list {
     margin: 0;
 
-    >li {
+    > li {
         .unread-message {
             position: absolute;
             display: inline-block;
@@ -50,7 +50,7 @@
     }
 
     .chat-avatar {
-        margin: 0  0 0 16px;
+        margin: 0 0 0 16px;
     }
 
     .right {
@@ -96,7 +96,6 @@
 .replymessage-block {
     text-align: right;
 }
-
 
 // Chat Small
 .chat-sm {

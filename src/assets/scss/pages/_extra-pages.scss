@@ -68,7 +68,7 @@
         padding-top: 10px;
         margin-bottom: 0;
 
-        >li {
+        > li {
             display: flex;
         }
     }
@@ -82,7 +82,6 @@
     }
 
     .chat-list {
-
         &.left {
             .check-message-icon {
                 display: none;
@@ -101,9 +100,7 @@
     }
 
     .chat-avatar {
-        margin: 0 16px 0 0
-            /*rtl:0 0 0 16px*/
-        ;
+        margin: 0 16px 0 0 /*rtl:0 0 0 16px*/;
 
         img {
             width: 28px;
@@ -129,7 +126,7 @@
         }
 
         &:before {
-            content: "";
+            content: '';
             position: absolute;
             width: 100%;
             height: 1px;
@@ -207,7 +204,6 @@
                     display: none;
                 }
             }
-
         }
 
         .chat-time {
@@ -217,7 +213,7 @@
         }
 
         .message-img {
-            border-radius: .2rem;
+            border-radius: 0.2rem;
             position: relative;
             display: flex;
             flex-wrap: wrap;
@@ -233,16 +229,12 @@
 
             .message-img-link {
                 position: absolute;
-                right: 10px
-                    /*rtl:auto*/
-                ;
-                left: auto
-                    /*rtl:0*/
-                ;
+                right: 10px /*rtl:auto*/;
+                left: auto /*rtl:0*/;
                 bottom: 10px;
 
                 li {
-                    >a {
+                    > a {
                         font-size: 18px;
                         color: $white;
                         display: inline-block;

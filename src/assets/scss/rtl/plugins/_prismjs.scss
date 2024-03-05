@@ -5,7 +5,7 @@
  */
 
 :is(code, pre) {
-    &:is([class*="language-"]) {
+    &:is([class*='language-']) {
         text-align: right;
     }
 }
@@ -22,7 +22,6 @@
     left: 15px !important;
     right: auto !important;
 }
-
 
 // slick slider
 

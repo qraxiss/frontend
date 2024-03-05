@@ -6,10 +6,9 @@
     }
 }
 
-[data-layout="vertical"] {
-
-    &[data-sidebar-size="sm"],
-    &[data-sidebar-size="sm-hover"] {
+[data-layout='vertical'] {
+    &[data-sidebar-size='sm'],
+    &[data-sidebar-size='sm-hover'] {
         .footer {
             right: $vertical-menu-width-sm;
             left: 0;
@@ -20,7 +19,7 @@
         }
     }
 
-    &[data-sidebar-size="md"] {
+    &[data-sidebar-size='md'] {
         .footer {
             right: $vertical-menu-width-md;
             left: 0;
@@ -30,17 +29,15 @@
             }
         }
     }
-
 }
 
-[data-layout="horizontal"] {
+[data-layout='horizontal'] {
     .footer {
         right: 0 !important;
     }
 }
 
-[data-layout="vertical"][data-layout-style="detached"] {
-
+[data-layout='vertical'][data-layout-style='detached'] {
     @media (min-width: 1024.1px) {
         .footer {
             right: 0 !important;
@@ -48,7 +45,7 @@
     }
 }
 
-[data-layout="twocolumn"] {
+[data-layout='twocolumn'] {
     .footer {
         @media (min-width: 768.1px) {
             right: calc(#{$twocolumn-menu-iconview-width} + #{$twocolumn-menu-width});

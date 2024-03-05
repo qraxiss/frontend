@@ -88,21 +88,11 @@ export default function Section() {
 
     return (
         <section className="section-slider">
-            <Container
-                style={{
-                    paddingTop: '15px'
-                }}
-            >
+            <Container>
                 <Row className="g-2">
                     {/*Sol*/}
                     <Col>
-                        <div
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'flex-end' /* Sağa hizala */,
-                                alignItems: 'flex-start' /* Yukarı hizala */
-                            }}
-                        >
+                        <div className="left">
                             <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                 <Collection data={campaigns} />
                                 <div className="product-content p-3 ps-5">
@@ -117,33 +107,10 @@ export default function Section() {
                     </Col>
                     <Col>
                         {/*Sağ*/}
-                        <Row
-                            className="g-2"
-                            style={{
-                                gap: '10px'
-                            }}
-                            key={campaigns[1]?.image.url}
-                        >
-                            <div
-                                style={{
-                                    justifyContent: 'flex-start' /* Sağa hizala */,
-                                    alignItems: 'flex-start' /* Yukarı hizala */,
-                                    marginBottom: '10px'
-                                }}
-                            >
+                        <Row className="g-2" key={campaigns[1]?.image.url}>
+                            <div className="right">
                                 <Link to={campaigns[1]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                    <Image
-                                        src={campaigns[1]?.image.url}
-                                        className="w-100 section-image"
-                                        alt=""
-                                        rounded
-                                        style={{
-                                            width: '420px',
-                                            maxWidth: '800px',
-                                            height: '280px',
-                                            objectFit: 'cover'
-                                        }}
-                                    />
+                                    <Image src={campaigns[1]?.image.url} className="w-100 section-image" alt="" rounded />
                                     <div className="product-content p-3 ps-5">
                                         <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[1]?.heading}</p>
                                         <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[1]?.subHeading}</h1>
@@ -151,38 +118,11 @@ export default function Section() {
                                 </Link>
                             </div>
                         </Row>
-                        {/*Sağ alt*/}
-                        <Row
-                            className="g-2"
-                            style={
-                                {
-                                    // gap: '10px'
-                                }
-                            }
-                        >
-                            {/*sağ*/}
+                        <Row className=" g-2">
                             <Col>
-                                <div
-                                    style={{
-                                        // display: 'flex',
-                                        justifyContent: 'flex-start' /* Sağa hizala */,
-                                        alignItems: 'flex-start' /* Yukarı hizala */,
-                                        marginBottom: '10px'
-                                    }}
-                                >
+                                <div className="right-down">
                                     <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                        <Image
-                                            src={campaigns[2]?.image.url}
-                                            className="w-100 section-image"
-                                            alt=""
-                                            rounded
-                                            style={{
-                                                width: '420px',
-                                                maxWidth: '800px',
-                                                height: '200px',
-                                                objectFit: 'cover'
-                                            }}
-                                        />
+                                        <Image src={campaigns[2]?.image.url} className="w-100 section-image" alt="" rounded />
                                         <div className="product-content p-3 ps-5">
                                             <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[2]?.heading}</p>
                                             <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[2]?.subHeading}</h1>
@@ -192,27 +132,9 @@ export default function Section() {
                             </Col>
                             {/*sol*/}
                             <Col>
-                                <div
-                                    style={{
-                                        // display: 'flex',
-                                        justifyContent: 'flex-start' /* Sağa hizala */,
-                                        alignItems: 'flex-start' /* Yukarı hizala */,
-                                        marginBottom: '10px'
-                                    }}
-                                >
+                                <div className="left-down">
                                     <Link to={campaigns[3]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                        <Image
-                                            src={campaigns[3]?.image.url}
-                                            className="w-100 section-image"
-                                            alt=""
-                                            rounded
-                                            style={{
-                                                width: '420px',
-                                                maxWidth: '800px',
-                                                height: '200px',
-                                                objectFit: 'cover'
-                                            }}
-                                        />
+                                        <Image src={campaigns[3]?.image.url} className="w-100 section-image" alt="" rounded />
                                         <div className="product-content p-3 ps-5">
                                             <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[3]?.heading}</p>
                                             <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[3]?.subHeading}</h1>

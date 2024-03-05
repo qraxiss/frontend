@@ -4,20 +4,16 @@
 
 .form-check {
     position: relative;
-    text-align: left
-        /*rtl: right*/
-    ;
+    text-align: left /*rtl: right*/;
 
     .form-check-input {
         cursor: pointer;
     }
 }
 
-
 // checkbox color
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .form-check-#{$color} {
         .form-check-input {
             &:checked {
@@ -68,15 +64,13 @@ $value in $theme-colors {
     }
 }
 
-
 // Checkbox outline
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .form-check-outline {
         &.form-check-#{$color} {
             .form-check-input {
-                &:checked[type=checkbox] {
+                &:checked[type='checkbox'] {
                     color: $value;
                     background-color: transparent;
                     border-color: $value;
@@ -90,12 +84,12 @@ $value in $theme-colors {
     .form-check-input {
         position: relative;
 
-        &:checked[type=checkbox] {
+        &:checked[type='checkbox'] {
             background-image: none;
 
             &::before {
-                content: "\F012C";
-                font-family: "Material Design Icons";
+                content: '\F012C';
+                font-family: 'Material Design Icons';
                 top: -2px;
                 position: absolute;
                 font-weight: 700;
@@ -103,18 +97,16 @@ $value in $theme-colors {
                 left: 1px;
             }
         }
-
     }
 }
 
 // Radio
 
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .form-radio-outline {
         &.form-radio-#{$color} {
             .form-check-input {
-                &:checked[type=radio] {
+                &:checked[type='radio'] {
                     color: $value;
                     background-color: transparent;
                     border-color: $value;
@@ -128,19 +120,18 @@ $value in $theme-colors {
     .form-check-input {
         position: relative;
 
-        &:checked[type=radio] {
+        &:checked[type='radio'] {
             background-image: none;
 
             &::before {
-                content: "\F0765";
-                font-family: "Material Design Icons";
+                content: '\F0765';
+                font-family: 'Material Design Icons';
                 top: 0px;
                 position: absolute;
                 font-size: 8px;
                 left: 2.2px;
             }
         }
-
     }
 }
 
@@ -180,12 +171,9 @@ $value in $theme-colors {
     margin-bottom: 0px;
 }
 
-
-@each $color,
-$value in $theme-colors {
+@each $color, $value in $theme-colors {
     .form-switch-#{$color} {
         .form-check-input {
-
             &:checked {
                 background-color: $value;
                 border-color: $value;
@@ -200,7 +188,6 @@ $value in $theme-colors {
                     &::before {
                         color: $value;
                     }
-
                 }
             }
         }
@@ -215,8 +202,8 @@ $value in $theme-colors {
         background-image: none;
 
         &::before {
-            content: "\F0765";
-            font-family: "Material Design Icons";
+            content: '\F0765';
+            font-family: 'Material Design Icons';
             top: -9px;
             position: absolute;
             font-size: 20px;
@@ -246,7 +233,7 @@ $value in $theme-colors {
 
 .form-switch-right {
     display: inline-block;
-    padding-right: $form-check-padding-start * .5;
+    padding-right: $form-check-padding-start * 0.5;
     margin-bottom: 0;
     padding-left: 0 !important;
 
@@ -254,7 +241,7 @@ $value in $theme-colors {
         float: right;
         margin-left: 0;
         margin-right: $form-check-padding-start * -1;
-        margin-top: .1em !important;
+        margin-top: 0.1em !important;
     }
 
     label {
@@ -287,12 +274,12 @@ $value in $theme-colors {
     .form-check-input {
         display: none;
 
-        &:checked+.form-check-label {
+        &:checked + .form-check-label {
             border-color: $primary !important;
 
             &:before {
                 content: '\eb80';
-                font-family: "remixicon";
+                font-family: 'remixicon';
                 position: absolute;
                 top: 2px;
                 right: 6px;
@@ -304,7 +291,7 @@ $value in $theme-colors {
 
     &.dark {
         .form-check-input {
-            &:checked+.form-check-label {
+            &:checked + .form-check-label {
                 &:before {
                     color: $white;
                 }
@@ -314,11 +301,11 @@ $value in $theme-colors {
 }
 
 .customize-widget {
-    .customize-penal-main{
+    .customize-penal-main {
         background-color: #3b5376;
         height: 15px;
         line-height: 15px;
-        .badge{
+        .badge {
             height: 6px;
             width: 6px;
         }
@@ -329,12 +316,13 @@ $value in $theme-colors {
     // }
 }
 
-[data-bs-theme="dark"] {
+[data-bs-theme='dark'] {
     .form-switch {
-
         .form-check-input,
         .form-check-input:focus {
-            background-image: escape-svg(url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$gray-400}'/></svg>"));
+            background-image: escape-svg(
+                url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$gray-400}'/></svg>")
+            );
         }
     }
 }

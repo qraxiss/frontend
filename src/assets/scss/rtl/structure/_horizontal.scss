@@ -1,9 +1,8 @@
 //
 // _horizontal.scss
-// 
+//
 
-[data-layout="horizontal"] {
-
+[data-layout='horizontal'] {
     .main-content {
         margin-right: 0;
     }
@@ -24,15 +23,15 @@
                 padding-right: 0;
             }
 
-            >.nav-item {
-                >.nav-link[data-bs-toggle=collapse]:after {
+            > .nav-item {
+                > .nav-link[data-bs-toggle='collapse']:after {
                     left: 0px;
                     right: auto;
                 }
             }
 
-            >li:nth-of-type(2) {
-                >.nav-link.menu-link {
+            > li:nth-of-type(2) {
+                > .nav-link.menu-link {
                     padding-right: 0;
                 }
             }
@@ -41,7 +40,7 @@
 
     .navbar-nav {
         .nav-item {
-            .nav-link[data-bs-toggle=collapse]:after {
+            .nav-link[data-bs-toggle='collapse']:after {
                 right: auto;
                 left: 10px;
             }
@@ -70,7 +69,7 @@
     }
 }
 
-[data-layout="horizontal"] {
+[data-layout='horizontal'] {
     .menu {
         @media (max-width: 1024px) {
             .navbar-menu {
@@ -79,7 +78,7 @@
                 .navbar-nav {
                     flex-direction: column;
 
-                    >li:nth-of-type(2)>.nav-link.menu-link {
+                    > li:nth-of-type(2) > .nav-link.menu-link {
                         padding-right: $vertical-menu-item-padding-x;
                         padding-left: 0;
                     }
@@ -98,7 +97,7 @@
                 left: auto !important;
             }
 
-            .nav-item .nav-link[data-bs-toggle=collapse]:after {
+            .nav-item .nav-link[data-bs-toggle='collapse']:after {
                 right: auto;
                 left: 0px;
             }

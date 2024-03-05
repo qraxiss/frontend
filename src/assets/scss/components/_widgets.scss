@@ -1,6 +1,6 @@
-// 
+//
 // Widgets.scss
-// 
+//
 
 .main-chart {
     .chart-border-left {
@@ -12,8 +12,6 @@
         }
     }
 }
-
-
 
 /* Activity */
 
@@ -27,7 +25,7 @@
         border-left: 2px solid $light;
 
         &:after {
-            content: "";
+            content: '';
             display: block;
             position: absolute;
             top: 4px;
@@ -55,11 +53,11 @@
 
         &:before,
         &:after {
-            content: "";
+            content: '';
             position: absolute;
             width: 8px;
             height: 69px;
-            background-color: rgba($success, .1);
+            background-color: rgba($success, 0.1);
             left: 3px;
             transform: rotate(32deg);
             top: -8px;

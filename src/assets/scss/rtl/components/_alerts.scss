@@ -55,25 +55,21 @@
 }
 
 .p-inline-message {
-    .p-inline-message-icon{
+    .p-inline-message-icon {
         margin-right: 0;
         margin-left: 0.5rem;
     }
 }
 
-.p-message{
-    .p-message-icon{
-        margin-left: 0.5rem
-        ;
+.p-message {
+    .p-message-icon {
+        margin-left: 0.5rem;
     }
-
-} 
-
+}
 
 // Alert example SASS loop
 @each $state in map-keys($theme-colors) {
     .alert-#{$state} {
-
         &:is(.rounded-label, .label-arrow) {
             .label-icon {
                 &:after {

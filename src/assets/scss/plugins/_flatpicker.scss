@@ -20,7 +20,12 @@
     box-sizing: border-box;
     touch-action: manipulation;
     background: $dropdown-bg;
-    box-shadow: 1px 0 0 var(--#{$prefix}border-color-translucent), -1px 0 0 var(--#{$prefix}border-color-translucent), 0 1px 0 var(--#{$prefix}border-color-translucent), 0 -1px 0 var(--#{$prefix}border-color-translucent), 0 3px 13px rgba(0, 0, 0, 0.08);
+    box-shadow:
+        1px 0 0 var(--#{$prefix}border-color-translucent),
+        -1px 0 0 var(--#{$prefix}border-color-translucent),
+        0 1px 0 var(--#{$prefix}border-color-translucent),
+        0 -1px 0 var(--#{$prefix}border-color-translucent),
+        0 3px 13px rgba(0, 0, 0, 0.08);
 
     &.open,
     &.inline {
@@ -35,7 +40,7 @@
     }
 
     &.animate.open {
-            animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
+        animation: fpFadeInDown 300ms cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     &.inline {
@@ -54,7 +59,6 @@
                 border: $input-border-width solid $input-border-color;
                 border-top: none;
                 border-radius: 0 0 5px 5px;
-
 
                 .dayContainer {
                     width: 100%;
@@ -84,12 +88,14 @@
         }
     }
 
-    &.multiMonth .flatpickr-days .dayContainer:nth-child(n+1) .flatpickr-day.inRange:nth-child(7n+7) {
+    &.multiMonth .flatpickr-days .dayContainer:nth-child(n + 1) .flatpickr-day.inRange:nth-child(7n + 7) {
         box-shadow: none !important;
     }
 
-    &.multiMonth .flatpickr-days .dayContainer:nth-child(n+2) .flatpickr-day.inRange:nth-child(7n+1) {
-        box-shadow: -2px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
+    &.multiMonth .flatpickr-days .dayContainer:nth-child(n + 2) .flatpickr-day.inRange:nth-child(7n + 1) {
+        box-shadow:
+            -2px 0 0 #e6e6e6,
+            5px 0 0 #e6e6e6;
     }
 
     .hasWeeks .dayContainer,
@@ -128,14 +134,14 @@
     &.arrowRight::before,
     &.rightMost::after,
     &.arrowRight::after {
-      left: auto;
-      right: 22px;
+        left: auto;
+        right: 22px;
     }
 
     &.arrowCenter::before,
     &.arrowCenter::after {
-      left: 50%;
-      right: 50%;
+        left: 50%;
+        right: 50%;
     }
 
     &::before {
@@ -208,8 +214,8 @@
         color: rgba($white, 0.9);
         fill: rgba($white, 0.9);
 
-        &.flatpickr-disabled{
-          display: none;
+        &.flatpickr-disabled {
+            display: none;
         }
 
         i {
@@ -221,13 +227,13 @@
                   /*rtl:begin:ignore*/
             /*
                   */
-              left: 0;
+            left: 0;
             /*
                   /*rtl:end:ignore*/
             /*
                   */
         }
-          /*
+        /*
         /*rtl:begin:ignore*/
         /*
         /*rtl:end:ignore*/
@@ -237,13 +243,13 @@
                   /*rtl:begin:ignore*/
             /*
                   */
-              right: 0;
+            right: 0;
             /*
                   /*rtl:end:ignore*/
             /*
                   */
         }
-          /*
+        /*
         /*rtl:begin:ignore*/
         /*
         /*rtl:end:ignore*/
@@ -300,20 +306,20 @@
         line-height: 50%;
         opacity: 0;
         cursor: pointer;
-        border: 1px solid rgba(var(--#{$prefix}dark-rgb),0.15);
+        border: 1px solid rgba(var(--#{$prefix}dark-rgb), 0.15);
         box-sizing: border-box;
 
         &:hover {
-            background: rgba(0,0,0,0.1);
+            background: rgba(0, 0, 0, 0.1);
         }
 
         &:active {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         &:after {
             display: block;
-            content: "";
+            content: '';
             position: absolute;
         }
 
@@ -324,7 +330,7 @@
             &:after {
                 border-left: 4px solid transparent;
                 border-right: 4px solid transparent;
-                border-bottom: 4px solid rgba(57,57,57,0.6);
+                border-bottom: 4px solid rgba(57, 57, 57, 0.6);
                 top: 26%;
             }
         }
@@ -335,7 +341,7 @@
             &:after {
                 border-left: 4px solid transparent;
                 border-right: 4px solid transparent;
-                border-top: 4px solid rgba(57,57,57,0.6);
+                border-top: 4px solid rgba(57, 57, 57, 0.6);
                 top: 40%;
             }
         }
@@ -345,14 +351,13 @@
             height: auto;
 
             path {
-                fill: rgba(0,0,0,0.5);
+                fill: rgba(0, 0, 0, 0.5);
             }
         }
     }
 
-
     &:hover {
-        background: rgba(0,0,0,0.05);
+        background: rgba(0, 0, 0, 0.05);
         span {
             opacity: 1;
         }
@@ -383,7 +388,7 @@
         padding: 0;
 
         &:hover {
-            background: rgba(0,0,0,0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
     }
 
@@ -393,12 +398,12 @@
         display: inline-block;
     }
 
-    span{
+    span {
         &.arrowUp::after {
-            border-bottom-color: rgba(0,0,0,0.9);
+            border-bottom-color: rgba(0, 0, 0, 0.9);
         }
         &.arrowDown:after {
-            border-top-color: rgba(0,0,0,0.9);
+            border-top-color: rgba(0, 0, 0, 0.9);
         }
     }
 
@@ -470,7 +475,6 @@
         }
     }
 }
-
 
 .flatpickr-weekdays {
     background-color: var(--#{$prefix}light);
@@ -617,14 +621,14 @@ span.flatpickr-weekday {
 
     &.selected,
     &.startRange,
-    &.endRange{
+    &.endRange {
         &.startRange {
             border-radius: 50px 0 0 50px;
-            + .endRange:not(:nth-child(7n+1)) {
+            + .endRange:not(:nth-child(7n + 1)) {
                 box-shadow: -10px 0 0 var(--#{$prefix}primary);
             }
 
-            .endRange{
+            .endRange {
                 border-radius: 50px;
             }
         }
@@ -632,7 +636,7 @@ span.flatpickr-weekday {
 
     &.selected,
     &.startRange,
-    &.endRange{
+    &.endRange {
         &.endRange {
             border-radius: 0 50px 50px 0;
         }
@@ -640,7 +644,9 @@ span.flatpickr-weekday {
 
     &.inRange {
         border-radius: 0;
-        box-shadow: -5px 0 0 rgba(var(--#{$prefix}primary-rgb), 0.02), 5px 0 0 rgba(var(--#{$prefix}primary-rgb), 0.02);
+        box-shadow:
+            -5px 0 0 rgba(var(--#{$prefix}primary-rgb), 0.02),
+            5px 0 0 rgba(var(--#{$prefix}primary-rgb), 0.02);
     }
 
     &.flatpickr-disabled,
@@ -650,7 +656,7 @@ span.flatpickr-weekday {
     &.notAllowed,
     &.notAllowed.prevMonthDay,
     &.notAllowed.nextMonthDay {
-        color: rgba(var(--#{$prefix}secondary-color-rgb),0.3);
+        color: rgba(var(--#{$prefix}secondary-color-rgb), 0.3);
         background: transparent;
         border-color: transparent;
         cursor: default;
@@ -659,12 +665,14 @@ span.flatpickr-weekday {
     &.flatpickr-disabled,
     &.flatpickr-disabled:hover {
         cursor: not-allowed;
-        color: rgba(var(--#{$prefix}secondary-color-rgb),0.3);
+        color: rgba(var(--#{$prefix}secondary-color-rgb), 0.3);
     }
 
     &.week.selected {
         border-radius: 0;
-        box-shadow: -5px 0 0 var(--#{$prefix}primary), 5px 0 0 var(--#{$prefix}primary);
+        box-shadow:
+            -5px 0 0 var(--#{$prefix}primary),
+            5px 0 0 var(--#{$prefix}primary);
     }
 
     &.hidden {
@@ -689,20 +697,19 @@ span.flatpickr-weekday {
         line-height: 35px;
     }
 
-    span{
+    span {
         &.flatpickr-day,
         &.flatpickr-day:hover {
             display: block;
             width: 100%;
             max-width: none;
-            color: rgba(var(--#{$prefix}secondary-color-rgb),0.3);
+            color: rgba(var(--#{$prefix}secondary-color-rgb), 0.3);
             background: transparent;
             cursor: default;
             border: none;
         }
     }
 }
-
 
 .flatpickr-innerContainer {
     display: block;
@@ -729,7 +736,7 @@ span.flatpickr-weekday {
     display: flex;
 
     &:after {
-        content: "";
+        content: '';
         display: table;
         clear: both;
     }
@@ -738,8 +745,9 @@ span.flatpickr-weekday {
         width: 40%;
         height: 40.59px;
         float: left;
-        span{
-            &.arrowUp, &.arrowDown{
+        span {
+            &.arrowUp,
+            &.arrowDown {
                 &:after {
                     border-bottom-color: var(--#{$prefix}border-color-translucent);
                 }
@@ -754,7 +762,6 @@ span.flatpickr-weekday {
     &.time24hr .numInputWrapper {
         width: 49%;
     }
-
 
     input {
         background: transparent;
@@ -778,7 +785,7 @@ span.flatpickr-weekday {
 
         &.flatpickr-minute,
         &.flatpickr-second {
-          font-weight: 400;
+            font-weight: 400;
         }
 
         &:focus {
@@ -786,7 +793,6 @@ span.flatpickr-weekday {
             border: 0;
         }
     }
-
 
     .flatpickr-time-separator,
     .flatpickr-am-pm {
@@ -808,8 +814,10 @@ span.flatpickr-weekday {
         font-weight: 400;
     }
 
-    input, .flatpickr-am-pm{
-        &:hover, &:focus{
+    input,
+    .flatpickr-am-pm {
+        &:hover,
+        &:focus {
             background: rgba(var(--#{$prefix}primary-rgb), 0.04);
         }
     }
@@ -829,7 +837,8 @@ span.flatpickr-weekday {
     background-color: $input-bg;
 }
 
-[data-inline-date="true"],[data-time-inline] {
+[data-inline-date='true'],
+[data-time-inline] {
     display: none;
 }
 
@@ -843,7 +852,7 @@ span.flatpickr-weekday {
         transform: translate3d(0, 0, 0);
     }
 }
-  
+
 [datepicker-inline],
 [timepicker-inline] {
     display: none;

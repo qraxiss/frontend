@@ -1,4 +1,4 @@
-// 
+//
 // _coming-soon.scss
 //
 
@@ -8,7 +8,6 @@
     text-align: center;
     display: flex;
     gap: 24px;
-
 
     .countdownlist-item {
         width: 25%;
@@ -44,7 +43,7 @@
         }
 
         &::after {
-            content: ":";
+            content: ':';
             font-size: 20px;
             position: absolute;
             right: -16px;
@@ -55,7 +54,7 @@
     }
 }
 
-// coming soon 
+// coming soon
 
 .move-animation {
     animation: mover 1s infinite alternate;
@@ -93,9 +92,9 @@
     }
 }
 
-.countdownlist{
-    .countdownlist-item{
-        .count-title{
+.countdownlist {
+    .countdownlist-item {
+        .count-title {
             color: var(--#{$prefix}body-color) !important;
         }
     }
