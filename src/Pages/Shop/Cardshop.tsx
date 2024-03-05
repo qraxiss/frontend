@@ -12,7 +12,7 @@ import { useCart } from 'context/cart-context'
 const Cardshop = () => {
     let navigate = useNavigate()
 
-    let { cartItems, addItem, deleteItem } = useCart()
+    let { cartItems, addItem, deleteItem, deleteAll } = useCart()
 
     // const [productcount, setProductcount] = useState(productData)
     const [charge, setCharge] = useState(0)
@@ -58,9 +58,11 @@ const Cardshop = () => {
                         There are <span className="fw-bold product-count">{cartItems.length}</span> products in your cart
                     </h5>
                     <div className="flex-shrink-0">
-                        <Link to="#" className="text-decoration-underline link-secondary">
+                        <Button className="text-decoration-underline link-secondary" onClick={
+                            deleteAll
+                        }>
                             Clear Cart
-                        </Link>
+                        </Button>
                     </div>
                 </div>
                 {cartItems.map((item: any, inx: number) => {
@@ -80,24 +82,13 @@ const Cardshop = () => {
                                             <h5 className="fs-16 lh-base mb-1">{item.product.name}</h5>
                                         </Link>
                                         <ul className="list-inline text-muted fs-13 mb-3">
-                                            {/* <li className="list-inline-item">
-                                                Color : <span className="fw-medium">{item.Color}</span>
-                                            </li> */}
-                                            {/* {item.Size && (
-                                                <li className="list-inline-item">
-                                                    Size : <span className="fw-medium">{item.Size || ''}</span>
-                                                </li>
-                                            )} */}
+
                                         </ul>
                                         <div className="input-step">
                                             <Button
                                                 className="minus"
                                                 onClick={() => {
-                                                    deleteItem({
-                                                        variables: {
-                                                            slug: item.product.slug
-                                                        }
-                                                    })
+                                                    deleteItem(item.product.slug)
                                                 }}
                                             >
                                                 -
@@ -106,11 +97,7 @@ const Cardshop = () => {
                                             <Button
                                                 className="plus"
                                                 onClick={() => {
-                                                    addItem({
-                                                        variables: {
-                                                            slug: item.product.slug
-                                                        }
-                                                    })
+                                                    addItem(item.product.slug)
                                                 }}
                                             >
                                                 +
@@ -137,7 +124,9 @@ const Cardshop = () => {
                                                     className="d-block text-body p-1 px-2"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#removeItemModal"
-                                                    onClick={() => RemoveModel(item.id)}
+                                                    onClick={() => {
+                                                        deleteItem(item.product.slug, true)
+                                                    }}
                                                 >
                                                     <i className="ri-delete-bin-fill text-muted align-bottom me-1"></i> Remove
                                                 </Link>

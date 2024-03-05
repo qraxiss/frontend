@@ -35,17 +35,7 @@ export const CardComponent = ({ data }: { data: productListType }) => {
                         </h5>
                     </div>
                     <div className="mt-3">
-                        <Link
-                            to={`/product-details/${data.slug}`}
-                            className="btn btn-primary btn-hover w-100 add-btn"
-                            // onClick={() => {
-                            //     addItem({
-                            //         variables: {
-                            //             slug: data.slug
-                            //         }
-                            //     })
-                            // }}
-                        >
+                        <Link to={`/product-details/${data.slug}`} className="btn btn-primary btn-hover w-100 add-btn">
                             <i className="mdi mdi-cart me-1"></i> Select options
                         </Link>
                     </div>

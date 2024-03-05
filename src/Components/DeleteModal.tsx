@@ -2,13 +2,16 @@ import React from 'react'
 import { Modal, Button, Form } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useCart } from 'context/cart-context'
 
 //delete modal
-const DeleteModal = ({ removeModel, hideModal, deleteData }: any) => {
+const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
     const handleDelete = () => {
         deleteData()
         hideModal()
     }
+
+    let {deleteItem} = useCart()
 
     return (
         <Modal show={removeModel} onHide={hideModal} centered id="removeItemModal" className="zoomIn">
@@ -25,7 +28,10 @@ const DeleteModal = ({ removeModel, hideModal, deleteData }: any) => {
                     <Button className="btn w-sm btn-light" data-bs-dismiss="modal" onClick={hideModal}>
                         Close
                     </Button>
-                    <Button className="btn w-sm btn-danger" id="remove-product" onClick={handleDelete}>
+                    <Button className="btn w-sm btn-danger" id="remove-product" onClick={()=>{
+                        deleteItem(slug, true)
+                        handleDelete()
+                    }}>
                         Yes, Delete It!
                     </Button>
                 </div>

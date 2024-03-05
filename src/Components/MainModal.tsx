@@ -553,6 +553,8 @@ export const CardModal = ({ show, handleClose }: any) => {
         setTax(tax)
     }, [subtotal])
 
+    let [slug, setSlug] = useState('')
+
     return (
         <React.Fragment>
             <Offcanvas show={show} onHide={handleClose} backdrop="static" placement="end">
@@ -590,11 +592,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="minus"
                                                         onClick={() => {
-                                                            deleteItem({
-                                                                variables: {
-                                                                    slug: item.product.slug
-                                                                }
-                                                            })
+                                                            deleteItem(item.product.slug)
                                                         }}
                                                     >
                                                         -
@@ -610,11 +608,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="plus"
                                                         onClick={() => {
-                                                            addItem({
-                                                                variables: {
-                                                                    slug: item.product.slug
-                                                                }
-                                                            })
+                                                            addItem(item.product.slug)
                                                         }}
                                                     >
                                                         +
@@ -624,7 +618,10 @@ export const CardModal = ({ show, handleClose }: any) => {
                                             <div className="flex-shrink-0 d-flex flex-column justify-content-between align-items-end">
                                                 <Button
                                                     className="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn"
-                                                    onClick={() => RemoveModel(item.id)}
+                                                    onClick={() => {
+                                                        setSlug(item.product.slug)
+                                                        RemoveModel(item.id)
+                                                    }}
                                                 >
                                                     <i className="ri-close-fill fs-16"></i>
                                                 </Button>
@@ -697,7 +694,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     </Row>
                 </div>
             </Offcanvas>
-            <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} />
+            <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} slug={slug} />
         </React.Fragment>
     )
 }

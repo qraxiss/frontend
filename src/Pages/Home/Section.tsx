@@ -40,12 +40,7 @@ const Collection = ({ data }: any) => {
                     {data.map((item: any) => {
                         return (
                             <Carousel.Item>
-                                <Image
-                                    src={item.image.url}
-                                    className="w-100 section-image"
-                                    rounded
-                                    alt=""
-                                ></Image>
+                                <Image src={item.image.url} className="w-100 section-image" rounded alt=""></Image>
                             </Carousel.Item>
                         )
                     })}
@@ -104,7 +99,7 @@ export default function Section() {
                         </div>
                     </Link>
 
-                    <div className='down'>
+                    <div className="down">
                         <div className="right">
                             <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
                                 <Image src={campaigns[2]?.image.url} className="w-100 section-image" alt="" rounded />

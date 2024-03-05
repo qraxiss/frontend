@@ -80,9 +80,8 @@ function AddToCart(props: { addItem: Function; setCount: Function; count: number
                 variant="primary"
                 className="btn btn-hover w-100"
                 onClick={() => {
-                    addItem({
-                        variables: { slug }
-                    })
+                    console.log(count, 'onClick')
+                    addItem(slug, count)
                 }}
             >
                 {/* <i className="bi bi-basket2 me-2" />  */}
@@ -181,8 +180,6 @@ const Productdetails = () => {
     })
     let socialData = useQuery(socials)
     let [socialState, setSocialState] = useState<any>([])
-
-    console.log(data)
 
     useEffect(() => {
         if (!socialData.loading) {
