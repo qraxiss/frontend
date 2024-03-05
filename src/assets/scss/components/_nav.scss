@@ -27,6 +27,15 @@
     }
 }
 
+.pages {
+    display: flex;
+    justify-content: center;
+}
+
+.collections {
+    display: flex;
+}
+
 .nav-tabs-custom {
     border-top: 1px solid var(--#{$prefix}border-color-translucent);
     justify-content: center;
