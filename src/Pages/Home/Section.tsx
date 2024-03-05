@@ -45,12 +45,6 @@ const Collection = ({ data }: any) => {
                                     className="w-100 section-image"
                                     rounded
                                     alt=""
-                                    style={{
-                                        width: '420px',
-                                        maxWidth: '800px',
-                                        height: '490px',
-                                        objectFit: 'cover'
-                                    }}
                                 ></Image>
                             </Carousel.Item>
                         )
@@ -87,65 +81,51 @@ export default function Section() {
     }, [loading])
 
     return (
-        <section className="section-slider">
-            <Container>
-                <Row className="g-2">
-                    {/*Sol*/}
-                    <Col>
-                        <div className="left">
-                            <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                <Collection data={campaigns} />
+        <Container>
+            <section className="section-slider">
+                <div className="left">
+                    <Link to={campaigns[0]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                        <Collection data={campaigns} />
+                        <div className="product-content p-3 ps-5">
+                            <p className="text-uppercase fs-15 text-secondary fw-semibold mb-2">{campaigns[0]?.heading}</p>
+                            <h1 className="display-5 lh-base text-dark ff-secondary">{campaigns[0]?.subHeading}</h1>
+                            <div className="product-btn mt-4">
+                                {campaigns[0]?.btnText} <i className="bi bi-arrow-right ms-2"></i>
+                            </div>
+                        </div>
+                    </Link>
+                </div>
+                <div className="right">
+                    <Link to={campaigns[1]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                        <Image src={campaigns[1]?.image.url} className="w-100 section-image" alt="" rounded />
+                        <div className="product-content p-3 ps-5">
+                            <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[1]?.heading}</p>
+                            <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[1]?.subHeading}</h1>
+                        </div>
+                    </Link>
+
+                    <div className='down'>
+                        <div className="right">
+                            <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                                <Image src={campaigns[2]?.image.url} className="w-100 section-image" alt="" rounded />
                                 <div className="product-content p-3 ps-5">
-                                    <p className="text-uppercase fs-15 text-secondary fw-semibold mb-2">{campaigns[0]?.heading}</p>
-                                    <h1 className="display-5 lh-base text-dark ff-secondary">{campaigns[0]?.subHeading}</h1>
-                                    <div className="product-btn mt-4">
-                                        {campaigns[0]?.btnText} <i className="bi bi-arrow-right ms-2"></i>
-                                    </div>
+                                    <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[2]?.heading}</p>
+                                    <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[2]?.subHeading}</h1>
                                 </div>
                             </Link>
                         </div>
-                    </Col>
-                    <Col>
-                        {/*Sağ*/}
-                        <Row className="g-2" key={campaigns[1]?.image.url}>
-                            <div className="right">
-                                <Link to={campaigns[1]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                    <Image src={campaigns[1]?.image.url} className="w-100 section-image" alt="" rounded />
-                                    <div className="product-content p-3 ps-5">
-                                        <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[1]?.heading}</p>
-                                        <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[1]?.subHeading}</h1>
-                                    </div>
-                                </Link>
-                            </div>
-                        </Row>
-                        <Row className=" g-2">
-                            <Col>
-                                <div className="right-down">
-                                    <Link to={campaigns[2]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                        <Image src={campaigns[2]?.image.url} className="w-100 section-image" alt="" rounded />
-                                        <div className="product-content p-3 ps-5">
-                                            <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[2]?.heading}</p>
-                                            <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[2]?.subHeading}</h1>
-                                        </div>
-                                    </Link>
+                        <div className="left">
+                            <Link to={campaigns[3]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
+                                <Image src={campaigns[3]?.image.url} className="w-100 section-image" alt="" rounded />
+                                <div className="product-content p-3 ps-5">
+                                    <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[3]?.heading}</p>
+                                    <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[3]?.subHeading}</h1>
                                 </div>
-                            </Col>
-                            {/*sol*/}
-                            <Col>
-                                <div className="left-down">
-                                    <Link to={campaigns[3]?.btnLink} className="product-banner-1 mt-4 mt-lg-0 rounded overflow-hidden d-block">
-                                        <Image src={campaigns[3]?.image.url} className="w-100 section-image" alt="" rounded />
-                                        <div className="product-content p-3 ps-5">
-                                            <p className="text-uppercase fw-semibold fs-14 mb-2">{campaigns[3]?.heading}</p>
-                                            <h1 className="lh-base ff-secondary text-dark fw-medium">{campaigns[3]?.subHeading}</h1>
-                                        </div>
-                                    </Link>
-                                </div>
-                            </Col>
-                        </Row>
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </Container>
     )
 }
