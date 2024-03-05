@@ -50,6 +50,128 @@ type resultType = {
     images: { url: string }[]
 }
 
+function Information(props: { text: string; icon?: string }) {
+    const { text, icon } = props
+
+    return (
+        <div className="information">
+            <i className={icon ? icon : ''}></i>
+            <p>{text}</p>
+        </div>
+    )
+}
+
+function AddToCart(props: { addItem: Function; setCount: Function; count: number; slug: string }) {
+    const { addItem, setCount, count, slug } = props
+
+    return (
+        <div className="hstack gap-2 add-to-cart">
+            <div className="input-step ms-2">
+                <Button className="minus" onClick={() => setCount(count - 1)}>
+                    -
+                </Button>
+                <Form.Control type="number" className="product-quantity1" value={count > 0 ? count : 0} min={0} max={100} readOnly />
+                <Button className="plus" onClick={() => setCount(count + 1)}>
+                    +
+                </Button>
+            </div>
+
+            <Button
+                variant="primary"
+                className="btn btn-hover w-100"
+                onClick={() => {
+                    addItem({
+                        variables: { slug }
+                    })
+                }}
+            >
+                {/* <i className="bi bi-basket2 me-2" />  */}
+                Add To Cart
+            </Button>
+            <Button variant="secondary" className="btn btn-hover w-100 h-10">
+                {/* <i className="bi bi-cart2 me-2" />  */}
+                Buy Now
+            </Button>
+        </div>
+    )
+}
+
+function Colors() {
+    return (
+        <div className="colors">
+            <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
+                <li className="color">
+                    <Form.Control type="radio" name="sizes" id="product-color-2" />
+                    <Form.Label
+                        className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
+                        htmlFor="product-color-2"
+                    />
+                </li>
+                <li className="color">
+                    <Form.Control type="radio" name="sizes" id="product-color-3" />
+                    <Form.Label
+                        className="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
+                        htmlFor="product-color-3"
+                    />
+                </li>
+                <li className="color">
+                    <Form.Control type="radio" name="sizes" id="product-color-4" defaultChecked />
+                    <Form.Label
+                        className="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
+                        htmlFor="product-color-4"
+                    />
+                </li>
+            </ul>
+        </div>
+    )
+}
+
+function Socials(props: { socialState: any[] }) {
+    const { socialState } = props
+
+    return (
+        <div className="socials">
+            <p>Share:</p>
+            {socialState.map((item: any, index: number) => (
+                <Link to={item.url}>
+                    <Image src={config.serverUrl + item.icon.url} className="social-icon" />
+                </Link>
+            ))}
+        </div>
+    )
+}
+
+function Categories(props: { categories: any[] }) {
+    const { categories } = props
+
+    return (
+        <div className="categories">
+            <p>Categories:</p>
+            {categories.map((item: any, index: number) => {
+                return <Link to={`/category/${item.slug}`}>{' ' + item.name + ','}</Link>
+            })}
+        </div>
+    )
+}
+
+function ProductInfo(props: { price: string; name: string }) {
+    const { name, price } = props
+
+    return (
+        <div className="info">
+            <span className="lh-base mb-1">{name}</span>
+            <h5 className="text-primary">${price}</h5>
+        </div>
+    )
+}
+
+function AddToWishList(){
+    return <div className="wishlist">
+            <i className="bi bi-arrow-through-heart"/>
+            <p>Add to wishlist!</p>
+    </div>
+}
+
 const Productdetails = () => {
     let { slug } = useParams()
     let { data, loading } = useQuery(getSingleProductBySlug, {
@@ -96,9 +218,11 @@ const Productdetails = () => {
     }, [loading])
 
     const [sliderImg, setSliderImg] = useState(sliderProduct)
+    const [sliderId, setSliderId] = useState(0)
     const [count, setCount] = useState(0)
 
     const handleSetImg = (id: any) => {
+        setSliderId(id)
         setSliderImg(sliderProduct.filter((selectImg: any) => selectImg.id === id))
     }
 
@@ -114,12 +238,30 @@ const Productdetails = () => {
     return (
         <React.Fragment>
             <section className="section">
-                <Container className='product-details-container'>
+                <Container className="product-details-container">
                     <div className="pictures">
                         <div className="small-pictures">
                             {sliderProduct?.map((item: any, idx: number) => {
                                 return <Image src={item.img} onClick={() => handleSetImg(item.id)} />
                             })}
+                            <div className="buttons">
+                                <Button
+                                    onClick={() => {
+                                        handleSetImg(sliderId - 1)
+                                    }}
+                                    className='btn-primary'
+                                >
+                                    <i className="bi bi-arrow-down"></i>
+                                </Button>
+                                <Button
+                                    onClick={() => {
+                                        handleSetImg(sliderId + 1)
+                                    }}
+                                    className='btn-secondary'
+                                >
+                                    <i className="bi bi-arrow-up"></i>
+                                </Button>
+                            </div>
                         </div>
                         <div className="big-picture">
                             {sliderImg.map((item: any) => {
@@ -129,165 +271,21 @@ const Productdetails = () => {
                     </div>
 
                     <div className="product-details">
-                        <div className="ecommerce-product-widgets mt-4 mt-lg-0">
-                            <div className="mb-4">
-                                <span
-                                    className="lh-base mb-1"
-                                    style={{
-                                        fontSize: '20px',
-                                        fontWeight: '500'
-                                    }}
-                                >
-                                    {data.name}
-                                </span>
-                                <h5 className="fs-24 mb-4 text-primary">${data.price}</h5>
-                            </div>
-                            <Row className="gy-3">
-                                <Col md={6}>
-                                    <div>
-                                        <h6 className="fs-14 fw-medium text-muted">Sizes:</h6>
-                                        <ul className="clothe-size list-unstyled hstack gap-2 mb-0 flex-wrap">
-                                            <li>
-                                                <Form.Control type="radio" name="sizes7" id="product-color-72" />
-                                                <Form.Label
-                                                    className="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    htmlFor="product-color-72"
-                                                >
-                                                    s
-                                                </Form.Label>
-                                            </li>
-                                            <li>
-                                                <Form.Control type="radio" name="sizes7" id="product-color-73" />
-                                                <Form.Label
-                                                    className="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    htmlFor="product-color-73"
-                                                >
-                                                    m
-                                                </Form.Label>
-                                            </li>
-                                            <li>
-                                                <Form.Control type="radio" name="sizes7" defaultChecked id="product-color-74" />
-                                                <Form.Label
-                                                    className="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    htmlFor="product-color-74"
-                                                >
-                                                    l
-                                                </Form.Label>
-                                            </li>
-                                            <li>
-                                                <Form.Control type="radio" name="sizes7" id="product-color-75" />
-                                                <Form.Label
-                                                    className="avatar-xs btn btn-soft-primary text-uppercase p-0 fs-12 d-flex align-items-center justify-content-center rounded-circle"
-                                                    htmlFor="product-color-75"
-                                                >
-                                                    xl
-                                                </Form.Label>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </Col>
-                                <Col md={6}>
-                                    <h6 className="fs-14 fw-medium text-muted">Colors: </h6>
-                                    <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
-                                        <li>
-                                            <Form.Control type="radio" name="sizes" id="product-color-2" />
-                                            <Form.Label
-                                                className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                htmlFor="product-color-2"
-                                            />
-                                        </li>
-                                        <li>
-                                            <Form.Control type="radio" name="sizes" id="product-color-3" />
-                                            <Form.Label
-                                                className="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                htmlFor="product-color-3"
-                                            />
-                                        </li>
-                                        <li>
-                                            <Form.Control type="radio" name="sizes" id="product-color-4" defaultChecked />
-                                            <Form.Label
-                                                className="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                                                htmlFor="product-color-4"
-                                            />
-                                        </li>
-                                    </ul>
-                                </Col>
-                            </Row>
+                        <ProductInfo price={data.price} name={data.name} />
 
-                            <Row className="information">
-                                <p>6 People watching this product now!</p>
-                            </Row>
+                        <Information text="4 Item sold in last 24 hours!" icon="bi bi-fire" />
 
-                            <hr className="primary" />
+                        <Colors />
 
-                            <div className="hstack gap-2">
-                                <div className="input-step ms-2">
-                                    <Button className="minus" onClick={() => setCount(count - 1)}>
-                                        -
-                                    </Button>
-                                    <Form.Control
-                                        type="number"
-                                        className="product-quantity1"
-                                        value={count > 0 ? count : 0}
-                                        min={0}
-                                        max={100}
-                                        readOnly
-                                    />
-                                    <Button className="plus" onClick={() => setCount(count + 1)}>
-                                        +
-                                    </Button>
-                                </div>
+                        <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} />
 
-                                <Button
-                                    variant="primary"
-                                    className="btn btn-hover w-100"
-                                    onClick={() => {
-                                        addItem({
-                                            variables: { slug }
-                                        })
-                                    }}
-                                >
-                                    <i className="bi bi-basket2 me-2" /> Add To Cart
-                                </Button>
-                                <Button variant="secondary" className="btn btn-hover w-100 h-10">
-                                    <i className="bi bi-cart2 me-2" /> Buy Now
-                                </Button>
-                            </div>
-                            <hr />
+                        <Information text="6 People watching this product now!" icon="bi bi-eye" />
 
-                            <Col lg={7}>
-                                <Row>
-                                    <Col>Share:</Col>
-                                    {socialState.map((item: any, index: number) => (
-                                        <Col key={index}>
-                                            <Link to={item.url}>
-                                                <Image src={config.serverUrl + item.icon.url} className="social-icon" />
-                                            </Link>
-                                        </Col>
-                                    ))}
-                                </Row>
-                                <br />
-                            </Col>
+                        <AddToWishList/>
 
-                            <Row className="information">
-                                <p>1 Item sold in last 24 hours</p>
-                            </Row>
+                        <Socials socialState={socialState} />
 
-                            <Row>
-                                <Col lg={10}>
-                                    <Row>
-                                        <Col>Categories:</Col>
-                                        {(!loading ? data.categories : []).map((item: any, index: number) => {
-                                            return (
-                                                <Col>
-                                                    <Link to={`/category/${item.slug}`}>{' ' + item.name + ','}</Link>
-                                                </Col>
-                                            )
-                                        })}
-                                    </Row>
-                                </Col>
-                            </Row>
-                        </div>
+                        <Categories categories={!loading ? data.categories : []} />
                     </div>
                 </Container>
             </section>
