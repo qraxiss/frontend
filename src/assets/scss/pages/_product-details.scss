@@ -1,0 +1,35 @@
+// 
+// product-details.scss
+// 
+
+.pictures {
+    display: flex;
+    height: 40rem;
+    gap: 2rem;
+
+    img {
+        border-radius: 18px;
+    }
+
+    .small-pictures {
+        img {
+            height: 22.5%;
+        }
+
+        display: flex;
+        gap: 2%;
+        flex-direction: column;
+    }
+
+    .big-picture {
+
+        img {
+            height: 96%;
+        }
+    }
+}
+
+.product-details-container{
+    display: flex;
+    gap: 3rem;
+}

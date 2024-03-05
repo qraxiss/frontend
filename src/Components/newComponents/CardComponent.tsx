@@ -9,16 +9,10 @@ export const CardComponent = ({ data }: { data: productListType }) => {
     let { addItem } = useCart()
 
     return (
-        <Card
-            className="overflow-hidden card"
-
-        >
+        <Card className="overflow-hidden card">
             <div className={`rounded-top py-4`}>
                 <div className="gallery-product">
-                    <Image
-                        className="mx-auto d-block"
-                        src={config.serverUrl + data.images[0].url}
-                    />
+                    <Image className="mx-auto d-block" src={config.serverUrl + data.images[0].url} />
                 </div>
             </div>
             <Card.Body>

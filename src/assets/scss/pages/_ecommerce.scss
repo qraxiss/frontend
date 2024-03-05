@@ -440,15 +440,15 @@
 
 .latest-slider {
 
-    .swiper-button-next,
-    .swiper-button-prev {
-        top: 22px;
-    }
+    // .swiper-button-next,
+    // .swiper-button-prev {
+    //     top: 22px;
+    // }
 
-    .swiper-button-prev {
-        right: 55px;
-        left: auto;
-    }
+    // .swiper-button-prev {
+    //     right: 55px;
+    //     left: auto;
+    // }
 }
 
 // Testimonial client
@@ -632,7 +632,7 @@
 .productSwiper {
     .swiper-slide {
         @media (min-width: 768px) {
-            height: 80px !important;
+            
             margin-bottom: 15px;
         }
     }

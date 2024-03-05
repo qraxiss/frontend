@@ -282,7 +282,7 @@ function WorldWideShipping(props: { iconPath: string }) {
 
 function Collections(props: { iconPath: string }) {
     return (
-        <div className='collections'>
+        <div className="collections">
             <Image
                 src={props.iconPath}
                 className="header-profile-user"
@@ -291,16 +291,18 @@ function Collections(props: { iconPath: string }) {
                     height: 'auto'
                 }}
             ></Image>
-            <div style={{
-                paddingTop:"10px"
-            }}>
+            <div
+                style={{
+                    paddingTop: '10px'
+                }}
+            >
                 <h6 className="text-primary">
                     <span
                         className="text-primary"
                         style={{
                             marginBottom: '0px',
                             fontSize: '14px',
-                            bottom: '22px',
+                            bottom: '22px'
                         }}
                     >
                         COLLECTIONS
@@ -635,14 +637,12 @@ const Header = (props: any) => {
             <AccountModal show={account} handleClose={handleAccountClose}></AccountModal>
 
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
-                <Container className='navbar-nav'>
-                    
-                        
-                        <Collections iconPath={icon.collections.url} />
+                <Container className="navbar-nav">
+                    <Collections iconPath={icon.collections.url} />
 
-                        <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
+                    <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
 
-                        <WorldWideShipping iconPath={icon.delivery.url} />
+                    <WorldWideShipping iconPath={icon.delivery.url} />
 
                     {/* <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div> */}
                 </Container>
