@@ -23,6 +23,8 @@ import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart-context'
 import { useUser } from '../context/user-context'
 
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 //go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
     const [show, setShow] = useState(false)
@@ -555,8 +557,7 @@ export const CardModal = ({ show, handleClose }: any) => {
 
     let [slug, setSlug] = useState('')
 
-
-    // let canvas = 
+    // let canvas =
     // if (canvas){
     //     console.log(canvas)
     //     canvas.addEventListener('click', handleClose)
@@ -831,6 +832,15 @@ export const AccountModal = ({ show, handleClose }: any) => {
                                                     </Button>
                                                 </div>
                                             </div>
+
+                                            <div className="mt-4 pt-2 text-center">
+                                                <div className="signin-other-title">
+                                                    <h5 className="fs-13 mb-4 title">Sign In with</h5>
+                                                </div>
+                                                <div className="pt-2 hstack gap-2 justify-content-center">
+                                                    <ConnectButton></ConnectButton>
+                                                </div>
+                                            </div>
                                         </Form>
                                         <div className="text-center mt-5">
                                             <p className="mb-0">
@@ -983,6 +993,15 @@ export const AccountModal = ({ show, handleClose }: any) => {
                                                     <Button className="btn btn-soft-info btn-icon">
                                                         <i className="ri-twitter-fill fs-16" />
                                                     </Button>
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-4 pt-2 text-center">
+                                                <div className="signin-other-title">
+                                                    <h5 className="fs-13 mb-4 title">Sign In with</h5>
+                                                </div>
+                                                <div className="pt-2 hstack gap-2 justify-content-center">
+                                                    <ConnectButton></ConnectButton>
                                                 </div>
                                             </div>
                                         </Form>
