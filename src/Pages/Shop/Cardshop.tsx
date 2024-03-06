@@ -157,7 +157,7 @@ const Cardshop = () => {
                     <Shoporder subtotal={subtotal} dic={dis} charge={charge} tax={tax} total={subtotal + charge + tax - dis} />
                     <div className="hstack gap-2 justify-content-end">
                         <Button
-                            variant="danger"
+                            variant="secondary"
                             className="btn btn-hover"
                             onClick={() => {
                                 navigate('/')
@@ -166,7 +166,7 @@ const Cardshop = () => {
                             Continue Shopping
                         </Button>
                         <Button
-                            variant="success"
+                            variant="primary"
                             className="btn btn-hover"
                             onClick={() => {
                                 navigate('/shop/checkout')

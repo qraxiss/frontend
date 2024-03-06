@@ -224,7 +224,7 @@ const Trackorder = () => {
                                 </Row>
                             </div>
                             <div className="text-end mt-4">
-                                <Button variant="danger" className="btn-hover">
+                                <Button variant="secondary" className="btn-hover">
                                     Continue Shopping <i className="ri-arrow-right-line align-bottom ms-1"></i>
                                 </Button>
                             </div>
