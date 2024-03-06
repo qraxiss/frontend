@@ -72,7 +72,7 @@ const Cardshop = () => {
                                 <Row className="gy-3">
                                     <Col className="col-sm-auto">
                                         <div className="avatar-lg h-100">
-                                            <div className={`avatar-title bg-info-subtle rounded py-3`}>
+                                            <div className={`avatar-title rounded py-3`}>
                                                 <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-md" />
                                             </div>
                                         </div>
