@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Col, Container, Row, Tab, Tooltip, Nav, Table, ProgressBar, Breadcrumb, Form, Image, Card } from 'react-bootstrap'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
+import { Button, Col, Container, Row, Tab, Nav, Table, Form, Image } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
 //scss
@@ -19,6 +17,8 @@ import { products } from 'lib/common-queries'
 import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
+
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 const socials = gql`
     query {
@@ -84,11 +84,9 @@ function AddToCart(props: { addItem: Function; setCount: Function; count: number
                     addItem(slug, count)
                 }}
             >
-                {/* <i className="bi bi-basket2 me-2" />  */}
                 Add To Cart
             </Button>
             <Button variant="secondary" className="btn btn-hover w-100 h-10">
-                {/* <i className="bi bi-cart2 me-2" />  */}
                 Buy Now
             </Button>
         </div>
@@ -285,6 +283,8 @@ const Productdetails = () => {
                         <Socials socialState={socialState} />
 
                         <Categories categories={!loading ? data.categories : []} />
+
+                        <ConnectButton/>
                     </div>
                 </Container>
             </section>

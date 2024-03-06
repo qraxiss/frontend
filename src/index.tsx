@@ -10,6 +10,8 @@ import rootreducer from 'slices'
 import { client } from 'lib/apollo-wrapper'
 import { ApolloProvider } from '@apollo/client'
 
+import { RainbowProvider } from 'lib/rainbow'
+
 import { Context } from 'context'
 
 import ScrollToTop from 'lib/auto-scroll'
@@ -20,12 +22,14 @@ root.render(
     <Provider store={store}>
         <React.Fragment>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <RainbowProvider>
                 <ApolloProvider client={client}>
                     <ScrollToTop />
                     <Context>
                         <App />
                     </Context>
                 </ApolloProvider>
+                </RainbowProvider>
             </BrowserRouter>
         </React.Fragment>
     </Provider>
