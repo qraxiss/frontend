@@ -18,8 +18,6 @@ import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-
 const socials = gql`
     query {
         social {
@@ -283,8 +281,6 @@ const Productdetails = () => {
                         <Socials socialState={socialState} />
 
                         <Categories categories={!loading ? data.categories : []} />
-
-                        <ConnectButton/>
                     </div>
                 </Container>
             </section>
