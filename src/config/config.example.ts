@@ -1,4 +1,4 @@
 export default {
     serverUrl: 'http://localhost:1337',
-    publicReadOnlyApiKey: 'apiKe'
+    publicReadOnlyApiKey: 'apiKey'
 }
