@@ -22,13 +22,13 @@ root.render(
     <Provider store={store}>
         <React.Fragment>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <RainbowProvider>
-                <ApolloProvider client={client}>
-                    <ScrollToTop />
-                    <Context>
-                        <App />
-                    </Context>
-                </ApolloProvider>
+                <RainbowProvider>
+                    <ApolloProvider client={client}>
+                        <ScrollToTop />
+                        <Context>
+                            <App />
+                        </Context>
+                    </ApolloProvider>
                 </RainbowProvider>
             </BrowserRouter>
         </React.Fragment>
