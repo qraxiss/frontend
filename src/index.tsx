@@ -7,11 +7,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import App from './App'
 import rootreducer from 'slices'
 
-import { client } from 'lib/apollo-wrapper'
-import { ApolloProvider } from '@apollo/client'
-
+import { ApolloProvider } from 'lib/apollo-wrapper'
 import { RainbowProvider } from 'lib/rainbow'
-
 import { Context } from 'context'
 
 import ScrollToTop from 'lib/auto-scroll'
@@ -23,7 +20,7 @@ root.render(
         <React.Fragment>
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <RainbowProvider>
-                    <ApolloProvider client={client}>
+                    <ApolloProvider>
                         <ScrollToTop />
                         <Context>
                             <App />
