@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Dropdown, Button, Row, Col, Card, Modal, Image, Navbar, Nav, Form } from 'react-bootstrap'
 
-import { CardModal, SearchModal, AccountModal } from 'Components/MainModal'
+import { AccountModal } from 'Components/Modals/AccountModal'
+import { CardModal, SearchModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
