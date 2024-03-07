@@ -153,7 +153,6 @@ export const CartProvider = ({ children }: any) => {
     }
 
     useEffect(() => {
-        console.log(count, 'singleProductUseState')
 
         if (singleProduct.data) {
             addToCart(singleProduct.data)

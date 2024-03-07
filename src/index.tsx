@@ -21,8 +21,8 @@ root.render(
             <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <RainbowProvider>
                     <ApolloProvider>
-                        <ScrollToTop />
                         <Context>
+                            <ScrollToTop />
                             <App />
                         </Context>
                     </ApolloProvider>

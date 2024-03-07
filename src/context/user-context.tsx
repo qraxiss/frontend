@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useCart } from './cart-context'
+import { useAccount, useSignMessage } from 'wagmi'
+
+
 
 const UserContext = createContext<any>({})
 
@@ -7,6 +9,8 @@ export type UserContextType = {
     jwt: string | undefined | null
     setJwt: Function
     deleteJwt: Function
+    walletAddress: string
+    isConnected: boolean
 }
 
 export const useUser = () => {
@@ -14,7 +18,15 @@ export const useUser = () => {
 }
 
 export const UserProvider = ({ children }: any) => {
+
+
+
     let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
+
+    const { isConnected, address } = useAccount()
+    useEffect(() => {
+        // console.log(address, mainnet.id, signMessageData, variables, signMessage)
+    }, [isConnected, address])
 
     let deleteJwt = () => {
         localStorage.removeItem('jwt')
@@ -28,5 +40,5 @@ export const UserProvider = ({ children }: any) => {
         }
     }, [jwt])
 
-    return <UserContext.Provider value={{ jwt, setJwt, deleteJwt }}>{children}</UserContext.Provider>
+    return <UserContext.Provider value={{ jwt, setJwt, deleteJwt, walletAddress: address, isConnected }}>{children}</UserContext.Provider>
 }
