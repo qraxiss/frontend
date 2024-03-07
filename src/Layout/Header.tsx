@@ -316,10 +316,10 @@ function Collections(props: { iconPath: string }) {
 function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
     return (
         <div className="pages">
-            {props.categories.map((item: any, index:number) => {
+            {props.categories.map((item: any) => {
                 if (item.subPages.length > 0) {
                     return (
-                        <div className="dropdown nav-item dropdown-hover" key={Math.floor(Math.random() * 10000000000).toString()}>
+                        <div className="dropdown nav-item dropdown-hover" key={item.page.url}>
                             <Link
                                 className="dropdown-toggle nav-link "
                                 data-key="t-home"
@@ -347,7 +347,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                             >
                                 {item.subPages.map((sub: any) => {
                                     return (
-                                        <li className="nav-item" key={Math.floor(Math.random() * 10000000000).toString()}>
+                                        <li className="nav-item" key={sub.url}>
                                             <Link to={sub.url} className="nav-link" data-key={sub.url}>
                                                 {props.t(sub.title)}
                                             </Link>
@@ -359,7 +359,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                     )
                 } else {
                     return (
-                        <div className="nav-item" key={ Math.floor(Math.random() * 10000000000).toString()}>
+                        <div className="nav-item">
                             <Link
                                 className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
                                 to={item.page.url}

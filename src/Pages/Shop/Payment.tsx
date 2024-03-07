@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card, Col, Container, Row, Tab, Nav } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 const Payment = () => {
-
-
     document.title = 'payment | Toner - React FrontEnd'
     return (
         <React.Fragment>

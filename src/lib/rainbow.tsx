@@ -18,9 +18,7 @@ export function RainbowProvider({ children }: any) {
     return (
         <WagmiProvider config={config}>
             <QueryClientProvider client={queryClient}>
-                <RainbowKitProvider coolMode>
-                    {children}
-                </RainbowKitProvider>
+                <RainbowKitProvider>{children}</RainbowKitProvider>
             </QueryClientProvider>
         </WagmiProvider>
     )
