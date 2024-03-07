@@ -13,13 +13,14 @@
 }
 
 .avatar-sm {
-    height: 3rem;
-    width: 3rem;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 8px;
 }
 
 .avatar-md {
     height: 4.5rem;
-    width: 4.5rem;
+    width: 100px;
 }
 
 .avatar-lg {
@@ -34,13 +35,16 @@
 
 .avatar-title {
     align-items: center;
-    background-color: $primary;
     color: $white;
     display: flex;
     font-weight: $font-weight-medium;
     height: 100%;
     justify-content: center;
     width: 100%;
+    img.avatar-md{
+        border-radius: 5px;
+    }
+
 }
 
 // avatar group

@@ -617,8 +617,7 @@ const Header = (props: any) => {
                             <Account iconPath={icon.account.url}></Account>
                         ) : (
                             <SignInUp iconPath={icon.account.url} handlecardShow={handleAccountShow}></SignInUp>
-                        )}
-                        <WishListIcon iconPath={icon.wishlist.url} handlecardShow={handlecardShow} />
+                        )}  
                         <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
                     </div>
                 </Container>

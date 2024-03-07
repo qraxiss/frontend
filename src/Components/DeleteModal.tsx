@@ -25,10 +25,10 @@ const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
                     </div>
                 </div>
                 <div className="d-flex gap-2 justify-content-center mt-4 mb-2">
-                    <Button className="btn w-sm btn-light" data-bs-dismiss="modal" onClick={hideModal}>
+                    <Button className="btn w-sm btn-secondary" data-bs-dismiss="modal" onClick={hideModal}>
                         Close
                     </Button>
-                    <Button className="btn w-sm btn-danger" id="remove-product" onClick={()=>{
+                    <Button className="btn w-sm btn-primary" id="remove-product" onClick={()=>{
                         deleteItem(slug, true)
                         handleDelete()
                     }}>

@@ -92,7 +92,7 @@ const Selectaddress = () => {
                                             </div>
                                             <h5 className="fs-16 mb-3">Add New Address</h5>
                                             <Button
-                                                variant="success"
+                                                variant="primary"
                                                 className="btn-sm w-xs stretched-link addAddress-modal"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#addAddressModal"
@@ -104,7 +104,7 @@ const Selectaddress = () => {
                                     </Col>
                                 </Row>
                                 <div className="hstack gap-2 justify-content-start mt-3">
-                                    <Button variant="danger" className="btn btn-hover">
+                                    <Button variant="secondary" className="btn btn-hover">
                                         Continue Shopping
                                     </Button>
                                 </div>
