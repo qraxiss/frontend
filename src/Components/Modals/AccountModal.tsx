@@ -156,18 +156,14 @@ const SignIn = ({ setSign, show }: { setSign: Function; show: boolean }) => {
                                             </p>
                                         </div>
                                         <SignMethod label="Sign in">
-                                            <Button className="btn btn-soft-primary btn-icon">
-                                                <i className="ri-facebook-fill fs-16" />
-                                            </Button>
-                                            <Button className="btn btn-soft-danger btn-icon">
-                                                <i className="ri-google-fill fs-16" />
-                                            </Button>
-                                            <Button className="btn btn-soft-dark btn-icon">
-                                                <i className="ri-github-fill fs-16" />
-                                            </Button>
-                                            <Button className="btn btn-soft-info btn-icon">
-                                                <i className="ri-twitter-fill fs-16" />
-                                            </Button>
+                                        <ul>
+        <li><a href="#"><span></span></a></li>
+        <li><a href="#"><span></span></a></li>
+        <li><a href="#"><span></span></a></li>
+        <li><a href="#"><span></span></a></li>
+        
+    </ul>
+    
                                         </SignMethod>
                                     </div>
                                 </SignMethod>
