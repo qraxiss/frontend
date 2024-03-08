@@ -16,7 +16,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 const SignMethod = ({ children, label }: { children: any; label: string }) => {
     return (
-        <div className="mt-4 pt-2 text-center">
+        <div className="mt-4 pt-2 text-center sign-with">
             <div className="signin-other-title">
                 <h5 className="fs-13 mb-4 title">{label}</h5>
             </div>
@@ -156,14 +156,28 @@ const SignIn = ({ setSign, show }: { setSign: Function; show: boolean }) => {
                                             </p>
                                         </div>
                                         <SignMethod label="Sign in">
-                                        <ul>
-        <li><a href="#"><span></span></a></li>
-        <li><a href="#"><span></span></a></li>
-        <li><a href="#"><span></span></a></li>
-        <li><a href="#"><span></span></a></li>
-        
-    </ul>
-    
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </SignMethod>
                                     </div>
                                 </SignMethod>

@@ -58,9 +58,7 @@ const Cardshop = () => {
                         There are <span className="fw-bold product-count">{cartItems.length}</span> products in your cart
                     </h5>
                     <div className="flex-shrink-0">
-                        <Button className="text-decoration-underline link-secondary" onClick={
-                            deleteAll
-                        }>
+                        <Button className="text-decoration-underline link-secondary" onClick={deleteAll}>
                             Clear Cart
                         </Button>
                     </div>
@@ -81,9 +79,7 @@ const Cardshop = () => {
                                         <Link to="#">
                                             <h5 className="fs-16 lh-base mb-1">{item.product.name}</h5>
                                         </Link>
-                                        <ul className="list-inline text-muted fs-13 mb-3">
-
-                                        </ul>
+                                        <ul className="list-inline text-muted fs-13 mb-3"></ul>
                                         <div className="input-step">
                                             <Button
                                                 className="minus"

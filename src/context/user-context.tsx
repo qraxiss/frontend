@@ -2,7 +2,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { useCart } from './cart-context'
 import { useAccount } from 'wagmi'
 
-
 const UserContext = createContext<any>({})
 
 export type UserContextType = {
@@ -19,9 +18,7 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }: any) => {
     let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
-    let {address, isConnected} = useAccount()
-
-    
+    let { address, isConnected } = useAccount()
 
     let deleteJwt = () => {
         localStorage.removeItem('jwt')

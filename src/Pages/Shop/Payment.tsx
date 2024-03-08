@@ -61,7 +61,7 @@ const Payment = () => {
                                                 </Row>
 
                                                 <div className="hstack gap-2 justify-content-end pt-4">
-                                                    <ConnectButton/>
+                                                    <ConnectButton />
                                                 </div>
                                             </Card.Body>
                                         </Card>

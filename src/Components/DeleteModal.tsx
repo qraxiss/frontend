@@ -11,7 +11,7 @@ const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
         hideModal()
     }
 
-    let {deleteItem} = useCart()
+    let { deleteItem } = useCart()
 
     return (
         <Modal show={removeModel} onHide={hideModal} centered id="removeItemModal" className="zoomIn">
@@ -28,10 +28,14 @@ const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
                     <Button className="btn w-sm btn-secondary" data-bs-dismiss="modal" onClick={hideModal}>
                         Close
                     </Button>
-                    <Button className="btn w-sm btn-primary" id="remove-product" onClick={()=>{
-                        deleteItem(slug, true)
-                        handleDelete()
-                    }}>
+                    <Button
+                        className="btn w-sm btn-primary"
+                        id="remove-product"
+                        onClick={() => {
+                            deleteItem(slug, true)
+                            handleDelete()
+                        }}
+                    >
                         Yes, Delete It!
                     </Button>
                 </div>

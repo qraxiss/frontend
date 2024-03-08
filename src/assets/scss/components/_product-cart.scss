@@ -2,10 +2,8 @@
 // product-cart.scss
 //
 
-
-
 .product-cart {
-    box-shadow:rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border-radius: 18px;
     transition: transform 0.2s;
 
@@ -23,7 +21,6 @@
         }
     }
 }
-
 
 .product-cart:hover {
     transform: scale(1.03);

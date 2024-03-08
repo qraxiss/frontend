@@ -9,7 +9,7 @@ const CartContext = createContext<any>({})
 export type CartContextType = {
     addItem: (slug: string, count?: number) => void
     deleteItem: (slug: string, all?: boolean) => void
-    deleteAll: ()=> void
+    deleteAll: () => void
     cartItems: any[]
 }
 
@@ -69,11 +69,11 @@ function addItemWrapper(
     }
 }
 
-function deleteAll(cartItems: any[], deleteItem: Function, setCartItems: Function){
-    return ()=>{
+function deleteAll(cartItems: any[], deleteItem: Function, setCartItems: Function) {
+    return () => {
         for (let index = 0; index < cartItems.length; index++) {
-            const item = cartItems[index];
-    
+            const item = cartItems[index]
+
             for (let indexi = 0; indexi < item.count; indexi++) {
                 deleteItem(item.product.slug, true)
             }
