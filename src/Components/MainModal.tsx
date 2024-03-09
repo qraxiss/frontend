@@ -5,12 +5,6 @@ import * as Yup from 'yup'
 import { Col, Modal, Row, Card, Offcanvas, Table, Form, Button, Image, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
-//img
-import modalImg from 'assets/images/subscribe.png'
-import Signin from 'Pages/User/SignIn'
-
-import avatar1 from 'assets/images/users/avatar-1.jpg'
-import avatar7 from 'assets/images/users/avatar-7.jpg'
 
 //component
 import DeleteModal from 'Components/DeleteModal'
@@ -18,14 +12,9 @@ import DeleteModal from 'Components/DeleteModal'
 import { useQuery, useMutation, handle } from 'lib/query-wrapper'
 import { gql } from '@apollo/client'
 import config from 'config/config'
-import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart-context'
-import { useUser } from '../context/user-context'
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-
-//go to one page to another page opne modal
 export const MainModal = ({ location }: any) => {
     const [show, setShow] = useState(false)
     const modalhide = () => setShow(false)
@@ -60,7 +49,7 @@ export const MainModal = ({ location }: any) => {
                         </Col>
                         <Col lg={6}>
                             <div className="p-4 pb-0">
-                                <Image src={modalImg} alt="" fluid />
+                                <Image src={""} alt="" fluid />
                             </div>
                         </Col>
                     </Row>
@@ -70,9 +59,6 @@ export const MainModal = ({ location }: any) => {
     )
 }
 
-//===============================================
-
-//invoice modal
 export const InvoiceModal = ({ modal, handleClose }: any) => {
     const query = gql`
         query {
@@ -375,9 +361,6 @@ export const InvoiceModal = ({ modal, handleClose }: any) => {
     )
 }
 
-//=======================================================
-
-//search modal
 export const SearchModal = ({ show, handleClose }: any) => {
     const [value, setValue] = useState('')
     const handlesearch = (event: any) => {
@@ -477,7 +460,7 @@ export const SearchModal = ({ show, handleClose }: any) => {
                                 <h5 className="text-overflow text-muted fs-13 mb-2 mt-3 text-uppercase notification-title">People</h5>
                                 <Link to="#" className="list-group-item dropdown-item notify-item">
                                     <div className="d-flex align-items-center">
-                                        <Image src={avatar1} alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
+                                        <Image src="" alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
                                         <div>
                                             <h6 className="mb-0">Ayaan Bowen</h6>
                                             <span className="fs-12 text-muted">React Developer</span>
@@ -486,7 +469,7 @@ export const SearchModal = ({ show, handleClose }: any) => {
                                 </Link>
                                 <Link to="#" className="list-group-item dropdown-item notify-item">
                                     <div className="d-flex align-items-center">
-                                        <Image src={avatar7} alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
+                                        <Image src="" alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
                                         <div>
                                             <h6 className="mb-0">Alexander Kristi</h6>
                                             <span className="fs-12 text-muted">React Developer</span>
@@ -495,7 +478,7 @@ export const SearchModal = ({ show, handleClose }: any) => {
                                 </Link>
                                 <Link to="#" className="list-group-item dropdown-item notify-item">
                                     <div className="d-flex align-items-center">
-                                        <Image src={avatar7} alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
+                                        <Image src="" alt="" className="avatar-xs flex-shrink-0 me-2" roundedCircle />
                                         <div>
                                             <h6 className="mb-0">Alan Carla</h6>
                                             <span className="fs-12 text-muted">React Developer</span>
@@ -510,8 +493,6 @@ export const SearchModal = ({ show, handleClose }: any) => {
         </React.Fragment>
     )
 }
-
-//card modal
 
 export const CardModal = ({ show, handleClose }: any) => {
     let navigate = useNavigate()

@@ -3,10 +3,6 @@ import { Card, Col, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 //img
-import ecommerce1 from 'assets/images/ecommerce/img-1.jpg'
-import ecommerce3 from 'assets/images/ecommerce/img-3.jpg'
-import ecommerce4 from 'assets/images/ecommerce/img-4.jpg'
-import ecommerce5 from 'assets/images/ecommerce/img-5.jpg'
 // import { aboutCard, aboutManagement } from 'Common/data'
 // import { DefauilOffer } from 'Components/ProductSilde'
 // import { CommonService } from 'Components/CommonService'
@@ -34,13 +30,13 @@ const About = () => {
                                 <Row className="align-items-center">
                                     <Col mg={6}>
                                         <div className="position-relative">
-                                            <Image src={ecommerce4} alt="" fluid rounded />
+                                            <Image src={""} alt="" fluid rounded />
                                         </div>
                                     </Col>
                                     <Col md={6}>
                                         <div className="vstack gap-4">
-                                            <Image src={ecommerce1} alt="" fluid rounded />
-                                            <Image src={ecommerce3} alt="" fluid rounded />
+                                            <Image src={""} alt="" fluid rounded />
+                                            <Image src={""} alt="" fluid rounded />
                                         </div>
                                     </Col>
                                 </Row>
@@ -49,29 +45,6 @@ const About = () => {
                     </Row>
                 </Container>
             </section>
-            <div className="ecommerce-about-cta">
-                <Container>
-                    <Row>
-                        {/* {(aboutCard || [])?.map((item, inx) => {
-              return (
-                <Col lg={4} key={inx}>
-                  <Card className="card-animate border-0">
-                    <Card.Body>
-                      <h5 className="fs-16 mt-3">{item.title}</h5>
-                      <p className="text-muted">{item.discription}</p>
-                      <div>
-                        <Link to="#" className="link-effect link-primary">
-                          Read More <i className="bi bi-arrow-right ms-2"></i>
-                        </Link>
-                      </div>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )
-            })} */}
-                    </Row>
-                </Container>
-            </div>
             <section className="ecommerce-about-team bg-light bg-opacity-50">
                 <Container>
                     <Row className="justify-content-center">
@@ -84,25 +57,6 @@ const About = () => {
                             </div>
                         </Col>
                     </Row>
-                    <Row className="gy-4">
-                        {/* {(aboutManagement || [])?.map((item, inx) => {
-              return (
-                <Col xl={3} md={6} key={inx}>
-                  <div className="team-box text-center">
-                    <div className="team-img">
-                      <Image src={item.img} alt="" fluid rounded roundedCircle className="border border-dashed border-dark border-opacity-25" />
-                    </div>
-                    <div className="mt-4 pt-1">
-                      <Link to="#">
-                        <h5>{item.title}</h5>
-                      </Link>
-                      <p className="text-muted mb-0">{item.text}</p>
-                    </div>
-                  </div>
-                </Col>
-              )
-            })} */}
-                    </Row>
                 </Container>
             </section>
             <section className="section">
@@ -110,7 +64,7 @@ const About = () => {
                     <Row className="align-items-center">
                         <Col lg={6}>
                             <div>
-                                <Image src={ecommerce5} alt="" fluid rounded />
+                                <Image src="" alt="" fluid rounded />
                             </div>
                         </Col>
                         <Col lg={6}>

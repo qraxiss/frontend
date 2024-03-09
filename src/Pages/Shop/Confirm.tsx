@@ -3,9 +3,6 @@ import { Card, Col, Container, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { Shoptopbar } from 'Components/ShopTopBar'
-import success from 'assets/images/success-img.png'
-// import EmailClothe from 'Pages/Catalog/EmailClothe'
-// import { CommonService } from 'Components/CommonService'
 
 const Confirm = () => {
     document.title = 'Order Completed | Toner - React FrontEnd'
@@ -19,7 +16,7 @@ const Confirm = () => {
                             <Card>
                                 <Card.Body className="p-4 p-md-5">
                                     <div className="text-center">
-                                        <Image src={success} alt="" className="w-50" />
+                                        <Image src={""} alt="" className="w-50" />
                                     </div>
                                     <div className="text-center mt-5 pt-1">
                                         <h4 className="mb-3 text-capitalize">Your Order Is Completed !</h4>
@@ -40,8 +37,6 @@ const Confirm = () => {
                     </Row>
                 </Container>
             </section>
-            {/* <EmailClothe />
-      <CommonService /> */}
         </React.Fragment>
     )
 }

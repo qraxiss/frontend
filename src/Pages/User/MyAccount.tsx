@@ -2,7 +2,6 @@ import React from 'react'
 import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import profilebg from 'assets/images/profile-bg.jpg'
 // import { orderHistorys, wishlishProduct } from 'Common/data'
 // import EmailClothe from 'Pages/Catalog/EmailClothe'
 // import { CommonService } from 'Components/CommonService'
@@ -33,7 +32,6 @@ const MyAccount = () => {
             <section className="position-relative">
                 <div
                     className="profile-basic position-relative"
-                    style={{ backgroundImage: `url(${profilebg})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '300px' }}
                 >
                     <div className="bg-overlay bg-primary"></div>
                 </div>

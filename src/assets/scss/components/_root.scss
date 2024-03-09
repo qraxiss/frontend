@@ -143,18 +143,6 @@
         --#{$prefix}twocolumn-menu-iconview-bg: linear-gradient(to left, #{$cyan-700}, #{$cyan-800});
         --#{$prefix}twocolumn-menu-bg: linear-gradient(to left, #{$cyan-700}, #{$cyan-800});
     }
-
-    &[data-body-image='img-1'] {
-        --#{$prefix}body-bg-image: url('../../images/sidebar/body-light-1.png');
-    }
-
-    &[data-body-image='img-2'] {
-        --#{$prefix}body-bg-image: url('../../images/sidebar/body-light-2.png');
-    }
-
-    &[data-body-image='img-3'] {
-        --#{$prefix}body-bg-image: url('../../images/sidebar/body-light-3.png');
-    }
 }
 
 //theme dark

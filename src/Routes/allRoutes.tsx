@@ -23,8 +23,6 @@ import Passwordreset from 'Pages/User/Passwordreset'
 import Passwordcreate from 'Pages/User/Passwordcreate'
 import Successmsg from 'Pages/User/Successmsg'
 import Logout from 'Pages/User/Logout'
-import Error404 from 'Pages/User/Error404'
-import Error500 from 'Pages/User/Error500'
 
 //Productdetails
 import Productdetails from 'Pages/Product/Productdetails'
@@ -65,7 +63,5 @@ const authProtectedRoutes = [
     { path: '/create-password', component: <Passwordcreate /> },
     { path: '/login-success', component: <Successmsg /> },
 
-    { path: '/404', component: <Error404 /> },
-    { path: '/500', component: <Error500 /> }
 ]
 export { authProtectedRoutes }

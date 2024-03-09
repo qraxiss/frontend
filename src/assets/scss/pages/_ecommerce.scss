@@ -4,7 +4,16 @@
 
 //ecommerce landing page
 
+.carousel-inner {
+    border-radius: 18px !important;
+}
+
 #ecommerceHero {
+
+    img {
+        border-radius: 18px !important;
+    }
+
     .carousel-control-prev,
     .carousel-control-next {
         opacity: 0;
@@ -64,7 +73,11 @@
         border-radius: 18px !important;
     }
 
-    .carousel-item-next .active {
+    .carousel-item-next {
+        border-radius: 18px !important;
+    }
+
+    .carousel-control-start {
         border-radius: 18px !important;
     }
 

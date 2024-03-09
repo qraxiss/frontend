@@ -2,8 +2,6 @@ import React from 'react'
 import { Container, Row, Col, Card, Form, Button, Image } from 'react-bootstrap'
 
 //img
-
-import auth1 from 'assets/images/auth/img-1.png'
 import { Link } from 'react-router-dom'
 
 const Verifyemail = () => {
@@ -21,7 +19,7 @@ const Verifyemail = () => {
                                         <Card.Header className="bg-primary border-0">
                                             <Row>
                                                 <Col lg={4} xs={3}>
-                                                    <Image src={auth1} alt="" className="img-fluid" />
+                                                    <Image src="" alt="" className="img-fluid" />
                                                 </Col>
                                                 <Col lg={8} xs={9}>
                                                     <h1 className="text-white lh-base fw-lighter">Verify Your Email</h1>

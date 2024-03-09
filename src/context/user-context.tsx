@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
+import { useAccount, useSignMessage } from 'wagmi'
 import { disconnect } from '@wagmi/core'
 import { wagmiConfig } from 'lib/rainbow'
 
