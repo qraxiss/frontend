@@ -151,3 +151,19 @@ export let getPages = gql`
         }
     }
 `
+
+export let loginWithWallet = gql`
+    mutation LOGIN_WITH_WALLET($walletAddress: String!) {
+        loginWithWallet(walletAddress: $walletAddress) {
+            jwt
+        }
+    }
+`
+
+export let registerWithWallet = gql`
+    mutation REGISTER_WITH_WALLET($walletAddress: String!) {
+        registerWithWallet(walletAddress: $walletAddress) {
+            jwt
+        }
+    }
+`

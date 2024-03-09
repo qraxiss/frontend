@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 //img
 
-import { useMutation } from 'lib/query-wrapper'
-import { login, register } from 'lib/common-queries'
 import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../context/user-context'
 
@@ -26,29 +24,16 @@ const SignMethod = ({ children, label }: { children: any; label: string }) => {
     )
 }
 
-const SignIn = ({ setSign, show }: { setSign: Function; show: boolean }) => {
-    let { jwt, setJwt, isConnected } = useUser()
+const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; setShow: Function }) => {
+    let { status, setStatus, isConnected, login } = useUser()
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (!isConnected) {
-                const buttonElement = document.querySelector('button._12cbo8i6')
-                if (buttonElement) {
-                    buttonElement.classList.add('btn', 'btn-primary', 'radius-15', 'connect-button')
-                }
-            }
-        }, 100)
-    }, [show, isConnected])
+    setStatus('public')
 
-    let { fn, data, error, loading } = useMutation(login)
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        if (!loading && data && data.jwt) {
-            setJwt(data.jwt)
-            navigate('/account')
+    useEffect(()=>{
+        if (status==="login"){
+            setShow(false)
         }
-    }, [loading, data])
+    }, [status, isConnected])
 
     const passwordtype = 'password'
     const [password, setPassword] = useState('')
@@ -63,7 +48,7 @@ const SignIn = ({ setSign, show }: { setSign: Function; show: boolean }) => {
         }),
 
         onSubmit: (values) => {
-            fn({
+            login.fn({
                 variables: {
                     identifier: values.identifier,
                     password: values.password
@@ -190,26 +175,18 @@ const SignIn = ({ setSign, show }: { setSign: Function; show: boolean }) => {
     )
 }
 
-const SignUp = ({ setSign }: { setSign: Function }) => {
-    let { jwt, setJwt } = useUser()
+const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; setShow: Function }) => {
+    let { register, setStatus } = useUser()
 
-    const navigate = useNavigate()
-    const { fn, loading, error, data } = useMutation(register)
-
-    useEffect(() => {
-        if (!loading && data && data.jwt) {
-            setJwt(data.jwt)
-            navigate('/account')
-        }
-    }, [loading, data])
+    setStatus('register')
 
     const [passwordtype, setPasswordtype] = useState(false)
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            username: 'admin@themesbrand.com',
-            password: '123456'
+            email: 'user@shopcek.com',
+            username: 'iLoveCrypto',
+            password: 'highSecurityPass@123'
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -220,7 +197,7 @@ const SignUp = ({ setSign }: { setSign: Function }) => {
             password: Yup.string().required('This field is required')
         }),
         onSubmit: (values) => {
-            fn({ variables: values })
+            register.fn({ variables: values })
         }
     })
 
@@ -232,120 +209,123 @@ const SignUp = ({ setSign }: { setSign: Function }) => {
                         <Card className="border-0 mb-0">
                             <Card.Body>
                                 <p className="text-muted fs-15">Join Shopcek</p>
-                                <div className="p-2">
-                                    <Form className="needs-validation" action="#" onSubmit={formik.handleSubmit}>
-                                        <div className="mb-3">
-                                            <Form.Label htmlFor="useremail">
-                                                Email <span className="text-danger">*</span>
-                                            </Form.Label>
-                                            <Form.Control
-                                                type="email"
-                                                id="useremail"
-                                                name="email"
-                                                placeholder="Enter email address"
-                                                value={formik.values.email}
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                            />
-                                            {formik.errors.email && formik.touched.email ? (
-                                                <span className="text-danger">{formik.errors.email}</span>
-                                            ) : null}
-                                        </div>
-                                        <div className="mb-3">
-                                            <Form.Label htmlFor="username">
-                                                Username <span className="text-danger">*</span>
-                                            </Form.Label>
-                                            <Form.Control
-                                                type="text"
-                                                id="username"
-                                                name="username"
-                                                placeholder="Enter username"
-                                                value={formik.values.username}
-                                                onChange={formik.handleChange}
-                                                onBlur={formik.handleBlur}
-                                            />
-
-                                            {formik.errors.username && formik.touched.username ? (
-                                                <span className="text-danger">{formik.errors.username}</span>
-                                            ) : null}
-                                        </div>
-                                        <div className="mb-3">
-                                            <Form.Label htmlFor="password-input">Password</Form.Label>
-                                            <div className="position-relative auth-pass-inputgroup">
+                                <ConnectButton></ConnectButton>
+                                <SignMethod label="Sign up">
+                                    <div className="p-2">
+                                        <Form className="needs-validation" action="#" onSubmit={formik.handleSubmit}>
+                                            <div className="mb-3">
+                                                <Form.Label htmlFor="useremail">
+                                                    Email <span className="text-danger">*</span>
+                                                </Form.Label>
                                                 <Form.Control
-                                                    type={passwordtype ? 'text' : 'password'}
-                                                    className="pe-5 password-input"
-                                                    placeholder="Enter password"
-                                                    id="password-input"
-                                                    name="password"
-                                                    value={formik.values.password}
+                                                    type="email"
+                                                    id="useremail"
+                                                    name="email"
+                                                    placeholder="Enter email address"
+                                                    value={formik.values.email}
                                                     onChange={formik.handleChange}
                                                     onBlur={formik.handleBlur}
-                                                    autoComplete="off"
+                                                    className="radius-15"
                                                 />
-                                                <Button
-                                                    variant="link"
-                                                    className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
-                                                    id="password-addon"
-                                                    onClick={() => setPasswordtype(!passwordtype)}
-                                                >
-                                                    <i className="ri-eye-fill align-middle" />
-                                                </Button>
-                                                {formik.errors.password && formik.touched.password ? (
-                                                    <span className="text-danger">{formik.errors.password}</span>
+                                                {formik.errors.email && formik.touched.email ? (
+                                                    <span className="text-danger">{formik.errors.email}</span>
                                                 ) : null}
                                             </div>
+                                            <div className="mb-3">
+                                                <Form.Label htmlFor="username">
+                                                    Username <span className="text-danger">*</span>
+                                                </Form.Label>
+                                                <Form.Control
+                                                    type="text"
+                                                    id="username"
+                                                    name="username"
+                                                    placeholder="Enter username"
+                                                    value={formik.values.username}
+                                                    onChange={formik.handleChange}
+                                                    onBlur={formik.handleBlur}
+                                                    className="radius-15"
+                                                />
+
+                                                {formik.errors.username && formik.touched.username ? (
+                                                    <span className="text-danger">{formik.errors.username}</span>
+                                                ) : null}
+                                            </div>
+                                            <div className="mb-3">
+                                                <Form.Label htmlFor="password-input">Password</Form.Label>
+                                                <div className="position-relative auth-pass-inputgroup">
+                                                    <Form.Control
+                                                        type={passwordtype ? 'text' : 'password'}
+                                                        className="radius-15 pe-5 password-input"
+                                                        placeholder="Enter password"
+                                                        id="password-input"
+                                                        name="password"
+                                                        value={formik.values.password}
+                                                        onChange={formik.handleChange}
+                                                        onBlur={formik.handleBlur}
+                                                        autoComplete="off"
+                                                    />
+                                                    <Button
+                                                        variant="link"
+                                                        className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
+                                                        id="password-addon"
+                                                        onClick={() => setPasswordtype(!passwordtype)}
+                                                    >
+                                                        <i className="ri-eye-fill align-middle" />
+                                                    </Button>
+                                                    {formik.errors.password && formik.touched.password ? (
+                                                        <span className="text-danger">{formik.errors.password}</span>
+                                                    ) : null}
+                                                </div>
+                                            </div>
+
+                                            <div className="mt-4">
+                                                <Button variant="primary" className="radius-15 w-100" type="submit">
+                                                    Sign Up
+                                                </Button>
+                                            </div>
+                                            
+                                            <div className="text-center mt-5">
+                                            <p className="mb-0">
+                                                Already have an account ?
+                                                <div
+                                                    className="fw-semibold text-secondary text-decoration-underline"
+                                                    onClick={() => {
+                                                        setSign(true)
+                                                    }}
+                                                >
+                                                    Sign In
+                                                </div>
+                                            </p>
                                         </div>
 
-                                        <div className="mt-4">
-                                            <Button variant="primary" className="w-100" type="submit">
-                                                Sign Up
-                                            </Button>
-                                        </div>
-                                        <div className="mt-4 text-center">
-                                            <div className="signin-other-title">
-                                                <h5 className="fs-13 mb-4 title text-muted">Create account with</h5>
-                                            </div>
-                                            <div className="pt-2 hstack gap-2 justify-content-center">
-                                                <Button className="btn btn-soft-primary btn-icon">
-                                                    <i className="ri-facebook-fill fs-16" />
-                                                </Button>
-                                                <Button className="btn btn-soft-danger btn-icon">
-                                                    <i className="ri-google-fill fs-16" />
-                                                </Button>
-                                                <Button className="btn btn-soft-dark btn-icon">
-                                                    <i className="ri-github-fill fs-16" />
-                                                </Button>
-                                                <Button className="btn btn-soft-info btn-icon">
-                                                    <i className="ri-twitter-fill fs-16" />
-                                                </Button>
-                                            </div>
-                                        </div>
+                                            <SignMethod label="or Sign Up with">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span></span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">
+                                                            <span></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </SignMethod>
+                                        </Form>
+                                    </div>
+                                </SignMethod>
 
-                                        <div className="mt-4 pt-2 text-center">
-                                            <div className="signin-other-title">
-                                                <h5 className="fs-13 mb-4 title">Sign In with</h5>
-                                            </div>
-                                            <div className="pt-2 hstack gap-2 justify-content-center">
-                                                <ConnectButton></ConnectButton>
-                                            </div>
-                                        </div>
-                                    </Form>
-                                </div>
-                                <div className="mt-4 text-center">
-                                    <p className="mb-0">
-                                        Already have an account ?{' '}
-                                        <Button
-                                            className="fw-semibold text-primary text-decoration-underline"
-                                            onClick={() => {
-                                                setSign(true)
-                                            }}
-                                        >
-                                            {' '}
-                                            Signin{' '}
-                                        </Button>{' '}
-                                    </p>
-                                </div>
                             </Card.Body>
                         </Card>
                     </div>
@@ -355,8 +335,21 @@ const SignUp = ({ setSign }: { setSign: Function }) => {
     )
 }
 
-export const AccountModal = ({ show, handleClose }: any) => {
+export const AccountModal = ({ show, setShow, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
+
+    let {isConnected} = useUser()
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (!isConnected) {
+                const buttonElement = document.querySelector('button._12cbo8i6')
+                if (buttonElement) {
+                    buttonElement.classList.add('btn', 'btn-primary', 'radius-15', 'connect-button')
+                }
+            }
+        }, 10)
+    }, [show, isConnected, sign])
 
     return (
         <React.Fragment>
@@ -367,7 +360,13 @@ export const AccountModal = ({ show, handleClose }: any) => {
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body className=" px-0">
-                    <SimpleBar className="h-100">{sign ? <SignIn setSign={setSign} show={show} /> : <SignUp setSign={setSign} />}</SimpleBar>
+                    <SimpleBar className="h-100">
+                        {sign ? (
+                            <SignIn setSign={setSign} setShow={setShow} show={show} />
+                        ) : (
+                            <SignUp setSign={setSign} setShow={setShow} show={show} />
+                        )}
+                    </SimpleBar>
                 </Offcanvas.Body>
             </Offcanvas>
         </React.Fragment>

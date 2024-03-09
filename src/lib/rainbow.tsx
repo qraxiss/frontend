@@ -5,7 +5,7 @@ import { WagmiProvider } from 'wagmi'
 import { mainnet, polygon, optimism, arbitrum, base, zora } from 'wagmi/chains'
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
-const config = getDefaultConfig({
+export const wagmiConfig = getDefaultConfig({
     appName: 'ShopcekApp',
     projectId: 'YOUR_PROJECT_ID',
     chains: [mainnet, polygon, optimism, arbitrum, base, zora],
@@ -16,7 +16,7 @@ const queryClient = new QueryClient()
 
 export function RainbowProvider({ children }: any) {
     return (
-        <WagmiProvider config={config}>
+        <WagmiProvider config={wagmiConfig}>
             <QueryClientProvider client={queryClient}>
                 <RainbowKitProvider>{children}</RainbowKitProvider>
             </QueryClientProvider>

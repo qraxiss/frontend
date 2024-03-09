@@ -78,7 +78,6 @@ function AddToCart(props: { addItem: Function; setCount: Function; count: number
                 variant="primary"
                 className="btn btn-hover w-100"
                 onClick={() => {
-                    console.log(count, 'onClick')
                     addItem(slug, count)
                 }}
             >

@@ -33,8 +33,6 @@ function addItemWrapper(
             return product.product.slug === slug
         })
 
-        console.log(count, 'addItemWrapperInside')
-        console.log(item)
         if (item) {
             setCartItems(
                 cartItems.map((product: any) => {
@@ -148,12 +146,10 @@ export const CartProvider = ({ children }: any) => {
     let deleteAllFn = deleteAll(cartItems, deleteItemFn, setCartItems)
 
     const addToCart = (newProduct: any) => {
-        console.log(count, 'addToCartInside')
         setCartItems([...cartItems, { product: newProduct, count }])
     }
 
     useEffect(() => {
-        console.log(count, 'singleProductUseState')
 
         if (singleProduct.data) {
             addToCart(singleProduct.data)

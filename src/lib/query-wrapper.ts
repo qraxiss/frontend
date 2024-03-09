@@ -10,7 +10,7 @@ export function handle(fn: CallableFunction) {
         try {
             return await fn(options)
         } catch (err: any) {
-            console.log(err)
+            console.error(err)
         }
     }
 }

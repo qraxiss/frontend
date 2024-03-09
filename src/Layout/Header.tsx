@@ -624,7 +624,7 @@ const Header = (props: any) => {
                 </Container>
             </Navbar>
             <CardModal show={card} handleClose={handlecardClose} />
-            <AccountModal show={account} handleClose={handleAccountClose}></AccountModal>
+            <AccountModal show={account} setShow={setAccount} handleClose={handleAccountClose}></AccountModal>
 
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                 <Container className="navbar-nav">
