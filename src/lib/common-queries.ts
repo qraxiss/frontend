@@ -84,14 +84,8 @@ export let products = gql`
                 attributes {
                     name
                     slug
+                    image
                     price
-                    images {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -105,13 +99,10 @@ export const getSingleProductBySlug = gql`
             slug
             price
             description
-            images {
-                data {
-                    attributes {
-                        url
-                    }
-                }
-            }
+            image
+            variants
+            size
+            color
             categories {
                 data {
                     attributes {

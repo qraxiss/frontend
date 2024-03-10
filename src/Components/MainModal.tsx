@@ -563,7 +563,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                             <div className="flex-shrink-0">
                                                 <div className={`avatar-md warning-subtle `} style={{ height: '100%' }}>
                                                     <div className={`avatar-title bg-warning-subtle rounded-3`}>
-                                                        <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-sm" />
+                                                        <Image src={item.product.image} alt="" className="avatar-sm" />
                                                     </div>
                                                 </div>
                                             </div>

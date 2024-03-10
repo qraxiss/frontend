@@ -12,7 +12,7 @@ export const CardComponent = ({ data }: { data: productListType }) => {
         <Card className="overflow-hidden card product-cart">
             <div className={`rounded-top py-4`}>
                 <div className="gallery-product">
-                    <Image className="mx-auto d-block" src={config.serverUrl + data.images[0].url} />
+                    <Image className="mx-auto d-block" src={data.image} />
                 </div>
             </div>
             <Card.Body>

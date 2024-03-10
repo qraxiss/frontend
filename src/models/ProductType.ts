@@ -3,7 +3,7 @@ export type filterSettingsType = { name: string; options: { value: string; id: n
 export type productListType = {
     price: number
     slug: string
-    images: { url: string }[]
+    image: string
     name: string
     variants: productVariant[]
 }

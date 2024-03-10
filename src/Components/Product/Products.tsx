@@ -17,26 +17,6 @@ const Products = ({ items, title }: any) => {
                                 <CardComponent data={item} />
                             </Col>
                         ))}
-                        {items.map((item: any) => (
-                            <Col key={item.slug}>
-                                <CardComponent data={item} />
-                            </Col>
-                        ))}
-                        {items.map((item: any) => (
-                            <Col key={item.slug}>
-                                <CardComponent data={item} />
-                            </Col>
-                        ))}
-                        {items.map((item: any) => (
-                            <Col key={item.slug}>
-                                <CardComponent data={item} />
-                            </Col>
-                        ))}
-                        {items.map((item: any) => (
-                            <Col key={item.slug}>
-                                <CardComponent data={item} />
-                            </Col>
-                        ))}
                     </Row>
                 </Container>
             </section>

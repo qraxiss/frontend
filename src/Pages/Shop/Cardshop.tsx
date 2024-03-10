@@ -71,7 +71,7 @@ const Cardshop = () => {
                                     <Col className="col-sm-auto">
                                         <div className="avatar-lg h-100">
                                             <div className={`avatar-title rounded py-3`}>
-                                                <Image src={config.serverUrl + item.product.images[0].url} alt="" className="avatar-md" />
+                                                <Image src={item.product.image} alt="" className="avatar-md" />
                                             </div>
                                         </div>
                                     </Col>

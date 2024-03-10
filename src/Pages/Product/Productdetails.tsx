@@ -197,16 +197,18 @@ const Productdetails = () => {
         slug: '',
         price: 0,
         description: '',
-        images: []
+        variants: [],
+        size: [],
+        color: []
     }) as resultType
 
-    let sliderProduct = data.images.map((image: any, index: number) => {
+    let sliderProduct = data.variants.map((item: any, index:number)=>{
         return {
-            id: index + 1,
-            img: config.serverUrl + image.url
+            id: index+1,
+            image: item.image
         }
     })
-
+    
     useEffect(() => {
         handleSetImg(1)
     }, [loading])
@@ -235,8 +237,8 @@ const Productdetails = () => {
                 <Container className="product-details-container">
                     <div className="pictures">
                         <div className="small-pictures">
-                            {sliderProduct?.map((item: any, idx: number) => {
-                                return <Image src={item.img} onClick={() => handleSetImg(item.id)} />
+                            {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId,sliderId+4))?.map((item: any, idx: number) => {
+                                return <Image src={item.image} onClick={() => handleSetImg(item.id)} />
                             })}
                             <div className="buttons">
                                 <Button
@@ -259,7 +261,7 @@ const Productdetails = () => {
                         </div>
                         <div className="big-picture">
                             {sliderImg.map((item: any) => {
-                                return <Image src={item.img} />
+                                return <Image src={item.image} />
                             })}
                         </div>
                     </div>
