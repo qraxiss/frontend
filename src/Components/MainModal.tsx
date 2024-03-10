@@ -49,7 +49,7 @@ export const MainModal = ({ location }: any) => {
                         </Col>
                         <Col lg={6}>
                             <div className="p-4 pb-0">
-                                <Image src={""} alt="" fluid />
+                                <Image src={''} alt="" fluid />
                             </div>
                         </Col>
                     </Row>

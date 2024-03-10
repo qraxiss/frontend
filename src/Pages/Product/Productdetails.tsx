@@ -202,13 +202,13 @@ const Productdetails = () => {
         color: []
     }) as resultType
 
-    let sliderProduct = data.variants.map((item: any, index:number)=>{
+    let sliderProduct = data.variants.map((item: any, index: number) => {
         return {
-            id: index+1,
+            id: index + 1,
             image: item.image
         }
     })
-    
+
     useEffect(() => {
         handleSetImg(1)
     }, [loading])
@@ -237,9 +237,11 @@ const Productdetails = () => {
                 <Container className="product-details-container">
                     <div className="pictures">
                         <div className="small-pictures">
-                            {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId,sliderId+4))?.map((item: any, idx: number) => {
-                                return <Image src={item.image} onClick={() => handleSetImg(item.id)} />
-                            })}
+                            {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
+                                (item: any, idx: number) => {
+                                    return <Image src={item.image} onClick={() => handleSetImg(item.id)} />
+                                }
+                            )}
                             <div className="buttons">
                                 <Button
                                     onClick={() => {

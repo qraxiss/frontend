@@ -30,9 +30,7 @@ const MyAccount = () => {
     return (
         <React.Fragment>
             <section className="position-relative">
-                <div
-                    className="profile-basic position-relative"
-                >
+                <div className="profile-basic position-relative">
                     <div className="bg-overlay bg-primary"></div>
                 </div>
                 <Container>

@@ -107,9 +107,9 @@ export const UserProvider = ({ children }: any) => {
     }, [login.loading, login.data])
 
     useEffect(() => {
-        if (registerWithWallet.error){
+        if (registerWithWallet.error) {
             disconnect(wagmiConfig)
-            return 
+            return
         }
 
         if (registerWithWallet.data?.jwt) {
@@ -126,7 +126,9 @@ export const UserProvider = ({ children }: any) => {
     }, [register.loading, register.data])
 
     return (
-        <UserContext.Provider value={{ jwt, setJwt, deleteJwt, isConnected, address, login, loginWithWallet, register, registerWithWallet, status, setStatus }}>
+        <UserContext.Provider
+            value={{ jwt, setJwt, deleteJwt, isConnected, address, login, loginWithWallet, register, registerWithWallet, status, setStatus }}
+        >
             {children}
         </UserContext.Provider>
     )

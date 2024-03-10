@@ -30,13 +30,13 @@ const About = () => {
                                 <Row className="align-items-center">
                                     <Col mg={6}>
                                         <div className="position-relative">
-                                            <Image src={""} alt="" fluid rounded />
+                                            <Image src={''} alt="" fluid rounded />
                                         </div>
                                     </Col>
                                     <Col md={6}>
                                         <div className="vstack gap-4">
-                                            <Image src={""} alt="" fluid rounded />
-                                            <Image src={""} alt="" fluid rounded />
+                                            <Image src={''} alt="" fluid rounded />
+                                            <Image src={''} alt="" fluid rounded />
                                         </div>
                                     </Col>
                                 </Row>

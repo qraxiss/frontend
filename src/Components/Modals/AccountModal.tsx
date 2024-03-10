@@ -29,8 +29,8 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 
     setStatus('public')
 
-    useEffect(()=>{
-        if (status==="login"){
+    useEffect(() => {
+        if (status === 'login') {
             setShow(false)
         }
     }, [status, isConnected])
@@ -283,20 +283,20 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                                     Sign Up
                                                 </Button>
                                             </div>
-                                            
+
                                             <div className="text-center mt-5">
-                                            <p className="mb-0">
-                                                Already have an account ?
-                                                <div
-                                                    className="fw-semibold text-secondary text-decoration-underline"
-                                                    onClick={() => {
-                                                        setSign(true)
-                                                    }}
-                                                >
-                                                    Sign In
-                                                </div>
-                                            </p>
-                                        </div>
+                                                <p className="mb-0">
+                                                    Already have an account ?
+                                                    <div
+                                                        className="fw-semibold text-secondary text-decoration-underline"
+                                                        onClick={() => {
+                                                            setSign(true)
+                                                        }}
+                                                    >
+                                                        Sign In
+                                                    </div>
+                                                </p>
+                                            </div>
 
                                             <SignMethod label="or Sign Up with">
                                                 <ul>
@@ -325,7 +325,6 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                         </Form>
                                     </div>
                                 </SignMethod>
-
                             </Card.Body>
                         </Card>
                     </div>
@@ -338,7 +337,7 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 export const AccountModal = ({ show, setShow, handleClose }: any) => {
     const [sign, setSign] = useState<boolean>(true)
 
-    let {isConnected} = useUser()
+    let { isConnected } = useUser()
 
     useEffect(() => {
         setTimeout(() => {

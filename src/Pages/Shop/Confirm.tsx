@@ -16,7 +16,7 @@ const Confirm = () => {
                             <Card>
                                 <Card.Body className="p-4 p-md-5">
                                     <div className="text-center">
-                                        <Image src={""} alt="" className="w-50" />
+                                        <Image src={''} alt="" className="w-50" />
                                     </div>
                                     <div className="text-center mt-5 pt-1">
                                         <h4 className="mb-3 text-capitalize">Your Order Is Completed !</h4>

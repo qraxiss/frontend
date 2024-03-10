@@ -150,7 +150,6 @@ export const CartProvider = ({ children }: any) => {
     }
 
     useEffect(() => {
-
         if (singleProduct.data) {
             addToCart(singleProduct.data)
         }

@@ -61,7 +61,6 @@ const authProtectedRoutes = [
     { path: '/logout', component: <Logout /> },
     { path: '/password-reset', component: <Passwordreset /> },
     { path: '/create-password', component: <Passwordcreate /> },
-    { path: '/login-success', component: <Successmsg /> },
-
+    { path: '/login-success', component: <Successmsg /> }
 ]
 export { authProtectedRoutes }
