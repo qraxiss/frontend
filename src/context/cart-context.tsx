@@ -56,7 +56,7 @@ function addItemWrapper(
         setOptions(options)
 
         let item = cartItems.find((product: any) => {
-            return product.product.slug === slug
+            return (product.product.slug === slug && areObjectsEqual(product.options, options))
         })
 
         if (item) {
@@ -100,7 +100,7 @@ function deleteAll(cartItems: any[], deleteItem: Function, setCartItems: Functio
             const item = cartItems[index]
 
             for (let indexi = 0; indexi < item.count; indexi++) {
-                deleteItem(item.product.slug, true)
+                deleteItem(item.product.slug, item.options, true)
             }
         }
 

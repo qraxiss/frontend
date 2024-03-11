@@ -515,7 +515,6 @@ export const CardModal = ({ show, handleClose }: any) => {
     let [slug, setSlug] = useState('')
     let [options, setOptions] = useState({})
 
-
     return (
         <React.Fragment>
             <Offcanvas show={show} onHide={handleClose} placement="end">
@@ -547,8 +546,10 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <div className="text-muted fw-medium mb-0">
                                                         $<span className="product-price">{item.product.price}</span>
                                                     </div>
-                                                    <div className="vr"></div>
-                                                    <span className="text-success fw-medium">In Stock</span>
+                                                    <div className="options">
+                                                        <span className="text-success fw-medium">{`Size ${item.options.size}`}</span>
+                                                        <span className="text-success fw-medium">{`Color ${item.options.color}`}</span>
+                                                    </div>
                                                 </div>
                                                 <div className="input-step">
                                                     <Button

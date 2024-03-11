@@ -79,12 +79,18 @@ const Cardshop = () => {
                                         <Link to="#">
                                             <h5 className="fs-16 lh-base mb-1">{item.product.name}</h5>
                                         </Link>
+
+                                        <div className="options">
+                                            <span className="text-success fw-medium">{`Size ${item.options.size}`}</span>
+                                            <span className="text-success fw-medium">{`Color ${item.options.color}`}</span>
+                                        </div>
+
                                         <ul className="list-inline text-muted fs-13 mb-3"></ul>
                                         <div className="input-step">
                                             <Button
                                                 className="minus"
                                                 onClick={() => {
-                                                    deleteItem(item.product.slug, {})
+                                                    deleteItem(item.product.slug, item.options)
                                                 }}
                                             >
                                                 -
