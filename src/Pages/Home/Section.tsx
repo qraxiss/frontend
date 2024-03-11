@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Container, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
-import { Carousel } from 'react-bootstrap'
+import React from 'react'
 
 import { Campaign1, Campaign2, Campaign3, Campaign4, Campaign5 } from 'Components/Images/Campaign'
 
@@ -13,9 +11,17 @@ const Collection = () => {
                 <Carousel id="ecommerceHero" data-bs-ride="carousel">
                     <Carousel.Item>
                         <Campaign1 className="w-100 section-image" />
+                    </Carousel.Item>
+                    <Carousel.Item>
                         <Campaign2 className="w-100 section-image" />
+                    </Carousel.Item>
+                    <Carousel.Item>
                         <Campaign3 className="w-100 section-image" />
+                    </Carousel.Item>
+                    <Carousel.Item>
                         <Campaign4 className="w-100 section-image" />
+                    </Carousel.Item>
+                    <Carousel.Item>
                         <Campaign5 className="w-100 section-image" />
                     </Carousel.Item>
                 </Carousel>
