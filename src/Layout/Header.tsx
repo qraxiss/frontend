@@ -12,7 +12,7 @@ import { useUser } from 'context/user-context'
 
 import { Text } from 'Components/Images/Logo'
 
-import { Wishlist, User, Cart, Delivery, Collections } from 'Components/Images/Icons'
+import { Wishlist, User, Cart, Delivery, Collections, Accessories, Refill, Home, Clothes, Earn } from 'Components/Images/Icons'
 
 function ShoppingIcon(props: { handlecardShow: any }) {
     let { cartItems } = useCart()
@@ -137,112 +137,194 @@ function Account() {
 function WorldWideShipping() {
     return (
         <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
-            <div>
-                <h6
-                    className="text-secondary"
-                    // style={{
-                    //     marginBottom: '0px'
-                    // }}
-                >
+            <div className="delivery">
+                <h6 className="text-secondary">
                     <span>WORLDWIDE</span>
                 </h6>
-                <p
-                // style={{
-                //     marginBottom: '0px'
-                // }}
-                >
-                    <h6
-                    // style={{
-                    //     marginBottom: '0px'
-                    // }}
-                    >
-                        {/* {' '} */}
+                <p>
+                    <h6>
                         <span className="text-primary">FREE SHIPPING</span>
                     </h6>
                 </p>
             </div>
-            <Delivery
-                // style={{
-                //     paddingLeft: '10px'
-                // }}
-                className="header-profile-user"
-            />
+            <Delivery className="header-profile-user" />
         </div>
     )
 }
 
 function CollectionsIcon() {
     return (
-        <div className="collections">
-            <Collections
-                className="header-profile-user collections"
-                // style={{
-                //     width: '25px',
-                //     height: 'auto'
-                // }}
-            />
-            <div
-            // style={{
-            //     paddingTop: '10px'
-            // }}
-            >
-                <h6 className="text-primary">
-                    <span
-                        className="text-primary"
-                        // style={{
-                        //     marginBottom: '0px',
-                        //     fontSize: '14px',
-                        //     bottom: '22px'
-                        // }}
-                    >
-                        COLLECTIONS
-                    </span>
-                </h6>
+        <div className="d-flex align-items-center nav-item">
+            <div className="collections">
+                <Collections className="header-profile-user icon" />
+                <div>
+                    <h6 className="text-primary">COLLECTIONS</h6>
+                </div>
             </div>
         </div>
     )
 }
 
-function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any }) {
+function Pages(props: { menuShow: any; showMenu: any; t: any }) {
+    let items = [
+        {
+            url: '/category/clothes',
+            title: 'Clothes',
+            items: [
+                {
+                    title: 'Men',
+                    url: '/category/men',
+                    items: [
+                        {
+                            title: 'Shirts',
+                            url: '/category/shirts-men'
+                        },
+                        {
+                            title: 'Hoodies',
+                            url: '/category/hoodies-men'
+                        },
+                        {
+                            title: 'Sweatshirts',
+                            url: '/category/sweatshirts-men'
+                        }
+                    ]
+                },
+                {
+                    title: 'Woman',
+                    url: '/woman',
+                    items: [
+                        {
+                            title: 'Shirts',
+                            url: '/category/shirts-woman'
+                        },
+                        {
+                            title: 'Hoodies',
+                            url: '/category/hoodies-woman'
+                        },
+                        {
+                            title: 'Sweatshirts',
+                            url: '/category/sweatshirts-woman'
+                        }
+                    ]
+                }
+            ],
+            icon: <Clothes className="page-icons" />
+        },
+        {
+            url: '/category/accessories',
+            title: 'Accessories',
+            items: [
+                {
+                    title: 'Hats',
+                    url: '/category/hats'
+                },
+                {
+                    title: 'Tech Accessories',
+                    url: '/category/tech'
+                },
+                {
+                    title: 'Bags',
+                    url: '/category/bags'
+                }
+            ],
+            icon: <Accessories className="page-icons" />
+        },
+        {
+            url: '/category/home-and-living',
+            title: 'Home & Living',
+            items: [
+                {
+                    title: 'Towel',
+                    url: '/category/towel'
+                },
+                {
+                    title: 'Wart Art',
+                    url: '/category/wall-art'
+                },
+                {
+                    title: 'Drinkware & Coasters',
+                    url: '/category/drinkware-and-coasters'
+                }
+            ],
+            icon: <Home className="page-icons" />
+        },
+        {
+            url: '/category/eco-friendly',
+            title: 'Eco Friendly',
+            icon: <Refill className="page-icons" />
+        },
+        {
+            url: '/earn',
+            title: 'Earn',
+            icon: <Earn className="page-icons" />
+        }
+    ]
+
     return (
         <div className="pages">
-            {props.categories.map((item: any) => {
-                if (item.subPages.length > 0) {
+            {items.map((item: any) => {
+                if (item.items) {
                     return (
-                        <div className="dropdown nav-item dropdown-hover" key={item.page.url}>
+                        <div className="dropdown nav-item dropdown-hover" key={item.url}>
                             <Link
                                 className="dropdown-toggle nav-link "
                                 data-key="t-home"
-                                to={item.page.url}
+                                to={item.url}
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                                 onClick={(e) => {
                                     e.preventDefault()
-                                    props.menuShow(item.page.title)
+                                    props.menuShow(item.title)
                                 }}
                                 style={{
                                     fontSize: '14px'
                                 }}
                             >
-                                {/* <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image> */}
-                                {(item.page.title as string).toUpperCase()}
+                                {item.icon}
+                                {(item.title as string).toUpperCase()}
                             </Link>
                             <ul
                                 className={
-                                    props.showMenu === item.page.name
+                                    props.showMenu === item.name
                                         ? 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu show'
                                         : 'dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
                                 }
                             >
-                                {item.subPages.map((sub: any) => {
-                                    return (
-                                        <li className="nav-item" key={sub.url}>
-                                            <Link to={sub.url} className="nav-link" data-key={sub.url}>
-                                                {props.t(sub.title)}
-                                            </Link>
-                                        </li>
-                                    )
+                                {item.items.map((sub: any) => {
+                                    if (sub.items) {
+                                        return (
+                                            <li className="dropdown dropdown-hover nav-item">
+                                                <Link
+                                                    to={sub.url}
+                                                    className="nav-link dropdown-toggle"
+                                                    data-bs-toggle="dropdown"
+                                                    aria-expanded="false"
+                                                >
+                                                    {sub.title}
+                                                </Link>
+                                                <ul className="dropdown-menu submenu">
+                                                    {sub.items.map((subSubItem: any) => {
+                                                        return (
+                                                            <li>
+                                                                <Link className="nav-link" to={subSubItem.url}>
+                                                                    {props.t(subSubItem.title)}
+                                                                </Link>
+                                                            </li>
+                                                        )
+                                                    })}
+                                                </ul>
+                                            </li>
+                                        )
+                                    } else {
+                                        return (
+                                            <li className="nav-item" key={sub.url}>
+                                                <Link to={sub.url} className="nav-link" data-key={sub.url}>
+                                                    {props.t(sub.title)}
+                                                </Link>
+                                            </li>
+                                        )
+                                    }
                                 })}
                             </ul>
                         </div>
@@ -250,20 +332,9 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                 } else {
                     return (
                         <div className="nav-item">
-                            <Link
-                                className={`nav-link ${item.page.title === 'Earn' ? 'earn' : ''}`}
-                                to={item.page.url}
-                                role="button"
-                                style={{
-                                    fontSize: '14px'
-                                }}
-                                // onClick={(e) => {
-                                //     e.preventDefault()
-                                //     props.menuShow(item.page.title)
-                                // }}
-                            >
-                                {/* <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image> */}
-                                {(item.page.title as string).toUpperCase()}
+                            <Link className={`nav-link ${item.title === 'Earn' ? 'earn' : ''}`} to={item.url} role="button">
+                                {item.icon}
+                                {(item.title as string).toUpperCase()}
                             </Link>
                         </div>
                     )
@@ -453,15 +524,14 @@ const Header = (props: any) => {
                     <MoreButton handleShowColl={handleShowColl} />
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-                            {/* <SideLogo logo={logo} /> */}
                             <Form.Control className="search-bar" size="lg" type="text" onClick={handleShow} placeholder="Search for product" />
-                            {/* <SearchModal show={show} handleClose={handleClose} /> */}
                         </Nav>
                     </Navbar.Collapse>
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
                         {jwt ? <Account></Account> : <SignInUp handlecardShow={handleAccountShow}></SignInUp>}
+                        <WishListIcon handlecardShow={handlecardShow} />
                         <ShoppingIcon handlecardShow={handlecardShow} />
                     </div>
                 </Container>
@@ -473,8 +543,7 @@ const Header = (props: any) => {
                 <Container className="navbar-nav">
                     <CollectionsIcon />
 
-                    {/* <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} /> */}
-
+                    <Pages menuShow={menuShow} showMenu={showMenu} t={props.t} />
                     <WorldWideShipping />
                 </Container>
             </Navbar>

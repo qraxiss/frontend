@@ -294,6 +294,44 @@
     }
 }
 
+.nav-item {
+    .delivery {
+        display: flex;
+        flex-direction: column;
+        margin-right: 0.3rem;
+
+        .text-secondary {
+            margin-bottom: 0px !important;
+        }
+
+        h6 {
+            margin-bottom: 0px !important;
+        }
+
+        p {
+            margin-bottom: 0px !important;
+        }
+    }
+
+    .collections {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+            width: 32px;
+        }
+
+        h6 {
+            margin-bottom: 0px !important;
+        }
+
+        .text-primary {
+            margin-bottom: 0px !important;
+        }
+    }
+}
+
 .nav-custom {
     background-color: $primary;
     border-radius: $card-border-radius;
