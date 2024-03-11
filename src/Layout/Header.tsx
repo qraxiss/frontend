@@ -140,14 +140,8 @@ function WorldWideShipping() {
     return (
         <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
             <div className="delivery">
-                <h6 className="text-secondary">
-                    <span>WORLDWIDE</span>
-                </h6>
-                <p>
-                    <h6>
-                        <span className="text-primary">FREE SHIPPING</span>
-                    </h6>
-                </p>
+                <h6 className="text-secondary">WORLDWIDE</h6>
+                <h6 className="text-primary">FREE SHIPPING</h6>
             </div>
             <Delivery className="header-profile-user" />
         </div>
