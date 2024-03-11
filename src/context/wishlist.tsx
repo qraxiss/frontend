@@ -41,7 +41,7 @@ function addWishListWrapper({
         }
 
         getSingleProduct({
-            variables: {slug}
+            variables: { slug }
         })
 
         setRefetch(!refetch)

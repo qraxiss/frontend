@@ -1,4 +1,4 @@
-import {Accessories, Refill, Home, Clothes, Earn} from '../Components/Images/Icons'
+import { Accessories, Refill, Home, Clothes, Earn } from '../Components/Images/Icons'
 
 export const items = [
     {

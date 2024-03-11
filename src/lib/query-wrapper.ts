@@ -21,9 +21,11 @@ export function useMutation(mutation: DocumentNode, options?: MutationHookOption
     let [fn, { data, error, loading }] = useMutationApollo(mutation, {
         ...options,
         context: {
-            headers: jwt? {
-                Authorization: `Bearer ${jwt}`
-            } : {},
+            headers: jwt
+                ? {
+                      Authorization: `Bearer ${jwt}`
+                  }
+                : {}
         }
     })
 
@@ -43,9 +45,11 @@ export function useQuery(query: DocumentNode, options?: QueryHookOptions) {
     let { data, error, loading, refetch } = useQueryApollo(query, {
         ...options,
         context: {
-            headers: jwt? {
-                Authorization: `Bearer ${jwt}`
-            } : {},
+            headers: jwt
+                ? {
+                      Authorization: `Bearer ${jwt}`
+                  }
+                : {}
         }
     })
 
@@ -65,9 +69,11 @@ export function useLazyQuery(query: DocumentNode, options?: QueryHookOptions) {
     let [lazyCallFunction, { data, error, loading, refetch, called }] = useLazyQueryApollo(query, {
         ...options,
         context: {
-            headers: jwt? {
-                Authorization: `Bearer ${jwt}`
-            } : {},
+            headers: jwt
+                ? {
+                      Authorization: `Bearer ${jwt}`
+                  }
+                : {}
         }
     })
 

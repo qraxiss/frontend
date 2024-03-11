@@ -66,7 +66,7 @@ function ShoppingIcon(props: { handlecardShow: any }) {
 }
 
 function WishListIcon() {
-    let {wishlist} = useWishList()
+    let { wishlist } = useWishList()
 
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
@@ -79,7 +79,9 @@ function WishListIcon() {
                 to="/account/list"
             >
                 <Wishlist className="rounded-circle header-profile-user" />
-                <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">{wishlist.length}</span>
+                <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">
+                    {wishlist.length}
+                </span>
             </Link>
         </div>
     )
@@ -435,8 +437,8 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        {jwt ? <Account/> : <SignInUp handlecardShow={handleAccountShow}/>}
-                        {jwt ? <WishListIcon />: undefined}
+                        {jwt ? <Account /> : <SignInUp handlecardShow={handleAccountShow} />}
+                        {jwt ? <WishListIcon /> : undefined}
                         <ShoppingIcon handlecardShow={handlecardShow} />
                     </div>
                 </Container>

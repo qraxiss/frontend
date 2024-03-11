@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image,Button } from 'react-bootstrap'
+import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { useParams } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { useWishList } from 'context/wishlist'
 const MyAccount = () => {
     let { section } = useParams()
 
-    let {wishlist, deleteWishList} = useWishList()
+    let { wishlist, deleteWishList } = useWishList()
 
     return (
         <React.Fragment>
@@ -193,7 +193,7 @@ const MyAccount = () => {
                                                                                     <td>${item.price}</td>
                                                                                     <td>
                                                                                         <span
-                                                                                            // className={`badge bg-${item.color}-subtle text-${item.color}`}
+                                                                                        // className={`badge bg-${item.color}-subtle text-${item.color}`}
                                                                                         >
                                                                                             {/* {item.status} */}
                                                                                         </span>
@@ -210,7 +210,7 @@ const MyAccount = () => {
                                                                                             </li>
                                                                                             <li>
                                                                                                 <Button
-                                                                                                    onClick={()=>{
+                                                                                                    onClick={() => {
                                                                                                         deleteWishList(item.slug)
                                                                                                     }}
                                                                                                     className="btn btn-soft-danger btn-icon btn-sm"

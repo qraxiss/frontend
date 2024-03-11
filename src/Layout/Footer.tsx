@@ -10,7 +10,7 @@ import { items } from 'data/pages'
 
 function Socials() {
     return (
-        <div className='socials'>
+        <div className="socials">
             <Link to={'/'}>
                 <Facebook className="footer-social-icon" width={48} />
             </Link>
@@ -38,17 +38,13 @@ export function FooterTitle({ title }: { title: string }) {
 }
 
 export function FooterSection({ children }: { children: any }) {
-    return (
-        <div className="mt-lg-0 mt-4 footer-item">
-            {children}
-        </div>
-    )
+    return <div className="mt-lg-0 mt-4 footer-item">{children}</div>
 }
 
 export function Pages() {
     return items.map((item) => {
         return (
-            <ul className="list-unstyled footer-link mt-3" key={item.url}> 
+            <ul className="list-unstyled footer-link mt-3" key={item.url}>
                 <li>
                     {item.icon}
                     <Link to={item.url}>{item.title}</Link>

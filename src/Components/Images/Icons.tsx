@@ -12,43 +12,42 @@ import refill from '../../assets/images/icons/refill.svg'
 
 import { Image } from 'react-bootstrap'
 
-export function Cart({ className="" }: { className?: string }) {
+export function Cart({ className = '' }: { className?: string }) {
     return <Image src={cart} className={className} />
 }
 
-export function Wishlist({ className="" }: { className?: string }) {
+export function Wishlist({ className = '' }: { className?: string }) {
     return <Image src={wishlist} className={className} />
 }
 
-export function User({ className="" }: { className?: string }) {
+export function User({ className = '' }: { className?: string }) {
     return <Image src={user} className={className} />
 }
 
-export function Delivery({ className="" }: { className?: string }) {
+export function Delivery({ className = '' }: { className?: string }) {
     return <Image src={delivery} className={className} />
 }
 
-export function Collections({ className="" }: { className?: string }) {
+export function Collections({ className = '' }: { className?: string }) {
     return <Image src={collections} className={className} />
 }
 
-
-export function Earn({ className="" }: { className?: string }) {
+export function Earn({ className = '' }: { className?: string }) {
     return <Image src={earn} className={className} />
 }
 
-export function Clothes({ className="" }: { className?: string }) {
+export function Clothes({ className = '' }: { className?: string }) {
     return <Image src={clothes} className={className} />
 }
 
-export function Accessories({ className="" }: { className?: string }) {
+export function Accessories({ className = '' }: { className?: string }) {
     return <Image src={accessories} className={className} />
 }
 
-export function Home({ className="" }: { className?: string }) {
+export function Home({ className = '' }: { className?: string }) {
     return <Image src={home} className={className} />
 }
 
-export function Refill({ className="" }: { className?: string }) {
+export function Refill({ className = '' }: { className?: string }) {
     return <Image src={refill} className={className} />
 }

@@ -20,7 +20,6 @@ export function areObjectsEqual(obj1: any, obj2: any) {
     return true
 }
 
-
 const CartContext = createContext<any>({})
 
 export type cartItem = {
@@ -55,7 +54,7 @@ function addItemWrapper(
         setOptions(options)
 
         let item = cartItems.find((product: any) => {
-            return (product.product.slug === slug && areObjectsEqual(product.options, options))
+            return product.product.slug === slug && areObjectsEqual(product.options, options)
         })
 
         if (item) {
@@ -117,13 +116,13 @@ function deleteItemWrapper(cartItems: any[], setCartItems: Function, deleteGqlFn
             return
         }
 
-        if (deleteAll || cartItems[itemIndex].count <= 1){
+        if (deleteAll || cartItems[itemIndex].count <= 1) {
             setCartItems(
                 cartItems.filter((product: any, index: number) => {
                     return index !== itemIndex
                 })
             )
-        } else{
+        } else {
             setCartItems(
                 cartItems.map((product: any) => {
                     if (product.product.slug === slug && areObjectsEqual(product.options, options)) {
@@ -136,7 +135,7 @@ function deleteItemWrapper(cartItems: any[], setCartItems: Function, deleteGqlFn
                     }
                 })
             )
-        } 
+        }
 
         deleteGqlFn({
             variables: {
@@ -201,7 +200,7 @@ export const CartProvider = ({ children }: any) => {
                     })
                 }
             })
-        } 
+        }
         //if user have a account, take all data from backend
         else if (status === 'login') {
             cartData.refetch()
