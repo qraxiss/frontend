@@ -598,30 +598,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                                 )
                             })}
                         </ul>
-                        <div className="table-responsive mx-2 border-top border-top-dashed">
-                            <Table className="table table-borderless mb-0 fs-14 fw-semibold">
-                                <tbody>
-                                    <tr>
-                                        <td>Sub Total :</td>
-                                        <td className="text-end cart-subtotal">${subtotal || '0.00'}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Discount <span className="text-muted">(Toner15)</span>:
-                                        </td>
-                                        <td className="text-end cart-discount">-${dis || '0.00'}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shipping Charge :</td>
-                                        <td className="text-end cart-shipping">${charge || '0.00'}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Estimated Tax (12.5%) : </td>
-                                        <td className="text-end cart-tax">${tax || '0.00'}</td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </div>
                     </SimpleBar>
                 </Offcanvas.Body>
                 <div className="offcanvas-footer border-top p-3 text-center">
