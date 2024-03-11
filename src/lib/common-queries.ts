@@ -131,3 +131,26 @@ export let addManyProductToCart = gql`
         addManyCart(items: $items)
     }
 `
+
+export let addWishList = gql`
+    mutation ($slug: String!) {
+        addWishlist(slug: $slug)
+    }
+`
+
+export let deleteWishlist = gql`
+    mutation ($slug: String!) {
+        deleteWishlist(slug: $slug)
+    }
+`
+
+export let wishlist = gql`
+    query {
+        wishlist {
+            name
+            slug
+            price
+            image
+        }
+    }
+`

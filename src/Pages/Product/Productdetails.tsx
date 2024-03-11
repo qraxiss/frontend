@@ -18,6 +18,7 @@ import { useCart } from 'context/cart-context'
 import { getSingleProductBySlug } from 'lib/common-queries'
 
 import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/Social'
+import { useWishList } from 'context/wishlist'
 
 type resultType = {
     name: string
@@ -156,9 +157,9 @@ function ProductInfo(props: { price: string; name: string }) {
     )
 }
 
-function AddToWishList() {
+function AddToWishList({wishlistAddFn}: {wishlistAddFn:any}) {
     return (
-        <div className="wishlist">
+        <div className="wishlist" onClick={wishlistAddFn}>
             <i className="bi bi-arrow-through-heart" />
             <p>Add to wishlist!</p>
         </div>
@@ -192,6 +193,8 @@ const Productdetails = () => {
     let { data, loading } = useQuery(getSingleProductBySlug, {
         variables: { slug }
     })
+
+    let {addWishList} = useWishList()
 
     let { addItem } = useCart()
 
@@ -298,7 +301,9 @@ const Productdetails = () => {
                         <Variant title="size" options={data.size} option={size} setOption={setSize} />
                         <Variant title="color" options={data.color} option={color} setOption={setColor}/>
 
-                        <AddToWishList />
+                        <AddToWishList wishlistAddFn={()=>{
+                            addWishList(data.slug)
+                        }} />
 
                         <Socials />
 

@@ -51,7 +51,6 @@ function addItemWrapper(
     setOptions: Function
 ) {
     return (slug: string, options: any, count: number = 1) => {
-        console.log(count)
         setCount(count)
         setOptions(options)
 
@@ -119,10 +118,6 @@ function deleteItemWrapper(cartItems: any[], setCartItems: Function, deleteGqlFn
         }
 
         if (deleteAll || cartItems[itemIndex].count <= 1){
-            console.log(cartItems.filter((product: any, index: number) => {
-                return index !== itemIndex
-            }))
-
             setCartItems(
                 cartItems.filter((product: any, index: number) => {
                     return index !== itemIndex

@@ -555,7 +555,6 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="minus"
                                                         onClick={() => {
-                                                            console.log(item)
                                                             deleteItem(item.product.slug, item.options)
                                                         }}
                                                     >
