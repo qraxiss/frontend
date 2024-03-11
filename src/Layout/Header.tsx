@@ -202,7 +202,7 @@ function Pages(props: { menuShow: any; showMenu: any; t: any }) {
                                 {item.items.map((sub: any) => {
                                     if (sub.items) {
                                         return (
-                                            <li className="dropdown dropdown-hover nav-item">
+                                            <li className="dropdown dropdown-hover nav-item" key={sub.url}>
                                                 <Link
                                                     to={sub.url}
                                                     className="nav-link dropdown-toggle"
@@ -214,7 +214,7 @@ function Pages(props: { menuShow: any; showMenu: any; t: any }) {
                                                 <ul className="dropdown-menu submenu">
                                                     {sub.items.map((subSubItem: any) => {
                                                         return (
-                                                            <li>
+                                                            <li key={subSubItem.url}>
                                                                 <Link className="nav-link" to={subSubItem.url}>
                                                                     {props.t(subSubItem.title)}
                                                                 </Link>
@@ -239,7 +239,7 @@ function Pages(props: { menuShow: any; showMenu: any; t: any }) {
                     )
                 } else {
                     return (
-                        <div className="nav-item">
+                        <div className="nav-item" key={item.url}>
                             <Link className={`nav-link ${item.title === 'Earn' ? 'earn' : ''}`} to={item.url} role="button">
                                 {item.icon}
                                 {(item.title as string).toUpperCase()}

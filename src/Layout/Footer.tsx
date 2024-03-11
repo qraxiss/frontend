@@ -48,8 +48,8 @@ export function FooterSection({ children }: { children: any }) {
 export function Pages() {
     return items.map((item) => {
         return (
-            <ul className="list-unstyled footer-link mt-3">
-                <li key={item.url}>
+            <ul className="list-unstyled footer-link mt-3" key={item.url}> 
+                <li>
                     {item.icon}
                     <Link to={item.url}>{item.title}</Link>
                 </li>
