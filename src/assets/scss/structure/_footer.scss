@@ -65,10 +65,45 @@
 
 // Foooter Landing
 .footer-landing {
+    .footer-items {
+        display: flex;
+        justify-content: space-between;
+
+        .subscribe-newsletter {
+            display: flex !important;
+            flex-direction: column;
+            align-items: end !important;
+            gap: 0.6rem;
+            justify-content: center !important;
+            button {
+                width: 65% !important;
+            }
+        }
+
+        .footer-item:last-child {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            .socials {
+                display: flex;
+                gap: 0.2rem;
+            }
+        }
+    
+    }
+
+
+
+
+    .infos {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
     margin-top: 20px;
-
     border-top: 1px solid $secondary;
-
     background-color: #dceef4;
 
     hr {

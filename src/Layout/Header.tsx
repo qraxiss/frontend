@@ -12,7 +12,9 @@ import { useUser } from 'context/user-context'
 
 import { Text } from 'Components/Images/Logo'
 
-import { Wishlist, User, Cart, Delivery, Collections, Accessories, Refill, Home, Clothes, Earn } from 'Components/Images/Icons'
+import { Wishlist, User, Cart, Delivery, Collections } from 'Components/Images/Icons'
+
+import { items } from 'data/pages'
 
 function ShoppingIcon(props: { handlecardShow: any }) {
     let { cartItems } = useCart()
@@ -166,100 +168,6 @@ function CollectionsIcon() {
 }
 
 function Pages(props: { menuShow: any; showMenu: any; t: any }) {
-    let items = [
-        {
-            url: '/category/clothes',
-            title: 'Clothes',
-            items: [
-                {
-                    title: 'Men',
-                    url: '/category/men',
-                    items: [
-                        {
-                            title: 'Shirts',
-                            url: '/category/shirts-men'
-                        },
-                        {
-                            title: 'Hoodies',
-                            url: '/category/hoodies-men'
-                        },
-                        {
-                            title: 'Sweatshirts',
-                            url: '/category/sweatshirts-men'
-                        }
-                    ]
-                },
-                {
-                    title: 'Woman',
-                    url: '/woman',
-                    items: [
-                        {
-                            title: 'Shirts',
-                            url: '/category/shirts-woman'
-                        },
-                        {
-                            title: 'Hoodies',
-                            url: '/category/hoodies-woman'
-                        },
-                        {
-                            title: 'Sweatshirts',
-                            url: '/category/sweatshirts-woman'
-                        }
-                    ]
-                }
-            ],
-            icon: <Clothes className="page-icons" />
-        },
-        {
-            url: '/category/accessories',
-            title: 'Accessories',
-            items: [
-                {
-                    title: 'Hats',
-                    url: '/category/hats'
-                },
-                {
-                    title: 'Tech Accessories',
-                    url: '/category/tech'
-                },
-                {
-                    title: 'Bags',
-                    url: '/category/bags'
-                }
-            ],
-            icon: <Accessories className="page-icons" />
-        },
-        {
-            url: '/category/home-and-living',
-            title: 'Home & Living',
-            items: [
-                {
-                    title: 'Towel',
-                    url: '/category/towel'
-                },
-                {
-                    title: 'Wart Art',
-                    url: '/category/wall-art'
-                },
-                {
-                    title: 'Drinkware & Coasters',
-                    url: '/category/drinkware-and-coasters'
-                }
-            ],
-            icon: <Home className="page-icons" />
-        },
-        {
-            url: '/category/eco-friendly',
-            title: 'Eco Friendly',
-            icon: <Refill className="page-icons" />
-        },
-        {
-            url: '/earn',
-            title: 'Earn',
-            icon: <Earn className="page-icons" />
-        }
-    ]
-
     return (
         <div className="pages">
             {items.map((item: any) => {
