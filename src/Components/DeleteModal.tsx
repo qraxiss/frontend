@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import { useCart } from 'context/cart-context'
 
 //delete modal
-const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
+const DeleteModal = ({ removeModel, hideModal, deleteData, slug, options }: any) => {
     const handleDelete = () => {
         deleteData()
         hideModal()
@@ -32,7 +32,7 @@ const DeleteModal = ({ removeModel, hideModal, deleteData, slug }: any) => {
                         className="btn w-sm btn-primary"
                         id="remove-product"
                         onClick={() => {
-                            deleteItem(slug, true)
+                            deleteItem(slug, options, true)
                             handleDelete()
                         }}
                     >

@@ -7,28 +7,23 @@ export let cartQuery = gql`
                 name
                 price
                 slug
-                images {
-                    data {
-                        attributes {
-                            url
-                        }
-                    }
-                }
+                image
             }
             count
+            options
         }
     }
 `
 
 export let addItemToCart = gql`
-    mutation ($slug: String!) {
-        addProductToCart(slug: $slug)
+    mutation ($slug: String!, $options: JSON!, $count: Int) {
+        addProductToCart(slug: $slug, count: $count, options: $options)
     }
 `
 
 export let deleteItemFromCart = gql`
-    mutation DELETE_PRODUCT_FROM_CART($slug: String!) {
-        deleteProductFromCart(slug: $slug)
+    mutation DELETE_PRODUCT_FROM_CART($slug: String!, $options: JSON!, $deleteAll: Boolean) {
+        deleteProductFromCart(slug: $slug, options: $options, deleteAll: $deleteAll)
     }
 `
 
@@ -128,5 +123,11 @@ export let registerWithWallet = gql`
         registerWithWallet(walletAddress: $walletAddress) {
             jwt
         }
+    }
+`
+
+export let addManyProductToCart = gql`
+    mutation ($items: [JSON!]!) {
+        addManyCart(items: $items)
     }
 `

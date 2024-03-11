@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Col, Container, Row, Tab, Nav, Table, Form, Image } from 'react-bootstrap'
+import { Button, Col, Container, Row, Tab, Nav, Table, Form, Image, Dropdown } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
 //scss
@@ -16,6 +16,8 @@ import { products } from 'lib/common-queries'
 import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
+
+import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/Social'
 
 type resultType = {
     name: string
@@ -36,7 +38,7 @@ function Information(props: { text: string; icon?: string }) {
     )
 }
 
-function AddToCart(props: { addItem: Function; setCount: Function; count: number; slug: string }) {
+function AddToCart(props: { addItem: Function; setCount: Function; count: number; slug: string, size: string | undefined, color: string | undefined }) {
     const { addItem, setCount, count, slug } = props
 
     return (
@@ -55,7 +57,11 @@ function AddToCart(props: { addItem: Function; setCount: Function; count: number
                 variant="primary"
                 className="btn btn-hover w-100"
                 onClick={() => {
-                    addItem(slug, count)
+                    if (props.count >= 1 && props.size && props.color){
+                        addItem(slug, {color: props.color, size: props.size}, props.count)
+                    } else {
+
+                    }
                 }}
             >
                 Add To Cart
@@ -97,17 +103,31 @@ function Colors() {
     )
 }
 
-function Socials(props: { socialState: any[] }) {
-    const { socialState } = props
+function Socials() {
 
     return (
         <div className="socials">
             <p>Share:</p>
-            {socialState.map((item: any, index: number) => (
-                <Link to={item.url}>
-                    <Image src={config.serverUrl + item.icon.url} className="social-icon" />
+            
+                <Link to='/'>
+                    <Twitter className="social-icon" />
                 </Link>
-            ))}
+                <Link to='/'>
+                    <Instagram className="social-icon" />
+                </Link>
+                <Link to='/'>
+                    <Linkedin className="social-icon" />
+                </Link>
+                <Link to='/'>
+                    <Medium className="social-icon" />
+                </Link>
+                <Link to='/'>
+                    <Telegram className="social-icon" />
+                </Link>
+                <Link to='/'>
+                    <Facebook className="social-icon" />
+                </Link>
+
         </div>
     )
 }
@@ -145,6 +165,28 @@ function AddToWishList() {
     )
 }
 
+function Variant({title, options, setOption, option}: {
+    title: string, options: string[], option: string | undefined, setOption: Function
+}) {
+    return (
+      <Dropdown>
+        <Dropdown.Toggle variant="primary">
+          {option || title}
+        </Dropdown.Toggle>
+  
+        <Dropdown.Menu>
+         {options.map(option=>{
+            return <Dropdown.Item key={option} onClick={
+                ()=>{
+                    setOption(option)
+                }
+            }>{option}</Dropdown.Item>
+         })}
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  }
+
 const Productdetails = () => {
     let { slug } = useParams()
     let { data, loading } = useQuery(getSingleProductBySlug, {
@@ -160,6 +202,10 @@ const Productdetails = () => {
             setProductsList(productsData.data)
         }
     }, [productsData.data])
+
+
+    const [color, setColor] = useState<string>()
+    const [size, setSize] = useState<string>()
 
     data = (data || {
         name: '',
@@ -184,7 +230,7 @@ const Productdetails = () => {
 
     const [sliderImg, setSliderImg] = useState(sliderProduct)
     const [sliderId, setSliderId] = useState(0)
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(1)
 
     const handleSetImg = (id: any) => {
         setSliderId(id)
@@ -200,6 +246,7 @@ const Productdetails = () => {
         }
     }
 
+
     return (
         <React.Fragment>
             <section className="section">
@@ -208,7 +255,7 @@ const Productdetails = () => {
                         <div className="small-pictures">
                             {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
                                 (item: any, idx: number) => {
-                                    return <Image src={item.image} onClick={() => handleSetImg(item.id)} />
+                                    return <Image src={item.image} onClick={() => handleSetImg(item.id)} key={idx}/>
                                 }
                             )}
                             <div className="buttons">
@@ -231,8 +278,8 @@ const Productdetails = () => {
                             </div>
                         </div>
                         <div className="big-picture">
-                            {sliderImg.map((item: any) => {
-                                return <Image src={item.image} />
+                            {sliderImg.map((item: any, idx:number) => {
+                                return <Image src={item.image} key={idx}/>
                             })}
                         </div>
                     </div>
@@ -244,13 +291,16 @@ const Productdetails = () => {
 
                         <Colors />
 
-                        <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} />
+                        <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} size={size} color={color} />
 
                         <Information text="6 People watching this product now!" icon="bi bi-eye" />
 
+                        <Variant title="size" options={data.size} option={size} setOption={setSize} />
+                        <Variant title="color" options={data.color} option={color} setOption={setColor}/>
+
                         <AddToWishList />
 
-                        {/* <Socials socialState={socialState} /> */}
+                        <Socials />
 
                         <Categories categories={!loading ? data.categories : []} />
                     </div>
@@ -267,25 +317,21 @@ const Productdetails = () => {
                                         <Nav variant="underline" className="nav-tabs-custom mb-3">
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Information">
-                                                    {' '}
                                                     Additional Information
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Description">
-                                                    {' '}
                                                     Description
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Reviews">
-                                                    {' '}
                                                     Reviews
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="Shipping">
-                                                    {' '}
                                                     Shipping
                                                 </Nav.Link>
                                             </Nav.Item>

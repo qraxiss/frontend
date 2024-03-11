@@ -513,12 +513,8 @@ export const CardModal = ({ show, handleClose }: any) => {
     }, [subtotal])
 
     let [slug, setSlug] = useState('')
+    let [options, setOptions] = useState({})
 
-    // let canvas =
-    // if (canvas){
-    //     console.log(canvas)
-    //     canvas.addEventListener('click', handleClose)
-    // }
 
     return (
         <React.Fragment>
@@ -558,7 +554,8 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="minus"
                                                         onClick={() => {
-                                                            deleteItem(item.product.slug)
+                                                            console.log(item)
+                                                            deleteItem(item.product.slug, item.options)
                                                         }}
                                                     >
                                                         -
@@ -574,7 +571,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     <Button
                                                         className="plus"
                                                         onClick={() => {
-                                                            addItem(item.product.slug)
+                                                            addItem(item.product.slug, item.options)
                                                         }}
                                                     >
                                                         +
@@ -586,6 +583,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     className="btn btn-icon btn-sm btn-ghost-secondary remove-item-btn"
                                                     onClick={() => {
                                                         setSlug(item.product.slug)
+                                                        setOptions(item.options)
                                                         RemoveModel(item.id)
                                                     }}
                                                 >
@@ -662,7 +660,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     </Row>
                 </div>
             </Offcanvas>
-            <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} slug={slug} />
+            <DeleteModal hideModal={CloseremoveModal} removeModel={removeModel} deleteData={deleteData} slug={slug} options={options} />
         </React.Fragment>
     )
 }

@@ -84,7 +84,7 @@ const Cardshop = () => {
                                             <Button
                                                 className="minus"
                                                 onClick={() => {
-                                                    deleteItem(item.product.slug)
+                                                    deleteItem(item.product.slug, {})
                                                 }}
                                             >
                                                 -
@@ -93,7 +93,7 @@ const Cardshop = () => {
                                             <Button
                                                 className="plus"
                                                 onClick={() => {
-                                                    addItem(item.product.slug)
+                                                    addItem(item.product.slug, item.options)
                                                 }}
                                             >
                                                 +

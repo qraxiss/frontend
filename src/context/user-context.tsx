@@ -85,8 +85,6 @@ export const UserProvider = ({ children }: any) => {
             return
         }
         if (loginWithWallet.data.jwt === null) {
-            console.log('null geldi')
-            console.log(loginWithWallet.data)
             disconnect(wagmiConfig)
             return
         }
