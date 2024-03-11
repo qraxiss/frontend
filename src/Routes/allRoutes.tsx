@@ -48,6 +48,7 @@ const authProtectedRoutes = [
     { path: '/earn', component: <Earn /> },
 
     { path: '/account', component: <MyAccount /> },
+    { path: '/account/:section', component: <MyAccount /> },
     { path: '/', component: <Home /> },
     { path: '/about-us', component: <About /> },
     { path: '/contact', component: <ContactUs /> },

@@ -64,20 +64,20 @@ function ShoppingIcon(props: { handlecardShow: any }) {
     )
 }
 
-function WishListIcon(props: { handlecardShow: any }) {
+function WishListIcon() {
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
-            <Button
+            <Link
                 type="button"
                 className="btn btn-icon btn-topbar btn-ghost-dark rounded-circle text-muted"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#ecommerceCart"
                 aria-controls="ecommerceCart"
-                onClick={props.handlecardShow}
+                to="/account/list"
             >
                 <Wishlist className="rounded-circle header-profile-user" />
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">0</span>
-            </Button>
+            </Link>
         </div>
     )
 }
@@ -432,8 +432,8 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        {jwt ? <Account></Account> : <SignInUp handlecardShow={handleAccountShow}></SignInUp>}
-                        <WishListIcon handlecardShow={handlecardShow} />
+                        {jwt ? <Account/> : <SignInUp handlecardShow={handleAccountShow}/>}
+                        {jwt ? <WishListIcon />: undefined}
                         <ShoppingIcon handlecardShow={handlecardShow} />
                     </div>
                 </Container>

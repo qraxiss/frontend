@@ -2,9 +2,14 @@ import React from 'react'
 import { Col, Container, Row, Tab, Nav, Card, Table, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
+import { useParams } from 'react-router-dom'
+
 import { User } from 'Components/Images/Icons'
 
 const MyAccount = () => {
+    let { section } = useParams()
+
+
     return (
         <React.Fragment>
             <section className="position-relative">
@@ -36,7 +41,7 @@ const MyAccount = () => {
             </section>
             <section className="py-5">
                 <Container>
-                    <Tab.Container id="left-tabs-example" defaultActiveKey="profile">
+                    <Tab.Container id="left-tabs-example" defaultActiveKey={section? section : "profile"}>
                         <Row>
                             <Col lg={3}>
                                 <Card>
