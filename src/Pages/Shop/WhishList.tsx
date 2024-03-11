@@ -1,11 +1,7 @@
 import React from 'react'
-import { Container, Row, Col, Table, Image } from 'react-bootstrap'
+import { Container, Row, Col, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
-// import { wishlishProduct } from 'Common/data'
-// import EmailClothe from 'Pages/Catalog/EmailClothe'
-// import { CommonService } from 'Components/CommonService'
-// import HotDeals from 'Components/HotDeals'
 
 const WishList = () => {
     document.title = 'Wishlist | Toner - React Frontend'

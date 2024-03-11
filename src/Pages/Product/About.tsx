@@ -1,11 +1,6 @@
 import React from 'react'
-import { Card, Col, Container, Row, Image } from 'react-bootstrap'
+import { Col, Container, Row, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-
-//img
-// import { aboutCard, aboutManagement } from 'Common/data'
-// import { DefauilOffer } from 'Components/ProductSilde'
-// import { CommonService } from 'Components/CommonService'
 
 const About = () => {
     return (

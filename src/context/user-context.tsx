@@ -1,9 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useAccount, useSignMessage } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { disconnect } from '@wagmi/core'
 import { wagmiConfig } from 'lib/rainbow'
-
-import { useNavigate } from 'react-router-dom'
 
 import {
     loginWithWallet as loginWithWalletMutation,
@@ -35,8 +33,6 @@ export const useUser = () => {
 }
 
 export const UserProvider = ({ children }: any) => {
-    let navigate = useNavigate()
-
     let [jwt, setJwt] = useState<string | undefined | null>(localStorage.getItem('jwt'))
     let [status, setStatus] = useState<'login' | 'logout' | 'register' | 'public'>('public')
 

@@ -1,7 +1,6 @@
 import React from 'react'
-import { Col, Container, Row, Alert, Card, Button, Table, Image } from 'react-bootstrap'
+import { Col, Container, Row, Card, Button, Table } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
-import { Link } from 'react-router-dom'
 import { ShopingAddress } from './ShoppingAddress'
 
 import { useNavigate } from 'react-router-dom'

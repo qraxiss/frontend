@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Col, Container, Row, Table, Button, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-// import { orderHistorys } from 'Common/data'
+import { Col, Container, Row, Table, Button } from 'react-bootstrap'
 import { Shoptopbar } from 'Components/ShopTopBar'
 import { InvoiceModal } from 'Components/MainModal'
 
@@ -9,7 +7,6 @@ const Orderhistory = () => {
     document.title = 'Order History | Toner - React FrontEnd'
     //modal
     const [modal, setModal] = useState(false)
-    const handleInvoice = () => setModal(true)
     const handleClose = () => setModal(false)
 
     return (

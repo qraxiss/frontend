@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Card, Col, Container, Form, Row, Image } from 'react-bootstrap'
+import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -12,7 +12,7 @@ const Signin = () => {
     let { jwt, setJwt } = useUser()
 
     const navigate = useNavigate()
-    const { fn, data, loading, error } = useMutation(login)
+    const { fn, data, loading } = useMutation(login)
 
     useEffect(() => {
         if (jwt) {

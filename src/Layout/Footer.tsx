@@ -1,84 +1,10 @@
 import React from 'react'
-import { Container, Row, Col, Image, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-import { useQuery } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
-import config from 'config/config'
+import { Text } from 'Components/Images/Logo'
 
-const query = gql`
-    query {
-        parentCategories {
-            data {
-                attributes {
-                    name
-                    slug
-                    childs {
-                        data {
-                            attributes {
-                                name
-                                slug
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        logo {
-            data {
-                attributes {
-                    text {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    icon {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        footer {
-            data {
-                attributes {
-                    shopcek {
-                        name
-                        url
-                    }
-                    legal {
-                        name
-                        url
-                    }
-                    about
-                }
-            }
-        }
-
-        social {
-            data {
-                attributes {
-                    socials {
-                        name
-                        url
-                        icon {
-                            data {
-                                attributes {
-                                    url
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
+import { Facebook, Twitter, Medium, Linkedin, Instagram, Telegram } from 'Components/Images/Social'
 
 const groupList = <T extends any>(list: T[], groupSize: number): T[][] => {
     return list.reduce((acc, item, index) => {
@@ -94,31 +20,40 @@ const groupList = <T extends any>(list: T[], groupSize: number): T[][] => {
     }, [] as T[][])
 }
 
+function Socials() {
+    return (
+        <div>
+            <Link to={'/'}>
+                <Facebook className="footer-social-icon" width={48} />
+            </Link>
+            <Link to={'/'}>
+                <Twitter className="footer-social-icon" width={48} />
+            </Link>
+            <Link to={'/'}>
+                <Instagram className="footer-social-icon" width={48} />
+            </Link>
+            <Link to={'/'}>
+                <Medium className="footer-social-icon" width={48} />
+            </Link>
+            <Link to={'/'}>
+                <Linkedin className="footer-social-icon" width={48} />
+            </Link>
+            <Link to={'/'}>
+                <Telegram className="footer-social-icon" width={48} />
+            </Link>
+        </div>
+    )
+}
+
 const Footer = () => {
-    const { data, loading } = useQuery(query)
-    let logodark = !loading ? config.serverUrl + data.logo.icon.url : ''
-    let logolight = !loading ? config.serverUrl + data.logo.icon.url : ''
-
-    let groupedList
-    if (!loading) {
-        groupedList = groupList(data.social.socials, 3)
-    }
-
     return (
         <React.Fragment>
             <section className="section footer-landing pb-0">
-                <Container
-                // style={{
-                //     marginLeft: '15px',
-                //     marginRight: '15px'
-                // }}
-                >
+                <Container>
                     <Row>
                         <Col lg={3}>
                             <div className="footer-info">
-                                <Image src={logolight} className="logo" />
-                                {/* <Image src={logodark} alt="" height="300" className="logo-dark" /> */}
-                                {/* <p className="footer-desc mt-4 mb-2 me-3">{!loading ? data.footer.about : ''}</p> */}
+                                <Text className="logo" />
                             </div>
                         </Col>
 
@@ -128,13 +63,10 @@ const Footer = () => {
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Categories</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            {(!loading ? data.parentCategories : []).map((category: any) => {
-                                                return (
-                                                    <li key={category.slug}>
-                                                        <Link to={`/category/${category.slug}`}>{category.name}</Link>
-                                                    </li>
-                                                )
-                                            })}
+                                            // Categories
+                                            <li key="category-slug">
+                                                <Link to={`/category/${'category-slug'}`}>{'category.name'}</Link>
+                                            </li>
                                         </ul>
                                     </div>
                                 </Col>
@@ -143,13 +75,9 @@ const Footer = () => {
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Shopcek</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            {(!loading ? data.footer.shopcek : []).map((item: any) => {
-                                                return (
-                                                    <li key={item.url}>
-                                                        <Link to={item.url}>{item.name}</Link>
-                                                    </li>
-                                                )
-                                            })}
+                                            <li key={'item.url'}>
+                                                <Link to={'item.url'}>{'item.name'}</Link>
+                                            </li>
                                         </ul>
                                     </div>
                                 </Col>
@@ -158,13 +86,9 @@ const Footer = () => {
                                     <div className="mt-lg-0 mt-4">
                                         <h5 className="footer-title">Legal</h5>
                                         <ul className="list-unstyled footer-link mt-3">
-                                            {(!loading ? data.footer.legal : []).map((item: any) => {
-                                                return (
-                                                    <li key={item.url}>
-                                                        <Link to={item.url}>{item.name}</Link>
-                                                    </li>
-                                                )
-                                            })}
+                                            <li key={'item.url'}>
+                                                <Link to={'item.url'}>{'item.name'}</Link>
+                                            </li>
                                         </ul>
                                     </div>
                                 </Col>
@@ -178,7 +102,6 @@ const Footer = () => {
                                 >
                                     <div className="my-lg-0 mt-4">
                                         <h5 className="footer-title">Subscribe Our Newsletter</h5>
-                                        {/* <Container> */}
                                         <Form
                                             style={{
                                                 right: '-10rem'
@@ -210,16 +133,6 @@ const Footer = () => {
                                                 </div>
                                             </Row>
                                         </Form>
-
-                                        <Row lg={6}>
-                                            {(!loading ? data.social.socials! : []).map((item: any, index: number) => (
-                                                <Col key={index}>
-                                                    <Link to={item.url}>
-                                                        <Image src={config.serverUrl + item.icon.url} className="footer-social-icon" width={48} />
-                                                    </Link>
-                                                </Col>
-                                            ))}
-                                        </Row>
                                     </div>
                                 </Col>
                             </Row>

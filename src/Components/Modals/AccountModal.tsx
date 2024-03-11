@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 //img
 
-import { useNavigate } from 'react-router-dom'
 import { useUser } from '../../context/user-context'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'

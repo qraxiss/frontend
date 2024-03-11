@@ -1,7 +1,5 @@
 import React from 'react'
-import { Card, Col, Container, Image, Row } from 'react-bootstrap'
-//component
-// import { ContactHelp } from 'Components/CommonService'
+import { Container, Row } from 'react-bootstrap'
 import { Shoptopbar } from 'Components/ShopTopBar'
 // import { shopReviews } from 'Common/data'
 

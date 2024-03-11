@@ -1,32 +1,10 @@
 import React from 'react'
-import { Col, Container, Row, Tab, Nav, Card, Table, Form, Image } from 'react-bootstrap'
+import { Col, Container, Row, Tab, Nav, Card, Table, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-// import { orderHistorys, wishlishProduct } from 'Common/data'
-// import EmailClothe from 'Pages/Catalog/EmailClothe'
-// import { CommonService } from 'Components/CommonService'
-
-import { useQuery } from 'lib/query-wrapper'
-import config from 'config/config'
-import { gql } from '@apollo/client'
-
-const query = gql`
-    query {
-        profilePicture {
-            url
-        }
-        accountInformation {
-            addresses
-            name
-            surname
-            email
-        }
-    }
-`
+import { User } from 'Components/Images/Icons'
 
 const MyAccount = () => {
-    const { data, loading } = useQuery(query)
-
     return (
         <React.Fragment>
             <section className="position-relative">
@@ -38,14 +16,9 @@ const MyAccount = () => {
                         <Col lg={12}>
                             <div className="pt-3">
                                 <div className="mt-n5 d-flex gap-3 flex-wrap align-items-end">
-                                    <Image
-                                        src={config.serverUrl + data?.profilePicture?.url}
-                                        alt=""
-                                        className="avatar-xl p-1 bg-light mt-n3"
-                                        rounded
-                                    />
+                                    <User className="avatar-xl p-1 bg-light mt-n3" />
                                     <div>
-                                        <h5 className="fs-18">{`${data?.accountInformation.name} ${data?.accountInformation.surname}`}</h5>
+                                        <h5 className="fs-18">{`${'name'} ${'surname'}`}</h5>
                                         <div className="text-muted">
                                             <i className="bi bi-geo-alt"></i> Phoenix, USA
                                         </div>
@@ -117,7 +90,7 @@ const MyAccount = () => {
 
                                                             <div className="table-responsive table-card px-1">
                                                                 <Table className="table-borderless table-sm">
-                                                                    <tbody>
+                                                                    {/* <tbody>
                                                                         <tr>
                                                                             <td>Customer Name</td>
                                                                             <td className="fw-medium">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</td>
@@ -126,7 +99,7 @@ const MyAccount = () => {
                                                                             <td>Email Address</td>
                                                                             <td className="fw-medium">{`${data?.accountInformation?.email}`}</td>
                                                                         </tr>
-                                                                    </tbody>
+                                                                    </tbody> */}
                                                                 </Table>
                                                             </div>
 
@@ -134,7 +107,7 @@ const MyAccount = () => {
                                                                 <h6 className="fs-16 text-decoration-underline">Billing &amp; Shipping Address</h6>
                                                             </div>
                                                             <Row className="mt-4">
-                                                                {data?.accountInformation?.addresses?.map((address: any) => {
+                                                                {/* {data?.accountInformation?.addresses?.map((address: any) => {
                                                                     return (
                                                                         <Col md={6} key={address.id}>
                                                                             <Card className="mb-0">
@@ -161,7 +134,7 @@ const MyAccount = () => {
                                                                             </Card>
                                                                         </Col>
                                                                     )
-                                                                })}
+                                                                })} */}
                                                             </Row>
                                                         </Card.Body>
                                                     </Card>

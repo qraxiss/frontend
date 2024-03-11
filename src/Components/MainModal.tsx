@@ -9,11 +9,10 @@ import SimpleBar from 'simplebar-react'
 //component
 import DeleteModal from 'Components/DeleteModal'
 
-import { useQuery, useMutation, handle } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
-import config from 'config/config'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart-context'
+
+import { Text } from './Images/Logo'
 
 export const MainModal = ({ location }: any) => {
     const [show, setShow] = useState(false)
@@ -60,29 +59,6 @@ export const MainModal = ({ location }: any) => {
 }
 
 export const InvoiceModal = ({ modal, handleClose }: any) => {
-    const query = gql`
-        query {
-            logo {
-                data {
-                    attributes {
-                        text {
-                            data {
-                                attributes {
-                                    url
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `
-
-    let { data, loading } = useQuery(query)
-
-    let logodark = !loading ? config.serverUrl + data.text.url : ''
-    let logolight = !loading ? config.serverUrl + data.text.url : ''
-
     const InvoicePrint = () => {
         window.print()
     }
@@ -108,8 +84,8 @@ export const InvoiceModal = ({ modal, handleClose }: any) => {
                                 <Card.Header className="border-bottom-dashed p-4">
                                     <div className="d-sm-flex">
                                         <div className="flex-grow-1">
-                                            <Image src={logodark} className="card-logo card-logo-dark" alt="logo dark" height="26" />
-                                            <Image src={logolight} className="card-logo card-logo-light" alt="logo light" height="26" />
+                                            <Text className="card-logo card-logo-dark" height="26" />
+                                            <Text className="card-logo card-logo-light" height="26" />
                                             <div className="mt-sm-5 mt-4">
                                                 <h6 className="text-muted text-uppercase fw-semibold fs-14">Address</h6>
                                                 <p className="text-muted mb-1" id="address-details">

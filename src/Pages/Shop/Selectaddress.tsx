@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
-import { Col, Container, Row, Button, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Col, Container, Row, Button } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 import DeleteModal, { ModalAdd } from 'Components/DeleteModal'
-// import { selectAddressData } from 'Common/data'
 
 const Selectaddress = () => {
     document.title = 'Shop | Select address | Toner - React FrontEnd'
 
-    // const [addressData, setAddressData] = useState(selectAddressData)
-    //delete id
     const [id, setId] = useState('')
 
-    //Home Address
     const [removeModel, setRemovemodel] = useState(false)
     const RemoveModel = (id: any) => {
         setRemovemodel(!removeModel)

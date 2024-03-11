@@ -1,10 +1,7 @@
 import React from 'react'
-import { Button, Card, Col, Container, Row, Table, Image } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
-// import { shopProducDetails } from 'Common/data'
-// import EmailClothe from 'Pages/Catalog/EmailClothe'
-// import { CommonService } from 'Components/CommonService'
 
 const Trackorder = () => {
     document.title = 'Track Order | Toner - React FrontEnd'

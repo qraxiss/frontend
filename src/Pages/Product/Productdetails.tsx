@@ -9,7 +9,6 @@ import 'swiper/css/navigation'
 
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
 import config from 'config/config'
 
 import { Slider } from 'Components/Product'
@@ -17,28 +16,6 @@ import { products } from 'lib/common-queries'
 import { useCart } from 'context/cart-context'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
-
-const socials = gql`
-    query {
-        social {
-            data {
-                attributes {
-                    socials {
-                        name
-                        url
-                        icon {
-                            data {
-                                attributes {
-                                    url
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
 
 type resultType = {
     name: string
@@ -173,14 +150,6 @@ const Productdetails = () => {
     let { data, loading } = useQuery(getSingleProductBySlug, {
         variables: { slug }
     })
-    let socialData = useQuery(socials)
-    let [socialState, setSocialState] = useState<any>([])
-
-    useEffect(() => {
-        if (!socialData.loading) {
-            setSocialState(socialData.data.socials)
-        }
-    }, [socialData.loading])
 
     let { addItem } = useCart()
 
@@ -281,7 +250,7 @@ const Productdetails = () => {
 
                         <AddToWishList />
 
-                        <Socials socialState={socialState} />
+                        {/* <Socials socialState={socialState} /> */}
 
                         <Categories categories={!loading ? data.categories : []} />
                     </div>

@@ -115,34 +115,6 @@ export const getSingleProductBySlug = gql`
     }
 `
 
-export let getPages = gql`
-    query {
-        page {
-            data {
-                attributes {
-                    header {
-                        page {
-                            url
-                            title
-                            icon {
-                                data {
-                                    attributes {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                        subPages {
-                            url
-                            title
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
-
 export let loginWithWallet = gql`
     mutation LOGIN_WITH_WALLET($walletAddress: String!) {
         loginWithWallet(walletAddress: $walletAddress) {

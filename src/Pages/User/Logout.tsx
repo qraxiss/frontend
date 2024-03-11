@@ -1,35 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Card, Col, Container, Row, Image } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { Card, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 //img
-
-import config from 'config/config'
-
-import { useQuery } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
 
 import { useNavigate } from 'react-router-dom'
 
 import { useUser } from 'context/user-context'
 
-const query = gql`
-    query {
-        icon {
-            data {
-                attributes {
-                    account {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
+import { User } from 'Components/Images/Icons'
 
 const Logout = () => {
     let { jwt, deleteJwt } = useUser()
@@ -46,17 +25,6 @@ const Logout = () => {
         }
     }, [])
 
-    const [icon, setIcon] = useState<string>('')
-    const iconRes = useQuery(query)
-
-    useEffect(() => {
-        if (iconRes.loading) return
-        if (iconRes.error) return
-        if (!iconRes.data) return
-
-        setIcon(config.serverUrl + iconRes.data.account.url)
-    }, [iconRes.loading])
-
     return (
         <React.Fragment>
             <section className="auth-page-wrapper position-relative bg-light min-vh-100 d-flex align-items-center justify-content-between">
@@ -68,7 +36,7 @@ const Logout = () => {
                                     <Card className="border-0 mb-0">
                                         <Card.Body className="text-center">
                                             <div className="mb-4">
-                                                <Image src={icon} alt="" className="avatar-md rounded-circle" />
+                                                <User className="avatar-md rounded-circle" />
                                             </div>
                                             <div>
                                                 <Link to="/signin" className="btn btn-primary w-100">

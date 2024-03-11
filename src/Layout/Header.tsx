@@ -1,129 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Container, Dropdown, Button, Row, Col, Card, Modal, Image, Navbar, Nav, Form } from 'react-bootstrap'
+import { Container, Dropdown, Button, Image, Navbar, Nav, Form } from 'react-bootstrap'
 
 import { AccountModal } from 'Components/Modals/AccountModal'
-import { CardModal, SearchModal } from 'Components/MainModal'
+import { CardModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
-import { useQuery } from 'lib/query-wrapper'
-import { gql } from '@apollo/client'
-import config from 'config/config'
 import { useCart } from 'context/cart-context'
 import { useUser } from 'context/user-context'
 
-const query = gql`
-    query {
-        page {
-            data {
-                attributes {
-                    header {
-                        page {
-                            url
-                            title
-                            icon {
-                                data {
-                                    attributes {
-                                        url
-                                    }
-                                }
-                            }
-                        }
-                        subPages {
-                            url
-                            title
-                        }
-                    }
-                }
-            }
-        }
+import { Text } from 'Components/Images/Logo'
 
-        parentCategories {
-            data {
-                attributes {
-                    name
-                    slug
-                    icon {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    childs {
-                        data {
-                            attributes {
-                                name
-                                slug
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        logo {
-            data {
-                attributes {
-                    text {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        }
+import { Wishlist, User, Cart, Delivery, Collections } from 'Components/Images/Icons'
 
-        profilePicture {
-            url
-        }
-
-        icon {
-            data {
-                attributes {
-                    account {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    cart {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    wishlist {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    collections {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    delivery {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-`
-function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
+function ShoppingIcon(props: { handlecardShow: any }) {
     let { cartItems } = useCart()
     const [cartCount, setCartCount] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
@@ -153,7 +44,7 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
                 aria-controls="ecommerceCart"
             >
                 {/* <i className="ph-shopping-cart fs-18"></i> */}
-                <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+                <Cart className="rounded-circle header-profile-user" />
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">
                     {cartCount}
                 </span>
@@ -171,7 +62,7 @@ function ShoppingIcon(props: { handlecardShow: any; iconPath: string }) {
     )
 }
 
-function WishListIcon(props: { handlecardShow: any; iconPath: string }) {
+function WishListIcon(props: { handlecardShow: any }) {
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Button
@@ -182,21 +73,21 @@ function WishListIcon(props: { handlecardShow: any; iconPath: string }) {
                 aria-controls="ecommerceCart"
                 onClick={props.handlecardShow}
             >
-                <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+                <Wishlist className="rounded-circle header-profile-user" />
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">0</span>
             </Button>
         </div>
     )
 }
 
-function Account(props: { iconPath: string }) {
+function Account() {
     let { jwt } = useUser()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
             <Dropdown>
                 <Dropdown.Toggle id="page-header-user-dropdown" bsPrefix="btn" className="btn btn-icon btn-topbar btn-link rounded-circle" as="a">
-                    <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+                    <User className="rounded-circle header-profile-user" />
                 </Dropdown.Toggle>
 
                 {jwt ? (
@@ -243,68 +134,66 @@ function Account(props: { iconPath: string }) {
     )
 }
 
-function WorldWideShipping(props: { iconPath: string }) {
+function WorldWideShipping() {
     return (
         <div className="d-flex align-items-center nav-item" style={{ fontSize: '14px', textAlign: 'right' }}>
             <div>
                 <h6
                     className="text-secondary"
-                    style={{
-                        marginBottom: '0px'
-                    }}
+                    // style={{
+                    //     marginBottom: '0px'
+                    // }}
                 >
                     <span>WORLDWIDE</span>
                 </h6>
                 <p
-                    style={{
-                        marginBottom: '0px'
-                    }}
+                // style={{
+                //     marginBottom: '0px'
+                // }}
                 >
                     <h6
-                        style={{
-                            marginBottom: '0px'
-                        }}
+                    // style={{
+                    //     marginBottom: '0px'
+                    // }}
                     >
-                        {' '}
+                        {/* {' '} */}
                         <span className="text-primary">FREE SHIPPING</span>
                     </h6>
                 </p>
             </div>
-            <Image
-                src={props.iconPath}
-                style={{
-                    paddingLeft: '10px'
-                }}
+            <Delivery
+                // style={{
+                //     paddingLeft: '10px'
+                // }}
                 className="header-profile-user"
             />
         </div>
     )
 }
 
-function Collections(props: { iconPath: string }) {
+function CollectionsIcon() {
     return (
         <div className="collections">
-            <Image
-                src={props.iconPath}
-                className="header-profile-user"
-                style={{
-                    width: '25px',
-                    height: 'auto'
-                }}
-            ></Image>
+            <Collections
+                className="header-profile-user collections"
+                // style={{
+                //     width: '25px',
+                //     height: 'auto'
+                // }}
+            />
             <div
-                style={{
-                    paddingTop: '10px'
-                }}
+            // style={{
+            //     paddingTop: '10px'
+            // }}
             >
                 <h6 className="text-primary">
                     <span
                         className="text-primary"
-                        style={{
-                            marginBottom: '0px',
-                            fontSize: '14px',
-                            bottom: '22px'
-                        }}
+                        // style={{
+                        //     marginBottom: '0px',
+                        //     fontSize: '14px',
+                        //     bottom: '22px'
+                        // }}
                     >
                         COLLECTIONS
                     </span>
@@ -336,7 +225,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                                     fontSize: '14px'
                                 }}
                             >
-                                <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                                {/* <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image> */}
                                 {(item.page.title as string).toUpperCase()}
                             </Link>
                             <ul
@@ -373,7 +262,7 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
                                 //     props.menuShow(item.page.title)
                                 // }}
                             >
-                                <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image>
+                                {/* <Image src={config.serverUrl + item.page.icon.url} className="page-icons"></Image> */}
                                 {(item.page.title as string).toUpperCase()}
                             </Link>
                         </div>
@@ -384,15 +273,15 @@ function Pages(props: { categories: any; menuShow: any; showMenu: any; t: any })
     )
 }
 
-function Logo(props: { logo: any }) {
+function Logo() {
     return (
         <Navbar.Brand className="d-none d-lg-block">
             <Link to="/">
                 <div className="logo-dark">
-                    <Image src={props.logo.text.url} alt="" height="60" />
+                    <Text height="60" />
                 </div>
                 <div className="logo-light">
-                    <Image src={props.logo.text.url} alt="" height="60" />
+                    <Text height="60" />
                 </div>
             </Link>
         </Navbar.Brand>
@@ -420,7 +309,7 @@ function SideLogo(props: { logo: any }) {
     )
 }
 
-function SignInUp(props: { handlecardShow: any; iconPath: string }) {
+function SignInUp(props: { handlecardShow: any }) {
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Button
@@ -431,7 +320,7 @@ function SignInUp(props: { handlecardShow: any; iconPath: string }) {
                 aria-controls="ecommerceCart"
                 onClick={props.handlecardShow}
             >
-                <Image className="rounded-circle header-profile-user" src={props.iconPath} alt="Header Avatar" />
+                <User className="rounded-circle header-profile-user" />
             </Button>
         </div>
     )
@@ -439,48 +328,6 @@ function SignInUp(props: { handlecardShow: any; iconPath: string }) {
 
 const Header = (props: any) => {
     let { jwt } = useUser()
-
-    let { data, loading, error } = useQuery(query)
-    const [categories, setCategories] = useState([])
-    const [logo, setLogo] = useState({
-        text: {
-            url: ''
-        }
-    })
-    const [icon, setIcon] = useState({
-        account: {
-            url: ''
-        },
-        cart: {
-            url: ''
-        },
-        wishlist: {
-            url: ''
-        },
-        delivery: {
-            url: ''
-        },
-        collections: {
-            url: ''
-        }
-    })
-    useEffect(() => {
-        if (!!data && !loading && !error) {
-            Object.keys(data.icon).map((key) => {
-                data.icon[key] = {
-                    url: config.serverUrl + data.icon[key].url
-                }
-            })
-            setIcon(data.icon)
-
-            setCategories(data.page.header)
-            setLogo({
-                text: {
-                    url: config.serverUrl + data.logo.text.url
-                }
-            })
-        }
-    }, [loading])
 
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false)
@@ -602,11 +449,11 @@ const Header = (props: any) => {
         <React.Fragment>
             <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
                 <Container>
-                    <Logo logo={logo} />
+                    <Logo />
                     <MoreButton handleShowColl={handleShowColl} />
                     <Navbar.Collapse id="navbarSupportedContent">
                         <Nav as="ul" className="mx-lg-auto mb-2 mb-lg-0" id="navigation-menu">
-                            <SideLogo logo={logo} />
+                            {/* <SideLogo logo={logo} /> */}
                             <Form.Control className="search-bar" size="lg" type="text" onClick={handleShow} placeholder="Search for product" />
                             {/* <SearchModal show={show} handleClose={handleClose} /> */}
                         </Nav>
@@ -614,12 +461,8 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        {jwt ? (
-                            <Account iconPath={icon.account.url}></Account>
-                        ) : (
-                            <SignInUp iconPath={icon.account.url} handlecardShow={handleAccountShow}></SignInUp>
-                        )}
-                        <ShoppingIcon iconPath={icon.cart.url} handlecardShow={handlecardShow} />
+                        {jwt ? <Account></Account> : <SignInUp handlecardShow={handleAccountShow}></SignInUp>}
+                        <ShoppingIcon handlecardShow={handlecardShow} />
                     </div>
                 </Container>
             </Navbar>
@@ -628,13 +471,11 @@ const Header = (props: any) => {
 
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                 <Container className="navbar-nav">
-                    <Collections iconPath={icon.collections.url} />
+                    <CollectionsIcon />
 
-                    <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} />
+                    {/* <Pages categories={categories} menuShow={menuShow} showMenu={showMenu} t={props.t} /> */}
 
-                    <WorldWideShipping iconPath={icon.delivery.url} />
-
-                    {/* <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div> */}
+                    <WorldWideShipping />
                 </Container>
             </Navbar>
         </React.Fragment>
