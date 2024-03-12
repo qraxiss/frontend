@@ -20,6 +20,8 @@ import { getSingleProductBySlug } from 'lib/common-queries'
 import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/Social'
 import { useWishList } from 'context/wishlist'
 
+import { colors } from 'data/colors'
+
 type resultType = {
     name: string
     slug: string
@@ -80,31 +82,26 @@ function AddToCart(props: {
     )
 }
 
-function Colors() {
+function Colors({ colorsList, setColor }: { colorsList: string[], setColor: Function }) {
     return (
         <div className="colors">
             <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
-                <li className="color">
-                    <Form.Control type="radio" name="sizes" id="product-color-2" />
-                    <Form.Label
-                        className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
-                        htmlFor="product-color-2"
-                    />
-                </li>
-                <li className="color">
-                    <Form.Control type="radio" name="sizes" id="product-color-3" />
-                    <Form.Label
-                        className="avatar-xs btn btn-light p-0 d-flex align-items-center justify-content-center rounded-circle"
-                        htmlFor="product-color-3"
-                    />
-                </li>
-                <li className="color">
-                    <Form.Control type="radio" name="sizes" id="product-color-4" defaultChecked />
-                    <Form.Label
-                        className="avatar-xs btn btn-primary p-0 d-flex align-items-center justify-content-center rounded-circle"
-                        htmlFor="product-color-4"
-                    />
-                </li>
+                {colorsList.map((color) => {
+                    return (
+                        <li className="color">
+                            <Form.Control type="radio" name="sizes" id={color} onClick={()=>{
+                                setColor(color)
+                            }} />
+                            <Form.Label
+                                className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
+                                htmlFor={color}
+                                style={{
+                                    backgroundColor: `${(colors as any)[color]}`
+                                }}
+                            />
+                        </li>
+                    )
+                })}
             </ul>
         </div>
     )
@@ -295,14 +292,14 @@ const Productdetails = () => {
 
                         <Information text="4 Item sold in last 24 hours!" icon="bi bi-fire" />
 
-                        <Colors />
+                        
 
                         <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} size={size} color={color} />
 
                         <Information text="6 People watching this product now!" icon="bi bi-eye" />
 
                         <Variant title="size" options={data.size} option={size} setOption={setSize} />
-                        <Variant title="color" options={data.color} option={color} setOption={setColor} />
+                        <Colors colorsList={data.color} setColor={setColor} />
 
                         <AddToWishList
                             wishlistAddFn={() => {
