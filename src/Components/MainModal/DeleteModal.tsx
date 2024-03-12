@@ -5,7 +5,7 @@ import * as Yup from 'yup'
 import { useCart } from 'context/cart-context'
 
 //delete modal
-const DeleteModal = ({ removeModel, hideModal, deleteData, slug, options }: any) => {
+export const DeleteModal = ({ removeModel, hideModal, deleteData, slug, options }: any) => {
     const handleDelete = () => {
         deleteData()
         hideModal()
