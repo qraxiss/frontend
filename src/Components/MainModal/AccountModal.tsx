@@ -89,11 +89,6 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                                 ) : null}
                                             </div>
                                             <div className="mb-3">
-                                                <div className="float-end">
-                                                    <Link to={'/forgot-password'} className="text-muted">
-                                                        Forgot password?
-                                                    </Link>
-                                                </div>
                                                 <Form.Label htmlFor="password-input">Password</Form.Label>
                                                 <div className="position-relative auth-pass-inputgroup mb-3">
                                                     <Form.Control
@@ -107,9 +102,16 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                                         onBlur={formik.handleBlur}
                                                         autoComplete="off"
                                                     />
+
                                                     {formik.errors.password && formik.touched.password ? (
                                                         <span className="text-danger">{formik.errors.password}</span>
                                                     ) : null}
+
+                                                    <div className="float-end">
+                                                        <Link to={'/forgot-password'} className="text-muted">
+                                                            Forgot password?
+                                                        </Link>
+                                                    </div>
                                                     <Button
                                                         className="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon"
                                                         id="password-addon"
@@ -208,7 +210,7 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 
     return (
         <Container>
-            <Row >
+            <Row>
                 <Col>
                     <div className="auth-card mx-lg-3">
                         <Card className="border-0 mb-0">
