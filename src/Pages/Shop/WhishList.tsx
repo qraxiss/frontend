@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
 
 const WishList = () => {
-    document.title = 'Wishlist | Toner - React Frontend'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <Shoptopbar title="Wishlist" page="Wishlist" />

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const Checkout = () => {
     const navigate = useNavigate()
 
-    document.title = 'Checkout | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <section className="section">

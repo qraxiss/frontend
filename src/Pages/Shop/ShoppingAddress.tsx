@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Row, Col, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import DeleteModal from 'Components/DeleteModal'
+import DeleteModal from 'Components/MainModal/DeleteModal'
 
 export const ShopingAddress = ({ title, HomeAdd, officeAdd }: any) => {
     //modal

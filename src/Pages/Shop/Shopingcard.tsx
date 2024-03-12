@@ -3,7 +3,7 @@ import { Row, Container } from 'react-bootstrap'
 import Cardshop from './Cardshop'
 
 const Shopingcard = () => {
-    document.title = 'Shop Cart | Toner - React Frontend'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <section className="section">

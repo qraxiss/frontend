@@ -2,7 +2,7 @@ import React from 'react'
 import Payment from './Payment'
 
 const PaymentIndex = () => {
-    document.title = 'Shop  | Toner - React FrontEnd'
+    document.title = 'Shopcek'
 
     return (
         <React.Fragment>

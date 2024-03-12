@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Col, Container, Row, Button } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
-import DeleteModal, { ModalAdd } from 'Components/DeleteModal'
+import DeleteModal, { ModalAdd } from 'Components/MainModal/DeleteModal'
 
 const Selectaddress = () => {
-    document.title = 'Shop | Select address | Toner - React FrontEnd'
+    document.title = 'Shopcek'
 
     const [id, setId] = useState('')
 

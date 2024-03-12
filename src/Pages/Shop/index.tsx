@@ -5,7 +5,7 @@ import Selectaddress from './Selectaddress'
 // import { CommonService } from 'Components/CommonService'
 
 const Shopindex = () => {
-    document.title = 'Address | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <Shoptopbar title="Shipping Address" page="Address" />

@@ -8,7 +8,7 @@ import products14 from 'assets/images/products/img-14.png'
 import { BlackFridaysymbol, BlueFridaySymbol } from 'Components/FridaySymbol'
 
 const Blackfriday = () => {
-    document.title = 'Black Friday Email Template || Toner eCommerce + Admin HTML Template'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <section

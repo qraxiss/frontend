@@ -5,7 +5,7 @@ import { Shoporder } from 'Components/ShopTopBar'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 const Payment = () => {
-    document.title = 'payment | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <section className="section pb-4">

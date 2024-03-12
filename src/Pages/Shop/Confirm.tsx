@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
 
 const Confirm = () => {
-    document.title = 'Order Completed | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <Shoptopbar title="Order Confirm" page="Confirmation" />

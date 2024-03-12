@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Shoptopbar } from 'Components/ShopTopBar'
 
 const Trackorder = () => {
-    document.title = 'Track Order | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     return (
         <React.Fragment>
             <Shoptopbar title="Track Order" page="Track Order" />

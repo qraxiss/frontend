@@ -4,7 +4,7 @@ import { Shoptopbar } from 'Components/ShopTopBar'
 import { InvoiceModal } from 'Components/MainModal'
 
 const Orderhistory = () => {
-    document.title = 'Order History | Toner - React FrontEnd'
+    document.title = 'Shopcek'
     //modal
     const [modal, setModal] = useState(false)
     const handleClose = () => setModal(false)

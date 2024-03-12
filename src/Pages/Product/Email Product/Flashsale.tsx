@@ -6,7 +6,7 @@ import { BlackFalshSymbol, BlueFlashSymbol } from 'Components/FlashSymbol'
 import { Button } from 'react-bootstrap'
 
 const Flashsale = () => {
-    document.title = 'Flash Sale Email Template || Toner eCommerce + Admin HTML Template'
+    document.title = 'Shopcek'
 
     return (
         <React.Fragment>
