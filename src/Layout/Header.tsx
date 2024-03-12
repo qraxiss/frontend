@@ -164,7 +164,7 @@ function Account() {
 
                     <Dropdown.Item
                         onClick={() => {
-                            navigate('/logount')
+                            navigate('/logout')
                         }}
                     >
                         <span className="align-middle" data-key="t-logout">

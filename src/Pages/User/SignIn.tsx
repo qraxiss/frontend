@@ -14,16 +14,16 @@ const Signin = () => {
     const navigate = useNavigate()
     const { fn, data, loading } = useMutation(login)
 
-    useEffect(() => {
-        if (jwt) {
-            navigate('/')
-        }
+    // useEffect(() => {
+    //     if (jwt) {
+    //         navigate('/')
+    //     }
 
-        if (!loading && data && data.jwt) {
-            setJwt(data.jwt)
-            navigate('/')
-        }
-    }, [loading, data, navigate])
+    //     if (!loading && data && data.jwt) {
+    //         setJwt(data.jwt)
+    //         navigate('/')
+    //     }
+    // }, [loading, data, navigate])
 
     const passwordtype = 'password'
     const [password, setPassword] = useState('')

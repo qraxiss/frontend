@@ -11,19 +11,9 @@ import { useUser } from 'context/user-context'
 import { User } from 'Components/Images/Icons'
 
 const Logout = () => {
-    let { jwt, deleteJwt } = useUser()
-    const navigate = useNavigate()
+    let { deleteJwt } = useUser()
 
-    useEffect(() => {
-        if (!jwt) {
-            navigate('/')
-        } else {
-            deleteJwt()
-            setTimeout(() => {
-                navigate('/')
-            }, 3000)
-        }
-    }, [])
+    deleteJwt()
 
     return (
         <React.Fragment>
@@ -35,12 +25,9 @@ const Logout = () => {
                                 <div className="auth-card mx-lg-3">
                                     <Card className="border-0 mb-0">
                                         <Card.Body className="text-center">
-                                            <div className="mb-4">
-                                                <User className="avatar-md rounded-circle" />
-                                            </div>
                                             <div>
-                                                <Link to="/signin" className="btn btn-primary w-100">
-                                                    Sign In
+                                                <Link to="/" className="btn btn-primary w-100">
+                                                    Go back to home
                                                 </Link>
                                             </div>
                                         </Card.Body>
