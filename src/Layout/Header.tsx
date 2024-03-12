@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Container, Dropdown, Button, Image, Navbar, Nav, Form } from 'react-bootstrap'
 
 import { AccountModal } from 'Components/MainModal/AccountModal'
@@ -90,6 +90,8 @@ function WishListIcon() {
 function Account() {
     let { jwt } = useUser()
 
+    let navigate = useNavigate()
+
     return (
         <div className="dropdown header-item dropdown-hover-end">
             <Dropdown>
@@ -109,22 +111,28 @@ function Account() {
                     </Dropdown.Item>
 
                     <div className="dropdown-divider"></div>
-                    <Dropdown.Item>
-                        <Link to="/account">
-                            <span className="align-middle">My Account</span>
-                        </Link>
+                    <Dropdown.Item
+                        onClick={() => {
+                            navigate('/account')
+                        }}
+                    >
+                        <span className="align-middle">My Account</span>
                     </Dropdown.Item>
 
-                    <Dropdown.Item>
-                        <Link to="/account/orders">
-                            <span className="align-middle">My Orders</span>
-                        </Link>
+                    <Dropdown.Item
+                        onClick={() => {
+                            navigate('/account/orders')
+                        }}
+                    >
+                        <span className="align-middle">My Orders</span>
                     </Dropdown.Item>
 
-                    <Dropdown.Item>
-                        <Link to="/account/list">
-                            <span className="align-middle">Wishlist</span>
-                        </Link>
+                    <Dropdown.Item
+                        onClick={() => {
+                            navigate('/account/list')
+                        }}
+                    >
+                        <span className="align-middle">Wishlist</span>
                     </Dropdown.Item>
 
                     <div className="dropdown-divider"></div>
@@ -137,29 +145,31 @@ function Account() {
                     </Dropdown.Item>
 
                     <div className="dropdown-divider"></div>
-                    <Dropdown.Item>
-                        <div className="theme">
-                            <span className="align-middle" data-key="t-logout">
-                                Dark Theme
-                            </span>
-                            <Form.Check type="switch" />
-                        </div>
+                    <div className="theme">
+                        <span className="align-middle" data-key="t-logout">
+                            Dark Theme
+                        </span>
+                        <Form.Check type="switch" />
+                    </div>
+
+                    <Dropdown.Item
+                        onClick={() => {
+                            navigate('/account')
+                        }}
+                    >
+                        <span className="align-middle" data-key="t-logout">
+                            Settings
+                        </span>
                     </Dropdown.Item>
 
-                    <Dropdown.Item>
-                        <Link to="/account">
-                            <span className="align-middle" data-key="t-logout">
-                                Settings
-                            </span>
-                        </Link>
-                    </Dropdown.Item>
-
-                    <Dropdown.Item>
-                        <Link to="/logout">
-                            <span className="align-middle" data-key="t-logout">
-                                Logout
-                            </span>
-                        </Link>
+                    <Dropdown.Item
+                        onClick={() => {
+                            navigate('/logount')
+                        }}
+                    >
+                        <span className="align-middle" data-key="t-logout">
+                            Logout
+                        </span>
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
