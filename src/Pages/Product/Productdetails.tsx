@@ -30,13 +30,26 @@ type resultType = {
     images: { url: string }[]
 }
 
-function Information(props: { text: string; icon?: string }) {
+function Information(props: { text: string; icon?: string; className?: string }) {
     const { text, icon } = props
 
     return (
-        <div className="information">
+        <div className={`information ${props.className}`}>
             <i className={icon ? icon : ''}></i>
             <p>{text}</p>
+        </div>
+    )
+}
+
+function Sold(props: { icon?: string; className?: string }) {
+    const { icon } = props
+
+    return (
+        <div className={`sold ${props.className}`}>
+            <i className={icon ? icon : ''}></i>
+            <p>
+                <b>4</b> Item sold in last 24 hours!
+            </p>
         </div>
     )
 }
@@ -65,7 +78,7 @@ function AddToCart(props: {
 
             <Button
                 variant="primary"
-                className="btn btn-hover w-100"
+                className="btn btn-hover w-100 operation"
                 onClick={() => {
                     if (props.count >= 1 && props.size && props.color) {
                         addItem(slug, { color: props.color, size: props.size }, props.count)
@@ -75,23 +88,29 @@ function AddToCart(props: {
             >
                 Add To Cart
             </Button>
-            <Button variant="secondary" className="btn btn-hover w-100 h-10">
+            <Button variant="secondary" className="btn btn-hover w-100 h-10 operation">
                 Buy Now
             </Button>
         </div>
     )
 }
 
-function Colors({ colorsList, setColor }: { colorsList: string[], setColor: Function }) {
+function Colors({ colorsList, setColor }: { colorsList: string[]; setColor: Function }) {
     return (
         <div className="colors">
+            Color:
             <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
                 {colorsList.map((color) => {
                     return (
                         <li className="color">
-                            <Form.Control type="radio" name="sizes" id={color} onClick={()=>{
-                                setColor(color)
-                            }} />
+                            <Form.Control
+                                type="radio"
+                                name="sizes"
+                                id={color}
+                                onClick={() => {
+                                    setColor(color)
+                                }}
+                            />
                             <Form.Label
                                 className="avatar-xs btn btn-info p-0 d-flex align-items-center justify-content-center rounded-circle"
                                 htmlFor={color}
@@ -169,8 +188,10 @@ function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
 
 function Variant({ title, options, setOption, option }: { title: string; options: string[]; option: string | undefined; setOption: Function }) {
     return (
-        <Dropdown>
-            <Dropdown.Toggle variant="primary">{option || title}</Dropdown.Toggle>
+        <div className='dropdown'>
+            Size: 
+            <Dropdown>
+            <Dropdown.Toggle variant="">{option || title}</Dropdown.Toggle>
 
             <Dropdown.Menu>
                 {options.map((option) => {
@@ -187,6 +208,7 @@ function Variant({ title, options, setOption, option }: { title: string; options
                 })}
             </Dropdown.Menu>
         </Dropdown>
+        </div>
     )
 }
 
@@ -290,22 +312,18 @@ const Productdetails = () => {
                     <div className="product-details">
                         <ProductInfo price={data.price} name={data.name} />
 
-                        <Information text="4 Item sold in last 24 hours!" icon="bi bi-fire" />
-
-                        
+                        <Sold icon="bi bi-fire" />
+                        <Colors colorsList={data.color} setColor={setColor} />
+                        <Variant title="Choose an option" options={data.size} option={size} setOption={setSize} />
 
                         <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} size={size} color={color} />
-
-                        <Information text="6 People watching this product now!" icon="bi bi-eye" />
-
-                        <Variant title="size" options={data.size} option={size} setOption={setSize} />
-                        <Colors colorsList={data.color} setColor={setColor} />
-
                         <AddToWishList
                             wishlistAddFn={() => {
                                 addWishList(data.slug)
                             }}
                         />
+
+                        <Information text="6 People watching this product now!" icon="bi bi-eye" />
 
                         <Socials />
 

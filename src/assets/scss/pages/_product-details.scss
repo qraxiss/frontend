@@ -48,6 +48,26 @@
     width: 100%;
 }
 
+.info {
+    // h5.text-primary {
+    //     font-family: 'Montserrat';
+    //     font-size: 28.2px;
+    //     font-weight: 370;
+    // }
+
+    h5.text-primary {
+        font-family: 'Montserrat';
+        font-size: 28.2px;
+        font-weight: 370;
+    }
+
+    span.ln-base {
+        font-family: 'Montserrat';
+        font-size: 28.2px;
+        font-weight: 370;
+    }
+}
+
 .add-to-cart {
     height: 3rem;
 
@@ -66,12 +86,65 @@
         font-weight: 550 !important;
     }
 
+    .operation {
+        font-family: Archivo;
+    }
+
+    .wishlist {
+        font-size: x-large;
+    }
+
+    .dropdown {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        button {
+            width: 12rem;
+            background-color: rgb(246, 246, 246);
+            font-weight: 400;
+            border: solid 2.5px rgb(228, 228, 228);
+            color: rgb(228, 228, 228);
+            padding-left: 0.5rem;
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 2rem;
+        }
+    }
+
     .colors {
+        display: flex;
+        gap: 1.89rem;
+        align-items: center;
         .color {
             .rounded-circle {
                 border: 1px solid #3b3f41 !important;
             }
+
+            label {
+                margin-bottom: 0px !important;
+            }
         }
+    }
+}
+
+.sold {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border-radius: 15px;
+    height: 40px;
+    justify-content: start;
+    align-items: center;
+    display: flex;
+    gap: 0.2rem;
+    flex-direction: row;
+
+    p {
+        margin-top: 18px;
+    }
+
+    .bi-fire {
+        padding-left: 1rem;
+        color: $secondary;
     }
 }
 
@@ -81,13 +154,18 @@
         font-size: 15px;
     }
 
+    width: 130%;
     background-color: #dceef4;
     border-radius: 15px;
     height: 40px;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     display: flex;
     gap: 1rem;
+
+    .bi-eye {
+        padding-left: 1rem;
+    }
 }
 
 .categories {
@@ -98,6 +176,10 @@
 .socials {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
+    p {
+        margin-bottom: 0px !important;
+    }
 }
 
 .wishlist {
