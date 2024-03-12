@@ -97,45 +97,71 @@ function Account() {
                     <User className="rounded-circle header-profile-user" />
                 </Dropdown.Toggle>
 
-                {jwt ? (
-                    <Dropdown.Menu>
-                        <Dropdown.Item>
-                            <Link to="/shop/orders">
-                                <i className="bi bi-truck text-muted fs-16 align-middle me-1"></i> <span className="align-middle">Track Orders</span>
-                            </Link>
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            <Link to="/account">
-                                <span className="badge bg-success-subtle text-success mt-1 float-end">New</span>
-                                <i className="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i>{' '}
-                                <span className="align-middle">Settings</span>
-                            </Link>
-                        </Dropdown.Item>
-                        <Dropdown.Item>
-                            <Link to="/logout">
-                                <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
-                                <span className="align-middle" data-key="t-logout">
-                                    Logout
-                                </span>
-                            </Link>
-                        </Dropdown.Item>
-                    </Dropdown.Menu>
-                ) : (
-                    <Dropdown.Menu>
-                        <Dropdown.Item href="/signin">
-                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                <Dropdown.Menu id="page-header-user-dropdown-menu">
+                    <Dropdown.Item>
+                        <div className="user">
+                            <User className="rounded-circle header-profile-user" />
+                            <div className="user-info">
+                                <span>username</span>
+                                <span>walletAddress</span>
+                            </div>
+                        </div>
+                    </Dropdown.Item>
+
+                    <div className="dropdown-divider"></div>
+                    <Dropdown.Item>
+                        <Link to="/account">
+                            <span className="align-middle">My Account</span>
+                        </Link>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                        <Link to="/account/orders">
+                            <span className="align-middle">My Orders</span>
+                        </Link>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                        <Link to="/account/list">
+                            <span className="align-middle">Wishlist</span>
+                        </Link>
+                    </Dropdown.Item>
+
+                    <div className="dropdown-divider"></div>
+
+                    <Dropdown.Item>
+                        <div className="xp-points">
+                            <span className="align-middle">XP Points</span>
+                            1.000.000
+                        </div>
+                    </Dropdown.Item>
+
+                    <div className="dropdown-divider"></div>
+                    <Dropdown.Item>
+                        <div className="theme">
                             <span className="align-middle" data-key="t-logout">
-                                Sign In
+                                Dark Theme
                             </span>
-                        </Dropdown.Item>
-                        <Dropdown.Item href="/signup">
-                            <i className="bi bi-box-arrow-right text-muted fs-16 align-middle me-1"></i>{' '}
+                            <Form.Check type="switch" />
+                        </div>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                        <Link to="/account">
                             <span className="align-middle" data-key="t-logout">
-                                Sign Up
+                                Settings
                             </span>
-                        </Dropdown.Item>
-                    </Dropdown.Menu>
-                )}
+                        </Link>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                        <Link to="/logout">
+                            <span className="align-middle" data-key="t-logout">
+                                Logout
+                            </span>
+                        </Link>
+                    </Dropdown.Item>
+                </Dropdown.Menu>
             </Dropdown>
         </div>
     )

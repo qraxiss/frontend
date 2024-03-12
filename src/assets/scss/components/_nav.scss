@@ -12,6 +12,53 @@
     }
 }
 
+.show {
+    #page-header-user-dropdown-menu {
+        width: 14rem;
+        border-radius: 18px;
+        left: -5rem;
+        top: 3.3rem;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .user {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        span {
+            color: #545454;
+            padding-left: 0.7rem;
+            padding-right: 0.3rem;
+        }
+
+        .xp-points{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .theme {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dropdown-divider {
+            width: 85%;
+        }
+    }
+}
+
 .nav-pills {
     > a {
         color: var(--#{$prefix}tertiary-color) !important;
