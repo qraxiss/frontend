@@ -62,7 +62,7 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 
     return (
         <Container>
-            <Row className="justify-content-center">
+            <Row>
                 <Col>
                     <div className="auth-card mx-lg-3">
                         <Card className="border-0 mb-0">
@@ -175,9 +175,15 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 }
 
 const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; setShow: Function }) => {
-    let { register, setStatus } = useUser()
+    let { register, setStatus, status, isConnected } = useUser()
 
     setStatus('register')
+
+    useEffect(() => {
+        if (status === 'login') {
+            setShow(false)
+        }
+    }, [status, isConnected])
 
     const [passwordtype, setPasswordtype] = useState(false)
 
@@ -202,13 +208,13 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 
     return (
         <Container>
-            <Row className="justify-content-center">
+            <Row >
                 <Col>
                     <div className="auth-card mx-lg-3">
                         <Card className="border-0 mb-0">
                             <Card.Body>
                                 <p className="text-muted fs-15">Join Shopcek</p>
-                                <ConnectButton></ConnectButton>
+                                <ConnectButton label="Connect Wallet"></ConnectButton>
                                 <SignMethod label="Sign up">
                                     <div className="p-2">
                                         <Form className="needs-validation" action="#" onSubmit={formik.handleSubmit}>
