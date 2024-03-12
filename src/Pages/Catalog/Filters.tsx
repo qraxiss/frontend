@@ -83,7 +83,7 @@ const Filters = ({ name, filterSettings, setFilterSettings }: any) => {
                     <Card.Header>
                         <div className="d-flex mb-3">
                             <div className="flex-grow-1">
-                                <h5 className="fs-16">Filtreler</h5>
+                                <h5 className="fs-16">Filters</h5>
                             </div>
                             <div className="flex-shrink-0">
                                 <Link to="#" className="text-decoration-underline" id="clearall">
