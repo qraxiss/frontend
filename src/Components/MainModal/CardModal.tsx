@@ -12,7 +12,6 @@ import DeleteModal from 'Components/MainModal/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart-context'
 
-import { Text } from '../Images/Logo'
 
 export const CardModal = ({ show, handleClose }: any) => {
     let navigate = useNavigate()

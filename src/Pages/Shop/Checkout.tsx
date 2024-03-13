@@ -6,6 +6,9 @@ import { ShopingAddress } from './ShoppingAddress'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart-context'
 
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { buyWithWallet } from 'lib/rainbow'
+
 const Checkout = () => {
     const navigate = useNavigate()
     let { cartItems } = useCart()
@@ -24,16 +27,15 @@ const Checkout = () => {
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Product</th>
-                                                    <th scope="col">Rate</th>
-                                                    <th scope="col">Order ID</th>
                                                     <th scope="col">Price</th>
+                                                    <th scope="col">Count</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 {cartItems.map((item, inx) => {
                                                     return (
                                                         <tr key={inx}>
-                                                            <td className="text-start">
+                                                            <td className="justify-center-center">
                                                                 <div className="d-flex align-items-center gap-2">
                                                                     <div className="avatar-sm flex-shrink-0">
                                                                         <div className={`avatar-title bg-${item.bg}-subtle rounded-3`}>
@@ -47,8 +49,7 @@ const Checkout = () => {
                                                                 </div>
                                                             </td>
                                                             <td> ${item.product.price}</td>
-                                                            {/* <td> 0{item.id}</td> */}
-                                                            <td className="text-end">${item.count}</td>
+                                                            <td className="text-center">{item.count}</td>
                                                         </tr>
                                                     )
                                                 })}
@@ -62,6 +63,9 @@ const Checkout = () => {
                         <Col lg={4}>
                             <div className="sticky-side-div">
                                 <Shoporder subtotal="510.50" dic="18.00" charge="2.4" tax="1.6" total="630.25" />
+
+                                
+                            
                                 <div className="hstack gap-2 justify-content-between justify-content-end">
                                     <Button
                                         className="btn btn-hover btn-soft-info w-100"
@@ -71,16 +75,18 @@ const Checkout = () => {
                                     >
                                         Back To Cart <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                                     </Button>
+                                    
                                     <Button
                                         className="btn btn-hover btn-primary w-100"
-                                        onClick={() => {
-                                            navigate('/shop/payment')
-                                        }}
+                                        onClick={buyWithWallet}
                                     >
-                                        Continue Payment
+                                        Pay
                                     </Button>
                                 </div>
+                                
                             </div>
+
+                            <ConnectButton label='Connect Wallet'></ConnectButton>
                         </Col>
                     </Row>
                 </Container>

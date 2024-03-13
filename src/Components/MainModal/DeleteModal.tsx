@@ -4,11 +4,12 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useCart } from 'context/cart-context'
 import { useUser } from 'context/user-context'
+import { useMutation } from 'lib/query-wrapper'
+import { updateRecipient } from 'lib/common-queries'
 
 //delete modal
-export const DeleteModal = ({ removeModel, hideModal, deleteData, slug, options }: any) => {
+export const DeleteModal = ({ removeModel, hideModal, slug, options }: any) => {
     const handleDelete = () => {
-        deleteData()
         hideModal()
     }
 
@@ -52,6 +53,8 @@ export default DeleteModal
 //add addres modal
 export const ModalAdd = ({ addressModal, handleClose }: any) => {
     let { recipient } = useUser()
+    let gql = useMutation(updateRecipient)
+
 
     const formik = useFormik({
         initialValues: recipient,
@@ -59,7 +62,7 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
             name: Yup.string().required('Please Enter Your Name'),
             address1: Yup.string().required('Please Enter Your Address'),
             address2: Yup.string(),
-            email: Yup.string().required('Please Enter Your Email'),
+            email: Yup.string().email().required('Please Enter Your Email'),
             state_code: Yup.string().required('Please Enter Your State Code'),
             state_name: Yup.string().required('Please Enter Your State Name'),
             country_code: Yup.string().required('Please Enter Your Country Code'),
@@ -68,7 +71,13 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
             city: Yup.string().required('Please Enter Your City'),
             phone: Yup.string().matches(RegExp('[0-9]{7}')).required('Please Enter Your Phone')
         }),
-        onSubmit: (values) => {}
+        onSubmit: (values) => {
+            gql.fn({
+                variables: {
+                    recipient: values
+                }
+            })
+        }
     })
 
     return (
@@ -98,158 +107,137 @@ export const ModalAdd = ({ addressModal, handleClose }: any) => {
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Address 1</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">Address Line 1</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter address 1"
+                                    name="address1"
                                     value={formik.values.address1}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.address1 && formik.touched.address1 ? (
-                                    <span className="text-danger">{formik.errors.address1}</span>
-                                ) : null}
+                                />
+                                {formik.errors.address1 && formik.touched.address1 ? <span className="text-danger">{formik.errors.address1}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Address 2</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">Address Line 2</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter address 2"
+                                    name="address2"
                                     value={formik.values.address2}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.address2 && formik.touched.address2 ? (
-                                    <span className="text-danger">{formik.errors.address2}</span>
-                                ) : null}
+                                />
+                                {formik.errors.address2 && formik.touched.address2 ? <span className="text-danger">{formik.errors.address2}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Email</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">Email</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter email"
+                                    name="email"
                                     value={formik.values.email}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
+                                />
                                 {formik.errors.email && formik.touched.email ? <span className="text-danger">{formik.errors.email}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">State Code</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">state_code</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter state_code"
+                                    name="state_code"
                                     value={formik.values.state_code}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.state_code && formik.touched.state_code ? (
-                                    <span className="text-danger">{formik.errors.state_code}</span>
-                                ) : null}
+                                />
+                                {formik.errors.state_code && formik.touched.state_code ? <span className="text-danger">{formik.errors.state_code}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">State Name</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">state_code</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter state_name"
+                                    name="state_name"
                                     value={formik.values.state_name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.state_name && formik.touched.state_name ? (
-                                    <span className="text-danger">{formik.errors.state_name}</span>
-                                ) : null}
+                                />
+                                {formik.errors.state_name && formik.touched.state_name ? <span className="text-danger">{formik.errors.state_name}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Country Code</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">country_code</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter country_code"
+                                    name="country_code"
                                     value={formik.values.country_code}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.country_code && formik.touched.country_code ? (
-                                    <span className="text-danger">{formik.errors.country_code}</span>
-                                ) : null}
+                                />
+                                {formik.errors.country_code && formik.touched.country_code ? <span className="text-danger">{formik.errors.country_code}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Country Name</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">country_name</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter country_name"
+                                    name="country_name"
                                     value={formik.values.country_name}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
-                                {formik.errors.country_name && formik.touched.country_name ? (
-                                    <span className="text-danger">{formik.errors.country_name}</span>
-                                ) : null}
+                                />
+                                {formik.errors.country_name && formik.touched.country_name ? <span className="text-danger">{formik.errors.country_name}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">Zip Code</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">zip</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="Enter zip"
+                                    name="zip"
                                     value={formik.values.zip}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
+                                />
                                 {formik.errors.zip && formik.touched.zip ? <span className="text-danger">{formik.errors.zip}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-textarea">City</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">City</Form.Label>
                                 <Form.Control
-                                    as="textarea"
-                                    id="addaddress-textarea"
-                                    placeholder="Enter address"
-                                    rows={2}
-                                    name="address"
+                                    type="text"
+                                    id="addaddress-Name"
+                                    placeholder="city"
+                                    name="city"
                                     value={formik.values.city}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                ></Form.Control>
+                                />
                                 {formik.errors.city && formik.touched.city ? <span className="text-danger">{formik.errors.city}</span> : null}
                             </div>
 
                             <div className="mb-3">
-                                <Form.Label htmlFor="addaddress-phone">Phone</Form.Label>
+                                <Form.Label htmlFor="addaddress-Name">phone</Form.Label>
                                 <Form.Control
                                     type="text"
-                                    id="addaddress-phone"
-                                    placeholder="Enter phone no."
+                                    id="addaddress-Name"
+                                    placeholder="Enter phone"
                                     name="phone"
                                     value={formik.values.phone}
                                     onChange={formik.handleChange}

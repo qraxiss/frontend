@@ -64,9 +64,10 @@ const Payment = () => {
 
                                                 <div className="hstack gap-2 justify-content-end pt-4">
                                                     <ConnectButton />
+                                                    <Button variant="primary" onClick={buyWithWallet}>Pay 0.1</Button>
                                                 </div>
 
-                                                <Button variant="primary" onClick={buyWithWallet}></Button>
+                                                
                                             </Card.Body>
                                         </Card>
                                     </Tab.Pane>

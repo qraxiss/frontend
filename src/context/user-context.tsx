@@ -83,7 +83,11 @@ export const UserProvider = ({ children }: any) => {
     }, [recipient.loading])
 
     let deleteJwt = () => {
-        disconnect(wagmiConfig)
+        try {
+            disconnect(wagmiConfig)
+        } catch (e: any) {
+            console.log(e)
+        }
         localStorage.removeItem('jwt')
         setJwt(null)
         setStatus('public')
@@ -122,7 +126,9 @@ export const UserProvider = ({ children }: any) => {
             return
         }
         if (loginWithWallet.data.jwt === null) {
-            disconnect(wagmiConfig)
+            try {
+                disconnect(wagmiConfig)
+            } catch {}
             return
         }
 
@@ -139,7 +145,9 @@ export const UserProvider = ({ children }: any) => {
 
     useEffect(() => {
         if (registerWithWallet.error) {
-            disconnect(wagmiConfig)
+            try {
+                disconnect(wagmiConfig)
+            } catch {}
             return
         }
 
