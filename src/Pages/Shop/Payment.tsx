@@ -1,8 +1,10 @@
 import React from 'react'
-import { Card, Col, Container, Row, Tab, Nav } from 'react-bootstrap'
+import { Card, Col, Container, Row, Tab, Nav, Button } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+
+import { buyWithWallet } from 'lib/rainbow'
 
 const Payment = () => {
     document.title = 'Shopcek'
@@ -63,6 +65,8 @@ const Payment = () => {
                                                 <div className="hstack gap-2 justify-content-end pt-4">
                                                     <ConnectButton />
                                                 </div>
+
+                                                <Button variant="primary" onClick={buyWithWallet}></Button>
                                             </Card.Body>
                                         </Card>
                                     </Tab.Pane>
