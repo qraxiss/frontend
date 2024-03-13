@@ -188,26 +188,26 @@ function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
 
 function Variant({ title, options, setOption, option }: { title: string; options: string[]; option: string | undefined; setOption: Function }) {
     return (
-        <div className='dropdown'>
-            Size: 
+        <div className="dropdown">
+            Size:
             <Dropdown>
-            <Dropdown.Toggle variant="">{option || title}</Dropdown.Toggle>
+                <Dropdown.Toggle variant="">{option || title}</Dropdown.Toggle>
 
-            <Dropdown.Menu>
-                {options.map((option) => {
-                    return (
-                        <Dropdown.Item
-                            key={option}
-                            onClick={() => {
-                                setOption(option)
-                            }}
-                        >
-                            {option}
-                        </Dropdown.Item>
-                    )
-                })}
-            </Dropdown.Menu>
-        </Dropdown>
+                <Dropdown.Menu>
+                    {options.map((option) => {
+                        return (
+                            <Dropdown.Item
+                                key={option}
+                                onClick={() => {
+                                    setOption(option)
+                                }}
+                            >
+                                {option}
+                            </Dropdown.Item>
+                        )
+                    })}
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     )
 }

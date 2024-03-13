@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug, addManyProductToCart } from '../lib/common-queries'
 import { useQuery, useMutation, useLazyQuery } from '../lib/query-wrapper'
 import { useUser } from './user-context'
+import { isArray } from 'lodash'
 
 export function areObjectsEqual(obj1: any, obj2: any) {
     const keys1 = Object.keys(obj1)
@@ -151,6 +152,7 @@ export const CartProvider = ({ children }: any) => {
     let { status, jwt } = useUser()
 
     let cartData = useQuery(cartQuery)
+
     let addItem = useMutation(addItemToCart)
     let addManyProduct = useMutation(addManyProductToCart)
     let deleteItem = useMutation(deleteItemFromCart)
@@ -204,6 +206,7 @@ export const CartProvider = ({ children }: any) => {
         //if user have a account, take all data from backend
         else if (status === 'login') {
             cartData.refetch()
+            setRefetch(!refetch)
         }
     }, [status, jwt])
 
@@ -224,13 +227,15 @@ export const CartProvider = ({ children }: any) => {
             }
 
             setCartItems(cartData.data)
-            setRefetch(!refetch)
         }
         // if not logged in get from localStorage
         else {
             let items = localStorage.getItem('cartItems')
             if (items) {
-                setCartItems(JSON.parse(items))
+                let localCart = JSON.parse(items)
+                if (isArray(localCart)) {
+                    setCartItems(localCart)
+                }
             }
         }
     }, [cartData.loading])

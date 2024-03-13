@@ -117,9 +117,9 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                             }}
                                                         >
                                                             +
-                                                        </Button> 
-                                                    </div> X
-
+                                                        </Button>
+                                                    </div>{' '}
+                                                    X
                                                     <div className="text-muted fw-medium mb-0">
                                                         <span className="product-price"> ${item.product.price}</span>
                                                     </div>

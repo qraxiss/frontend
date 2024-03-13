@@ -1,3 +1,5 @@
+import { useCart } from 'context/cart-context'
+import { useUser } from 'context/user-context'
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -30,6 +32,15 @@ export const Shoptopbar = ({ title, page }: any) => {
 }
 
 export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
+    let { cartItems } = useCart()
+    let { recipient } = useUser()
+
+    let price = 0
+
+    cartItems.forEach((item) => {
+        price += item.count * item.product.price
+    })
+
     return (
         <React.Fragment>
             <Card>
@@ -44,7 +55,7 @@ export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
                             className="me-auto"
                             type="text"
                             placeholder="Enter coupon code"
-                            defaultValue="Toner15"
+                            defaultValue="Shopcek"
                             aria-label="Add Promo Code here..."
                         />
                         <button type="button" className="btn btn-primary w-xs">
@@ -55,34 +66,16 @@ export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
             </Card>
             <Card className="overflow-hidden">
                 <Card.Header className="border-bottom-dashed">
-                    <h5 className="card-title mb-0 fs-15">Order Summary</h5>
+                    <h5 className="card-title mb-0 fs-15">Order</h5>
                 </Card.Header>
                 <Card.Body className=" pt-4">
                     <div className="table-responsive table-card">
                         <Table className="table-borderless mb-0 fs-15">
                             <tbody>
-                                <tr>
-                                    <td>Sub Total :</td>
-                                    <td className="text-end cart-subtotal">${subtotal || '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Discount <span className="text-muted">(Toner15)</span>:
-                                    </td>
-                                    <td className="text-end cart-discount">-${dic || '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <td>Shipping Charge :</td>
-                                    <td className="text-end cart-shipping">${charge || '0.00'}</td>
-                                </tr>
-                                <tr>
-                                    <td>Estimated Tax (12.5%) : </td>
-                                    <td className="text-end cart-tax">${tax || '0.00'}</td>
-                                </tr>
                                 <tr className="table-active">
                                     <th>Total (USD) :</th>
                                     <td className="text-end">
-                                        <span className="fw-semibold cart-total">${total || '0.00'}</span>
+                                        <span className="fw-semibold cart-total">${price}</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -117,94 +110,6 @@ export const BrandedProduct = ({ title }: any) => {
                                 </div>
                             </div>
                         </Col>
-                    </Row>
-                    <Row>
-                        {/* {(recentlyOrder || []).map((item: any, inx: any) => {
-              return (
-                <Col xxl={3} lg={4} md={6} key={inx}>
-                  <Card className="ecommerce-product-widgets border-0 rounded-0 shadow-none overflow-hidden card-animate">
-                    <div className="bg-light bg-opacity-50 rounded py-4 position-relative">
-                      <Image src={item.img} alt="" style={{ maxHeight: '200px', maxWidth: '100%' }} className="mx-auto d-block rounded-2" />
-                      <div className="action vstack gap-2">
-                        <Button
-                          variant="danger"
-                          className="btn avatar-xs p-0 btn-soft-warning custom-toggle product-action"
-                          data-bs-toggle="button"
-                          onClick={(e: any) => handleLike(e.target)}
-                        >
-                          <span className="icon-on">
-                            <i className="ri-heart-line"></i>
-                          </span>
-                          <span className="icon-off">
-                            <i className="ri-heart-fill"></i>
-                          </span>
-                        </Button>
-                      </div>
-                      {item.presentag && (
-                        <div className="avatar-xs label">
-                          <div className="avatar-title bg-danger rounded-circle fs-11">{item.presentag}</div>
-                        </div>
-                      )}
-                    </div>
-                    <div className="pt-4">
-                      {item?.color ? (
-                        <ul className="clothe-colors list-unstyled hstack gap-1 mb-3 flex-wrap">
-                          <li>
-                            <Form.Control type="radio" name="sizes10" id="product-color-102" />
-                            <Form.Label
-                              className={`avatar-xxs btn btn-${item.color[0] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle`}
-                              htmlFor="product-color-102"
-                            ></Form.Label>
-                          </li>
-                          <li>
-                            <Form.Control type="radio" name="sizes10" id="product-color-103" />
-                            <Form.Label
-                              className={`avatar-xxs btn btn-${item.color[1] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle`}
-                              htmlFor="product-color-103"
-                            ></Form.Label>
-                          </li>
-                          <li>
-                            <Form.Control type="radio" name="sizes10" id="product-color-104" />
-                            <Form.Label
-                              className={`avatar-xxs btn btn-${item.color[2] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle`}
-                              htmlFor="product-color-104"
-                            ></Form.Label>
-                          </li>
-                          <li>
-                            <Form.Control type="radio" name="sizes10" id="product-color-105" />
-                            <Form.Label
-                              className={`avatar-xxs btn btn-${item.color[3] || ''} p-0 d-flex align-items-center justify-content-center rounded-circle`}
-                              htmlFor="product-color-105"
-                            ></Form.Label>
-                          </li>
-                        </ul>
-                      ) : (
-                        <div className="avatar-xxs mb-3">
-                          <div className="avatar-title bg-light text-muted rounded cursor-pointer">
-                            <i className={`${item.icone}`}></i>
-                          </div>
-                        </div>
-                      )}
-
-                      <Link to="#">
-                        <h6 className="text-capitalize fs-15 lh-base text-truncate mb-0">{item.title}</h6>
-                      </Link>
-                      <div className="mt-2">
-                        <span className="float-end">
-                          {item.ratting} <i className="ri-star-half-fill text-warning align-bottom"></i>
-                        </span>
-                        <h5 className="mb-0">{item.price}</h5>
-                      </div>
-                      <div className="mt-3">
-                        <Link to="/shop/shopingcard" className="btn btn-primary w-100 add-btn">
-                          <i className="mdi mdi-cart me-1"></i> Add To Cart
-                        </Link>
-                      </div>
-                    </div>
-                  </Card>
-                </Col>
-              )
-            })} */}
                     </Row>
                 </Container>
             </section>

@@ -154,3 +154,15 @@ export let wishlist = gql`
         }
     }
 `
+
+export let recipient = gql`
+    query {
+        recipient
+    }
+`
+
+export let updateRecipient = gql`
+    mutation ($recipient: JSON!) {
+        updateRecipient(recipient: $recipient)
+    }
+`

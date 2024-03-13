@@ -7,12 +7,27 @@ import {
     loginWithWallet as loginWithWalletMutation,
     registerWithWallet as registerWithWalletMutation,
     login as loginMutation,
-    register as registerMutation
+    register as registerMutation,
+    recipient as recipientQuery
 } from 'lib/common-queries'
 
-import { useMutation } from 'lib/query-wrapper'
+import { useMutation, useQuery } from 'lib/query-wrapper'
 
 const UserContext = createContext<any>({})
+
+type recipientTpye = {
+    name: string
+    address1: string
+    address2: string
+    city: string
+    state_code: string
+    state_name: string
+    country_code: string
+    country_name: string
+    zip: string
+    phone: string
+    email: string
+}
 
 export type UserContextType = {
     jwt: string | undefined | null
@@ -26,6 +41,7 @@ export type UserContextType = {
     registerWithWallet: any
     login: any
     register: any
+    recipient: recipientTpye
 }
 
 export const useUser = () => {
@@ -44,6 +60,27 @@ export const UserProvider = ({ children }: any) => {
     let registerWithWallet = useMutation(registerWithWalletMutation)
     let login = useMutation(loginMutation)
     let register = useMutation(registerMutation)
+
+    let [recipientState, setRecipientState] = useState({
+        name: '',
+        address1: '',
+        address2: '',
+        city: '',
+        state_code: '',
+        state_name: '',
+        country_code: '',
+        country_name: '',
+        zip: '',
+        phone: '',
+        email: ''
+    })
+    let recipient = useQuery(recipientQuery)
+
+    useEffect(() => {
+        if (recipient.data && !recipient.loading) {
+            setRecipientState(recipient.data)
+        }
+    }, [recipient.loading])
 
     let deleteJwt = () => {
         disconnect(wagmiConfig)
@@ -121,7 +158,20 @@ export const UserProvider = ({ children }: any) => {
 
     return (
         <UserContext.Provider
-            value={{ jwt, setJwt, deleteJwt, isConnected, address, login, loginWithWallet, register, registerWithWallet, status, setStatus }}
+            value={{
+                jwt,
+                setJwt,
+                deleteJwt,
+                isConnected,
+                address,
+                login,
+                loginWithWallet,
+                register,
+                registerWithWallet,
+                status,
+                setStatus,
+                recipient: recipientState
+            }}
         >
             {children}
         </UserContext.Provider>

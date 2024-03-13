@@ -14,7 +14,6 @@ import { useCart } from 'context/cart-context'
 
 import { Text } from '../Images/Logo'
 
-
 export const InvoiceModal = ({ modal, handleClose }: any) => {
     const InvoicePrint = () => {
         window.print()

@@ -60,7 +60,5 @@ export async function buyWithWallet() {
         value: parseEther('0.01')
     })
 
-    console.log(result)
-
     return result
 }

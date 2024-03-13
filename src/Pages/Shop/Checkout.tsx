@@ -1,12 +1,14 @@
 import React from 'react'
-import { Col, Container, Row, Card, Button, Table } from 'react-bootstrap'
+import { Col, Container, Row, Card, Button, Table, Image } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 import { ShopingAddress } from './ShoppingAddress'
 
 import { useNavigate } from 'react-router-dom'
+import { useCart } from 'context/cart-context'
 
 const Checkout = () => {
     const navigate = useNavigate()
+    let { cartItems } = useCart()
 
     document.title = 'Shopcek'
     return (
@@ -28,34 +30,33 @@ const Checkout = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {/* {(shopProducDetails || [])?.map((item, inx) => {
-                          return (
-                            <tr key={inx}>
-                              <td className="text-start">
-                                <div className="d-flex align-items-center gap-2">
-                                  <div className="avatar-sm flex-shrink-0">
-                                    <div className={`avatar-title bg-${item.bg}-subtle rounded-3`}>
-                                      <Image src={item.img} alt="" className="avatar-xs" />
-                                    </div>
-                                  </div>
-                                  <div className="flex-grow-1">
-                                    <h6>{item.title}</h6>
-                                    <p className="text-muted mb-0">{item.discription}</p>
-                                  </div>
-                                </div>
-                              </td>
-                              <td> ${item.rate}</td>
-                              <td> 0{item.id}</td>
-                              <td className="text-end">${item.amount}</td>
-                            </tr>
-                          )
-                        })} */}
+                                                {cartItems.map((item, inx) => {
+                                                    return (
+                                                        <tr key={inx}>
+                                                            <td className="text-start">
+                                                                <div className="d-flex align-items-center gap-2">
+                                                                    <div className="avatar-sm flex-shrink-0">
+                                                                        <div className={`avatar-title bg-${item.bg}-subtle rounded-3`}>
+                                                                            <Image src={item.product.image} alt="" className="avatar-xs" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="flex-grow-1">
+                                                                        <h6>{item.product.name}</h6>
+                                                                        {/* <p className="text-muted mb-0">{item.discription}</p> */}
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td> ${item.product.price}</td>
+                                                            {/* <td> 0{item.id}</td> */}
+                                                            <td className="text-end">${item.count}</td>
+                                                        </tr>
+                                                    )
+                                                })}
                                             </tbody>
                                         </Table>
                                     </div>
                                 </Card.Body>
                             </Card>
-                            <ShopingAddress title="Select or add an address" HomeAdd="Home Address" officeAdd="Office Address" />
                             <ShopingAddress title="Billing Address" />
                         </Col>
                         <Col lg={4}>
@@ -84,8 +85,6 @@ const Checkout = () => {
                     </Row>
                 </Container>
             </section>
-            {/* <EmailClothe />
-      <CommonService /> */}
         </React.Fragment>
     )
 }
