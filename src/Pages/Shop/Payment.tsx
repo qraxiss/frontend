@@ -6,8 +6,16 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 import { buyWithWallet } from 'lib/rainbow'
 
+import { useMutation } from 'lib/query-wrapper'
+import { newOrder } from 'lib/common-queries'
+import { useNavigate } from 'react-router-dom'
+
 const Payment = () => {
     document.title = 'Shopcek'
+
+    let newOrderGql = useMutation(newOrder)
+    let navigate = useNavigate()
+
     return (
         <React.Fragment>
             <section className="section pb-4">
@@ -64,7 +72,13 @@ const Payment = () => {
 
                                                 <div className="hstack gap-2 justify-content-end pt-4">
                                                     <ConnectButton />
-                                                    <Button variant="primary" onClick={buyWithWallet}>Pay 0.1</Button>
+                                                    <Button variant="primary" onClick={()=>{
+                                                        buyWithWallet(async ()=>{
+                                                            await newOrderGql.fn({})
+                                                            navigate('/account/order')
+
+                                                        })
+                                                    }}>Pay 0.1</Button>
                                                 </div>
 
                                                 

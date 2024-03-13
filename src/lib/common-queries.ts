@@ -166,3 +166,15 @@ export let updateRecipient = gql`
         updateRecipient(recipient: $recipient)
     }
 `
+
+export let orders = gql`
+    query {
+        orders
+    }
+`
+
+export let newOrder = gql`
+    mutation {
+        newOrder
+    }
+`

@@ -54,11 +54,15 @@ export function RainbowProvider({ children }: any) {
     )
 }
 
-export async function buyWithWallet() {
+export async function buyWithWallet(onSuccess:Function) {
     let result = await sendTransaction(wagmiConfig, {
         to: '0x670c92C292b69eBf8F1899375f67Eb5C6515BBA2',
         value: parseEther('0.01')
     })
+
+    if (result){
+        onSuccess()
+    }
 
     return result
 }

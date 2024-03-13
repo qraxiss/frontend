@@ -7,8 +7,14 @@ import { useParams } from 'react-router-dom'
 import { User } from 'Components/Images/Icons'
 import { useWishList } from 'context/wishlist'
 
+import { orders } from '../../lib/common-queries'
+
+import { useQuery } from 'lib/query-wrapper'
+
 const MyAccount = () => {
     let { section } = useParams()
+
+    let ordersGql = useQuery(orders)
 
     let { wishlist, deleteWishList } = useWishList()
 
@@ -248,44 +254,41 @@ const MyAccount = () => {
                                                         <Table className="fs-15 align-middle table-nowrap">
                                                             <thead>
                                                                 <tr>
-                                                                    <th scope="col">Order ID</th>
-                                                                    <th scope="col">Product</th>
-                                                                    <th scope="col">Date</th>
-                                                                    <th scope="col">Total Amount</th>
+                                                                    <th scope="col">Name</th>
+                                                                    <th scope="col">Size</th>
+                                                                    <th scope="col">Color</th>
                                                                     <th scope="col">Status</th>
-                                                                    <th scope="col"></th>
+                                                                    <th scope="col">Count</th>
+                                                                    <th scope="col">Price</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                {/* {(orderHistorys || [])?.map((item, inx) => {
-                                  return (
-                                    <tr key={inx}>
-                                      <td>
-                                        <Link to="#" className="text-body">
-                                          {item.orderId}
-                                        </Link>
-                                      </td>
-                                      <td>
-                                        <Link to="/product-details">
-                                          <h6 className="fs-15 mb-1">{item.title}</h6>
-                                        </Link>
-                                        <p className="mb-0 text-muted fs-13">{item.text}</p>
-                                      </td>
-                                      <td>
-                                        <span className="text-muted">{item.data}</span>
-                                      </td>
-                                      <td className="fw-medium">${item.amount}</td>
-                                      <td>
-                                        <span className={`badge bg-${item.bg}-subtle text-${item.bg}`}>{item.status}</span>
-                                      </td>
-                                      <td>
-                                        <Link to="/invoice" data-bs-toggle="modal" className="btn btn-secondary btn-sm">
-                                          Invoice
-                                        </Link>
-                                      </td>
-                                    </tr>
-                                  )
-                                })} */}
+                                                                {(ordersGql.data || []).map((item: any, inx: any) => {
+                                                                    return item.map((item2: any, inx2: any) => {
+                                                                        return (
+                                                                            <tr key={inx}>
+                                                                                <td>
+                                                                                    <h6 className="text-body">{item2.product.name}</h6>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span className="text-muted">{item2.options.size}</span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span className="text-muted">{item2.options.color} </span>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span>
+                                                                                        Draft
+                                                                                    </span>
+                                                                                </td>
+                                                                                <td className="fw-medium">{item2.count}</td>
+                                                                                <td>
+                                                                                    ${item2.count * item2.product.price}
+                                                                                </td>
+                                                                            </tr>
+                                                                        )
+                                                                    })
+                                                                })}
                                                             </tbody>
                                                         </Table>
                                                     </div>

@@ -8,10 +8,13 @@ import { useCart } from 'context/cart-context'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { buyWithWallet } from 'lib/rainbow'
+import { useMutation } from 'lib/query-wrapper'
+import { newOrder } from 'lib/common-queries'
 
 const Checkout = () => {
-    const navigate = useNavigate()
     let { cartItems } = useCart()
+    let newOrderGql = useMutation(newOrder)
+    let navigate = useNavigate()
 
     document.title = 'Shopcek'
     return (
@@ -64,8 +67,6 @@ const Checkout = () => {
                             <div className="sticky-side-div">
                                 <Shoporder subtotal="510.50" dic="18.00" charge="2.4" tax="1.6" total="630.25" />
 
-                                
-                            
                                 <div className="hstack gap-2 justify-content-between justify-content-end">
                                     <Button
                                         className="btn btn-hover btn-soft-info w-100"
@@ -75,18 +76,24 @@ const Checkout = () => {
                                     >
                                         Back To Cart <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                                     </Button>
-                                    
+
                                     <Button
-                                        className="btn btn-hover btn-primary w-100"
-                                        onClick={buyWithWallet}
+                                        variant="primary"
+                                        onClick={() => {
+                                            buyWithWallet(() => {
+                                                newOrderGql.fn({}).then(()=>{
+                                                    navigate('/account/order')
+                                                })
+                                                
+                                            })
+                                        }}
                                     >
-                                        Pay
+                                        Pay 0.1
                                     </Button>
                                 </div>
-                                
                             </div>
 
-                            <ConnectButton label='Connect Wallet'></ConnectButton>
+                            <ConnectButton label="Connect Wallet"></ConnectButton>
                         </Col>
                     </Row>
                 </Container>
