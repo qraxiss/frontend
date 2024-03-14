@@ -9,4 +9,8 @@ export type CartContextType = {
     deleteItem: (slug: string, options: any, deleteAll?: boolean) => void
     deleteAll: () => void
     cartItems: any[]
+    orderStatus: boolean
+    newOrderGql: any
+    orderGql: any
+    setOrderStatus: Function
 }

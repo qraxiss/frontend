@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug, addManyProductToCart } from '../../lib/common-queries'
-import { useQuery, useMutation, useLazyQuery } from '../../lib/query-wrapper'
+import { cartQuery, addItemToCart, deleteItemFromCart, addManyProductToCart, newOrder, orders } from '../../lib/common-queries'
+import { useQuery, useMutation } from '../../lib/query-wrapper'
 import { useUser } from '../user'
 import { isArray } from 'lodash'
 
@@ -8,7 +8,7 @@ import { deleteAll, deleteItemWrapper } from './delete'
 import { addItemWrapper } from './add'
 
 import { CartContextType } from './types'
-export type {CartContextType}
+export type { CartContextType }
 
 const CartContext = createContext<any>({})
 
@@ -17,7 +17,7 @@ export const useCart = () => {
 }
 
 export const CartProvider = ({ children }: any) => {
-    let { status, jwt } = useUser()
+    let { status, jwt, register, registerWithWallet, login, loginWithWallet } = useUser()
 
     let cartData = useQuery(cartQuery)
 
@@ -25,11 +25,29 @@ export const CartProvider = ({ children }: any) => {
     let addManyProduct = useMutation(addManyProductToCart)
     let deleteItem = useMutation(deleteItemFromCart)
 
+    let newOrderGql = useMutation(newOrder)
+    let [orderStatus, setOrderStatus] = useState(false)
+    
+    let orderGql = useQuery(orders)
+
+    useEffect(()=>{
+        if (!newOrderGql.loading && newOrderGql.data){
+            setOrderStatus(true)
+        }
+    }, [newOrderGql.loading])
+
+
+    useEffect(()=>{
+        if (orderStatus){
+            setCartItems([])
+            orderGql.refetch()
+        }
+    }, [orderStatus])
+
     const [cartItems, setCartItems] = useState<any[]>([])
     const addToCart = (newItem: any) => {
         setCartItems([...cartItems, newItem])
     }
-
 
     // let [getSingleProduct, singleProduct] = useLazyQuery(getSingleProductBySlug) as any
     let [options, setOptions] = useState<any>({})
@@ -40,37 +58,38 @@ export const CartProvider = ({ children }: any) => {
     let deleteItemFn = deleteItemWrapper(cartItems, setCartItems, deleteItem.fn)
     let deleteAllFn = deleteAll(cartItems, deleteItemFn, setCartItems)
 
-
     // store in local
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems))
     }, [cartItems])
 
+    // after register
     useEffect(() => {
-        // after register send all data to backend
         if (!jwt) {
             return
         }
 
-        if (status === 'register') {
-            addManyProduct.fn({
-                variables: {
-                    items: cartItems.map((item) => {
-                        return {
-                            slug: item.product.slug,
-                            count: item.count,
-                            options: item.options
-                        }
-                    })
-                }
-            })
+        addManyProduct.fn({
+            variables: {
+                items: cartItems.map((item) => {
+                    return {
+                        slug: item.product.slug,
+                        count: item.count,
+                        options: item.options
+                    }
+                })
+            }
+        })
+    }, [registerWithWallet?.loading, register?.loading])
+
+    // after login 
+    useEffect(() => {
+        if (!jwt) {
+            return
         }
-        //if user have a account, take all data from backend
-        else if (status === 'login') {
-            cartData.refetch()
-            setRefetch(!refetch)
-        }
-    }, [status, jwt])
+        cartData.refetch()
+        setRefetch(!refetch)
+    }, [loginWithWallet?.loading, login?.loading])
 
     // store in localstorage
 
@@ -117,13 +136,16 @@ export const CartProvider = ({ children }: any) => {
                 cartItems,
                 deleteItem: deleteItemFn,
                 addItem: addItemFn,
-                deleteAll: deleteAllFn
+                deleteAll: deleteAllFn,
+                orderStatus,
+                newOrderGql,
+                orderGql,
+                setOrderStatus
             }}
         >
             {children}
         </CartContext.Provider>
     )
 }
-
 
 // export type {CartContextType}

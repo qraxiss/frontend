@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row, Card, Button, Table, Image } from 'react-bootstrap'
 import { Shoporder } from 'Components/ShopTopBar'
 import { ShopingAddress } from './ShoppingAddress'
@@ -8,13 +8,17 @@ import { useCart } from 'context/cart'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { buyWithWallet } from 'lib/rainbow'
-import { useMutation } from 'lib/query-wrapper'
-import { newOrder } from 'lib/common-queries'
 
 const Checkout = () => {
-    let { cartItems } = useCart()
-    let newOrderGql = useMutation(newOrder)
+    let { cartItems, orderStatus, setOrderStatus, newOrderGql } = useCart()
     let navigate = useNavigate()
+
+    useEffect(()=>{
+        if (orderStatus){
+            setOrderStatus(false)
+            navigate('/account/order')
+        }
+    }, [orderStatus, newOrderGql.loading])
 
     document.title = 'Shopcek'
     return (
@@ -81,10 +85,7 @@ const Checkout = () => {
                                         variant="primary"
                                         onClick={() => {
                                             buyWithWallet(() => {
-                                                newOrderGql.fn({}).then(()=>{
-                                                    navigate('/account/order')
-                                                })
-                                                
+                                            newOrderGql.fn({})
                                             })
                                         }}
                                     >

@@ -6,15 +6,13 @@ import { useParams } from 'react-router-dom'
 
 import { User } from 'Components/Images/Icons'
 import { useWishList } from 'context/wishlist'
+import { useCart } from 'context/cart'
 
-import { orders } from '../../lib/common-queries'
-
-import { useQuery } from 'lib/query-wrapper'
 
 const MyAccount = () => {
     let { section } = useParams()
 
-    let ordersGql = useQuery(orders)
+    let {orderGql} = useCart()
 
     let { wishlist, deleteWishList } = useWishList()
 
@@ -263,7 +261,7 @@ const MyAccount = () => {
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                {(ordersGql.data || []).map((item: any, inx: any) => {
+                                                                {(orderGql.data || []).map((item: any, inx: any) => {
                                                                     return item.map((item2: any, inx2: any) => {
                                                                         return (
                                                                             <tr key={inx}>

@@ -24,13 +24,15 @@ export const Context = ({ children }: any) => {
 
     return (
         <AllContext.Provider value={allContextValue}>
-            <UserProvider>
-                <CartProvider>
-                    <UserProvider>
-                        <WishListProvider>{children}</WishListProvider>
-                    </UserProvider>
-                </CartProvider>
-            </UserProvider>
+            <CartProvider>
+                <UserProvider>
+                    <CartProvider>
+                        <UserProvider>
+                            <WishListProvider>{children}</WishListProvider>
+                        </UserProvider>
+                    </CartProvider>
+                </UserProvider>
+            </CartProvider>
         </AllContext.Provider>
     )
 }

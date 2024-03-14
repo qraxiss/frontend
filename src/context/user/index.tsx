@@ -34,6 +34,8 @@ export const UserProvider = ({ children }: any) => {
 
     let loginWithWallet = useMutation(loginWithWalletMutation)
     let registerWithWallet = useMutation(registerWithWalletMutation)
+
+
     let login = useMutation(loginMutation)
     let register = useMutation(registerMutation)
 
