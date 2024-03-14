@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { UserProvider, UserContextType, useUser } from './user-context'
+import { UserProvider, UserContextType, useUser } from './user'
 import { CartProvider, CartContextType, useCart } from './cart'
 import { WishListProvider, WishListContextType, useWishList } from './wishlist'
 

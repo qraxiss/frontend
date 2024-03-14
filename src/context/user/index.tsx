@@ -12,37 +12,13 @@ import {
 } from 'lib/common-queries'
 
 import { useMutation, useQuery } from 'lib/query-wrapper'
+import { UserContextType } from './types'
+
+export type {UserContextType}
 
 const UserContext = createContext<any>({})
 
-type recipientTpye = {
-    name: string
-    address1: string
-    address2: string
-    city: string
-    state_code: string
-    state_name: string
-    country_code: string
-    country_name: string
-    zip: string
-    phone: string
-    email: string
-}
 
-export type UserContextType = {
-    jwt: string | undefined | null
-    setJwt: Function
-    deleteJwt: Function
-    isConnected: boolean
-    status: 'login' | 'logout' | 'register' | 'public'
-    setStatus: Function
-    address: string
-    loginWithWallet: any
-    registerWithWallet: any
-    login: any
-    register: any
-    recipient: recipientTpye
-}
 
 export const useUser = () => {
     return useContext(UserContext) as UserContextType
@@ -178,8 +154,7 @@ export const UserProvider = ({ children }: any) => {
                 status,
                 setStatus,
                 recipient: recipientState
-            }}
-        >
+            }}>
             {children}
         </UserContext.Provider>
     )

@@ -6,7 +6,7 @@ import * as Yup from 'yup'
 
 import { useMutation } from 'lib/query-wrapper'
 import { login } from 'lib/common-queries'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 
 const Signin = () => {
     let { jwt, setJwt } = useUser()

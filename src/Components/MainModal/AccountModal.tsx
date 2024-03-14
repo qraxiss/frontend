@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 //img
 
-import { useUser } from '../../context/user-context'
+import { useUser } from '../../context/user'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 

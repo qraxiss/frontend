@@ -8,7 +8,7 @@ import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
 import { useCart } from 'context/cart'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 
 import { Text } from 'Components/Images/Logo'
 

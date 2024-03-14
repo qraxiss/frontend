@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Row, Col, Form, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ModalAdd } from 'Components/MainModal/DeleteModal'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 
 export const ShopingAddress = ({ title, HomeAdd, officeAdd }: any) => {
     const [addressModal, setAddressModal] = useState(false)

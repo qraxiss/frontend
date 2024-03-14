@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { cartQuery, addItemToCart, deleteItemFromCart, getSingleProductBySlug, addManyProductToCart } from '../../lib/common-queries'
 import { useQuery, useMutation, useLazyQuery } from '../../lib/query-wrapper'
-import { useUser } from '../user-context'
+import { useUser } from '../user'
 import { isArray } from 'lodash'
 
 import { deleteAll, deleteItemWrapper } from './delete'

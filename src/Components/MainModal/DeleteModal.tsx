@@ -3,7 +3,7 @@ import { Modal, Button, Form } from 'react-bootstrap'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useCart } from 'context/cart'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 import { useMutation } from 'lib/query-wrapper'
 import { updateRecipient } from 'lib/common-queries'
 

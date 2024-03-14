@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { useNavigate } from 'react-router-dom'
 
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 
 import { User } from 'Components/Images/Icons'
 

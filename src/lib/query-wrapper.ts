@@ -3,7 +3,7 @@ import { DocumentNode, MutationHookOptions, QueryHookOptions } from '@apollo/cli
 
 import config from 'config/config'
 import { simplifyResponse } from './simplify-response'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 
 export function handle(fn: CallableFunction) {
     return async (options: MutationHookOptions | QueryHookOptions) => {

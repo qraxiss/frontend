@@ -1,5 +1,5 @@
 import { useCart } from 'context/cart'
-import { useUser } from 'context/user-context'
+import { useUser } from 'context/user'
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
