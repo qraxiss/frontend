@@ -1,9 +1,9 @@
-import facebook from '../../assets/images/social/facebook.svg'
-import twitter from '../../assets/images/social/twitter.svg'
-import medium from '../../assets/images/social/medium.svg'
-import linkedin from '../../assets/images/social/linkedin.svg'
-import telegram from '../../assets/images/social/telegram.svg'
-import instagram from '../../assets/images/social/instagram.svg'
+import facebook from '../../assets/images/social/blue/facebook.svg'
+import twitter from '../../assets/images/social/blue/twitter.svg'
+import medium from '../../assets/images/social/blue/medium.svg'
+import linkedin from '../../assets/images/social/blue/linkedin.svg'
+import telegram from '../../assets/images/social/blue/telegram.svg'
+import instagram from '../../assets/images/social/blue/instagram.svg'
 import { Image } from 'react-bootstrap'
 
 export function Facebook({ className, width = '' }: { className: string; width?: string | number }) {

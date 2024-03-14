@@ -17,7 +17,7 @@ import { useCart } from 'context/cart'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 
-import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/Social'
+import { Telegram, Medium, Facebook, Instagram, Linkedin, Twitter } from 'Components/Images/BlueSocial'
 import { useWishList } from 'context/wishlist'
 
 import { colors } from 'data/colors'
