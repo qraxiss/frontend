@@ -15,7 +15,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
     return (
         <React.Fragment>
             <Container>
-                <section className="section pb-0">
+                <section className="section pb-0 slider">
                     <CommonTitle title={title} />
                     <Row>
                         <Col lg={12}>
@@ -43,7 +43,7 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                 }}
                                 loop={true}
                                 autoplay={{ delay: 2500, disableOnInteraction: false }}
-                                className="latest-slider pt-5 swiper-pointer-events"
+                                className="latest-slider swiper-pointer-events"
                             >
                                 {/* Slider sağ sol butonları */}
                                 <div

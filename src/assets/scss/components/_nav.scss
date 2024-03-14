@@ -100,13 +100,21 @@
     border-radius: 18px;
 }
 
+
+.hamburger {
+    padding-left: 10px;
+    width: 40px !important;
+    height: auto;
+}
+
+
 .nav-tabs-custom {
     border-top: 1px solid var(--#{$prefix}border-color-translucent);
     justify-content: center;
     .nav-item {
         position: relative;
-
         .nav-link {
+            font-size: 14px !important;
             border: none;
             font-weight: $font-weight-medium;
 
