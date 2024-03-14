@@ -7,7 +7,7 @@ import { CardModal } from 'Components/MainModal'
 import { withTranslation } from 'react-i18next'
 import withRouter from 'Components/withRouter'
 
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 import { useUser } from 'context/user-context'
 
 import { Text } from 'Components/Images/Logo'

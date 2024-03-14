@@ -10,7 +10,7 @@ import SimpleBar from 'simplebar-react'
 import DeleteModal from 'Components/MainModal/DeleteModal'
 
 import { useNavigate } from 'react-router-dom'
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 
 
 export const CardModal = ({ show, handleClose }: any) => {
@@ -112,7 +112,10 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                         <Button
                                                             className="plus"
                                                             onClick={() => {
-                                                                addItem(item.product.slug, item.options)
+                                                                addItem({
+                                                                    ...item,
+                                                                    count: 1
+                                                                })
                                                             }}
                                                         >
                                                             +

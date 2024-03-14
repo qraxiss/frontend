@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import { UserProvider, UserContextType, useUser } from './user-context'
-import { CartProvider, CartContextType, useCart } from './cart-context'
+import { CartProvider, CartContextType, useCart } from './cart'
 import { WishListProvider, WishListContextType, useWishList } from './wishlist'
 
 const AllContext = createContext<any>({})

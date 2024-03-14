@@ -1,4 +1,4 @@
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 import { useUser } from 'context/user-context'
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'

@@ -4,7 +4,7 @@ import { Shoporder } from 'Components/ShopTopBar'
 import { ShopingAddress } from './ShoppingAddress'
 
 import { useNavigate } from 'react-router-dom'
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { buyWithWallet } from 'lib/rainbow'
@@ -35,7 +35,7 @@ const Checkout = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {cartItems.map((item, inx) => {
+                                                {cartItems.map((item: any, inx:number) => {
                                                     return (
                                                         <tr key={inx}>
                                                             <td className="justify-center-center">

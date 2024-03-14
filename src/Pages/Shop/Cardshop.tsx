@@ -7,7 +7,7 @@ import DeleteModal from 'Components/MainModal/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 
 import config from 'config/config'
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 
 const Cardshop = () => {
     let navigate = useNavigate()
@@ -99,7 +99,10 @@ const Cardshop = () => {
                                             <Button
                                                 className="plus"
                                                 onClick={() => {
-                                                    addItem(item.product.slug, item.options)
+                                                    addItem({
+                                                        ...item,
+                                                        count: 1
+                                                    })
                                                 }}
                                             >
                                                 +

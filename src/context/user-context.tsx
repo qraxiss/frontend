@@ -86,7 +86,6 @@ export const UserProvider = ({ children }: any) => {
         try {
             disconnect(wagmiConfig)
         } catch (e: any) {
-            console.log(e)
         }
         localStorage.removeItem('jwt')
         setJwt(null)

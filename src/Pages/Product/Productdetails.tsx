@@ -13,7 +13,7 @@ import config from 'config/config'
 
 import { Slider } from 'Components/Product'
 import { products } from 'lib/common-queries'
-import { useCart } from 'context/cart-context'
+import { useCart } from 'context/cart'
 
 import { getSingleProductBySlug } from 'lib/common-queries'
 
@@ -57,12 +57,18 @@ function Sold(props: { icon?: string; className?: string }) {
 function AddToCart(props: {
     addItem: Function
     setCount: Function
-    count: number
-    slug: string
-    size: string | undefined
-    color: string | undefined
+    product: {
+        count: number
+        product: any
+        options: {
+            size: string | undefined
+            color: string | undefined
+        }
+    }
 }) {
-    const { addItem, setCount, count, slug } = props
+    const { addItem, setCount, product } = props
+
+    let { count, options } = product
 
     return (
         <div className="hstack gap-2 add-to-cart">
@@ -80,8 +86,8 @@ function AddToCart(props: {
                 variant="primary"
                 className="btn btn-hover w-100 operation"
                 onClick={() => {
-                    if (props.count >= 1 && props.size && props.color) {
-                        addItem(slug, { color: props.color, size: props.size }, props.count)
+                    if (count >= 1 && options.size && options.color) {
+                        addItem(product)
                     } else {
                     }
                 }}
@@ -316,7 +322,18 @@ const Productdetails = () => {
                         <Colors colorsList={data.color} setColor={setColor} />
                         <Variant title="Choose an option" options={data.size} option={size} setOption={setSize} />
 
-                        <AddToCart addItem={addItem} count={count} setCount={setCount} slug={slug!} size={size} color={color} />
+                        <AddToCart
+                            addItem={addItem}
+                            setCount={setCount}
+                            product={{
+                                product: data,
+                                count,
+                                options: {
+                                    size,
+                                    color
+                                }
+                            }}
+                        />
                         <AddToWishList
                             wishlistAddFn={() => {
                                 addWishList(data.slug)
