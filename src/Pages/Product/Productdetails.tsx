@@ -31,12 +31,14 @@ type resultType = {
 }
 
 function Information(props: { icon?: string; className?: string }) {
-    const {  icon } = props
+    const { icon } = props
 
     return (
         <div className={`information ${props.className}`}>
             <i className={icon ? icon : ''}></i>
-            <p><b>6</b> People watching this product now!</p>
+            <p>
+                <b>6</b> People watching this product now!
+            </p>
         </div>
     )
 }
@@ -175,12 +177,7 @@ function Categories(props: { categories: any[] }) {
 function ProductInfo(props: { price: string; name: string }) {
     const { name, price } = props
 
-    return (
-        <div className="info">
-            <span className="lh-base mb-1">{name}</span>
-            <h5 className="text-primary">${price}</h5>
-        </div>
-    )
+    return [<span className="lh-base mb-1 info">{name}</span>, <h5 className="text-primary info">${price}</h5>]
 }
 
 function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
@@ -271,15 +268,6 @@ const Productdetails = () => {
         setSliderImg(sliderProduct.filter((selectImg: any) => selectImg.id === id))
     }
 
-    //like button
-    const handleLikeIcone = (event: any) => {
-        if (event.closest('button').classList.contains('active')) {
-            event.closest('button').classList.remove('active')
-        } else {
-            event.closest('button').classList.add('active')
-        }
-    }
-
     return (
         <React.Fragment>
             <section className="section">
@@ -343,10 +331,11 @@ const Productdetails = () => {
                         />
 
                         <Information icon="bi bi-eye" />
+                        
 
-                        <Socials />
-
+                        <hr />
                         <Categories categories={!loading ? data.categories : []} />
+                        <Socials />
                     </div>
                 </Container>
             </section>
