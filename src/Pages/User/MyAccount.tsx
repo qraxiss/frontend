@@ -65,7 +65,7 @@ const MyAccount = () => {
                                             </Nav.Item>
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="order" className="fs-15" role="presentation">
-                                                    <i className="bi bi-bag align-middle me-1"></i> Order
+                                                    <i className="bi bi-bag align-middle me-1"></i> Orders
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
