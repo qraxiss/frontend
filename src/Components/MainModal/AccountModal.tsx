@@ -68,7 +68,7 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                         <Card className="border-0 mb-0">
                             <Card.Body>
                                 <p className="text-muted fs-15">Welcome to Shopcek</p>
-                                <ConnectButton></ConnectButton>
+                                <ConnectButton label='Connect Wallet'></ConnectButton>
                                 <SignMethod label="Sign in with">
                                     <div className="p-2">
                                         <Form action="#" onSubmit={formik.handleSubmit}>

@@ -71,7 +71,7 @@ const Payment = () => {
                                                 </Row>
 
                                                 <div className="hstack gap-2 justify-content-end pt-4">
-                                                    <ConnectButton />
+                                                    <ConnectButton label='Connect Wallet'/>
                                                     <Button variant="primary" onClick={()=>{
                                                         buyWithWallet(async ()=>{
                                                             await newOrderGql.fn({})
