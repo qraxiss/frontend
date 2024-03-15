@@ -57,14 +57,14 @@
 
     h5.text-primary {
         font-family: 'Montserrat';
-        font-size: 28.2px;
-        font-weight: 370;
+        font-size: 2rem;
+        font-weight: 400;
     }
 
     span.ln-base {
         font-family: 'Montserrat';
-        font-size: 28.2px;
-        font-weight: 370;
+        font-size: 2rem;
+        font-weight: 400;
     }
 }
 
@@ -82,12 +82,31 @@
     display: flex;
     flex-direction: column;
     span {
-        font-size: 28px !important;
-        font-weight: 550 !important;
+        font-size: 2.6rem !important;
+        font-weight: 500 !important;
+    }
+
+    .variant-title {
+        font-weight: 500;
+        font-size: large;
+    }
+
+    .input-step {
+        font-family: unset !important;
+
+        .form-control {
+            width: 2rem !important;
+        }
     }
 
     .operation {
         font-family: Archivo;
+        height: 3rem !important;
+        border-radius: 9px;
+
+        .text {
+            margin-bottom: -4px;
+        }
     }
 
     .wishlist {
@@ -99,16 +118,30 @@
         align-items: center;
         gap: 3rem;
         button {
-            width: 12rem;
+            width: 19rem;
+            height: 3rem;
             background-color: rgb(246, 246, 246);
             font-weight: 400;
-            border: solid 2.5px rgb(228, 228, 228);
-            color: rgb(228, 228, 228);
+            border: solid 3px rgb(228, 228, 228);
+            color: rgb(166, 166, 166);
             padding-left: 0.5rem;
+            border-radius: 10px;
+
+            #text {
+                color: rgb(166, 166, 166);
+                position: absolute;
+                top: 0.7rem;
+            }
         }
 
         .dropdown-toggle::after {
-            margin-left: 2rem;
+            color: rgb(228, 228, 228);
+            display: inline-block;
+            transform: scale(1.6, 1);
+            position: absolute;
+            top: 0.9rem;
+            right: 0.2rem;
+            font-size: 1.1rem;
         }
     }
 
@@ -116,12 +149,15 @@
         display: flex;
         gap: 1.89rem;
         align-items: center;
+
         .color {
             .rounded-circle {
                 border: 1px solid #3b3f41 !important;
             }
 
             label {
+                height: 25px;
+                width: 25px;
                 margin-bottom: 0px !important;
             }
         }
@@ -129,8 +165,6 @@
 }
 
 .sold {
-    background-color: rgba(0, 0, 0, 0) !important;
-    border-radius: 15px;
     height: 40px;
     justify-content: start;
     align-items: center;
@@ -138,12 +172,18 @@
     gap: 0.2rem;
     flex-direction: row;
 
+    font-size: 16.6px !important;
+    color: #a6a6a6;
+
+    b {
+        color: black;
+    }
+
     p {
         margin-top: 18px;
     }
 
     .bi-fire {
-        padding-left: 1rem;
         color: $secondary;
     }
 }
@@ -151,7 +191,12 @@
 .information {
     p {
         padding-top: 15px;
-        font-size: 15px;
+        font-size: 16.6px !important;
+        color: #a6a6a6;
+
+        b {
+            color: black;
+        }
     }
 
     width: 130%;
@@ -165,6 +210,8 @@
 
     .bi-eye {
         padding-left: 1rem;
+        color: $secondary;
+        font-size: x-large;
     }
 }
 
@@ -183,9 +230,16 @@
 }
 
 .wishlist {
-    display: flex;
     gap: 0.5rem;
     cursor: pointer;
+    text-align: center;
+    display: flex;
+    font-weight: 500;
+
+    p {
+        margin-top: unset !important;
+        margin-bottom: unset !important;
+    }
 }
 
 .options {

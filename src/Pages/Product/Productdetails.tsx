@@ -30,13 +30,13 @@ type resultType = {
     images: { url: string }[]
 }
 
-function Information(props: { text: string; icon?: string; className?: string }) {
-    const { text, icon } = props
+function Information(props: { icon?: string; className?: string }) {
+    const {  icon } = props
 
     return (
         <div className={`information ${props.className}`}>
             <i className={icon ? icon : ''}></i>
-            <p>{text}</p>
+            <p><b>6</b> People watching this product now!</p>
         </div>
     )
 }
@@ -72,7 +72,7 @@ function AddToCart(props: {
 
     return (
         <div className="hstack gap-2 add-to-cart">
-            <div className="input-step ms-2">
+            <div className="input-step ms-2 operation">
                 <Button className="minus" onClick={() => setCount(count - 1)}>
                     -
                 </Button>
@@ -92,10 +92,10 @@ function AddToCart(props: {
                     }
                 }}
             >
-                Add To Cart
+                <div className="text">Add To Cart</div>
             </Button>
             <Button variant="secondary" className="btn btn-hover w-100 h-10 operation">
-                Buy Now
+                <div className="text">Buy Now</div>
             </Button>
         </div>
     )
@@ -104,7 +104,7 @@ function AddToCart(props: {
 function Colors({ colorsList, setColor }: { colorsList: string[]; setColor: Function }) {
     return (
         <div className="colors">
-            Color:
+            <div className="variant-title">Color :</div>
             <ul className="clothe-colors list-unstyled hstack gap-1 mb-0 flex-wrap ms-2">
                 {colorsList.map((color) => {
                     return (
@@ -186,7 +186,7 @@ function ProductInfo(props: { price: string; name: string }) {
 function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
     return (
         <div className="wishlist" onClick={wishlistAddFn}>
-            <i className="bi bi-arrow-through-heart" />
+            <i className="bi bi-heart" />
             <p>Add to wishlist!</p>
         </div>
     )
@@ -195,9 +195,11 @@ function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
 function Variant({ title, options, setOption, option }: { title: string; options: string[]; option: string | undefined; setOption: Function }) {
     return (
         <div className="dropdown">
-            Size:
+            <div className="variant-title">Size :</div>
             <Dropdown>
-                <Dropdown.Toggle variant="">{option || title}</Dropdown.Toggle>
+                <Dropdown.Toggle variant="">
+                    <div id="text">{option || title}</div>
+                </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                     {options.map((option) => {
@@ -208,7 +210,7 @@ function Variant({ title, options, setOption, option }: { title: string; options
                                     setOption(option)
                                 }}
                             >
-                                {option}
+                                <div id="text">{option}</div>
                             </Dropdown.Item>
                         )
                     })}
@@ -316,7 +318,7 @@ const Productdetails = () => {
                     </div>
 
                     <div className="product-details">
-                        <ProductInfo price={data.price} name={data.name} />
+                        <ProductInfo price={data.price.toFixed(2)} name={data.name} />
 
                         <Sold icon="bi bi-fire" />
                         <Colors colorsList={data.color} setColor={setColor} />
@@ -340,7 +342,7 @@ const Productdetails = () => {
                             }}
                         />
 
-                        <Information text="6 People watching this product now!" icon="bi bi-eye" />
+                        <Information icon="bi bi-eye" />
 
                         <Socials />
 
