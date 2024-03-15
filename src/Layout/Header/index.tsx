@@ -28,11 +28,6 @@ const Header = (props: any) => {
     const handlecardClose = () => setCard(false)
     const handlecardShow = () => setCard(true)
 
-    //account modal
-    const [account, setAccount] = useState(false)
-    const handleAccountClose = () => setAccount(false)
-    const handleAccountShow = () => setAccount(true)
-
     return (
         <React.Fragment>
             <Navbar className="navbar-expand-lg ecommerce-navbar" id="navbar" expanded={false}>
@@ -46,13 +41,12 @@ const Header = (props: any) => {
 
                     <div className="bg-overlay navbar-overlay" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent.show"></div>
                     <div className="d-flex align-items-center">
-                        {jwt ? [<Account />, <WishList />] : <SignInUp handlecardShow={handleAccountShow} />}
+                        {jwt ? [<Account />, <WishList />] : <SignInUp />}
                         <Cart handlecardShow={handlecardShow} />
                     </div>
                 </Container>
             </Navbar>
             <CardModal show={card} handleClose={handlecardClose} />
-            <AccountModal show={account} setShow={setAccount} handleClose={handleAccountClose}></AccountModal>
 
             <Navbar className="navbar-expand-lg ecommerce-navbar bottom-navbar" id="navbar" expanded={false}>
                 <Container className="navbar-nav">

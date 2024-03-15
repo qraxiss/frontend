@@ -5,9 +5,10 @@ import { Dropdown, Form, Button } from 'react-bootstrap'
 import { User } from 'Components/Images/Icons'
 import { useUser } from 'context/user'
 
+import { useConnectModal } from '@rainbow-me/rainbowkit'
+
 export function Account() {
     let navigate = useNavigate()
-
     let { address, me } = useUser()
 
     return (
@@ -90,7 +91,9 @@ export function Account() {
     )
 }
 
-export function SignInUp(props: { handlecardShow: any }) {
+export function SignInUp() {
+    let {openConnectModal} = useConnectModal()
+
     return (
         <div className="topbar-head-dropdown ms-1 header-item">
             <Button
@@ -99,7 +102,7 @@ export function SignInUp(props: { handlecardShow: any }) {
                 data-bs-toggle="offcanvas"
                 data-bs-target="#ecommerceCart"
                 aria-controls="ecommerceCart"
-                onClick={props.handlecardShow}
+                onClick={openConnectModal}
             >
                 <User className="rounded-circle header-profile-user" />
             </Button>
