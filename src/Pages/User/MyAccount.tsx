@@ -19,14 +19,14 @@ const MyAccount = () => {
     return (
         <React.Fragment>
             <section className="position-relative">
-                <div className="profile-basic position-relative">
+                {/* <div className="profile-basic position-relative">
                     <div className="bg-overlay bg-primary"></div>
-                </div>
+                </div> */}
                 <Container>
                     <Row>
                         <Col lg={12}>
                             <div className="pt-3">
-                                <div className="mt-n5 d-flex gap-3 flex-wrap align-items-end">
+                                <div className="d-flex gap-3 flex-wrap align-items-center">
                                     <User className="avatar-xl p-1 bg-light mt-n3" />
                                     <div>
                                         <h5 className="fs-18">{`${'name'} ${'surname'}`}</h5>
@@ -55,12 +55,7 @@ const MyAccount = () => {
                                         <Nav variant="pills" className="flex-column gap-3">
                                             <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="profile" className="fs-15" role="presentation">
-                                                    <i className="bi bi-person-circle align-middle me-1"></i> Account Info
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="xp-points" className="fs-15" role="presentation">
-                                                    <i className="bi bi-coin align-middle me-1"></i> XP Points
+                                                    <i className="bi bi-person-circle align-middle me-1"></i> Account Details
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
@@ -74,8 +69,18 @@ const MyAccount = () => {
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="setting" className="fs-15" role="presentation">
-                                                    <i className="bi bi-gear align-middle me-1"></i> Settings
+                                                <Nav.Link as="a" eventKey="address" className="fs-15" role="presentation">
+                                                    <i className="bi bi-building-add align-middle me-1"></i> Address
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="xp-points" className="fs-15" role="presentation">
+                                                    <i className="bi bi-coin align-middle me-1"></i> XP Points
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="stake" className="fs-15" role="presentation">
+                                                    <i className="bi bi-piggy-bank align-middle me-1"></i> Stake
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
@@ -89,75 +94,6 @@ const MyAccount = () => {
                             </Col>
                             <Col sm={9}>
                                 <Tab.Content>
-                                    <Tab.Pane eventKey="profile">
-                                        <div className="tab-pane fade show active" id="custom-v-pills-profile" role="tabpanel">
-                                            <Row>
-                                                <Col lg={12}>
-                                                    <Card>
-                                                        <Card.Body>
-                                                            <div className="d-flex mb-4">
-                                                                <h6 className="fs-16 text-decoration-underline flex-grow-1 mb-0">Personal Info</h6>
-                                                                <div className="flex-shrink-0">
-                                                                    <Link to="#" className="badge bg-dark-subtle text-body">
-                                                                        Edit
-                                                                    </Link>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="table-responsive table-card px-1">
-                                                                <Table className="table-borderless table-sm">
-                                                                    {/* <tbody>
-                                                                        <tr>
-                                                                            <td>Customer Name</td>
-                                                                            <td className="fw-medium">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Email Address</td>
-                                                                            <td className="fw-medium">{`${data?.accountInformation?.email}`}</td>
-                                                                        </tr>
-                                                                    </tbody> */}
-                                                                </Table>
-                                                            </div>
-
-                                                            <div className="mt-4">
-                                                                <h6 className="fs-16 text-decoration-underline">Billing &amp; Shipping Address</h6>
-                                                            </div>
-                                                            <Row className="mt-4">
-                                                                {/* {data?.accountInformation?.addresses?.map((address: any) => {
-                                                                    return (
-                                                                        <Col md={6} key={address.id}>
-                                                                            <Card className="mb-0">
-                                                                                <Card.Body>
-                                                                                    <div className="float-end clearfix">
-                                                                                        {' '}
-                                                                                        <Link
-                                                                                            to="/shop/address"
-                                                                                            className="badge bg-primary-subtle text-primary"
-                                                                                        >
-                                                                                            <i className="ri-pencil-fill align-bottom me-1"></i> Edit
-                                                                                        </Link>{' '}
-                                                                                    </div>
-                                                                                    <div>
-                                                                                        <p className="mb-3 fw-semibold fs-12 d-block text-muted text-uppercase">
-                                                                                            {address.addressName}
-                                                                                        </p>
-                                                                                        <h6 className="fs-14 mb-2 d-block">{`${data?.accountInformation?.name} ${data?.accountInformation?.surname}`}</h6>
-                                                                                        <span className="text-muted fw-normal text-wrap mb-1 d-block">
-                                                                                            {`${address.country}/ ${address.city}/ ${address.zipCode}/ ${address.addressLine1}/ ${address.addressLine2}`}
-                                                                                        </span>
-                                                                                    </div>
-                                                                                </Card.Body>
-                                                                            </Card>
-                                                                        </Col>
-                                                                    )
-                                                                })} */}
-                                                            </Row>
-                                                        </Card.Body>
-                                                    </Card>
-                                                </Col>
-                                            </Row>
-                                        </div>
-                                    </Tab.Pane>
                                     <Tab.Pane eventKey="list">
                                         <div className="tab-pane fade show" id="custom-v-pills-list" role="tabpanel">
                                             <Row>
@@ -201,9 +137,7 @@ const MyAccount = () => {
                                                                                     </td>
                                                                                     <td>${item.price}</td>
                                                                                     <td>
-                                                                                        <span
-                                                                                        // className={`badge bg-${item.color}-subtle text-${item.color}`}
-                                                                                        >
+                                                                                        <span>
                                                                                             {/* {item.status} */}
                                                                                         </span>
                                                                                     </td>
@@ -304,7 +238,7 @@ const MyAccount = () => {
                                             </Card>
                                         </div>
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="setting">
+                                    <Tab.Pane eventKey="profile">
                                         <div className="tab-pane fade show" id="custom-v-pills-setting" role="tabpanel">
                                             <Row>
                                                 <Col lg={12}>

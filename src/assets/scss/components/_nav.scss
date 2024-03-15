@@ -74,7 +74,14 @@
     .show > .nav-link {
         box-shadow: $element-shadow;
     }
+
+
+    .nav-link.active {
+        background-color: $secondary;
+    }
 }
+
+
 
 .pages {
     display: flex;

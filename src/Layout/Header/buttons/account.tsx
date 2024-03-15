@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
-import { Dropdown, Form, Button } from "react-bootstrap"
+import { Dropdown, Form, Button } from 'react-bootstrap'
 
-import { User } from "Components/Images/Icons"
-import { useUser } from "context/user"
+import { User } from 'Components/Images/Icons'
+import { useUser } from 'context/user'
 
 export function Account() {
     let navigate = useNavigate()
 
-    let {address, me} = useUser()
+    let { address, me } = useUser()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
@@ -23,7 +23,9 @@ export function Account() {
                             <User className="rounded-circle header-profile-user" />
                             <div className="user-info">
                                 <span>{me.username}</span>
-                                <span>{address.slice(0,6)}...{address.slice(address.length-3, address.length)}</span>
+                                <span>
+                                    {address.slice(0, 6)}...{address.slice(address.length - 3, address.length)}
+                                </span>
                             </div>
                         </div>
                     </Dropdown.Item>
@@ -55,9 +57,11 @@ export function Account() {
 
                     <div className="dropdown-divider"></div>
 
-                    <Dropdown.Item                         onClick={() => {
+                    <Dropdown.Item
+                        onClick={() => {
                             navigate('/account/xp-points')
-                        }}>
+                        }}
+                    >
                         <div className="xp-points">
                             <span className="align-middle">XP Points</span>
                             1.000.000
