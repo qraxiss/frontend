@@ -23,7 +23,9 @@ export function Account() {
                         <div className="user">
                             <User className="rounded-circle header-profile-user" />
                             <div className="user-info">
-                                <span>{me.username}</span>
+                                <span>
+                                    {address.slice(0, 6)}...{address.slice(address.length - 3, address.length)}
+                                </span>
                                 <span>
                                     {address.slice(0, 6)}...{address.slice(address.length - 3, address.length)}
                                 </span>
@@ -45,7 +47,7 @@ export function Account() {
                             navigate('/account/order')
                         }}
                     >
-                        <span className="align-middle">My Orders</span>
+                        <span className="align-middle">Orders</span>
                     </Dropdown.Item>
 
                     <Dropdown.Item
