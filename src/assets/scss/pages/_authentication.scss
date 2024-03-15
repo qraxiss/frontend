@@ -152,6 +152,20 @@
     }
 }
 
+.auth-card {
+    .card-body {
+        padding: 0px !important;
+
+        .mt-5 {
+            margin-top: 1rem !important;
+        }
+
+        .sign {
+            cursor: pointer;
+        }
+    }
+}
+
 .auth-page-wrapper {
     padding: 90px 0 80px;
 

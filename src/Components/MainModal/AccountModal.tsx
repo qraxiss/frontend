@@ -15,7 +15,7 @@ const SignMethod = ({ children, label }: { children: any; label: string }) => {
     return (
         <div className="mt-4 pt-2 text-center sign-with">
             <div className="signin-other-title">
-                <h5 className="fs-13 mb-4 title">{label}</h5>
+                <h5 className="fs-13 title">{label}</h5>
             </div>
 
             <div className="pt-2 hstack gap-2 justify-content-center">{children}</div>
@@ -129,7 +129,7 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                             </div>
                                         </Form>
                                         <div className="text-center mt-5">
-                                            <p className="mb-0">
+                                            <p className="mb-0 sign">
                                                 Don't have an account ?
                                                 <div
                                                     className="fw-semibold text-secondary text-decoration-underline"
@@ -137,7 +137,7 @@ const SignIn = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                                         setSign(false)
                                                     }}
                                                 >
-                                                    SignUp
+                                                    Sign Up
                                                 </div>
                                             </p>
                                         </div>
@@ -191,9 +191,9 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
 
     const formik = useFormik({
         initialValues: {
-            email: 'user@shopcek.com',
-            username: 'iLoveCrypto',
-            password: 'highSecurityPass@123'
+            email: '',
+            username: '',
+            password: ''
         },
         validationSchema: Yup.object({
             email: Yup.string()
@@ -292,7 +292,7 @@ const SignUp = ({ setSign, show, setShow }: { setSign: Function; show: boolean; 
                                             </div>
 
                                             <div className="text-center mt-5">
-                                                <p className="mb-0">
+                                                <p className="mb-0 sign">
                                                     Already have an account ?
                                                     <div
                                                         className="fw-semibold text-secondary text-decoration-underline"
