@@ -13,7 +13,7 @@ export function WishList() {
                 data-bs-toggle="offcanvas"
                 data-bs-target="#ecommerceCart"
                 aria-controls="ecommerceCart"
-                to="/account/list"
+                to="/account/wishlist"
             >
                 <Wishlist className="rounded-circle header-profile-user" />
                 <span className="position-absolute topbar-badge cartitem-badge fs-10 translate-middle badge rounded-pill bg-primary">

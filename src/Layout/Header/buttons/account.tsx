@@ -52,7 +52,7 @@ export function Account() {
 
                     <Dropdown.Item
                         onClick={() => {
-                            navigate('/account/list')
+                            navigate('/account/wishlist')
                         }}
                     >
                         <span className="align-middle">Wishlist</span>

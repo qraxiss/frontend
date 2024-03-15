@@ -16,7 +16,7 @@ import WishList from 'Pages/Shop/WhishList'
 import Defaultgrid from 'Pages/Product/Grid/Default'
 
 //pages /user
-import MyAccount from 'Pages/User/MyAccount'
+import Account from 'Pages/User/Account'
 import SignUp from 'Pages/User/SignUp'
 import Signin from 'Pages/User/SignIn'
 import Passwordreset from 'Pages/User/Passwordreset'
@@ -47,8 +47,8 @@ const authProtectedRoutes = [
 
     { path: '/earn', component: <Earn /> },
 
-    { path: '/account', component: <MyAccount /> },
-    { path: '/account/:section', component: <MyAccount /> },
+    { path: '/account', component: <Account /> },
+    { path: '/account/:section', component: <Account /> },
     { path: '/', component: <Home /> },
     { path: '/about-us', component: <About /> },
     { path: '/contact', component: <ContactUs /> },
