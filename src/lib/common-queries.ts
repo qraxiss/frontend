@@ -178,3 +178,12 @@ export let newOrder = gql`
         newOrder
     }
 `
+
+export let me = gql`
+    query {
+        me {
+            username
+            email
+        }
+    }
+`

@@ -8,7 +8,8 @@ import {
     registerWithWallet as registerWithWalletMutation,
     login as loginMutation,
     register as registerMutation,
-    recipient as recipientQuery
+    recipient as recipientQuery,
+    me as meQuery
 } from 'lib/common-queries'
 
 import { useMutation, useQuery } from 'lib/query-wrapper'
@@ -53,12 +54,23 @@ export const UserProvider = ({ children }: any) => {
         email: ''
     })
     let recipient = useQuery(recipientQuery)
-
     useEffect(() => {
         if (recipient.data && !recipient.loading) {
             setRecipientState(recipient.data)
         }
     }, [recipient.loading])
+
+
+    let [meState, setMeState] = useState({
+        username: '',
+        email: ''
+    })
+    let me = useQuery(meQuery)
+    useEffect(() => {
+        if (me.data && !me.loading) {
+            setMeState(me.data)
+        }
+    }, [me.loading])
 
     let deleteJwt = () => {
         try {
@@ -155,7 +167,8 @@ export const UserProvider = ({ children }: any) => {
                 registerWithWallet,
                 status,
                 setStatus,
-                recipient: recipientState
+                recipient: recipientState,
+                me: meState
             }}>
             {children}
         </UserContext.Provider>

@@ -25,4 +25,5 @@ export type UserContextType = {
     login: any
     register: any
     recipient: recipientTpye
+    me: any
 }

@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom"
 import { Dropdown, Form, Button } from "react-bootstrap"
 
 import { User } from "Components/Images/Icons"
+import { useUser } from "context/user"
 
 export function Account() {
     let navigate = useNavigate()
+
+    let {address, me} = useUser()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
@@ -19,8 +22,8 @@ export function Account() {
                         <div className="user">
                             <User className="rounded-circle header-profile-user" />
                             <div className="user-info">
-                                <span>username</span>
-                                <span>walletAddress</span>
+                                <span>{me.username}</span>
+                                <span>{address.slice(0,6)}...{address.slice(address.length-3, address.length)}</span>
                             </div>
                         </div>
                     </Dropdown.Item>
@@ -36,7 +39,7 @@ export function Account() {
 
                     <Dropdown.Item
                         onClick={() => {
-                            navigate('/account/orders')
+                            navigate('/account/order')
                         }}
                     >
                         <span className="align-middle">My Orders</span>
@@ -52,7 +55,9 @@ export function Account() {
 
                     <div className="dropdown-divider"></div>
 
-                    <Dropdown.Item>
+                    <Dropdown.Item                         onClick={() => {
+                            navigate('/account/xp-points')
+                        }}>
                         <div className="xp-points">
                             <span className="align-middle">XP Points</span>
                             1.000.000
@@ -66,17 +71,6 @@ export function Account() {
                         </span>
                         <Form.Check type="switch" />
                     </div>
-
-                    <Dropdown.Item
-                        onClick={() => {
-                            navigate('/account')
-                        }}
-                    >
-                        <span className="align-middle" data-key="t-logout">
-                            Settings
-                        </span>
-                    </Dropdown.Item>
-
                     <Dropdown.Item
                         onClick={() => {
                             navigate('/logout')

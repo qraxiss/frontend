@@ -25,7 +25,6 @@ export function Socials() {
             <Link to={'/'}>
                 <Discord className="footer-social-icon" width={48} />
             </Link>
-
         </div>
     )
 }

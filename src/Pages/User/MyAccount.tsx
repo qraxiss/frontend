@@ -59,6 +59,11 @@ const MyAccount = () => {
                                                 </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item as="li">
+                                                <Nav.Link as="a" eventKey="xp-points" className="fs-15" role="presentation">
+                                                    <i className="bi bi-coin align-middle me-1"></i> XP Points
+                                                </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item as="li">
                                                 <Nav.Link as="a" eventKey="list" className="fs-15" role="presentation">
                                                     <i className="bi bi-bookmark-check align-middle me-1"></i> Wish list
                                                 </Nav.Link>
