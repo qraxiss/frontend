@@ -7,12 +7,13 @@ import { useParams } from 'react-router-dom'
 import { User } from 'Components/Images/Icons'
 import { useWishList } from 'context/wishlist'
 import { useCart } from 'context/cart'
-
+import { useUser } from 'context/user'
 
 const MyAccount = () => {
     let { section } = useParams()
+    let {address} = useUser()
 
-    let {orderGql} = useCart()
+    let { orderGql } = useCart()
 
     let { wishlist, deleteWishList } = useWishList()
 
@@ -29,13 +30,14 @@ const MyAccount = () => {
                                 <div className="d-flex gap-3 flex-wrap align-items-center">
                                     <User className="avatar-xl p-1 bg-light mt-n3" />
                                     <div>
-                                        <h5 className="fs-18">{`${'name'} ${'surname'}`}</h5>
-                                        <div className="text-muted">
-                                            <i className="bi bi-geo-alt"></i> Phoenix, USA
+                                        <h5 className="fs-18">{address.slice(0,6)}...{address.slice(address.length - 6, address.length)} <div className="edit">
+                                        <i className="bi bi-pen"></i> <p>
+                                        change username</p></div></h5>
+                                        <div className="text-muted"> {address.slice(0,6)}...{address.slice(address.length - 6, address.length)}
                                         </div>
                                     </div>
                                     <div className="ms-md-auto">
-                                        <Link to="/product-list" className="btn btn-success btn-hover">
+                                        <Link to="/product-list" className="btn btn-primary btn-hover">
                                             <i className="bi bi-cart4 me-1 align-middle"></i> Shopping Now
                                         </Link>
                                     </div>
@@ -137,9 +139,7 @@ const MyAccount = () => {
                                                                                     </td>
                                                                                     <td>${item.price}</td>
                                                                                     <td>
-                                                                                        <span>
-                                                                                            {/* {item.status} */}
-                                                                                        </span>
+                                                                                        <span>{/* {item.status} */}</span>
                                                                                     </td>
                                                                                     <td>
                                                                                         <ul className="list-unstyled d-flex gap-3 mb-0">
@@ -214,14 +214,10 @@ const MyAccount = () => {
                                                                                     <span className="text-muted">{item2.options.color} </span>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <span>
-                                                                                        Draft
-                                                                                    </span>
+                                                                                    <span>Draft</span>
                                                                                 </td>
                                                                                 <td className="fw-medium">{item2.count}</td>
-                                                                                <td>
-                                                                                    ${item2.count * item2.product.price}
-                                                                                </td>
+                                                                                <td>${item2.count * item2.product.price}</td>
                                                                             </tr>
                                                                         )
                                                                     })
@@ -256,7 +252,6 @@ const MyAccount = () => {
                                                                                 type="text"
                                                                                 id="firstnameInput"
                                                                                 placeholder="Enter your firstname"
-                                                                                defaultValue="Raquel"
                                                                                 name="firstname"
                                                                             />
                                                                         </div>
@@ -268,7 +263,6 @@ const MyAccount = () => {
                                                                                 type="text"
                                                                                 id="lastnameInput"
                                                                                 placeholder="Enter your lastname"
-                                                                                defaultValue="Murillo"
                                                                                 name="lastname"
                                                                             />
                                                                         </div>
@@ -280,7 +274,6 @@ const MyAccount = () => {
                                                                                 type="text"
                                                                                 id="phonenumberInput"
                                                                                 placeholder="Enter your phone number"
-                                                                                defaultValue="+(253) 01234 5678"
                                                                                 name="phno"
                                                                             />
                                                                         </div>
@@ -292,7 +285,6 @@ const MyAccount = () => {
                                                                                 type="email"
                                                                                 id="emailInput"
                                                                                 placeholder="Enter your email"
-                                                                                defaultValue="raque@toner.com"
                                                                                 name="email"
                                                                             />
                                                                         </div>
@@ -300,13 +292,7 @@ const MyAccount = () => {
                                                                     <Col lg={4}>
                                                                         <div className="mb-3">
                                                                             <Form.Label htmlFor="cityInput">City</Form.Label>
-                                                                            <Form.Control
-                                                                                type="text"
-                                                                                id="cityInput"
-                                                                                placeholder="City"
-                                                                                defaultValue="Phoenix"
-                                                                                name="city"
-                                                                            />
+                                                                            <Form.Control type="text" id="cityInput" placeholder="City" name="city" />
                                                                         </div>
                                                                     </Col>
                                                                     <Col lg={4}>
@@ -316,7 +302,6 @@ const MyAccount = () => {
                                                                                 type="text"
                                                                                 id="countryInput"
                                                                                 placeholder="Country"
-                                                                                defaultValue="USA"
                                                                                 name="country"
                                                                             />
                                                                         </div>
@@ -330,7 +315,6 @@ const MyAccount = () => {
                                                                                 maxLength={6}
                                                                                 id="zipcodeInput"
                                                                                 placeholder="Enter zipcode"
-                                                                                defaultValue="90011"
                                                                                 name="zip"
                                                                             />
                                                                         </div>
@@ -342,185 +326,14 @@ const MyAccount = () => {
                                                                                 name="desc"
                                                                                 as="textarea"
                                                                                 id="exampleFormControlTextarea"
-                                                                                placeholder="Enter your description"
+                                                                                placeholder="Enter your address"
                                                                                 rows={3}
-                                                                                defaultValue="Hi I'm Raquel Murillo, It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is European languages are members of the same family."
                                                                             ></Form.Control>
                                                                         </div>
                                                                     </Col>
                                                                 </Row>
                                                             </form>
-                                                            <div className="mb-3" id="changePassword">
-                                                                <h5 className="fs-16 text-decoration-underline mb-4">Change Password</h5>
-                                                                <form action="#">
-                                                                    <Row className="g-2">
-                                                                        <Col lg={4}>
-                                                                            <div>
-                                                                                <Form.Label htmlFor="oldpasswordInput">Old Password*</Form.Label>
-                                                                                <Form.Control
-                                                                                    type="password"
-                                                                                    id="oldpasswordInput"
-                                                                                    placeholder="Enter current password"
-                                                                                    name="opassword"
-                                                                                    autoComplete="off"
-                                                                                />
-                                                                            </div>
-                                                                        </Col>
-                                                                        <Col lg={4}>
-                                                                            <div>
-                                                                                <Form.Label htmlFor="newpasswordInput">New Password*</Form.Label>
-                                                                                <Form.Control
-                                                                                    type="password"
-                                                                                    id="newpasswordInput"
-                                                                                    placeholder="Enter new password"
-                                                                                    name="npassword"
-                                                                                    autoComplete="off"
-                                                                                />
-                                                                            </div>
-                                                                        </Col>
-                                                                        <Col lg={4}>
-                                                                            <div>
-                                                                                <Form.Label htmlFor="confirmpasswordInput">
-                                                                                    Confirm Password*
-                                                                                </Form.Label>
-                                                                                <Form.Control
-                                                                                    type="password"
-                                                                                    id="confirmpasswordInput"
-                                                                                    placeholder="Confirm password"
-                                                                                    name="cpassword"
-                                                                                    autoComplete="off"
-                                                                                />
-                                                                            </div>
-                                                                        </Col>
-                                                                        <Col lg={12}>
-                                                                            <div className="mb-3">
-                                                                                <Link
-                                                                                    to="/auth-pass-reset-basic"
-                                                                                    className="link-primary text-decoration-underline"
-                                                                                >
-                                                                                    Forgot Password ?
-                                                                                </Link>
-                                                                            </div>
-                                                                        </Col>
-                                                                    </Row>
-                                                                </form>
-                                                            </div>
-                                                            <div className="mb-3" id="privacy">
-                                                                <h5 className="fs-16 text-decoration-underline mb-4">Privacy Policy</h5>
-                                                                <div className="mb-3">
-                                                                    <h5 className="fs-15 mb-2">Security:</h5>
-                                                                    <div className="d-flex flex-column align-items-center flex-sm-row mb-sm-0">
-                                                                        <div className="flex-grow-1">
-                                                                            <p className="text-muted fs-14 mb-0">Two-factor Authentication</p>
-                                                                        </div>
-                                                                        <div className="flex-shrink-0 ms-sm-3">
-                                                                            <Link to="#" className="btn btn-sm btn-primary">
-                                                                                Enable Two-facor Authentication
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="d-flex flex-column align-items-center flex-sm-row mb-sm-0 mt-2">
-                                                                        <div className="flex-grow-1">
-                                                                            <p className="text-muted fs-14 mb-0">Secondary Verification</p>
-                                                                        </div>
-                                                                        <div className="flex-shrink-0 ms-sm-3">
-                                                                            <Link to="#" className="btn btn-sm btn-primary">
-                                                                                Set up secondary method
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="d-flex flex-column align-items-center flex-sm-row mb-sm-0 mt-2">
-                                                                        <div className="flex-grow-1">
-                                                                            <p className="text-muted fs-14 mb-0">Backup Codes</p>
-                                                                        </div>
-                                                                        <div className="flex-shrink-0 ms-sm-3">
-                                                                            <Link to="#" className="btn btn-sm btn-primary">
-                                                                                Generate backup codes
-                                                                            </Link>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="mb-3">
-                                                                    <h5 className="fs-15 mb-2">Application Notifications:</h5>
-                                                                    <ul className="list-unstyled mb-0">
-                                                                        <li className="d-flex">
-                                                                            <div className="flex-grow-1">
-                                                                                <Form.Label
-                                                                                    htmlFor="directMessage"
-                                                                                    className="form-check-label fs-14"
-                                                                                >
-                                                                                    Direct messages
-                                                                                </Form.Label>
-                                                                            </div>
-                                                                            <div className="flex-shrink-0">
-                                                                                <div className="form-check form-switch">
-                                                                                    <Form.Check type="switch" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li className="d-flex mt-2">
-                                                                            <div className="flex-grow-1">
-                                                                                <Form.Label
-                                                                                    className="form-check-label fs-14"
-                                                                                    htmlFor="desktopNotification"
-                                                                                >
-                                                                                    Show desktop notifications
-                                                                                </Form.Label>
-                                                                            </div>
-                                                                            <div className="flex-shrink-0">
-                                                                                <div className="form-check form-switch">
-                                                                                    <Form.Check type="switch" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li className="d-flex mt-2">
-                                                                            <div className="flex-grow-1">
-                                                                                <Form.Label
-                                                                                    className="form-check-label fs-14"
-                                                                                    htmlFor="emailNotification"
-                                                                                >
-                                                                                    Show email notifications
-                                                                                </Form.Label>
-                                                                            </div>
-                                                                            <div className="flex-shrink-0">
-                                                                                <div className="form-check form-switch">
-                                                                                    <Form.Check type="switch" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li className="d-flex mt-2">
-                                                                            <div className="flex-grow-1">
-                                                                                <Form.Label
-                                                                                    className="form-check-label fs-14"
-                                                                                    htmlFor="chatNotification"
-                                                                                >
-                                                                                    Show chat notifications
-                                                                                </Form.Label>
-                                                                            </div>
-                                                                            <div className="flex-shrink-0">
-                                                                                <div className="form-check form-switch">
-                                                                                    <Form.Check type="switch" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                        <li className="d-flex mt-2">
-                                                                            <div className="flex-grow-1">
-                                                                                <Form.Label
-                                                                                    className="form-check-label fs-14"
-                                                                                    htmlFor="purchaesNotification"
-                                                                                >
-                                                                                    Show purchase notifications
-                                                                                </Form.Label>
-                                                                            </div>
-                                                                            <div className="flex-shrink-0">
-                                                                                <div className="form-check form-switch">
-                                                                                    <Form.Check type="switch" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
+
                                                             <div className="text-sm-end">
                                                                 <Link to="#" className="btn btn-secondary d-block d-sm-inline-block">
                                                                     <i className="ri-edit-box-line align-middle me-2"></i> Update Profile
