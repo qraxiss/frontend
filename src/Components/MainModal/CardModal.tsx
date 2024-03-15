@@ -12,10 +12,9 @@ import DeleteModal from 'Components/MainModal/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart'
 
-function formatNumber(num:number) {
-    return num.toFixed(2);
+function formatNumber(num: number) {
+    return num.toFixed(2)
 }
-
 
 export const CardModal = ({ show, handleClose }: any) => {
     let navigate = useNavigate()

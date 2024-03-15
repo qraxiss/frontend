@@ -75,13 +75,10 @@
         box-shadow: $element-shadow;
     }
 
-
     .nav-link.active {
         background-color: $secondary;
     }
 }
-
-
 
 .pages {
     display: flex;
@@ -107,13 +104,11 @@
     border-radius: 18px;
 }
 
-
 .hamburger {
     padding-left: 10px;
     width: 40px !important;
     height: auto;
 }
-
 
 .nav-tabs-custom {
     border-top: 1px solid var(--#{$prefix}border-color-translucent);

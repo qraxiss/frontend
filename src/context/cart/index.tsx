@@ -27,18 +27,17 @@ export const CartProvider = ({ children }: any) => {
 
     let newOrderGql = useMutation(newOrder)
     let [orderStatus, setOrderStatus] = useState(false)
-    
+
     let orderGql = useQuery(orders)
 
-    useEffect(()=>{
-        if (!newOrderGql.loading && newOrderGql.data){
+    useEffect(() => {
+        if (!newOrderGql.loading && newOrderGql.data) {
             setOrderStatus(true)
         }
     }, [newOrderGql.loading])
 
-
-    useEffect(()=>{
-        if (orderStatus){
+    useEffect(() => {
+        if (orderStatus) {
             setCartItems([])
             orderGql.refetch()
         }
@@ -82,7 +81,7 @@ export const CartProvider = ({ children }: any) => {
         })
     }, [registerWithWallet?.loading, register?.loading])
 
-    // after login 
+    // after login
     useEffect(() => {
         if (!jwt) {
             return

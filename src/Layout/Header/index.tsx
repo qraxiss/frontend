@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 
 import { AccountModal } from 'Components/MainModal/AccountModal'
@@ -13,12 +13,10 @@ import { Pages } from './pages'
 
 import { WishList } from './buttons/wishlist'
 import { Cart } from './buttons/cart'
-import { Account, SignInUp} from './buttons/account'
+import { Account, SignInUp } from './buttons/account'
 import { Collections } from './buttons/collections'
 
 import { Delivery } from './icons/delivery'
-
-
 
 const Header = (props: any) => {
     let { jwt } = useUser()

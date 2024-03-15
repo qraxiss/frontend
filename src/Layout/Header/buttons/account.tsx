@@ -94,7 +94,7 @@ export function Account() {
 }
 
 export function SignInUp() {
-    let {openConnectModal} = useConnectModal()
+    let { openConnectModal } = useConnectModal()
 
     return (
         <div className="topbar-head-dropdown ms-1 header-item">

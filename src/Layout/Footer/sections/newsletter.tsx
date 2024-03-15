@@ -1,7 +1,6 @@
-import { Title } from "../title"
-import { Section } from "../section"
-import { Button, Form } from "react-bootstrap"
-
+import { Title } from '../title'
+import { Section } from '../section'
+import { Button, Form } from 'react-bootstrap'
 
 export function Newsletter() {
     return (
@@ -15,10 +14,7 @@ export function Newsletter() {
                 <Button variant="primary" className="w-100" type="submit">
                     Subscribe
                 </Button>
-
             </Form>
-
-            
         </Section>
     )
 }

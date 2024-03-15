@@ -331,7 +331,6 @@ const Productdetails = () => {
                         />
 
                         <Information icon="bi bi-eye" />
-                        
 
                         <hr />
                         <Categories categories={!loading ? data.categories : []} />

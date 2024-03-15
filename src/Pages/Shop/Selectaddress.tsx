@@ -52,9 +52,13 @@ const Selectaddress = () => {
                                     </Col>
                                 </Row>
                                 <div className="hstack gap-2 justify-content-start mt-3">
-                                    <Button onClick={()=>{
-                                      navigate('/')
-                                    }} variant="secondary" className="btn btn-hover">
+                                    <Button
+                                        onClick={() => {
+                                            navigate('/')
+                                        }}
+                                        variant="secondary"
+                                        className="btn btn-hover"
+                                    >
                                         Continue Shopping
                                     </Button>
                                 </div>
@@ -66,7 +70,7 @@ const Selectaddress = () => {
                             </div>
                         </Col>
                     </Row>
-                    <DeleteModal removeModel={removeModel} hideModal={RemoveModel} deleteData={"deleteData"} />
+                    <DeleteModal removeModel={removeModel} hideModal={RemoveModel} deleteData={'deleteData'} />
                     <ModalAdd addressModal={addressModal} handleClose={handleClose} />
                 </Container>
             </section>

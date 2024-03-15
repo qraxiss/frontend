@@ -1,5 +1,4 @@
-import { Collections as CollectionsIcon } from "Components/Images/Icons"
-
+import { Collections as CollectionsIcon } from 'Components/Images/Icons'
 
 export function Collections() {
     return (

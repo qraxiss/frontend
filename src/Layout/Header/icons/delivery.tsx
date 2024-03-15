@@ -1,4 +1,4 @@
-import { Delivery as DeliveryIcon } from "Components/Images/Icons"
+import { Delivery as DeliveryIcon } from 'Components/Images/Icons'
 
 export function Delivery() {
     return (

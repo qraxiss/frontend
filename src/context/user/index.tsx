@@ -15,11 +15,9 @@ import {
 import { useMutation, useQuery } from 'lib/query-wrapper'
 import { UserContextType } from './types'
 
-export type {UserContextType}
+export type { UserContextType }
 
 const UserContext = createContext<any>({})
-
-
 
 export const useUser = () => {
     return useContext(UserContext) as UserContextType
@@ -35,7 +33,6 @@ export const UserProvider = ({ children }: any) => {
 
     let loginWithWallet = useMutation(loginWithWalletMutation)
     let registerWithWallet = useMutation(registerWithWalletMutation)
-
 
     let login = useMutation(loginMutation)
     let register = useMutation(registerMutation)
@@ -60,7 +57,6 @@ export const UserProvider = ({ children }: any) => {
         }
     }, [recipient.loading])
 
-
     let [meState, setMeState] = useState({
         username: '',
         email: ''
@@ -75,8 +71,7 @@ export const UserProvider = ({ children }: any) => {
     let deleteJwt = () => {
         try {
             disconnect(wagmiConfig)
-        } catch (e: any) {
-        }
+        } catch (e: any) {}
         localStorage.removeItem('jwt')
         setJwt(null)
         setStatus('public')
@@ -169,7 +164,8 @@ export const UserProvider = ({ children }: any) => {
                 setStatus,
                 recipient: recipientState,
                 me: meState
-            }}>
+            }}
+        >
             {children}
         </UserContext.Provider>
     )

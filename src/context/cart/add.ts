@@ -1,7 +1,5 @@
-
-
-import { areObjectsEqual } from "lib/helpers"
-import { cartItem } from "./types"
+import { areObjectsEqual } from 'lib/helpers'
+import { cartItem } from './types'
 
 export function addItemWrapper(
     cartItems: cartItem[],
@@ -19,7 +17,6 @@ export function addItemWrapper(
             return cartItem.product.slug === product.product.slug && areObjectsEqual(product.options, cartItem.options)
         })
 
-
         if (item !== -1) {
             let tempCartItems = structuredClone(cartItems)
             tempCartItems[item].count = tempCartItems[item].count + product.count
@@ -28,11 +25,10 @@ export function addItemWrapper(
             addToCart(product)
         }
 
-
         addItemGqlFn({
             variables: {
                 slug: product.product.slug,
-                count:product.count,
+                count: product.count,
                 options: product.options
             }
         })

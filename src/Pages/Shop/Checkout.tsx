@@ -13,8 +13,8 @@ const Checkout = () => {
     let { cartItems, orderStatus, setOrderStatus, newOrderGql } = useCart()
     let navigate = useNavigate()
 
-    useEffect(()=>{
-        if (orderStatus){
+    useEffect(() => {
+        if (orderStatus) {
             setOrderStatus(false)
             navigate('/account/order')
         }
@@ -39,7 +39,7 @@ const Checkout = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {cartItems.map((item: any, inx:number) => {
+                                                {cartItems.map((item: any, inx: number) => {
                                                     return (
                                                         <tr key={inx}>
                                                             <td className="justify-center-center">
@@ -85,7 +85,7 @@ const Checkout = () => {
                                         variant="primary"
                                         onClick={() => {
                                             buyWithWallet(() => {
-                                            newOrderGql.fn({})
+                                                newOrderGql.fn({})
                                             })
                                         }}
                                     >

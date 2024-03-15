@@ -1,7 +1,7 @@
-import { useWishList } from "context/wishlist"
-import { Link } from "react-router-dom"
+import { useWishList } from 'context/wishlist'
+import { Link } from 'react-router-dom'
 
-import { Wishlist } from "Components/Images/Icons"
+import { Wishlist } from 'Components/Images/Icons'
 
 export function WishList() {
     let { wishlist } = useWishList()

@@ -8,9 +8,9 @@ const Footer = () => {
     return (
         <React.Fragment>
             <section className="section footer-landing pb-0">
-                <Container> 
-                    <Sections/>
-                    <Socials/>
+                <Container>
+                    <Sections />
+                    <Socials />
                     <Bottom />
                 </Container>
             </section>

@@ -1,4 +1,4 @@
-import { areObjectsEqual } from "../../lib/helpers"
+import { areObjectsEqual } from '../../lib/helpers'
 
 export function deleteItemWrapper(cartItems: any[], setCartItems: Function, deleteGqlFn: Function) {
     return (slug: string, options: any, deleteAll: boolean = false) => {
@@ -40,7 +40,6 @@ export function deleteItemWrapper(cartItems: any[], setCartItems: Function, dele
         })
     }
 }
-
 
 export function deleteAll(cartItems: any[], deleteItem: Function, setCartItems: Function) {
     return () => {

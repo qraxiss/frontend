@@ -1,9 +1,8 @@
-import { Button } from "react-bootstrap"
-import { useCart } from "context/cart"
-import { useEffect, useState } from "react"
+import { Button } from 'react-bootstrap'
+import { useCart } from 'context/cart'
+import { useEffect, useState } from 'react'
 
-import { Cart as CartIcon } from "Components/Images/Icons"
-
+import { Cart as CartIcon } from 'Components/Images/Icons'
 
 export function Cart(props: { handlecardShow: any }) {
     let { cartItems } = useCart()

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function Pages({items}: {items:any[]}) {
+export function Pages({ items }: { items: any[] }) {
     return items.map((item) => {
         return (
             <ul className="list-unstyled footer-link" key={item.url}>

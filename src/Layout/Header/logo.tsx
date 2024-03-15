@@ -1,6 +1,6 @@
-import { Navbar, Image } from "react-bootstrap"
-import { Link } from "react-router-dom"
-import { Text } from "Components/Images/Logo"
+import { Navbar, Image } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { Text } from 'Components/Images/Logo'
 
 export function Logo() {
     return (

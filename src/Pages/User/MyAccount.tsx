@@ -11,7 +11,7 @@ import { useUser } from 'context/user'
 
 const MyAccount = () => {
     let { section } = useParams()
-    let {address} = useUser()
+    let { address } = useUser()
 
     let { orderGql } = useCart()
 
@@ -20,9 +20,6 @@ const MyAccount = () => {
     return (
         <React.Fragment>
             <section className="position-relative">
-                {/* <div className="profile-basic position-relative">
-                    <div className="bg-overlay bg-primary"></div>
-                </div> */}
                 <Container>
                     <Row>
                         <Col lg={12}>
@@ -30,10 +27,15 @@ const MyAccount = () => {
                                 <div className="d-flex gap-3 flex-wrap align-items-center">
                                     <User className="avatar-xl p-1 bg-light mt-n3" />
                                     <div>
-                                        <h5 className="fs-18">{address.slice(0,6)}...{address.slice(address.length - 6, address.length)} <div className="edit">
-                                        <i className="bi bi-pen"></i> <p>
-                                        change username</p></div></h5>
-                                        <div className="text-muted"> {address.slice(0,6)}...{address.slice(address.length - 6, address.length)}
+                                        <h5 className="fs-18">
+                                            {address.slice(0, 6)}...{address.slice(address.length - 6, address.length)}{' '}
+                                            <div className="edit">
+                                                <i className="bi bi-pen"></i> <p>change username</p>
+                                            </div>
+                                        </h5>
+                                        <div className="text-muted">
+                                            {' '}
+                                            {address.slice(0, 6)}...{address.slice(address.length - 6, address.length)}
                                         </div>
                                     </div>
                                     <div className="ms-md-auto">

@@ -8,17 +8,13 @@ import { WishListContextType } from './types'
 import { addWishListWrapper } from './add'
 import { deleteWishListWrapper } from './delete'
 
-export type {WishListContextType}
-
-
+export type { WishListContextType }
 
 const WishListContext = createContext<any>({})
-
 
 export const useWishList = () => {
     return useContext(WishListContext) as WishListContextType
 }
-
 
 export function WishListProvider({ children }: { children: any }) {
     let [wishlistData, setWishlistData] = useState<any[]>([])

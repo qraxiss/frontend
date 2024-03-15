@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 import { items } from 'data/pages'
 
 export function Pages() {
@@ -22,10 +22,7 @@ export function Pages() {
                                 {item.icon}
                                 {(item.title as string).toUpperCase()}
                             </Link>
-                            <ul
-                                className='dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu'
-                                
-                            >
+                            <ul className="dropdown-menu dropdown-menu-md dropdown-menu-center dropdown-menu-list submenu">
                                 {item.items.map((sub: any) => {
                                     if (sub.items) {
                                         return (

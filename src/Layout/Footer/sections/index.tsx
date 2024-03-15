@@ -8,7 +8,7 @@ export function Sections() {
             <Logo />
             <Categories />
             <Shopcek />
-            <Misc/>
+            <Misc />
             <Newsletter />
         </div>
     )
