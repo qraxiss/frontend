@@ -12,6 +12,10 @@ import DeleteModal from 'Components/MainModal/DeleteModal'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart'
 
+function formatNumber(num:number) {
+    return num.toFixed(2);
+}
+
 
 export const CardModal = ({ show, handleClose }: any) => {
     let navigate = useNavigate()
@@ -42,18 +46,18 @@ export const CardModal = ({ show, handleClose }: any) => {
         subtotal += cartItems[i].product.price * cartItems[i].count
     }
 
-    useEffect(() => {
-        let dis: any = (0.15 * subtotal).toFixed(2)
-        let tax = 0.125 * subtotal
+    // useEffect(() => {
+    //     let dis: any = (0.15 * subtotal).toFixed(2)
+    //     let tax = 0.125 * subtotal
 
-        if (subtotal !== 0) {
-            setCharge(65)
-        } else {
-            setCharge(0)
-        }
-        setDis(dis)
-        setTax(tax)
-    }, [subtotal])
+    //     if (subtotal !== 0) {
+    //         setCharge(65)
+    //     } else {
+    //         setCharge(0)
+    //     }
+    //     setDis(dis)
+    //     setTax(tax)
+    // }, [subtotal])
 
     let [slug, setSlug] = useState('')
     let [options, setOptions] = useState({})
@@ -123,7 +127,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                                                     </div>{' '}
                                                     X
                                                     <div className="text-muted fw-medium mb-0">
-                                                        <span className="product-price"> ${item.product.price}</span>
+                                                        <span className="product-price"> ${formatNumber(item.product.price)}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,7 +154,7 @@ export const CardModal = ({ show, handleClose }: any) => {
                     <div className="d-flex justify-content-between align-items-center mb-3">
                         <h6 className="m-0 fs-16 text-muted">Total:</h6>
                         <div className="px-2">
-                            <h6 className="m-0 fs-16 cart-total">${Math.round((subtotal + Number.EPSILON) * 100) / 100 || '0.00'}</h6>
+                            <h6 className="m-0 fs-16 cart-total">${formatNumber(subtotal)}</h6>
                         </div>
                     </div>
                     <Row className="g-2">
@@ -160,11 +164,11 @@ export const CardModal = ({ show, handleClose }: any) => {
                                 className="btn w-100"
                                 id="reset-layout"
                                 onClick={() => {
-                                    navigate('/shop/shopingcard')
+                                    navigate('/')
                                     handleClose()
                                 }}
                             >
-                                View Cart
+                                Continue Shopping
                             </Button>
                         </Col>
                         <Col xs={6}>
