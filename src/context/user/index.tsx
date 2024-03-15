@@ -155,7 +155,7 @@ export const UserProvider = ({ children }: any) => {
                 setJwt,
                 deleteJwt,
                 isConnected,
-                address,
+                address: isConnected ? address : '',
                 login,
                 loginWithWallet,
                 register,
