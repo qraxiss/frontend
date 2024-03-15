@@ -1,4 +1,4 @@
-export { AddressNav } from './address'
+export { AddressNav, AddressTab } from './address'
 export { LogoutNav } from './logout'
 export { OrdersNav, OrdersTab } from './orders'
 export { ProfileNav, ProfileTab } from './profile'

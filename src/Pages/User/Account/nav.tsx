@@ -1,4 +1,4 @@
-import { OrdersNav, OrdersTab, WishListNav, WishListTab, ProfileNav, ProfileTab, XpNav, AddressNav, LogoutNav, StakeNav } from './sections'
+import { OrdersNav, OrdersTab, WishListNav, WishListTab, ProfileNav, ProfileTab, XpNav, AddressNav, AddressTab, LogoutNav, StakeNav } from './sections'
 import { Col, Container, Row, Tab, Nav, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
@@ -29,6 +29,8 @@ export function UserNav() {
                             <ProfileTab />
                             <WishListTab />
                             <OrdersTab />
+                            <AddressTab />
+                            
                         </Tab.Content>
                     </Col>
                 </Row>
