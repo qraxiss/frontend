@@ -9,7 +9,7 @@ import Review from 'Pages/Shop/Review'
 import Confirm from 'Pages/Shop/Confirm'
 import Orderhistory from 'Pages/Shop/Orederhistory'
 import Shopingcard from 'Pages/Shop/Shopingcard'
-import Checkout from 'Pages/Shop/Checkout'
+import Checkout from 'Pages/Shop/checkout'
 import WishList from 'Pages/Shop/WhishList'
 
 //pages /product / grid

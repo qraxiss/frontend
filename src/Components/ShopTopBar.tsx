@@ -1,9 +1,8 @@
-import { useCart } from 'context/cart'
-import { useUser } from 'context/user'
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// import { recentlyOrder } from 'Common/data'
+
+import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 export const Shoptopbar = ({ title, page }: any) => {
     return (
@@ -32,15 +31,6 @@ export const Shoptopbar = ({ title, page }: any) => {
 }
 
 export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
-    let { cartItems } = useCart()
-    let { recipient } = useUser()
-
-    let price = 0
-
-    cartItems.forEach((item) => {
-        price += item.count * item.product.price
-    })
-
     return (
         <React.Fragment>
             <Card>
@@ -66,22 +56,26 @@ export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
             </Card>
             <Card className="overflow-hidden">
                 <Card.Header className="border-bottom-dashed">
-                    <h5 className="card-title mb-0 fs-15">Order</h5>
+                    <h5 className="card-title mb-0 fs-15">Payment Information</h5>
                 </Card.Header>
                 <Card.Body className=" pt-4">
-                    <div className="table-responsive table-card">
-                        <Table className="table-borderless mb-0 fs-15">
-                            <tbody>
-                                <tr className="table-active">
-                                    <th>Total (USD) :</th>
-                                    <td className="text-end">
-                                        <span className="fw-semibold cart-total">${price}</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </Table>
+                    <div className="table-responsive table-card justify-content-center">
+                        <div className="info-text">
+                        <ConnectButton />
+                        </div>
+
+                        <div className='info-text'>
+                        Your personal data will be used to process your order, support your experience throughout this website, and for other purposes
+                        described in our privacy policy.
+                        </div>
+                        <Form.Check className="info-text" label="I have read and agree to the website terms and conditions" />
                     </div>
+                    
                 </Card.Body>
+
+                <Button className="btn btn-hover btn-soft-info info-text" onClick={() => {}}>
+                            Place Order <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                    </Button>
             </Card>
         </React.Fragment>
     )
