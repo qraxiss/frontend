@@ -64,8 +64,7 @@ span.ln-base.info {
     height: 3rem;
 
     .btn-hover {
-        width: 8rem !important;
-        height: 80% !important;
+        width: 8.3rem !important;
     }
 }
 
@@ -99,11 +98,16 @@ span.ln-base.info {
         font-family: Archivo;
         height: 3rem !important;
         border-radius: 9px;
-        width: 7.7rem !important;
+
+
 
         .text {
             margin-bottom: -4px;
         }
+    }
+
+    .operation.ms-2 {
+        margin-left: unset !important;
     }
 
     .wishlist {
