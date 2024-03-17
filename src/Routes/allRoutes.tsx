@@ -11,6 +11,7 @@ import Orderhistory from 'Pages/Shop/Orederhistory'
 import Shopingcard from 'Pages/Shop/Shopingcard'
 import Checkout from 'Pages/Shop/checkout'
 import WishList from 'Pages/Shop/WhishList'
+import Success from 'Pages/Shop/Success'
 
 //pages /product / grid
 import Defaultgrid from 'Pages/Product/Grid/Default'
@@ -44,6 +45,7 @@ const authProtectedRoutes = [
     { path: '/shop/shopingcard', component: <Shopingcard /> },
     { path: '/shop/checkout', component: <Checkout /> },
     { path: '/shop/wishList', component: <WishList /> },
+    { path: '/shop/success', component: <Success /> },
 
     { path: '/earn', component: <Earn /> },
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
@@ -31,6 +31,8 @@ export const Shoptopbar = ({ title, page }: any) => {
 }
 
 export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
+    let navigate = useNavigate()
+
     return (
         <React.Fragment>
             <Card>
@@ -73,7 +75,9 @@ export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
                     
                 </Card.Body>
 
-                <Button className="btn btn-hover btn-soft-info info-text" onClick={() => {}}>
+                <Button className="btn btn-hover btn-soft-info info-text" onClick={() => {
+                    navigate('/shop/success')
+                }}>
                             Place Order <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
                     </Button>
             </Card>
