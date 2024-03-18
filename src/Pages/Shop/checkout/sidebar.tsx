@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 
@@ -7,12 +7,36 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useBinance } from 'context/binance'
 import { useCart } from 'context/cart'
 import { buyWithWallet } from 'lib/rainbow'
+import { useOrder } from 'context/order'
+
+export function order({ newOrder }: { newOrder: any }) {
+    return ({ transaction }: { transaction: string }) => {
+        console.log(transaction)
+
+        newOrder.fn({
+            variables: {
+                transaction
+            }
+        })
+    }
+}
 
 export const Shoporder = () => {
     let navigate = useNavigate()
 
     let { bnb } = useBinance()
     let { cartItems } = useCart()
+    let { newOrderGQL, newOrder } = useOrder()
+
+    useEffect(()=>{
+        if (newOrder && !newOrderGQL.loading) {
+            navigate(`/shop/success/${newOrder.id}`)
+        }
+    }, [newOrderGQL.loading])
+
+    let orderfn = order({newOrder: newOrderGQL})
+
+
 
     let total: number = 0
     cartItems.forEach((item) => {
@@ -65,9 +89,7 @@ export const Shoporder = () => {
                 <Button
                     className="btn btn-hover btn-soft-info info-text"
                     onClick={() => {
-                        buyWithWallet(() => {
-                            console.log('success')
-                        }, price)
+                        buyWithWallet(orderfn, price)
                     }}
                 >
                     Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>

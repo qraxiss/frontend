@@ -3,6 +3,7 @@ import { UserProvider, UserContextType, useUser } from './user'
 import { CartProvider, CartContextType, useCart } from './cart'
 import { WishListProvider, WishListContextType, useWishList } from './wishlist'
 import { BinanceProvider, BinanceContextType, useBinance } from './binance'
+import { OrderProvider, OrderContextType, useOrder } from './order'
 
 const AllContext = createContext<any>({})
 
@@ -11,6 +12,7 @@ interface AllContextValue {
     cart: CartContextType
     wishlist: WishListContextType
     binance: BinanceContextType
+    order: OrderContextType
 }
 
 export const useAll = (): AllContextValue => {
@@ -22,7 +24,8 @@ export const Context = ({ children }: any) => {
         user: useUser(),
         cart: useCart(),
         wishlist: useWishList(),
-        binance: useBinance()
+        binance: useBinance(),
+        order: useOrder()
     }
 
     return (
@@ -30,11 +33,13 @@ export const Context = ({ children }: any) => {
             <BinanceProvider>
                 <CartProvider>
                     <UserProvider>
-                        <CartProvider>
-                            <UserProvider>
-                                <WishListProvider>{children}</WishListProvider>
-                            </UserProvider>
-                        </CartProvider>
+                        <OrderProvider>
+                            <CartProvider>
+                                <UserProvider>
+                                    <WishListProvider>{children}</WishListProvider>
+                                </UserProvider>
+                            </CartProvider>
+                        </OrderProvider>
                     </UserProvider>
                 </CartProvider>
             </BinanceProvider>

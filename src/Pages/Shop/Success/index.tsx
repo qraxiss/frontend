@@ -42,14 +42,12 @@ export default function Success() {
         price = price + item.product.price * item.count
     })
     useEffect(() => {
-        console.log(data, 'data')
 
         if (!loading && data) {
             setOrderData(data)
         }
     }, [loading])
 
-    console.log(error)
 
     return (
         <section className="section">

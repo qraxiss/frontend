@@ -25,7 +25,6 @@ export function OrdersTab() {
         }
     }, [loading])
 
-    console.log(order)
 
     return (
         <Tab.Pane eventKey="order">
@@ -46,7 +45,13 @@ export function OrdersTab() {
                                 </thead>
                                 <tbody>
                                     {order.map((item: any, inx: any) => {
+                                        if (item.printful){
                                         return <div>{item.printful.id}</div>
+
+                                        }else {
+                                            return item.error
+                                        }
+
                                     })}
                                 </tbody>
                             </Table>
