@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import SimpleBar from 'simplebar-react'
 
 //component
-import DeleteModal from 'Components/MainModal/DeleteModal'
+import DeleteModal from 'Components/Modals/DeleteModal'
 
 import { useNavigate } from 'react-router-dom'
 import { useCart } from 'context/cart'

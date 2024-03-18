@@ -1,7 +1,7 @@
-import withRouter from 'Components/withRouter'
+// import withRouter from 'Components/withRouter'
 
-const NonAuthLayout = ({ children }: any) => {
-    return <div>{children}</div>
-}
+// const NonAuthLayout = ({ children }: any) => {
+//     return <div>{children}</div>
+// }
 
-export default withRouter(NonAuthLayout)
+// export default withRouter(NonAuthLayout)

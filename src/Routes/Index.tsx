@@ -11,7 +11,7 @@ const Index = () => {
             <Routes>
                 <Route>
                     {authProtectedRoutes.map((route, idx) => (
-                        <Route path={route.path} element={<Layout isLight={route.isLight}>{route.component}</Layout>} key={idx} />
+                        <Route path={route.path} element={<Layout isLight={false}>{route.component}</Layout>} key={idx} />
                     ))}
                 </Route>
             </Routes>

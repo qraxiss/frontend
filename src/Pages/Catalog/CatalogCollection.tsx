@@ -4,7 +4,7 @@ import { Form, Row, Col, Card, Image } from 'react-bootstrap'
 
 import config from 'config/config'
 
-import { CardComponent } from 'Components/newComponents'
+import { CardComponent } from 'Components/CardComponent'
 
 const CatalogCollection = ({ cxxl, cxl, clg, cmd, cheight, filterList, setSearchParams }: any) => {
     //select

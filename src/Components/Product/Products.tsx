@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import { CardComponent } from 'Components/newComponents'
+import { CardComponent } from 'Components/CardComponent'
 
-import { CommonTitle } from 'Components/Homepage'
+import { CommonTitle } from 'Components/CommonTitle'
 
 const Products = ({ items, title }: any) => {
     return (

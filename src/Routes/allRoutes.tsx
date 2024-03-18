@@ -2,27 +2,13 @@ import { Navigate } from 'react-router-dom'
 
 import Home from 'Pages/Home'
 
-import ShopIndex from 'Pages/Shop'
-import Trackorder from 'Pages/Shop/Trackorder'
-import PaymentIndex from 'Pages/Shop/Indexpayment'
-import Review from 'Pages/Shop/Review'
-import Confirm from 'Pages/Shop/Confirm'
-import Orderhistory from 'Pages/Shop/Orederhistory'
-import Shopingcard from 'Pages/Shop/Shopingcard'
 import Checkout from 'Pages/Shop/checkout'
-import WishList from 'Pages/Shop/WhishList'
 import Success from 'Pages/Shop/Success'
 
-//pages /product / grid
 import Defaultgrid from 'Pages/Product/Grid/Default'
 
 //pages /user
 import Account from 'Pages/User/Account'
-import SignUp from 'Pages/User/SignUp'
-import Signin from 'Pages/User/SignIn'
-import Passwordreset from 'Pages/User/Passwordreset'
-import Passwordcreate from 'Pages/User/Passwordcreate'
-import Successmsg from 'Pages/User/Successmsg'
 import Logout from 'Pages/User/Logout'
 
 //Productdetails
@@ -32,20 +18,11 @@ import Productdetails from 'Pages/Product/Productdetails'
 import About from 'Pages/Product/About'
 
 //contact
-import ContactUs from 'Pages/ContactUs/Contact'
 import Earn from 'Pages/Earn'
 
 const authProtectedRoutes = [
-    { path: '/shop/address', component: <ShopIndex /> },
-    { path: '/shop/order', component: <Trackorder /> },
-    { path: '/shop/payment', component: <PaymentIndex /> },
-    { path: '/shop/review', component: <Review />, isLight: 'light' },
-    { path: '/shop/confirm', component: <Confirm /> },
-    { path: '/shop/orderhistory', component: <Orderhistory /> },
-    { path: '/shop/shopingcard', component: <Shopingcard /> },
     { path: '/shop/checkout', component: <Checkout /> },
-    { path: '/shop/wishList', component: <WishList /> },
-    { path: '/shop/success', component: <Success /> },
+    { path: '/shop/success/:id', component: <Success /> },
 
     { path: '/earn', component: <Earn /> },
 
@@ -53,17 +30,12 @@ const authProtectedRoutes = [
     { path: '/account/:section', component: <Account /> },
     { path: '/', component: <Home /> },
     { path: '/about-us', component: <About /> },
-    { path: '/contact', component: <ContactUs /> },
     { path: '*', component: <Navigate to="/" /> },
     { path: '/category/:category/', component: <Defaultgrid /> },
 
     { path: '/product-details/:slug', component: <Productdetails /> },
 
-    { path: '/signin', component: <Signin /> },
-    { path: '/signup', component: <SignUp /> },
     { path: '/logout', component: <Logout /> },
-    { path: '/password-reset', component: <Passwordreset /> },
-    { path: '/create-password', component: <Passwordcreate /> },
-    { path: '/login-success', component: <Successmsg /> }
+
 ]
 export { authProtectedRoutes }

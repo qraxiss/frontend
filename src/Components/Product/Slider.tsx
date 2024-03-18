@@ -6,10 +6,10 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { CardComponent } from 'Components/newComponents'
+import { CardComponent } from 'Components/CardComponent'
 import { productListType } from 'models/ProductType'
 
-import { CommonTitle } from 'Components/Homepage'
+import { CommonTitle } from 'Components/CommonTitle'
 
 const Slider = ({ items, title }: { items: productListType[]; title: string }) => {
     return (

@@ -4,34 +4,22 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-export const Shoptopbar = ({ title, page }: any) => {
-    return (
-        <React.Fragment>
-            <section className="page-wrapper bg-primary">
-                <Container>
-                    <Row>
-                        <Col lg={12}>
-                            <div className="text-center d-flex align-items-center justify-content-between">
-                                <h4 className="text-white mb-0">{title}</h4>
-                                <Breadcrumb bsPrefix=" breadcrumb breadcrumb-light justify-content-center mb-0 fs-15">
-                                    {/* <ol className="breadcrumb breadcrumb-light justify-content-center mb-0 fs-15"> */}
-                                    <Breadcrumb.Item href="#">Shop</Breadcrumb.Item>
-                                    <Breadcrumb.Item active aria-current="page">
-                                        {page}
-                                    </Breadcrumb.Item>
-                                    {/* </ol> */}
-                                </Breadcrumb>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </React.Fragment>
-    )
-}
+import { useBinance } from 'context/binance'
+import { useCart } from 'context/cart'
+import { buyWithWallet } from 'lib/rainbow'
 
-export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
+export const Shoporder = () => {
     let navigate = useNavigate()
+
+    let { bnb } = useBinance()
+    let { cartItems } = useCart()
+
+    let total: number = 0
+    cartItems.forEach((item) => {
+        total = total + item.count * item.product.price
+    })
+
+    let price = (total / bnb) * (103 / 100)
 
     return (
         <React.Fragment>
@@ -63,54 +51,28 @@ export const Shoporder = ({ dic, subtotal, charge, tax, total }: any) => {
                 <Card.Body className=" pt-4">
                     <div className="table-responsive table-card justify-content-center">
                         <div className="info-text">
-                        <ConnectButton />
+                            <ConnectButton />
                         </div>
 
-                        <div className='info-text'>
-                        Your personal data will be used to process your order, support your experience throughout this website, and for other purposes
-                        described in our privacy policy.
+                        <div className="info-text">
+                            Your personal data will be used to process your order, support your experience throughout this website, and for other
+                            purposes described in our privacy policy.
                         </div>
                         <Form.Check className="info-text" label="I have read and agree to the website terms and conditions" />
                     </div>
-                    
                 </Card.Body>
 
-                <Button className="btn btn-hover btn-soft-info info-text" onClick={() => {
-                    navigate('/shop/success')
-                }}>
-                            Place Order <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
-                    </Button>
+                <Button
+                    className="btn btn-hover btn-soft-info info-text"
+                    onClick={() => {
+                        buyWithWallet(() => {
+                            console.log('success')
+                        }, price)
+                    }}
+                >
+                    Pay {price.toFixed(3)} BNB <i className="ri-arrow-right-line label-icon align-middle ms-1"></i>
+                </Button>
             </Card>
-        </React.Fragment>
-    )
-}
-
-export const BrandedProduct = ({ title }: any) => {
-    const handleLike = (event: any) => {
-        if (event.closest('button').classList.contains('active')) {
-            event.closest('button').classList.remove('active')
-        } else {
-            event.closest('button').classList.add('active')
-        }
-    }
-    return (
-        <React.Fragment>
-            <section className="section">
-                <Container>
-                    <Row className="justify-content-center">
-                        <Col lg={12}>
-                            <div className="d-flex align-items-center justify-content-between mb-4 pb-1">
-                                <h4 className="flex-grow-1 mb-0">{title}</h4>
-                                <div className="flex-shrink-0">
-                                    <Link to="#" className="link-effect link-primary">
-                                        All Products <i className="ri-arrow-right-line ms-1 align-bottom"></i>
-                                    </Link>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
         </React.Fragment>
     )
 }

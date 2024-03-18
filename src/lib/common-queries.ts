@@ -169,13 +169,19 @@ export let updateRecipient = gql`
 
 export let orders = gql`
     query {
-        orders
+        printfulOrdersByUser
     }
 `
 
 export let newOrder = gql`
-    mutation {
-        newOrder
+    mutation ($transaction: String!){
+        newPrintfulOrder(transaction: $transaction)
+    }
+`
+
+export let order = gql`
+    query ($id: ID!) {
+        printfulOrderWithProducts(id: $id)
     }
 `
 

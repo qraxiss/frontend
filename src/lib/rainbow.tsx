@@ -8,6 +8,8 @@ import { parseEther } from 'viem'
 import { sendTransaction } from '@wagmi/core'
 
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { useBinance } from 'context/binance'
+import { useCart } from 'context/cart'
 
 const bsc = {
     id: 97,
@@ -54,15 +56,15 @@ export function RainbowProvider({ children }: any) {
     )
 }
 
-export async function buyWithWallet(onSuccess: Function) {
+export async function buyWithWallet(onSuccess: (transaction:string)=>void, ether:number) {
+
+
     let result = await sendTransaction(wagmiConfig, {
         to: '0x670c92C292b69eBf8F1899375f67Eb5C6515BBA2',
-        value: parseEther('0.01')
+        value: parseEther(String(ether))
     })
 
     if (result) {
-        onSuccess()
+        onSuccess(result)
     }
-
-    return result
 }

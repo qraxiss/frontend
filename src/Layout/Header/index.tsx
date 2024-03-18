@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Navbar, Nav, Form } from 'react-bootstrap'
 
-import { AccountModal } from 'Components/MainModal/AccountModal'
-import { CardModal } from 'Components/MainModal'
-import { withTranslation } from 'react-i18next'
-import withRouter from 'Components/withRouter'
+import { CardModal } from 'Components/Modals/CardModal'
 
 import { useUser } from 'context/user'
 
@@ -57,4 +54,4 @@ const Header = (props: any) => {
     )
 }
 
-export default withRouter(withTranslation()(Header))
+export default Header
