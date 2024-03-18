@@ -174,7 +174,7 @@ export let orders = gql`
 `
 
 export let newOrder = gql`
-    mutation ($transaction: String!){
+    mutation ($transaction: String!) {
         newPrintfulOrder(transaction: $transaction)
     }
 `

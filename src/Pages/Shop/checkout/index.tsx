@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { Shoporder } from 'Components/ShopTopBar'
+import { Shoporder } from 'Pages/Shop/checkout/sidebar'
 
 import { Products } from './products'
 import { Billing } from './billing'

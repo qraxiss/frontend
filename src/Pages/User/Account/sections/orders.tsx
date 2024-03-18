@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import { useCart } from 'context/cart'
 
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 
 export function OrdersNav() {
     return (
@@ -17,7 +17,7 @@ export function OrdersNav() {
 
 export function OrdersTab() {
     let { orderGql } = useCart()
-    let {loading, data, refetch, error} = orderGql
+    let { loading, data, refetch, error } = orderGql
     let [order, setOrder] = useState([])
     useEffect(() => {
         if (!loading && data) {

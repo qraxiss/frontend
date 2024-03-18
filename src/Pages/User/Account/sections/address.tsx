@@ -22,13 +22,10 @@ export function AddressTab() {
     let { recipient } = useUser()
     let gql = useMutation(updateRecipient)
 
-
-
-
     const formik = useFormik({
         initialValues: {
             name: recipient.name,
-            address1: recipient.address1, 
+            address1: recipient.address1,
             address2: recipient.address2,
             email: recipient.email,
             state_code: recipient.state_code,
@@ -55,9 +52,9 @@ export function AddressTab() {
         onSubmit: console.log
     })
 
-    useEffect(()=>{
-        Object.keys(recipient).forEach(key=>{
-            (formik.values as any)[key] = (recipient as any)[key]
+    useEffect(() => {
+        Object.keys(recipient).forEach((key) => {
+            ;(formik.values as any)[key] = (recipient as any)[key]
         })
     }, [recipient])
 
@@ -205,7 +202,6 @@ export function AddressTab() {
                                                 ></Form.Control>
                                             </div>
                                         </Col>
-
                                     </Row>
 
                                     <div className="text-sm-end">

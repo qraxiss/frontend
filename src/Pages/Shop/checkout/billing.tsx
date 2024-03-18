@@ -41,13 +41,12 @@ export function Billing() {
         }
     }, [check])
 
-    useEffect(()=>{
-        if (recipient){
+    useEffect(() => {
+        if (recipient) {
             Object.keys(recipient).forEach((key) => {
                 ;(formik.values as any)[key] = (recipient as any)[key]
             })
         }
-        
     }, [])
 
     return (

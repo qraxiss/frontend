@@ -49,7 +49,6 @@ export default function Success() {
         }
     }, [loading])
 
-
     console.log(error)
 
     return (
@@ -198,14 +197,14 @@ export default function Success() {
                               </Row>
                           </div>
                       ]
-                    : [<div className="success-info-box">
-                    <div className="top">
-                        <div className="title">Shopping Not Successful! ❌</div>
-                        <div className="success-message">
-                            Some error occured. {error.message}
-                        </div>
-                    </div>
-                </div>]}
+                    : [
+                          <div className="success-info-box">
+                              <div className="top">
+                                  <div className="title">Shopping Not Successful! ❌</div>
+                                  <div className="success-message">Some error occured. {error.message}</div>
+                              </div>
+                          </div>
+                      ]}
             </Container>
         </section>
     )

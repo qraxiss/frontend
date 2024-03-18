@@ -35,7 +35,6 @@ const authProtectedRoutes = [
 
     { path: '/product-details/:slug', component: <Productdetails /> },
 
-    { path: '/logout', component: <Logout /> },
-
+    { path: '/logout', component: <Logout /> }
 ]
 export { authProtectedRoutes }

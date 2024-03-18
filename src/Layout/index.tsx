@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import {  useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Footer from './Footer'
 import Header from './Header'
 import { MainModal } from 'Components/Modals'

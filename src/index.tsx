@@ -12,18 +12,18 @@ import ScrollToTop from 'lib/auto-scroll'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
-        <React.Fragment>
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
-                <RainbowProvider>
-                    <ApolloProvider>
-                        <ScrollToTop />
-                        <Context>
-                            <App />
-                        </Context>
-                    </ApolloProvider>
-                </RainbowProvider>
-            </BrowserRouter>
-        </React.Fragment>
+    <React.Fragment>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <RainbowProvider>
+                <ApolloProvider>
+                    <ScrollToTop />
+                    <Context>
+                        <App />
+                    </Context>
+                </ApolloProvider>
+            </RainbowProvider>
+        </BrowserRouter>
+    </React.Fragment>
 )
 
 reportWebVitals()

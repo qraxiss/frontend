@@ -51,7 +51,7 @@ export function Products() {
                             <tr className="table-active">
                                 <th>Shipping</th>
                                 <td className="text-end">
-                                    <span className="fw-semibold cart-total">${(price / 100 * 5).toFixed(2)}</span>
+                                    <span className="fw-semibold cart-total">${((price / 100) * 5).toFixed(2)}</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -71,15 +71,15 @@ export function Products() {
                     <Table className="table-borderless mb-0 fs-15">
                         <tbody>
                             <tr className="table-active">
-                                <th><h6>Total</h6></th>
+                                <th>
+                                    <h6>Total</h6>
+                                </th>
                                 <td className="text-end">
-                                    <span className="fw-semibold cart-total">${(price + price / 100 *5).toFixed(2)}</span>
+                                    <span className="fw-semibold cart-total">${(price + (price / 100) * 5).toFixed(2)}</span>
                                 </td>
                             </tr>
                         </tbody>
                     </Table>
-
-
                 </div>
             </Card.Body>
         </Card>

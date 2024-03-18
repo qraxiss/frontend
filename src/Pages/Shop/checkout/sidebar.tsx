@@ -1,6 +1,6 @@
 import React from 'react'
-import { Col, Container, Row, Breadcrumb, Card, Form, Table, Button, Image } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Card, Form, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 

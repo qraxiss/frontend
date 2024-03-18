@@ -13,22 +13,21 @@ export const useBinance = () => {
     return useContext(BinanceContext) as BinanceContextType
 }
 
-export async function callPrice({ setBnb, call, setCall }: { setBnb: Function, call:boolean, setCall: Function }) {
+export async function callPrice({ setBnb, call, setCall }: { setBnb: Function; call: boolean; setCall: Function }) {
     const bnburl = 'https://api.binance.com/api/v3/klines'
 
     let res = await axios.get(bnburl, {
         params: {
-            limit : "1",
-            interval: "1s",
-            symbol: "BNBUSDT"
+            limit: '1',
+            interval: '1s',
+            symbol: 'BNBUSDT'
         }
     })
     setBnb(Number(res.data[0][4]))
 
-    setTimeout(()=>{
+    setTimeout(() => {
         setCall(!call)
     }, 3000)
-
 }
 
 export function BinanceProvider({ children }: { children: any }) {
