@@ -1,15 +1,6 @@
 import { Button } from 'react-bootstrap'
 
 export default function StayHereToEarn() {
-    let box = (
-        <div className="col">
-            <div className="blue-box divider">
-                <p>00</p>
-            </div>
-            <p className="time">Days</p>
-        </div>
-    )
-
     return (
         <section className="section pb-0">
             <div className="stay-here-to-earn">
@@ -23,13 +14,33 @@ export default function StayHereToEarn() {
                     </div>
 
                     <div className="blue-box-container">
-                        {box}
+                        <div className="col">
+                            <div className="blue-box divider">
+                                <p>00</p>
+                            </div>
+                            <p className="time">Days</p>
+                        </div>
                         <div className="divider">:</div>
-                        {box}
+                        <div className="col">
+                            <div className="blue-box divider">
+                                <p>00</p>
+                            </div>
+                            <p className="time">Hours</p>
+                        </div>
                         <div className="divider">:</div>
-                        {box}
+                        <div className="col">
+                            <div className="blue-box divider">
+                                <p>00</p>
+                            </div>
+                            <p className="time">Minutes</p>
+                        </div>
                         <div className="divider">:</div>
-                        {box}
+                        <div className="col">
+                            <div className="blue-box divider">
+                                <p>00</p>
+                            </div>
+                            <p className="time">Seconds</p>
+                        </div>
                     </div>
                 </div>
             </div>

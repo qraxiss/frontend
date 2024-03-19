@@ -2,24 +2,34 @@
 // earn.scss
 //
 
+
+
 .purple-box {
     background-color: #ffceec;
     display: flex;
-    border-radius: 15px;
+    border-radius: 8px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
     flex-direction: column;
     height: 16rem;
-    width: 8rem;
+    width: auto;
 
-    img {
-        width: 80%;
-        height: auto;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+    img.small-image {
+            width: 8rem;
     }
+
+    img.medium-image {
+        width: 10rem;
+    }
+
+    img.large-image {
+        width: 12rem;
+    }
+
 }
+
+
 
 .purple-box:first-child {
     background-color: #ff5bc0 !important;
@@ -59,7 +69,13 @@
 .purple-box-container {
     display: flex;
     justify-content: center;
-    gap: 5rem;
+    gap: 3.5rem;
+    font-family: 'Archivo';
+    font-size: x-large;
+
+    p {
+        padding-top: 1rem;
+    }
 }
 
 .name-services {
@@ -103,8 +119,9 @@
         display: flex;
         flex-direction: column;
 
-        p:last-child {
+        button {
             padding-left: 1rem;
+            width: unset !important;
         }
     }
 
@@ -131,6 +148,12 @@
         padding-top: 48px !important;
         padding-bottom: 48px !important;
     }
+
+    button {
+        font-family: 'Archivo';
+        width: 10rem !important;
+        font-size: x-large;
+    }
 }
 
 .task-rewards {
@@ -156,6 +179,7 @@
 
         button {
             height: 50%;
+            font-size: large !important;
         }
     }
 

@@ -1,5 +1,7 @@
 import { Form, Button } from 'react-bootstrap'
 
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 export default function NameService() {
     return (
         <section className="section pb-0">
@@ -39,7 +41,7 @@ export default function NameService() {
 
                     <div className="method">
                         <p>Payment Method</p>
-                        <p>BNB (Binance Smart Chain)</p>
+                        <ConnectButton />
                     </div>
                 </div>
             </div>

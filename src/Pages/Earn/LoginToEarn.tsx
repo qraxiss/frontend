@@ -1,18 +1,37 @@
-import { Image, Button } from 'react-bootstrap'
+import { Image, Button, Container } from 'react-bootstrap'
 
-export default function LoginToEarn() {
-    let img = <Image src="http://145.239.90.41:8000/uploads/thumbnail_Adsiz_tasarim_3_c6823fee7d.png?updatedAt=2024-03-02T08%3A44%3A47.830Z" />
+import smallReward from '../../assets/images/earn/small-reward.png'
+import mediumReward from '../../assets/images/earn/medium-reward.png'
+import largeReward from '../../assets/images/earn/large-reward.png'
 
-    let box = (
+let smallImg = <Image src={smallReward} className='small-image' />
+let mediumImg = <Image src={mediumReward} className='medium-image' />
+let largeImg = <Image src={largeReward} className='large-image' />
+
+let boxData: { img: any; exp: number }[] = [
+    { img: smallImg, exp: 30 },
+    { img: smallImg, exp: 30 },
+    { img: mediumImg, exp: 50 },
+    { img: smallImg, exp: 30 },
+    { img: smallImg, exp: 30 },
+    { img: mediumImg, exp: 50 },
+    { img: largeImg, exp: 80 }
+]
+
+export function Box({exp, img, day}: {exp: number, img: any, day: number}) {
+    return (
         <div className="purple-box">
-            <h3>Title</h3>
+            <p>Day {day}</p>
             <div>{img}</div>
-            <h3>Day</h3>
+            <p>+{exp} XP</p>
         </div>
     )
+}
 
+export default function LoginToEarn() {
     return (
-        <section className="section pb-0">
+        <Container>
+            <section className="section pb-0">
             <div className="login-to-earn">
                 <div className="top-container">
                     <h1>Login To Earn</h1>
@@ -22,15 +41,13 @@ export default function LoginToEarn() {
                     </div>
                 </div>
                 <div className="purple-box-container">
-                    {box}
-                    {box}
-                    {box}
-                    {box}
-                    {box}
-                    {box}
-                    {box}
+                    {boxData.map((item: any, index: number) => {
+                        return <Box exp={item.exp} img={item.img} day={index + 1} />
+                    })}
                 </div>
             </div>
         </section>
+        </Container>
+
     )
 }
