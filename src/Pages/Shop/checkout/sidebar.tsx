@@ -11,7 +11,6 @@ import { useOrder } from 'context/order'
 
 export function order({ newOrder }: { newOrder: any }) {
     return ({ transaction }: { transaction: string }) => {
-        console.log(transaction)
 
         newOrder.fn({
             variables: {

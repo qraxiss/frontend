@@ -1,5 +1,5 @@
 import { Tab, Card, Table, Nav } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useCart } from 'context/cart'
 
@@ -25,6 +25,7 @@ export function OrdersTab() {
         }
     }, [loading])
 
+    let navigate = useNavigate()
 
     return (
         <Tab.Pane eventKey="order">
@@ -35,23 +36,41 @@ export function OrdersTab() {
                             <Table className="fs-15 align-middle table-nowrap">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Size</th>
-                                        <th scope="col">Color</th>
+                                        <th scope="col">Order Id</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Count</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {order.map((item: any, inx: any) => {
-                                        if (item.printful){
-                                        return <div>{item.printful.id}</div>
+                                        let total = 0
 
-                                        }else {
-                                            return item.error
-                                        }
+                                        item.items.forEach((product: any) => {
+                                            total = total + product.product.price
+                                        })
 
+                                        return (
+                                            <tr>
+                                                <td>{item.id}</td>
+                                                <td>{item.createdAt.slice(0, 10)}</td>
+                                                <td className={`text-${item.printful? 'success' : 'danger'}`}>{item.printful ? 'success' : 'failed'}</td>
+                                                <td>
+                                                    <span className="text-primary">{total.toFixed(2)}$</span> for {item.items.length} item.
+                                                </td>
+                                                <td>
+                                                    <button
+                                                        onClick={() => {
+                                                            navigate(`/shop/success/${item.id}`)
+                                                        }}
+                                                        className="btn btn-primary w-100"
+                                                    >
+                                                        View
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )
                                     })}
                                 </tbody>
                             </Table>
