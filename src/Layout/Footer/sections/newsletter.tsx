@@ -10,7 +10,7 @@ export function Newsletter() {
                     <Title title="Subscribe To Our" />
                     <Title title="Newsletter" />
                 </div>
-                <Form.Control type="email" id="email" name="email" placeholder="mail@shopcek.com" autoComplete="off" />
+                <Form.Control type="email" id="email" name="email" placeholder="Enter email address" autoComplete="off" />
                 <Button variant="primary" className="w-100" type="submit">
                     Subscribe
                 </Button>

@@ -17,10 +17,8 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
             <Container>
                 <section className="section pb-0 slider">
                     <CommonTitle title={title} />
-                    <Row>
-                        <Col lg={12}>
                             <Swiper
-                                modules={[Navigation, Autoplay]}
+                                modules={[Navigation]}
                                 slidesPerView={5}
                                 spaceBetween={30}
                                 navigation={{
@@ -60,7 +58,6 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                     role="button"
                                     aria-label="Previous slide"
                                 ></div>
-                                {/* Slieder'in kendisi */}
                                 <div className="swiper-wrapper">
                                     {items.map((item: any) => {
                                         return (
@@ -71,8 +68,6 @@ const Slider = ({ items, title }: { items: productListType[]; title: string }) =
                                     })}
                                 </div>
                             </Swiper>
-                        </Col>
-                    </Row>
                 </section>
             </Container>
         </React.Fragment>

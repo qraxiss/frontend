@@ -91,9 +91,9 @@
             }
 
             input::placeholder {
-                text-align: center;
+                // text-align: center;
                 color: rgb(148, 148, 148);
-                font-size: x-large;
+                font-size: large;
             }
 
             input {
@@ -102,7 +102,6 @@
                 border: 0px;
             }
 
-            margin-right: 2.7rem;
 
             .title {
                 display: flex;
@@ -132,7 +131,7 @@
                 li {
                     // height: 1.2rem;
                     a {
-                        font-size: large;
+                        font-size: medium !important;
                         font-weight: 350;
                     }
                 }
@@ -173,7 +172,7 @@
 
     .footer-title {
         text-decoration: underline;
-        font-size: x-large;
+        font-size: large;
         color: var(--#{$prefix}body-color);
 
         padding-bottom: 0.7rem;
@@ -188,7 +187,9 @@
     }
 
     .logo {
-        width: 17rem !important;
+        width: 13rem;
+        height: 17rem;
+        object-fit: cover;
         margin-top: -1rem;
     }
 
@@ -196,7 +197,7 @@
         a {
             color: black;
             line-height: 38px;
-            font-size: 14px;
+            font-size: medium;
             transition: all 0.5s;
 
             &:hover {
