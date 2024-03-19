@@ -268,13 +268,12 @@ const Productdetails = () => {
             setProductsList(productsData.data)
         }
     }, [productsData.data])
-    
 
     let sliderProduct = productData.color.map((color: any, index: number) => {
-        let item = productData.variants.find((item=>{
+        let item = productData.variants.find((item) => {
             return item.color === color
-        }))
-        
+        })
+
         return {
             id: index + 1,
             image: item.image
@@ -303,15 +302,15 @@ const Productdetails = () => {
                     <Container className="product-details-container">
                         <div className="pictures">
                             <div className="small-pictures">
-                                {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId-1, sliderId + 3))?.map(
+                                {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId - 1, sliderId + 3))?.map(
                                     (item: any, idx: number) => {
-                                        return <ModalImage small={item.image} large={item.image}  />
+                                        return <ModalImage small={item.image} large={item.image} />
                                     }
                                 )}
                                 <div className="buttons">
                                     <Button
                                         onClick={() => {
-                                            if (sliderId <= 1){
+                                            if (sliderId <= 1) {
                                                 return
                                             }
 
@@ -323,7 +322,7 @@ const Productdetails = () => {
                                     </Button>
                                     <Button
                                         onClick={() => {
-                                            if (sliderId + 3 >= sliderProduct.length){
+                                            if (sliderId + 3 >= sliderProduct.length) {
                                                 return
                                             }
 
@@ -336,7 +335,7 @@ const Productdetails = () => {
                                 </div>
                             </div>
                             <div className="big-picture">
-                                <ModalImage className='modal-image' small={productData.image} large={productData.image}  />
+                                <ModalImage className="modal-image" small={productData.image} large={productData.image} />
                             </div>
                         </div>
 

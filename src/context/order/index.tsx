@@ -16,7 +16,7 @@ export const useOrder = () => {
 
 export function OrderProvider({ children }: { children: any }) {
     let navigate = useNavigate()
-    
+
     let newOrderRES = useMutation(newOrderGQL)
     let orderRES = useQuery(orderGQL)
     let ordersRES = useQuery(ordersGQL)

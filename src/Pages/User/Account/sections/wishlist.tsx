@@ -49,7 +49,9 @@ export function WishListTab() {
                                                                     {/* <Link to="/product-details">
                                                                         <h6 className="fs-16">{item.title}</h6>
                                                                     </Link> */}
-                                                                    <p className="mb-0 fs-13"><b>{item.name}</b></p>
+                                                                    <p className="mb-0 fs-13">
+                                                                        <b>{item.name}</b>
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -58,17 +60,13 @@ export function WishListTab() {
                                                             <ul className="list-unstyled d-flex gap-3 mb-0">
                                                                 <li>
                                                                     <Button
-                                                                        onClick={
-                                                                            ()=>{
-                                                                                navigate(`/product-details/${item.slug}`)
-                                                                            }
-                                                                        }
+                                                                        onClick={() => {
+                                                                            navigate(`/product-details/${item.slug}`)
+                                                                        }}
                                                                         className="btn btn-soft-info btn-icon btn-xl"
                                                                     >
                                                                         <i className="ri-shopping-cart-2-line fs-13"></i>
-                                                                        <div className="text">
-                                                                        Buy Now
-                                                                        </div>
+                                                                        <div className="text">Buy Now</div>
                                                                     </Button>
                                                                 </li>
                                                                 <li>

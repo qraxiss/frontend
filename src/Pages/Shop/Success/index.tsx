@@ -15,8 +15,6 @@ export default function Success() {
         }
     })
 
-
-
     let [orderData, setOrderData] = useState({
         transaction: '',
         printful: {
@@ -37,7 +35,7 @@ export default function Success() {
         items: [],
         id: id,
         createdAt: new Date().toLocaleDateString(),
-        error : null
+        error: null
     })
 
     let price = 0
@@ -45,7 +43,6 @@ export default function Success() {
         price = price + item.product.price * item.count
     })
     useEffect(() => {
-
         if (!loading && data) {
             setOrderData(data)
         }
@@ -203,7 +200,7 @@ export default function Success() {
                           <div className="success-info-box">
                               <div className="top">
                                   <div className="title">Shopping Not Successful! ❌</div>
-                                  <div className="success-message">Some error occured. {error? error.message : orderData.error}</div>
+                                  <div className="success-message">Some error occured. {error ? error.message : orderData.error}</div>
                               </div>
                           </div>
                       ]}

@@ -55,7 +55,9 @@ export function OrdersTab() {
                                             <tr>
                                                 <td>{item.id}</td>
                                                 <td>{item.createdAt.slice(0, 10)}</td>
-                                                <td className={`text-${item.printful? 'success' : 'danger'}`}>{item.printful ? 'success' : 'failed'}</td>
+                                                <td className={`text-${item.printful ? 'success' : 'danger'}`}>
+                                                    {item.printful ? 'success' : 'failed'}
+                                                </td>
                                                 <td>
                                                     <span className="text-primary">{total.toFixed(2)}$</span> for {item.items.length} item.
                                                 </td>

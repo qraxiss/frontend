@@ -11,7 +11,6 @@ import { useOrder } from 'context/order'
 
 export function order({ newOrder }: { newOrder: any }) {
     return ({ transaction }: { transaction: string }) => {
-
         newOrder.fn({
             variables: {
                 transaction
@@ -27,15 +26,13 @@ export const Shoporder = () => {
     let { cartItems } = useCart()
     let { newOrderGQL, newOrder } = useOrder()
 
-    useEffect(()=>{
+    useEffect(() => {
         if (newOrder && !newOrderGQL.loading) {
             navigate(`/shop/success/${newOrder.id}`)
         }
     }, [newOrderGQL.loading])
 
-    let orderfn = order({newOrder: newOrderGQL})
-
-
+    let orderfn = order({ newOrder: newOrderGQL })
 
     let total: number = 0
     cartItems.forEach((item) => {

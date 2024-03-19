@@ -1,7 +1,6 @@
-
 export type OrderContextType = {
-    order: any,
-    orders: any,
+    order: any
+    orders: any
     newOrder: any
     newOrderGQL: any
 }
