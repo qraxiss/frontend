@@ -281,12 +281,8 @@ const Productdetails = () => {
         }
     })
 
-    useEffect(() => {
-        handleSetImg(1)
-    }, [loading])
-
     const [sliderImg, setSliderImg] = useState(sliderProduct)
-    const [sliderId, setSliderId] = useState(0)
+    const [sliderId, setSliderId] = useState(1)
     const [count, setCount] = useState(1)
 
     const handleSetImg = (id: any) => {
@@ -307,7 +303,7 @@ const Productdetails = () => {
                     <Container className="product-details-container">
                         <div className="pictures">
                             <div className="small-pictures">
-                                {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
+                                {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId-1, sliderId + 3))?.map(
                                     (item: any, idx: number) => {
                                         return <ModalImage small={item.image} large={item.image}  />
                                     }
@@ -315,6 +311,10 @@ const Productdetails = () => {
                                 <div className="buttons">
                                     <Button
                                         onClick={() => {
+                                            if (sliderId <= 1){
+                                                return
+                                            }
+
                                             handleSetImg(sliderId - 1)
                                         }}
                                         className="btn-primary"
@@ -323,6 +323,10 @@ const Productdetails = () => {
                                     </Button>
                                     <Button
                                         onClick={() => {
+                                            if (sliderId + 3 >= sliderProduct.length){
+                                                return
+                                            }
+
                                             handleSetImg(sliderId + 1)
                                         }}
                                         className="btn-secondary"
