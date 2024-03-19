@@ -27,7 +27,11 @@ type resultType = {
     slug: string
     price: number
     descripton: string
-    images: { url: string }[]
+    image: string
+    variants: any[]
+    size: string[]
+    color: string[]
+    categories: string[]
 }
 
 function Information(props: { icon?: string; className?: string }) {
@@ -68,6 +72,7 @@ function AddToCart(props: {
         }
     }
 }) {
+
     const { addItem, setCount, product } = props
 
     let { count, options } = product
@@ -180,10 +185,10 @@ function ProductInfo(props: { price: string; name: string }) {
     return [<span className="lh-base mb-1 info">{name}</span>, <h5 className="text-primary info">${price}</h5>]
 }
 
-function AddToWishList({ wishlistAddFn }: { wishlistAddFn: any }) {
+function AddToWishList({ wishListOnClick, inList }: { wishListOnClick: any; inList: boolean }) {
     return (
-        <div className="wishlist" onClick={wishlistAddFn}>
-            <i className="bi bi-heart" />
+        <div className="wishlist btn-hover" onClick={wishListOnClick}>
+            <i className={`bi bi-heart${inList ? '-fill' : ''}`} />
             <p>Add to wishlist!</p>
         </div>
     )
@@ -223,7 +228,38 @@ const Productdetails = () => {
         variables: { slug }
     })
 
-    let { addWishList } = useWishList()
+    let [productData, setProductData] = useState<resultType>({
+        name: '',
+        slug: '',
+        price: 0,
+        descripton: '',
+        variants: [],
+        size: [],
+        color: [],
+        image: '',
+        categories: []
+    })
+    useEffect(() => {
+        if (data && !loading) {
+            setProductData(data)
+        }
+
+
+        if (productData.color.length === 1) {
+            setColor(productData.color[0])
+        }
+    
+        if (productData.size.length === 1) {
+            setSize(productData.size[0])
+        }
+    }, [loading])
+
+    const [color, setColor] = useState<string>()
+    const [size, setSize] = useState<string>()
+
+    
+
+    let { addWishList, deleteWishList, wishlist } = useWishList()
 
     let { addItem } = useCart()
 
@@ -235,20 +271,7 @@ const Productdetails = () => {
         }
     }, [productsData.data])
 
-    const [color, setColor] = useState<string>()
-    const [size, setSize] = useState<string>()
-
-    data = (data || {
-        name: '',
-        slug: '',
-        price: 0,
-        description: '',
-        variants: [],
-        size: [],
-        color: []
-    }) as resultType
-
-    let sliderProduct = data.variants.map((item: any, index: number) => {
+    let sliderProduct = productData.variants.map((item: any, index: number) => {
         return {
             id: index + 1,
             image: item.image
@@ -268,150 +291,163 @@ const Productdetails = () => {
         setSliderImg(sliderProduct.filter((selectImg: any) => selectImg.id === id))
     }
 
+    let [inList, setInList] = useState(
+        !!wishlist.find((item) => {
+            return item === slug
+        })
+    )
+
     return (
         <React.Fragment>
-            <section className="section">
-                <Container className="product-details-container">
-                    <div className="pictures">
-                        <div className="small-pictures">
-                            {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
-                                (item: any, idx: number) => {
-                                    return <Image src={item.image} onClick={() => handleSetImg(item.id)} key={idx} />
-                                }
-                            )}
-                            <div className="buttons">
-                                <Button
-                                    onClick={() => {
-                                        handleSetImg(sliderId - 1)
-                                    }}
-                                    className="btn-primary"
-                                >
-                                    <i className="bi bi-arrow-down"></i>
-                                </Button>
-                                <Button
-                                    onClick={() => {
-                                        handleSetImg(sliderId + 1)
-                                    }}
-                                    className="btn-secondary"
-                                >
-                                    <i className="bi bi-arrow-up"></i>
-                                </Button>
+            <div className="product-details-page">
+                <section className="section">
+                    <Container className="product-details-container">
+                        <div className="pictures">
+                            <div className="small-pictures">
+                                {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
+                                    (item: any, idx: number) => {
+                                        return <Image src={item.image} onClick={() => handleSetImg(item.id)} key={idx} />
+                                    }
+                                )}
+                                <div className="buttons">
+                                    <Button
+                                        onClick={() => {
+                                            handleSetImg(sliderId - 1)
+                                        }}
+                                        className="btn-primary"
+                                    >
+                                        <i className="bi bi-arrow-down"></i>
+                                    </Button>
+                                    <Button
+                                        onClick={() => {
+                                            handleSetImg(sliderId + 1)
+                                        }}
+                                        className="btn-secondary"
+                                    >
+                                        <i className="bi bi-arrow-up"></i>
+                                    </Button>
+                                </div>
+                            </div>
+                            <div className="big-picture">
+                                    <Image src={productData.image} />
                             </div>
                         </div>
-                        <div className="big-picture">
-                            {sliderImg.map((item: any, idx: number) => {
-                                return <Image src={item.image} key={idx} />
-                            })}
+
+                        <div className="product-details">
+                            <ProductInfo price={productData.price.toFixed(2)} name={productData.name} />
+
+                            <Sold icon="bi bi-fire" />
+                            {productData.color.length !== 1 ? <Colors colorsList={productData.color} setColor={setColor} /> : ''}
+                            
+                            {productData.size.length !== 1 ? (
+                                <Variant title="Choose an option" options={productData.size} option={size} setOption={setSize} />
+                            ) : (
+                                ''
+                            )}
+
+                            <AddToCart
+                                addItem={addItem}
+                                setCount={setCount}
+                                product={{
+                                    product: data,
+                                    count,
+                                    options: {
+                                        size,
+                                        color
+                                    }
+                                }}
+                            />
+                            <AddToWishList
+                                wishListOnClick={() => {
+                                    ;(inList ? deleteWishList : addWishList)(productData.slug)
+                                    setInList(!inList)
+                                }}
+                                inList={inList}
+                            />
+
+                            <Information icon="bi bi-eye" />
+
+                            <hr />
+                            <Categories categories={!loading ? productData.categories : []} />
+                            <Socials />
                         </div>
-                    </div>
+                    </Container>
+                </section>
 
-                    <div className="product-details">
-                        <ProductInfo price={data.price.toFixed(2)} name={data.name} />
+                <section className="section pt-0">
+                    <Container>
+                        <Row>
+                            <Col lg={12}>
+                                <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
+                                    <Row>
+                                        <Col sm={12}>
+                                            <Nav variant="underline" className="nav-tabs-custom mb-3">
+                                                <Nav.Item as="li">
+                                                    <Nav.Link as="a" eventKey="Information">
+                                                        Additional Information
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                                <Nav.Item as="li">
+                                                    <Nav.Link as="a" eventKey="Description">
+                                                        Description
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                                <Nav.Item as="li">
+                                                    <Nav.Link as="a" eventKey="Reviews">
+                                                        Reviews
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                                <Nav.Item as="li">
+                                                    <Nav.Link as="a" eventKey="Shipping">
+                                                        Shipping
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                            </Nav>
+                                            <Tab.Content>
+                                                <Tab.Pane eventKey="Information">
+                                                    <div className="tab-pane active show" id="profile1" role="tabpanel">
+                                                        <Table className="table-sm table-borderless align-middle">
+                                                            <tbody>
+                                                                {(
+                                                                    [
+                                                                        {
+                                                                            thead: 'Size',
+                                                                            tdata: 'XL'
+                                                                        },
+                                                                        {
+                                                                            thead: 'Color',
+                                                                            tdata: 'Blue'
+                                                                        }
+                                                                    ] as any[]
+                                                                ).map((item: any, idx) => {
+                                                                    return (
+                                                                        <tr key={idx}>
+                                                                            <th>{item.thead}</th>
+                                                                            <td>{item.tdata}</td>
+                                                                        </tr>
+                                                                    )
+                                                                })}
+                                                            </tbody>
+                                                        </Table>
+                                                    </div>
+                                                </Tab.Pane>
 
-                        <Sold icon="bi bi-fire" />
-                        <Colors colorsList={data.color} setColor={setColor} />
-                        <Variant title="Choose an option" options={data.size} option={size} setOption={setSize} />
+                                                <Tab.Pane eventKey="Description">{productData.descripton}</Tab.Pane>
+                                            </Tab.Content>
+                                        </Col>
+                                    </Row>
+                                </Tab.Container>
+                            </Col>
+                        </Row>
+                    </Container>
+                </section>
 
-                        <AddToCart
-                            addItem={addItem}
-                            setCount={setCount}
-                            product={{
-                                product: data,
-                                count,
-                                options: {
-                                    size,
-                                    color
-                                }
-                            }}
-                        />
-                        <AddToWishList
-                            wishlistAddFn={() => {
-                                addWishList(data.slug)
-                            }}
-                        />
+                <hr />
 
-                        <Information icon="bi bi-eye" />
-
-                        <hr />
-                        <Categories categories={!loading ? data.categories : []} />
-                        <Socials />
-                    </div>
-                </Container>
-            </section>
-
-            <section className="section pt-0">
-                <Container>
-                    <Row>
-                        <Col lg={12}>
-                            <Tab.Container id="left-tabs-example" defaultActiveKey="Description">
-                                <Row>
-                                    <Col sm={12}>
-                                        <Nav variant="underline" className="nav-tabs-custom mb-3">
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Information">
-                                                    Additional Information
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Description">
-                                                    Description
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Reviews">
-                                                    Reviews
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                            <Nav.Item as="li">
-                                                <Nav.Link as="a" eventKey="Shipping">
-                                                    Shipping
-                                                </Nav.Link>
-                                            </Nav.Item>
-                                        </Nav>
-                                        <Tab.Content>
-                                            <Tab.Pane eventKey="Information">
-                                                <div className="tab-pane active show" id="profile1" role="tabpanel">
-                                                    <Table className="table-sm table-borderless align-middle">
-                                                        <tbody>
-                                                            {(
-                                                                [
-                                                                    {
-                                                                        thead: 'Size',
-                                                                        tdata: 'XL'
-                                                                    },
-                                                                    {
-                                                                        thead: 'Color',
-                                                                        tdata: 'Blue'
-                                                                    }
-                                                                ] as any[]
-                                                            ).map((item: any, idx) => {
-                                                                return (
-                                                                    <tr key={idx}>
-                                                                        <th>{item.thead}</th>
-                                                                        <td>{item.tdata}</td>
-                                                                    </tr>
-                                                                )
-                                                            })}
-                                                        </tbody>
-                                                    </Table>
-                                                </div>
-                                            </Tab.Pane>
-
-                                            <Tab.Pane eventKey="Description">{data.description}</Tab.Pane>
-                                        </Tab.Content>
-                                    </Col>
-                                </Row>
-                            </Tab.Container>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-
-            <hr />
-
-            <section className="section pt-0">
-                <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
-            </section>
+                <section className="section pt-0">
+                    <Slider items={productsList} title="Related Products"></Slider> {/*end row*/}
+                </section>
+            </div>
         </React.Fragment>
     )
 }

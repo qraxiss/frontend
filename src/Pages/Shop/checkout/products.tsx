@@ -68,6 +68,8 @@ export function Products() {
                         </tbody>
                     </Table>
 
+                    <hr />
+
                     <Table className="table-borderless mb-0 fs-15">
                         <tbody>
                             <tr className="table-active">

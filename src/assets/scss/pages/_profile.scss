@@ -27,7 +27,31 @@
     height: 180px;
 }
 
-//account
+.account-top {
+    padding-top: 2rem !important;
+
+    .btn {
+        margin-right: 1.1rem;
+        margin-bottom: -4rem;
+    }
+
+    h5 {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 0.1rem !important;
+    }
+
+    .edit {
+        p {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+section.account.py-5 {
+    padding-top: 1.2rem !important;
+}
 
 .profile-user-img {
     img {
@@ -55,10 +79,7 @@
             margin-top: 8px;
             background-color: $body-secondary-bg;
             border: 1px solid $primary;
-            box-shadow:
-                rgba($primary, 0.2) 2px 2px,
-                rgba($primary, 0.1) 4px 4px,
-                rgba($primary, 0.05) 6px 6px;
+            box-shadow: rgba($primary, 0.2) 2px 2px, rgba($primary, 0.1) 4px 4px, rgba($primary, 0.05) 6px 6px;
         }
 
         &:before {

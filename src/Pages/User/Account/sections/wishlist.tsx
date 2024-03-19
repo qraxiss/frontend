@@ -1,5 +1,5 @@
 import { Nav, Row, Col, Card, Table, Image, Button, Tab } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { useWishList } from 'context/wishlist'
 
@@ -16,6 +16,8 @@ export function WishListNav() {
 export function WishListTab() {
     let { wishlist, deleteWishList } = useWishList()
 
+    let navigate = useNavigate()
+
     return (
         <Tab.Pane eventKey="wishlist">
             <div className="tab-pane fade show" id="custom-v-pills-list" role="tabpanel">
@@ -29,7 +31,6 @@ export function WishListTab() {
                                             <tr>
                                                 <th scope="col">Product</th>
                                                 <th scope="col">Price</th>
-                                                <th scope="col">Stock Status</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -54,24 +55,25 @@ export function WishListTab() {
                                                         </td>
                                                         <td>${item.price}</td>
                                                         <td>
-                                                            <span>{/* {item.status} */}</span>
-                                                        </td>
-                                                        <td>
                                                             <ul className="list-unstyled d-flex gap-3 mb-0">
                                                                 <li>
-                                                                    <Link
-                                                                        to={`/product-details/${item.slug}`}
-                                                                        className="btn btn-soft-info btn-icon btn-sm"
+                                                                    <Button
+                                                                        onClick={
+                                                                            ()=>{
+                                                                                navigate(`/product-details/${item.slug}`)
+                                                                            }
+                                                                        }
+                                                                        className="btn btn-soft-info btn-icon btn-xl"
                                                                     >
                                                                         <i className="ri-shopping-cart-2-line fs-13"></i>
-                                                                    </Link>
+                                                                    </Button>
                                                                 </li>
                                                                 <li>
                                                                     <Button
                                                                         onClick={() => {
                                                                             deleteWishList(item.slug)
                                                                         }}
-                                                                        className="btn btn-soft-danger btn-icon btn-sm"
+                                                                        className="btn btn-soft-danger btn-icon btn-xl"
                                                                     >
                                                                         <i className="ri-close-line fs-13"></i>
                                                                     </Button>

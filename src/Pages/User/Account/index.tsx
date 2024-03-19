@@ -8,7 +8,7 @@ const Account = () => {
             <section className="position-relative">
                 <UserSection />
             </section>
-            <section className="py-5">
+            <section className="account py-5">
                 <UserNav />
             </section>
         </React.Fragment>
