@@ -22,6 +22,8 @@ import { useWishList } from 'context/wishlist'
 
 import { colors } from 'data/colors'
 
+import ModalImage from 'react-modal-image'
+
 type resultType = {
     name: string
     slug: string
@@ -72,7 +74,6 @@ function AddToCart(props: {
         }
     }
 }) {
-
     const { addItem, setCount, product } = props
 
     let { count, options } = product
@@ -244,11 +245,10 @@ const Productdetails = () => {
             setProductData(data)
         }
 
-
         if (productData.color.length === 1) {
             setColor(productData.color[0])
         }
-    
+
         if (productData.size.length === 1) {
             setSize(productData.size[0])
         }
@@ -256,8 +256,6 @@ const Productdetails = () => {
 
     const [color, setColor] = useState<string>()
     const [size, setSize] = useState<string>()
-
-    
 
     let { addWishList, deleteWishList, wishlist } = useWishList()
 
@@ -270,8 +268,13 @@ const Productdetails = () => {
             setProductsList(productsData.data)
         }
     }, [productsData.data])
+    
 
-    let sliderProduct = productData.variants.map((item: any, index: number) => {
+    let sliderProduct = productData.color.map((color: any, index: number) => {
+        let item = productData.variants.find((item=>{
+            return item.color === color
+        }))
+        
         return {
             id: index + 1,
             image: item.image
@@ -306,7 +309,7 @@ const Productdetails = () => {
                             <div className="small-pictures">
                                 {(sliderProduct.length <= 4 ? sliderProduct : sliderProduct.slice(sliderId, sliderId + 4))?.map(
                                     (item: any, idx: number) => {
-                                        return <Image src={item.image} onClick={() => handleSetImg(item.id)} key={idx} />
+                                        return <ModalImage small={item.image} large={item.image}  />
                                     }
                                 )}
                                 <div className="buttons">
@@ -329,7 +332,7 @@ const Productdetails = () => {
                                 </div>
                             </div>
                             <div className="big-picture">
-                                    <Image src={productData.image} />
+                                <ModalImage className='modal-image' small={productData.image} large={productData.image}  />
                             </div>
                         </div>
 
@@ -338,7 +341,7 @@ const Productdetails = () => {
 
                             <Sold icon="bi bi-fire" />
                             {productData.color.length !== 1 ? <Colors colorsList={productData.color} setColor={setColor} /> : ''}
-                            
+
                             {productData.size.length !== 1 ? (
                                 <Variant title="Choose an option" options={productData.size} option={size} setOption={setSize} />
                             ) : (

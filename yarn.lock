@@ -3571,6 +3571,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-modal-image@^2.6.3":
+  version "2.6.3"
+  resolved "https://registry.npmjs.org/@types/react-modal-image/-/react-modal-image-2.6.3.tgz"
+  integrity sha512-Uh4joinWiyRD2e4Q+MRiMiQfz7K7W16peF2xfEx821t7p6O6sG4xi42uuN5tsYhx1mTOsagUPqIQiWcYgKtkww==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-table@^7.7.14":
   version "7.7.18"
   resolved "https://registry.npmjs.org/@types/react-table/-/react-table-7.7.18.tgz"
@@ -12133,6 +12140,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.npmjs.org/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-modal-image@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.npmjs.org/react-modal-image/-/react-modal-image-2.6.0.tgz"
+  integrity sha512-NNc1xPKzFAn0VsNMdJ8NXt6c54aL/z0fcoYmw9qn4SBUONdGl+8LOQ0sTfo0wtdzcjLiby/ncloHcAL+UI+wIA==
 
 react-native-webview@^11.26.0:
   version "11.26.1"

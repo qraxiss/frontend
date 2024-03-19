@@ -12,8 +12,20 @@
     }
 
     .small-pictures {
+        div {
+            height: 21%;
+            
+            div {
+                height: 100%;
+
+                .__react_modal_image__header{
+                    background-color: unset !important;
+                }
+            }
+        }
+
         img {
-            height: 20%;
+            height: 100%;
         }
 
         display: flex;
@@ -35,8 +47,12 @@
     }
 
     .big-picture {
+        div:first-child {
+            height: 100% !important;
+        }
+
         img {
-            height: 96%;
+            height: 100%;   
         }
     }
 }
@@ -188,6 +204,11 @@ span.ln-base.info {
     .bi-fire {
         color: $secondary;
     }
+}
+
+.modal-image {
+    max-width: unset !important;
+    max-height: unset !important;
 }
 
 .information {
