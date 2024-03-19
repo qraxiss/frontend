@@ -27,6 +27,39 @@
     height: 180px;
 }
 
+.table-responsive {
+    table {
+        tbody {
+            td {
+                width: 25%;
+            }
+
+            td:first-child {
+                div.d-flex {
+                    align-items: center;
+                }
+
+                width: unset !important;
+            }
+
+            td:last-child {
+                width: 30% !important;
+                ul {
+                    flex-direction: column;
+                    
+                    li {
+                        button {
+                            display: flex;
+                            gap: 0.3rem;
+                            width: 17rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .account-top {
     padding-top: 2rem !important;
 

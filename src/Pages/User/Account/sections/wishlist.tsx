@@ -42,14 +42,14 @@ export function WishListTab() {
                                                             <div className="d-flex gap-3">
                                                                 <div className="avatar-sm flex-shrink-0">
                                                                     <div className={`avatar-title bg-${item.bg}-subtle rounded`}>
-                                                                        <Image src={item.image} alt="" className="avatar-xs" />
+                                                                        <Image src={item.image} alt="" className="avatar-xl" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="flex-grow-1">
-                                                                    <Link to="/product-details">
+                                                                    {/* <Link to="/product-details">
                                                                         <h6 className="fs-16">{item.title}</h6>
-                                                                    </Link>
-                                                                    <p className="mb-0 text-muted fs-13">{item.name}</p>
+                                                                    </Link> */}
+                                                                    <p className="mb-0 fs-13"><b>{item.name}</b></p>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -66,6 +66,9 @@ export function WishListTab() {
                                                                         className="btn btn-soft-info btn-icon btn-xl"
                                                                     >
                                                                         <i className="ri-shopping-cart-2-line fs-13"></i>
+                                                                        <div className="text">
+                                                                        Buy Now
+                                                                        </div>
                                                                     </Button>
                                                                 </li>
                                                                 <li>
@@ -76,6 +79,7 @@ export function WishListTab() {
                                                                         className="btn btn-soft-danger btn-icon btn-xl"
                                                                     >
                                                                         <i className="ri-close-line fs-13"></i>
+                                                                        <div className="text">Delete</div>
                                                                     </Button>
                                                                 </li>
                                                             </ul>
