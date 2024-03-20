@@ -14,3 +14,9 @@ export function areObjectsEqual(obj1: any, obj2: any) {
 
     return true
 }
+
+
+export function check24h(time:number){
+    let now = new Date()
+    return (now.valueOf() - time) > 1000 * 60 * 60 * 24
+}
