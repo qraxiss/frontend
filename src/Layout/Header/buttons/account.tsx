@@ -6,10 +6,12 @@ import { User } from 'Components/Images/Icons'
 import { useUser } from 'context/user'
 
 import { useConnectModal } from '@rainbow-me/rainbowkit'
+import { useEarn } from 'context/earn'
 
 export function Account() {
     let navigate = useNavigate()
     let { address, me } = useUser()
+    let {xp} = useEarn()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
@@ -67,7 +69,7 @@ export function Account() {
                     >
                         <div className="xp-points">
                             <span className="align-middle">XP Points</span>
-                            1.000.000
+                            {xp}
                         </div>
                     </Dropdown.Item>
 
