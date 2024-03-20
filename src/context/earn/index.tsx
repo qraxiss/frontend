@@ -39,7 +39,9 @@ export const EarnContext = createContext<EarnContextType>({
     loginData: {
         lastLogin: 0,
         loginCount: 0
-    }
+    },
+
+    time: 0
 })
 
 export function useEarn() {
@@ -51,13 +53,13 @@ export function EarnProvider({ children }: { children: any }) {
     let [xp, setXp] = useState(0)
 
     useEffect(() => {
-        if (xpRES.data && !xpRES.loading) {
+        if (xpRES.data && !xpRES.loading && JSON.stringify(xpRES.data) !== JSON.stringify(xp)) {
             setXp(xpRES.data)
         }
-    }, [xpRES.loading])
+    }, [xpRES.loading, xpRES.data])
 
     ///////
-    let spinRES = useQuery(spinGQL)
+    let spinRES = useMutation(spinGQL)
     let [spin, setSpin] = useState(0)
 
     useEffect(() => {
@@ -77,12 +79,14 @@ export function EarnProvider({ children }: { children: any }) {
     }, [spinDataRES.loading])
 
     //////
-    let loginStreakRES = useQuery(loginStreakGQL)
+    let loginStreakRES = useMutation(loginStreakGQL)
     let [loginStreak, setLoginStreak] = useState(0)
 
     useEffect(() => {
+
         if (loginStreakRES.data && !loginStreakRES.loading) {
             setLoginStreak(loginStreakRES.data)
+            loginDataRES.refetch()
         }
     }, [loginStreakRES.loading])
 
@@ -91,10 +95,12 @@ export function EarnProvider({ children }: { children: any }) {
     let [loginData, setLoginData] = useState(0)
 
     useEffect(() => {
-        if (loginDataRES.data && !loginDataRES.loading) {
+        ('loading')
+
+        if (loginDataRES.data && !loginDataRES.loading && JSON.stringify(loginDataRES.data) !== JSON.stringify(loginData)) {
             setLoginData(loginDataRES.data)
         }
-    }, [loginDataRES.loading])
+    }, [loginDataRES.loading, loginDataRES.data])
 
     //////
     let addXpRES = useMutation(addXpGQL)
@@ -105,6 +111,20 @@ export function EarnProvider({ children }: { children: any }) {
             setAddXp(addXpRES.data)
         }
     }, [addXpRES.loading])
+
+
+    let [firstTime, setTime] = useState(0)
+
+
+    
+    useEffect(()=>{
+        setTime(new Date().valueOf())
+    }, [])
+
+
+    useEffect(()=>{
+        xpRES.refetch()
+    }, [loginStreakRES.loading, spinRES.loading])
 
     return (
         <EarnContext.Provider
@@ -126,7 +146,8 @@ export function EarnProvider({ children }: { children: any }) {
                 spinDataGQL,
                 spinDataRES,
                 spinGQL,
-                spinRES
+                spinRES,
+                time:firstTime
             }}
         >
             {children}

@@ -3,6 +3,9 @@ import { Image, Button, Container } from 'react-bootstrap'
 import smallReward from '../../assets/images/earn/small-reward.png'
 import mediumReward from '../../assets/images/earn/medium-reward.png'
 import largeReward from '../../assets/images/earn/large-reward.png'
+import { useEarn } from 'context/earn'
+
+import { check24h } from 'lib/helpers'
 
 let smallImg = <Image src={smallReward} className="small-image" />
 let mediumImg = <Image src={mediumReward} className="medium-image" />
@@ -29,6 +32,10 @@ export function Box({ exp, img, day }: { exp: number; img: any; day: number }) {
 }
 
 export default function LoginToEarn() {
+    let { loginStreakRES, loginData, loginStreak} = useEarn()
+
+
+
     return (
         <Container>
             <section className="section pb-0">
@@ -37,12 +44,24 @@ export default function LoginToEarn() {
                         <h1>Login To Earn</h1>
                         <div className="claim">
                             <p>Login 7 days in a row, and your rewards will grow</p>
-                            <Button className="btn btn btn-secondary">Claim</Button>
+                            <Button className="btn btn btn-secondary" onClick={()=>{
+                                loginStreakRES.fn({
+                                    variables: {
+                                        point: boxData[loginData.loginCount].exp
+                                    }
+                                })
+                            }}>Claim</Button>
                         </div>
                     </div>
                     <div className="purple-box-container">
                         {boxData.map((item: any, index: number) => {
-                            return <Box exp={item.exp} img={item.img} day={index + 1} />
+                            return (
+                                <div className={`purple-box ${loginData.loginCount === index ? 'more-purple': ''}`} >
+                                    <p>Day {index + 1}</p>
+                                    <div>{item.img}</div>
+                                    <p>+{item.exp} XP</p>
+                                </div>
+                            )
                         })}
                     </div>
                 </div>

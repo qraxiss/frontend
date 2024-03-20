@@ -23,5 +23,7 @@ export type EarnContextType = {
     loginDataRES:any
     loginData: any
 
+    time: number
+
 
 }

@@ -48,7 +48,6 @@ export default function Success() {
         }
     }, [loading])
 
-    console.log(error, orderData.error)
 
     return (
         <section className="section">
