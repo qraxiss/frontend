@@ -30,7 +30,8 @@ let data = [
         title: 'App Download',
         description: 'Download our app PlayStore or AppStore',
         action: 'Download'
-    },{
+    },
+    {
         title: 'Fill out The Form',
         description: 'Fill out the form completly',
         action: 'Fill it Now'

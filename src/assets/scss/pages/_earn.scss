@@ -2,8 +2,6 @@
 // earn.scss
 //
 
-
-
 .purple-box {
     background-color: #ffceec;
     display: flex;
@@ -16,7 +14,7 @@
     width: auto;
 
     img.small-image {
-            width: 8rem;
+        width: 8rem;
     }
 
     img.medium-image {
@@ -26,10 +24,7 @@
     img.large-image {
         width: 12rem;
     }
-
 }
-
-
 
 .purple-box:first-child {
     background-color: #ff5bc0 !important;

@@ -11,7 +11,7 @@ import { useEarn } from 'context/earn'
 export function Account() {
     let navigate = useNavigate()
     let { address, me } = useUser()
-    let {xp} = useEarn()
+    let { xp } = useEarn()
 
     return (
         <div className="dropdown header-item dropdown-hover-end">

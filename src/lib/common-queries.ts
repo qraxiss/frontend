@@ -201,7 +201,19 @@ export let xp = gql`
 `
 
 export let addXp = gql`
-    mutation ADD_XP($point:Int!){
+    mutation ADD_XP($point: Int!) {
         addXp(point: $point)
+    }
+`
+
+export let loginData = gql`
+    query {
+        loginData
+    }
+`
+
+export let spinData = gql`
+    query {
+        spinData
     }
 `

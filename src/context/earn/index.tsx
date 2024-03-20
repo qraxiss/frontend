@@ -6,7 +6,6 @@ import { useMutation, useQuery } from 'lib/query-wrapper'
 import type { EarnContextType } from './types'
 export type { EarnContextType }
 
-
 export const EarnContext = createContext<EarnContextType>({
     xpGQL: {},
     xpRES: {},
