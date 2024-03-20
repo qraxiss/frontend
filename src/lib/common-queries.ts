@@ -193,3 +193,15 @@ export let me = gql`
         }
     }
 `
+
+export let xp = gql`
+    query {
+        xp
+    }
+`
+
+export let addXp = gql`
+    mutation ADD_XP($point:Int!){
+        addXp(point: $point)
+    }
+`
