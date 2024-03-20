@@ -206,6 +206,18 @@ export let addXp = gql`
     }
 `
 
+export let spin = gql`
+    mutation spin($point: Int!) {
+        spin(point: $point)
+    }
+`
+
+export let loginStreak = gql`
+    mutation loginStreak($point: Int!) {
+        loginStreak(point: $point)
+    }
+`
+
 export let loginData = gql`
     query {
         loginData
