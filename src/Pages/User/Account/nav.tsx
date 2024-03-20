@@ -5,7 +5,7 @@ import {
     WishListTab,
     ProfileNav,
     ProfileTab,
-    XpNav,
+    XpNav,XpTab,
     AddressNav,
     AddressTab,
     LogoutNav,
@@ -42,6 +42,7 @@ export function UserNav() {
                             <WishListTab />
                             <OrdersTab />
                             <AddressTab />
+                            <XpTab/>
                         </Tab.Content>
                     </Col>
                 </Row>

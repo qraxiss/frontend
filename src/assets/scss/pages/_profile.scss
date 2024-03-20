@@ -84,6 +84,36 @@
 
 section.account.py-5 {
     padding-top: 1.2rem !important;
+
+    div.xp-points {
+        height: 15rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        flex-direction: column;
+
+        .text {
+            font-size: xx-large;
+            display: flex;
+            margin-left: -1.15rem;
+            gap: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 0.5rem;
+
+            button {
+                height: 3rem;
+                width: 10rem;
+                font-size: x-large;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
 }
 
 .profile-user-img {
@@ -112,10 +142,7 @@ section.account.py-5 {
             margin-top: 8px;
             background-color: $body-secondary-bg;
             border: 1px solid $primary;
-            box-shadow:
-                rgba($primary, 0.2) 2px 2px,
-                rgba($primary, 0.1) 4px 4px,
-                rgba($primary, 0.05) 6px 6px;
+            box-shadow: rgba($primary, 0.2) 2px 2px, rgba($primary, 0.1) 4px 4px, rgba($primary, 0.05) 6px 6px;
         }
 
         &:before {
