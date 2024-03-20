@@ -14,7 +14,7 @@ let boxData: { img: any; exp: number }[] = [
     { img: mediumImg, exp: 50 },
     { img: smallImg, exp: 30 },
     { img: smallImg, exp: 30 },
-    { img: mediumImg, exp: 50 },
+    { img: mediumImg, exp: 60 },
     { img: largeImg, exp: 80 }
 ]
 

@@ -280,6 +280,8 @@ const Productdetails = () => {
         }
     })
 
+    // sliderProduct = [...sliderProduct, ...sliderProduct]
+
     const [sliderImg, setSliderImg] = useState(sliderProduct)
     const [sliderId, setSliderId] = useState(1)
     const [count, setCount] = useState(1)
