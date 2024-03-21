@@ -23,6 +23,22 @@ export type EarnContextType = {
     loginDataRES: any
     loginData: any
 
+    checkDomain: any
+    checkDomainGQL: any
+    checkDomainRES: any
+
+    addNewDomainToUser: any
+    addNewDomainToUserRES: any
+    addNewDomainToUserGQL: any
+
+    chooseDomain: any
+    chooseDomainRES: any
+    chooseDomainGQL: any
+
+    getDomainsByUser: any
+    getDomainsByUserRES: any
+    getDomainsByUserGQL: any
+
     time: number
     setTime: Function
 }

@@ -4,6 +4,7 @@ import config from 'config/config'
 export const client = new ApolloClient({
     uri: config.serverUrl + '/graphql',
     cache: new InMemoryCache()
+    // fetchPolicy: 'network-only',
 })
 
 export function ApolloProvider({ children }: any) {

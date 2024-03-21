@@ -229,3 +229,27 @@ export let spinData = gql`
         spinData
     }
 `
+
+export let checkDomain = gql`
+    query checkDomain($domain: String!) {
+        checkDomain(domain: $domain)
+    }
+`
+
+export let addNewDomainToUser = gql`
+    mutation addNewDomainToUser($domain: String!) {
+        addNewDomainToUser(domain: $domain)
+    }
+`
+
+export let getDomainsByUser = gql`
+    query {
+        getDomainsByUser
+    }
+`
+
+export let chooseDomain = gql`
+    mutation chooseDomain($domain: String!) {
+        chooseDomain(domain: $domain)
+    }
+`

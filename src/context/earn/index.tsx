@@ -6,9 +6,13 @@ import {
     loginData as loginDataGQL,
     spinData as spinDataGQL,
     spin as spinGQL,
-    loginStreak as loginStreakGQL
+    loginStreak as loginStreakGQL,
+    checkDomain as checkDomainGQL,
+    addNewDomainToUser as addNewDomainToUserGQL,
+    getDomainsByUser as getDomainsByUserGQL,
+    chooseDomain as chooseDomainGQL
 } from '../../lib/common-queries'
-import { useMutation, useQuery } from 'lib/query-wrapper'
+import { useMutation, useQuery, useLazyQuery } from 'lib/query-wrapper'
 
 import type { EarnContextType } from './types'
 export type { EarnContextType }
@@ -41,6 +45,22 @@ export const EarnContext = createContext<EarnContextType>({
         loginCount: 0
     },
 
+    checkDomain: false,
+    checkDomainGQL: {},
+    checkDomainRES: {},
+
+    addNewDomainToUser: {},
+    addNewDomainToUserRES: {},
+    addNewDomainToUserGQL: {},
+
+    chooseDomain: {},
+    chooseDomainRES: {},
+    chooseDomainGQL: {},
+
+    getDomainsByUser: {},
+    getDomainsByUserRES: {},
+    getDomainsByUserGQL: {},
+
     time: 0,
     setTime: (time: number) => {}
 })
@@ -50,6 +70,20 @@ export function useEarn() {
 }
 
 export function EarnProvider({ children }: { children: any }) {
+    //@ts-ignore
+    let [checkDomainFN, checkDomainRES] = useLazyQuery(checkDomainGQL, {
+        fetchPolicy: 'network-only',
+        nextFetchPolicy: 'cache-first'
+    })
+    let [checkDomain, setCheckDomain] = useState(false)
+
+    useEffect(() => {
+        if (checkDomainRES.data && !checkDomainRES.loading && JSON.stringify(checkDomainRES.data) !== JSON.stringify(checkDomain)) {
+            setCheckDomain(checkDomainRES.data)
+        }
+    }, [checkDomainRES.loading, checkDomainRES.data])
+
+    ///////
     let xpRES = useQuery(xpGQL)
     let [xp, setXp] = useState(0)
 
@@ -58,6 +92,39 @@ export function EarnProvider({ children }: { children: any }) {
             setXp(xpRES.data)
         }
     }, [xpRES.loading, xpRES.data])
+
+    ///////
+    let chooseDomainRES = useMutation(chooseDomainGQL)
+    let [chooseDomain, setChooseDomainGQL] = useState({})
+
+    useEffect(() => {
+        if (chooseDomainRES.data && !chooseDomainRES.loading && JSON.stringify(chooseDomainRES.data) !== JSON.stringify(chooseDomain)) {
+            setChooseDomainGQL(chooseDomainRES.data)
+        }
+    }, [chooseDomainRES.loading, chooseDomainRES.data])
+
+    ///////
+    let getDomainsByUserRES = useQuery(getDomainsByUserGQL)
+    let [getDomainsByUser, setGetDomainsByUserGQL] = useState([])
+
+    useEffect(() => {
+        if (
+            getDomainsByUserRES.data &&
+            !getDomainsByUserRES.loading &&
+            JSON.stringify(getDomainsByUserRES.data) !== JSON.stringify(getDomainsByUser)
+        ) {
+            setGetDomainsByUserGQL(getDomainsByUserRES.data)
+        }
+    }, [getDomainsByUserRES.loading, getDomainsByUserRES.data])
+    ///////
+    let addNewDomainToUserRES = useMutation(addNewDomainToUserGQL)
+    let [addNewDomainToUser, setAddNewDomainToUser] = useState({})
+
+    useEffect(() => {
+        if (addNewDomainToUserRES.data && !addNewDomainToUserRES.loading) {
+            setAddNewDomainToUser(addNewDomainToUserRES.data)
+        }
+    }, [addNewDomainToUserRES.loading])
 
     ///////
     let spinRES = useMutation(spinGQL)
@@ -143,7 +210,24 @@ export function EarnProvider({ children }: { children: any }) {
                 spinGQL,
                 spinRES,
                 time: firstTime,
-                setTime
+                setTime,
+                checkDomain,
+                checkDomainGQL,
+                checkDomainRES: {
+                    ...checkDomainRES,
+                    fn: checkDomainFN
+                },
+
+                addNewDomainToUser,
+                addNewDomainToUserRES,
+                addNewDomainToUserGQL,
+
+                chooseDomain,
+                chooseDomainRES,
+                chooseDomainGQL,
+                getDomainsByUser,
+                getDomainsByUserRES,
+                getDomainsByUserGQL
             }}
         >
             {children}

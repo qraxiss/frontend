@@ -10,7 +10,9 @@ import {
     AddressNav,
     AddressTab,
     LogoutNav,
-    StakeNav
+    StakeNav,
+    DomainsNav,
+    DomainsTab
 } from './sections'
 import { Col, Container, Row, Tab, Nav, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
@@ -33,6 +35,7 @@ export function UserNav() {
                                     <StakeNav />
                                     <AddressNav />
                                     <LogoutNav />
+                                    <DomainsNav />
                                 </Nav>
                             </Card.Body>
                         </Card>
@@ -44,6 +47,7 @@ export function UserNav() {
                             <OrdersTab />
                             <AddressTab />
                             <XpTab />
+                            <DomainsTab />
                         </Tab.Content>
                     </Col>
                 </Row>
