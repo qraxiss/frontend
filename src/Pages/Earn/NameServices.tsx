@@ -1,5 +1,4 @@
 import { Form, Button } from 'react-bootstrap'
-
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 export default function NameService() {
