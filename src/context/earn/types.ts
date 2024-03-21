@@ -7,24 +7,22 @@ export type EarnContextType = {
     xpRES: any
     xp: number
 
-    spinGQL:any
-    spinRES:any
-    spin:any
+    spinGQL: any
+    spinRES: any
+    spin: any
 
     spinDataGQL: any
     spinDataRES: any
     spinData: any
 
-    loginStreakGQL:any
-    loginStreakRES:any
-    loginStreak:any
+    loginStreakGQL: any
+    loginStreakRES: any
+    loginStreak: any
 
     loginDataGQL: any
-    loginDataRES:any
+    loginDataRES: any
     loginData: any
 
     time: number
     setTime: Function
-
-
 }

@@ -32,10 +32,10 @@ export function Box({ exp, img, day }: { exp: number; img: any; day: number }) {
 }
 
 export default function LoginToEarn() {
-    let { loginStreakRES, loginData, loginStreak} = useEarn()
+    let { loginStreakRES, loginData, loginStreak } = useEarn()
     let [date, setDate] = useState(new Date(loginData.lastLogin))
-    useEffect(()=>{
-        setInterval(()=>{
+    useEffect(() => {
+        setInterval(() => {
             setDate(new Date())
         }, 1000)
     }, [])
@@ -48,19 +48,25 @@ export default function LoginToEarn() {
                         <h1>Login To Earn</h1>
                         <div className="claim">
                             <p>Login 7 days in a row, and your rewards will grow</p>
-                            <Button disabled={!check10s(new Date(loginData.lastLogin))} className="btn btn btn-secondary" onClick={()=>{
-                                loginStreakRES.fn({
-                                    variables: {
-                                        point: boxData[loginData.loginCount].exp
-                                    }
-                                })
-                            }}>Claim</Button>
+                            <Button
+                                disabled={!check10s(new Date(loginData.lastLogin))}
+                                className="btn btn btn-secondary"
+                                onClick={() => {
+                                    loginStreakRES.fn({
+                                        variables: {
+                                            point: boxData[loginData.loginCount].exp
+                                        }
+                                    })
+                                }}
+                            >
+                                Claim
+                            </Button>
                         </div>
                     </div>
                     <div className="purple-box-container">
                         {boxData.map((item: any, index: number) => {
                             return (
-                                <div className={`purple-box ${loginData.loginCount === index ? 'more-purple': ''}`} >
+                                <div className={`purple-box ${loginData.loginCount === index ? 'more-purple' : ''}`}>
                                     <p>Day {index + 1}</p>
                                     <div>{item.img}</div>
                                     <p>+{item.exp} XP</p>

@@ -42,7 +42,7 @@ export const EarnContext = createContext<EarnContextType>({
     },
 
     time: 0,
-    setTime: (time:number)=>{}
+    setTime: (time: number) => {}
 })
 
 export function useEarn() {
@@ -84,7 +84,6 @@ export function EarnProvider({ children }: { children: any }) {
     let [loginStreak, setLoginStreak] = useState(0)
 
     useEffect(() => {
-
         if (loginStreakRES.data && !loginStreakRES.loading) {
             setLoginStreak(loginStreakRES.data)
             loginDataRES.refetch()
@@ -112,17 +111,13 @@ export function EarnProvider({ children }: { children: any }) {
         }
     }, [addXpRES.loading, addXpRES.data])
 
-
     let [firstTime, setTime] = useState(0)
 
-
-    
-    useEffect(()=>{
+    useEffect(() => {
         setTime(new Date().valueOf())
     }, [])
 
-
-    useEffect(()=>{
+    useEffect(() => {
         xpRES.refetch()
     }, [loginStreakRES.loading, spinRES.loading])
 
@@ -147,7 +142,7 @@ export function EarnProvider({ children }: { children: any }) {
                 spinDataRES,
                 spinGQL,
                 spinRES,
-                time:firstTime,
+                time: firstTime,
                 setTime
             }}
         >

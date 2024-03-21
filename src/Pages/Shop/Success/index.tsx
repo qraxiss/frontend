@@ -48,7 +48,6 @@ export default function Success() {
         }
     }, [loading])
 
-
     return (
         <section className="section">
             <Container className="success-page">
