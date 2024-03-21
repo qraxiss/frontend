@@ -41,7 +41,8 @@ export const EarnContext = createContext<EarnContextType>({
         loginCount: 0
     },
 
-    time: 0
+    time: 0,
+    setTime: (time:number)=>{}
 })
 
 export function useEarn() {
@@ -107,10 +108,11 @@ export function EarnProvider({ children }: { children: any }) {
     let [addXp, setAddXp] = useState(0)
 
     useEffect(() => {
-        if (addXpRES.data && !addXpRES.loading) {
+        if (addXpRES.data && !addXpRES.loading && JSON.stringify(addXpRES.data) !== JSON.stringify(addXp)) {
             setAddXp(addXpRES.data)
+            xpRES.refetch()
         }
-    }, [addXpRES.loading])
+    }, [addXpRES.loading, addXpRES.data])
 
 
     let [firstTime, setTime] = useState(0)
@@ -147,7 +149,8 @@ export function EarnProvider({ children }: { children: any }) {
                 spinDataRES,
                 spinGQL,
                 spinRES,
-                time:firstTime
+                time:firstTime,
+                setTime
             }}
         >
             {children}
