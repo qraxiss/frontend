@@ -19,3 +19,9 @@ export function check24h(time: number) {
     let now = new Date()
     return now.valueOf() - time > 1000 * 60 * 60 * 24
 }
+
+export function check10s(time: Date) {
+    let now = new Date()
+    return now.valueOf() - time.valueOf() > 1000 * 10
+}
+
