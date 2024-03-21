@@ -10,7 +10,9 @@ import {
     checkDomain as checkDomainGQL,
     addNewDomainToUser as addNewDomainToUserGQL,
     getDomainsByUser as getDomainsByUserGQL,
-    chooseDomain as chooseDomainGQL
+    chooseDomain as chooseDomainGQL,
+    choosenDomain as choosenDomainGQL,
+
 } from '../../lib/common-queries'
 import { useMutation, useQuery, useLazyQuery } from 'lib/query-wrapper'
 

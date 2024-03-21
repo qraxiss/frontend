@@ -2,6 +2,7 @@ import { Tab, Card, Table, Nav } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useEarn } from 'context/earn'
+import { useUser } from 'context/user'
 
 export function DomainsNav() {
     return (
@@ -16,6 +17,7 @@ export function DomainsNav() {
 export function DomainsTab() {
     let navigate = useNavigate()
     let { getDomainsByUser, chooseDomainRES } = useEarn()
+    let {choosenDomain} = useUser()
 
     return (
         <Tab.Pane eventKey="domains">
@@ -43,7 +45,10 @@ export function DomainsTab() {
                                                                     domain: item.domain
                                                                 }
                                                             })
+                                                            choosenDomain.choosenDomainRES.refetch()
                                                         }}
+                                                        
+
                                                         className="btn btn-primary w-100"
                                                     >
                                                         Choose

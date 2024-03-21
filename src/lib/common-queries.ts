@@ -253,3 +253,16 @@ export let chooseDomain = gql`
         chooseDomain(domain: $domain)
     }
 `
+export let connectWallet = gql`
+    mutation connectWallet($walletAddress: String!){
+        connectWallet(walletAddress:$walletAddress) {
+            jwt
+        }
+    }
+`
+
+export let choosenDomain = gql`
+    query choosenDomain {
+        choosenDomain
+    }
+`

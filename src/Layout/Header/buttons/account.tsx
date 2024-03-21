@@ -10,8 +10,15 @@ import { useEarn } from 'context/earn'
 
 export function Account() {
     let navigate = useNavigate()
-    let { address, me } = useUser()
     let { xp } = useEarn()
+
+    let { me, choosenDomain } = useUser()
+
+
+    let { username } = me
+    let address = username
+    let sliced = `${address.slice(0, 6)}...${address.slice(address.length - 6, address.length)}`
+
 
     return (
         <div className="dropdown header-item dropdown-hover-end">
@@ -25,12 +32,8 @@ export function Account() {
                         <div className="user">
                             <User className="rounded-circle header-profile-user" />
                             <div className="user-info">
-                                <span>
-                                    {address.slice(0, 6)}...{address.slice(address.length - 3, address.length)}
-                                </span>
-                                <span>
-                                    {address.slice(0, 6)}...{address.slice(address.length - 3, address.length)}
-                                </span>
+                                <span>{choosenDomain.choosenDomain === address? sliced : choosenDomain.choosenDomain}</span>
+                                <span>{sliced}</span>
                             </div>
                         </div>
                     </Dropdown.Item>
@@ -106,7 +109,9 @@ export function SignInUp() {
                 data-bs-toggle="offcanvas"
                 data-bs-target="#ecommerceCart"
                 aria-controls="ecommerceCart"
-                onClick={openConnectModal}
+                onClick={() => {
+                    openConnectModal!()
+                }}
             >
                 <User className="rounded-circle header-profile-user" />
             </Button>

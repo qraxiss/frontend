@@ -10,10 +10,13 @@ import { useUser } from 'context/user'
 
 import { User } from 'Components/Images/Icons'
 
+
 const Logout = () => {
     let { deleteJwt } = useUser()
 
-    deleteJwt()
+    useEffect(()=>{
+        deleteJwt()
+    },[])
 
     return (
         <React.Fragment>
