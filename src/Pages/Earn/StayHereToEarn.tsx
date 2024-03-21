@@ -4,8 +4,6 @@ import { Button } from 'react-bootstrap'
 import { useEffect, useState } from 'react'
 
 function addOneZero(time: number){
-    console.log(time)
-
     if (time < 10){
         return `0${time}`
     } else {
@@ -13,8 +11,14 @@ function addOneZero(time: number){
     }
 }
 
+function calculateXp(difference:number){
+    let seconds = Math.floor(difference / 1000)
+
+    return seconds
+}
+
 export default function StayHereToEarn() {
-    let {time} = useEarn()
+    let {time, setTime, addXpRES} = useEarn()
     const now = new Date().valueOf()
     const difference = now - time
 
@@ -32,6 +36,7 @@ export default function StayHereToEarn() {
     const seconds = (Math.floor(difference % (1000 * 60) / 1000))
 
 
+    
 
     return (
         <section className="section pb-0">
@@ -41,7 +46,15 @@ export default function StayHereToEarn() {
                         <h1>Stay Here To Earn</h1>
                     </div>
                     <div className="claim">
-                        <Button className="btn btn btn-primary">Claim</Button>
+                        <Button className="btn btn btn-primary" onClick={()=>{
+                            addXpRES.fn({
+                                variables: {
+                                    point: calculateXp(difference)
+                                }
+                            })
+
+                            setTime(new Date().valueOf())
+                        }}>Claim</Button>
                         <p>Earn rewards based on the time you spend here</p>
                     </div>
 

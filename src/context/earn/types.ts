@@ -24,6 +24,7 @@ export type EarnContextType = {
     loginData: any
 
     time: number
+    setTime: Function
 
 
 }
