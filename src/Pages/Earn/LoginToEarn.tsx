@@ -4,9 +4,7 @@ import smallReward from '../../assets/images/earn/small-reward.png'
 import mediumReward from '../../assets/images/earn/medium-reward.png'
 import largeReward from '../../assets/images/earn/large-reward.png'
 import { useEarn } from 'context/earn'
-
 import { check10s } from 'lib/helpers'
-
 import { useState, useEffect } from 'react'
 
 let smallImg = <Image src={smallReward} className="small-image" />
@@ -35,14 +33,10 @@ export function Box({ exp, img, day }: { exp: number; img: any; day: number }) {
 
 export default function LoginToEarn() {
     let { loginStreakRES, loginData, loginStreak} = useEarn()
-
-    check10s(new Date(loginData.lastLogin))
-    console.log(new Date(loginData.lastLogin))
-
-    let [check, setCheck] = useState(false)
+    let [date, setDate] = useState(new Date(loginData.lastLogin))
     useEffect(()=>{
         setInterval(()=>{
-            setCheck(!check)
+            setDate(new Date())
         }, 1000)
     }, [])
 
