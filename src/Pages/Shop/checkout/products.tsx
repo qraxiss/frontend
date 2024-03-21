@@ -1,6 +1,5 @@
 import { useCart } from 'context/cart'
 import { Table, Image, Card } from 'react-bootstrap'
-;<Products />
 
 export function Products() {
     let { cartItems } = useCart()
