@@ -96,8 +96,6 @@ export function EarnProvider({ children }: { children: any }) {
     let [loginData, setLoginData] = useState(0)
 
     useEffect(() => {
-        ('loading')
-
         if (loginDataRES.data && !loginDataRES.loading && JSON.stringify(loginDataRES.data) !== JSON.stringify(loginData)) {
             setLoginData(loginDataRES.data)
         }
